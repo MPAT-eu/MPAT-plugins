@@ -1,0 +1,495 @@
+# Copyright (C) 2017 MPAT core plugin
+# This file is distributed under the same license as the MPAT core plugin package.
+msgid ""
+msgstr ""
+"Project-Id-Version: MPAT core plugin 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/mpat-plugins\n"
+"POT-Creation-Date: 2017-10-19 13:33+0200\n"
+"PO-Revision-Date: 2017-10-19 13:35+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: it_IT\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.11\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: AjaxCalls.php:14
+msgid "cannot get post content"
+msgstr "Modello App"
+
+#: AjaxCalls.php:18 AjaxCalls.php:31 AjaxCalls.php:76
+msgid "no id provided!"
+msgstr "nessun id fornito!"
+
+#: AjaxCalls.php:67
+msgid "Error"
+msgstr "Errore"
+
+#: AjaxCalls.php:92
+msgid "no template data!"
+msgstr "nessun dato di modello!"
+
+#: AjaxCalls.php:129
+msgid "Red"
+msgstr "Rosso"
+
+#: AjaxCalls.php:147
+msgid "Items saved"
+msgstr "Articoli salvati"
+
+#: AjaxCalls.php:149
+msgid "Items not found"
+msgstr "Articoli non trovati"
+
+#: ContentManagement/PageManagement.php:44
+#: ContentManagement/PageManagement.php:45
+msgid "Scheduled Update"
+msgstr "Aggiornamento pianificato"
+
+#: ContentManagement/PageManagement.php:151
+msgid "Original"
+msgstr "Originale"
+
+#: ContentManagement/PageManagement.php:183
+#: ContentManagement/PageManagement.php:450
+msgid "Create new scheduled update"
+msgstr "Crea un nuovo aggiornamento pianificato"
+
+#: ContentManagement/PageManagement.php:186
+msgid "Publish Now"
+msgstr "Pubblica ora"
+
+#: ContentManagement/PageManagement.php:208
+#: ContentManagement/PageManagement.php:335
+#: ContentManagement/PageManagement.php:337
+msgid "Releasedate"
+msgstr "Data di rilascio"
+
+#: ContentManagement/PageManagement.php:245
+msgid "Could not schedule %s %s"
+msgstr "Impossibile programmare %s %s"
+
+#: ContentManagement/PageManagement.php:247
+msgid "Back"
+msgstr "Indietro"
+
+#: ContentManagement/PageManagement.php:273
+msgid "Scheduled revisions"
+msgstr "Revisioni pianificate"
+
+#: ContentManagement/PageManagement.php:302
+msgid "Save"
+msgstr "Salvare"
+
+#: ContentManagement/PageManagement.php:340
+#: ContentManagement/PageManagement.php:342
+msgid "Time"
+msgstr "Tempo"
+
+#: ContentManagement/PageManagement.php:354
+msgid "Please enter <i>Time</i> as %s"
+msgstr "Inserisci <i>Tempo</i> come %s"
+
+#: ContentManagement/PageManagement.php:357
+msgid ""
+"The Releasedate is in the past, this post will be published 5 Minutes from "
+"now."
+msgstr ""
+"La data di rilascio è in passato, questo post sarà pubblicato 5 minuti da "
+"ora."
+
+#: ContentManagement/PageManagement.php:397
+msgid "Original revision"
+msgstr "Revisione originale"
+
+#: ContentManagement/PageManagement.php:440
+msgid "Current draft revision"
+msgstr "Progetto di revisione attuale"
+
+#: ContentManagement/PageManagement.php:440
+msgid "Unscheduled draft revision"
+msgstr "Progetto di revisione non pianificato"
+
+#: ContentManagement/PageManagement.php:853
+msgid "Clone this item"
+msgstr "Clonare questo elemento"
+
+#: ContentManagement/PageManagement.php:853
+msgid "Clone"
+msgstr "Clone"
+
+#: ContentManagement/PageManagement.php:870
+msgid "Copy to a new draft"
+msgstr "Copia in una nuova bozza"
+
+#: ContentManagement/PageManagement.php:949
+msgid "No pages selected!"
+msgstr "Nessuna pagina selezionata!"
+
+#: PostTypes/Page.php:81 PostTypes/PageModel.php:53
+msgid "User permissions"
+msgstr "Autorizzazioni utente"
+
+#: PostTypes/Page.php:90 PostTypes/PageModel.php:62
+msgid "Content Editor"
+msgstr "Editor dei contenuti"
+
+#: PostTypes/Page.php:133 PostTypes/PageModel.php:105
+msgid "Allowed content editors"
+msgstr "Editori di contenuti consentiti"
+
+#: PostTypes/PageLayout.php:13
+msgid "Page Layouts"
+msgstr "Layout di pagina"
+
+#: PostTypes/PageLayout.php:14
+msgid "Page Layout"
+msgstr "Layout di pagina"
+
+#: PostTypes/PageModel.php:18
+msgid "Page Models"
+msgstr "Modelli di pagina"
+
+#: PostTypes/PageModel.php:19
+msgid "Page Model"
+msgstr "Modello di pagina"
+
+#: REST/AssetsSearchController.php:127
+msgid "Sort collection by object attribute."
+msgstr "Ordinare la raccolta per attributo di oggetto."
+
+#: REST/AssetsSearchController.php:299
+msgid "The date the object was published, in the site's timezone."
+msgstr "La data in cui è stato pubblicato l'oggetto, nel fuso orario del sito."
+
+#: REST/AssetsSearchController.php:305
+msgid "The date the object was published, as GMT."
+msgstr "La data in cui è stato pubblicato l'oggetto, come GMT."
+
+#: REST/AssetsSearchController.php:329
+msgid "Unique identifier for the object."
+msgstr "Identificatore univoco per l'oggetto."
+
+#: REST/AssetsSearchController.php:335
+msgid "URL to the object."
+msgstr "URL all'oggetto."
+
+#: REST/AssetsSearchController.php:342
+msgid "The date the object was last modified, in the site's timezone."
+msgstr "La data dell'ultima modifica dell'oggetto, nel fuso orario del sito."
+
+#: REST/AssetsSearchController.php:349
+msgid "The date the object was last modified, as GMT."
+msgstr "La data dell'ultima modifica dell'oggetto, come GMT."
+
+#: REST/AssetsSearchController.php:356
+msgid "A password to protect access to the post."
+msgstr "Una password per proteggere l'accesso al post."
+
+#: REST/AssetsSearchController.php:361
+msgid "An alphanumeric identifier for the object unique to its type."
+msgstr "Un identificativo alfanumerico per l'oggetto unico al suo tipo."
+
+#: REST/AssetsSearchController.php:369
+msgid "A named status for the object."
+msgstr "Uno stato nominato per l'oggetto."
+
+#: REST/AssetsSearchController.php:375
+msgid "Type of Post for the object."
+msgstr "Tipo di post per l'oggetto."
+
+#: REST/AssetsSearchController.php:384
+msgid "The title for the object."
+msgstr "Il titolo dell'oggetto."
+
+#: REST/AssetsSearchController.php:389
+msgid "Title for the object, as it exists in the database."
+msgstr "Titolo dell'oggetto, come esiste nel database."
+
+#: REST/AssetsSearchController.php:394
+msgid "HTML title for the object, transformed for display."
+msgstr "Titolo HTML per l'oggetto, trasformato per la visualizzazione."
+
+#: REST/AssetsSearchController.php:402
+msgid "The content for the object."
+msgstr "Il contenuto dell'oggetto."
+
+#: REST/AssetsSearchController.php:407
+msgid "Content for the object, as it exists in the database."
+msgstr "Contenuto dell'oggetto, come esiste nel database."
+
+#: REST/AssetsSearchController.php:412
+msgid "HTML content for the object, transformed for display."
+msgstr "Contenuto HTML per l'oggetto, trasformato per la visualizzazione."
+
+#: REST/AssetsSearchController.php:420
+msgid "The id for the author of the object."
+msgstr "L'id per l'autore dell'oggetto."
+
+#: REST/AssetsSearchController.php:426
+msgid "The excerpt for the object."
+msgstr "L'estratto dell'oggetto."
+
+#: REST/AssetsSearchController.php:431
+msgid "Excerpt for the object, as it exists in the database."
+msgstr "Estratto per l'oggetto, come esiste nel database."
+
+#: REST/AssetsSearchController.php:436
+msgid "HTML excerpt for the object, transformed for display."
+msgstr "Estratto HTML per l'oggetto, trasformato per la visualizzazione."
+
+#: REST/AssetsSearchController.php:444
+msgid "The id of the featured media for the object."
+msgstr "L'id dei supporti presenti per l'oggetto."
+
+#: REST/LayoutRest.php:114 REST/LayoutRest.php:128 REST/LayoutRest.php:141
+#: REST/LayoutRest.php:153 REST/ModelRest.php:114 REST/ModelRest.php:128
+#: REST/ModelRest.php:141 REST/ModelRest.php:153 REST/OptionsRest.php:105
+#: REST/OptionsRest.php:115
+msgid "message"
+msgstr "messaggio"
+
+#: Settings/Analytics.php:9
+msgid "Analytics systems"
+msgstr "Sistemi di analisi"
+
+#: Settings/Analytics.php:10
+msgid "Analytics"
+msgstr "Analitica"
+
+#: Settings/ApplicationManager.php:8 Settings/ApplicationManager.php:9
+#: Settings/ApplicationManager.php:19
+msgid "Application Manager"
+msgstr "Gestore dell'applicazione"
+
+#: Settings/ApplicationManager.php:26
+msgid "Navigation model"
+msgstr "Modello di navigazione"
+
+#: Settings/ApplicationManager.php:37
+msgid ""
+"\"Smooth\" components navigation <small>(when navigating within components "
+"which support this mode, end-user is not required to switch between "
+"focuses)</small>"
+msgstr ""
+"Navigazione dei componenti \"lisci\" <small> (durante la navigazione "
+"all'interno di componenti che supportano questa modalità, l'utente finale "
+"non è obbligato a passare tra i focus) </small>"
+
+#: Settings/ApplicationManager.php:50
+msgid "Root application url"
+msgstr "Url dell'applicazione della radice"
+
+#: Settings/ApplicationManager.php:63
+msgid ""
+"Slideflow experimental mode <small>(optimizes animation steps for better "
+"performance)</small>"
+msgstr ""
+"Modalità sperimentale Slideflow <small> (ottimizza le fasi di animazione per "
+"ottenere prestazioni migliori) </small>"
+
+#: Settings/ApplicationManager.php:77
+msgid "Slideflow show arrows"
+msgstr "Frecce dello slideshow"
+
+#: Settings/ApplicationManager.php:89
+msgid "Slideflow orientation"
+msgstr "Orientamento del diaframma"
+
+#: Settings/ApplicationManager.php:105
+msgid "Slideflow pages order"
+msgstr "Ordine pagine slideflow"
+
+#: Settings/ApplicationManager.php:122
+msgid "App Language"
+msgstr "Lingua dell'app"
+
+#: Settings/AssetsManager.php:12
+msgid "Assets"
+msgstr "Risorse"
+
+#: Settings/AssetsManager.php:13
+msgid "Assets Library"
+msgstr "Libreria delle risorse"
+
+#: Settings/AssetsManager.php:13
+msgid "Library"
+msgstr "Libreria"
+
+#: Settings/AssetsManager.php:26
+msgid "Settings"
+msgstr "Impostazioni"
+
+#: Settings/NetAdm.php:14 Settings/NetAdm.php:15
+msgid "App Model"
+msgstr "Modello App"
+
+#: Settings/NetAdm.php:29
+msgid "Choose Application Model"
+msgstr "Scegli il modello di applicazione"
+
+#: Settings/Piwik.php:20
+msgid "Piwik configuration"
+msgstr "Configurazione Piwik"
+
+#: Settings/Piwik.php:27
+msgid "Enable Piwik tracking"
+msgstr "Attivare il monitoraggio Piwik"
+
+#: Settings/Piwik.php:40
+msgid "Piwik server URL"
+msgstr "URL del server Piwik"
+
+#: Settings/Piwik.php:53
+msgid "Piwik site ID"
+msgstr "ID del sito Piwik"
+
+#: TimeLine/preview.php:8
+msgid "Preview"
+msgstr "Anteprima"
+
+#: UserRoles/Role.php:158
+msgid "My Sites"
+msgstr "I miei siti"
+
+#: UserRoles/Role.php:170
+msgid "Network Admin"
+msgstr "Amministratore di rete"
+
+#: UserRoles/Role.php:177
+msgid "Dashboard"
+msgstr "Cruscotto"
+
+#: UserRoles/Role.php:183
+msgid "Sites"
+msgstr "Siti"
+
+#: Widgets/SampleWidget.php:10
+msgid "Sample widget"
+msgstr "Widget di esempio"
+
+#: Widgets/SampleWidget.php:12
+msgid "Sample widget for mpat."
+msgstr "Esempio widget per mpat."
+
+#: mpat-core.php:118
+msgid "ToolTips"
+msgstr "Sugerencias"
+
+#: mpat-core.php:125
+msgid "Active"
+msgstr "Activo"
+
+#: mpat-core.php:137
+msgid "Style"
+msgstr "Estilo"
+
+#: mpat-core.php:147
+msgid "Delay for the ToolTips to appear"
+msgstr "Demora para que aparezcan las sugerencias"
+
+#: mpat-core.php:170
+msgid ""
+"In case you need a quicker or more thorough walkthru while creating MPAT "
+"pages, you can fine-tune here the appearance of the tooltips."
+msgstr ""
+"En caso de que necesite una caminata más rápida o más cuidadosa a través de "
+"la creación de páginas MPAT, puede afinar aquí la apariencia de las "
+"sugerencias."
+
+#: mpat-core.php:260
+msgid "Layout ready"
+msgstr "Disposizione pronta"
+
+#: mpat-core.php:264
+msgid "Layout ready <span class=\"count\">(%s)</span>"
+msgid_plural "Layout ready <span class=\"count\">(%s)</span>"
+msgstr[0] "Layout pronto <span class = \"count\"> (%s) </span>"
+msgstr[1] "Layout pronto <span class = \"count\"> (%s) </span>"
+
+#: mpat-core.php:268
+msgid "Pending layout approval"
+msgstr "Approvazione layout in attesa"
+
+#: mpat-core.php:272
+msgid "Pending layout approval <span class=\"count\">(%s)</span>"
+msgid_plural "Pending layout approval <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+"L'approvazione di layout in sospeso <span class=\"count\"> (%s) </span>"
+msgstr[1] ""
+"L'approvazione di layout in sospeso <span class=\"count\"> (%s) </span>"
+
+#. Plugin Name of the plugin/theme
+msgid "MPAT core plugin"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+#. Author URI of the plugin/theme
+msgid "http://www.mpat.eu"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Main MPAT plugins which includes the most of core modules."
+msgstr "Principali plug-in MPAT che include la maggior parte dei moduli core."
+
+#. Author of the plugin/theme
+msgid "MPAT"
+msgstr ""
+
+#~ msgid ""
+#~ "This model is most commonly used for HbbTV apps. From a landing page "
+#~ "users access additional content by selecting on screen buttons using the "
+#~ "arrow keys - similar to a website. Often shortcut colour/numeric buttons "
+#~ "can be used as well.<br/>Although this model is common it is not well "
+#~ "suited to digital storytelling as the users path is arbitrary, therefore, "
+#~ "each page needs to be able to stand on its own."
+#~ msgstr ""
+#~ "Questo modello è più comunemente utilizzato per applicazioni HbbTV. Da "
+#~ "una pagina di destinazione gli utenti possono accedere a contenuti "
+#~ "aggiuntivi selezionando i pulsanti dello schermo utilizzando i tasti "
+#~ "freccia - simili a un sito web. Spesso è anche possibile utilizzare i "
+#~ "tasti di scelta rapida / tasti numerici. <br/> Anche se questo modello è "
+#~ "comune, non è adatto alla narrazione digitale poiché il percorso degli "
+#~ "utenti è arbitrario, quindi ogni pagina deve essere in grado di stare da "
+#~ "sola."
+
+#~ msgid ""
+#~ "SlideFlow navigation allows the content creator to design full-screen "
+#~ "application pages, and specify the order in which they are presented. The "
+#~ "user experience is similar to browsing through a PowerPoint slide "
+#~ "presentation.<br />While pages can contain selectable hotspots to provide "
+#~ "additional content and information related to the currently presented "
+#~ "page, navigation between the individual pages is sequential, allowing the "
+#~ "content creator to build upon information presented on earlier pages and "
+#~ "establish a narrative flow."
+#~ msgstr ""
+#~ "La navigazione SlideFlow consente al creatore di contenuti di progettare "
+#~ "pagine di applicazione a schermo intero e specificare l'ordine in cui "
+#~ "vengono presentati. L'esperienza utente è simile alla navigazione "
+#~ "attraverso una presentazione di diapositiva di PowerPoint. <br /> Mentre "
+#~ "le pagine possono contenere i punti hots selezionabili per fornire "
+#~ "contenuti aggiuntivi e informazioni relative alla pagina presentata, la "
+#~ "navigazione tra le singole pagine è sequenziale, consentendo al creatore "
+#~ "di contenuti di costruire Sulle informazioni presentate nelle pagine "
+#~ "precedenti e stabilire un flusso narrativo."
+
+#~ msgid ""
+#~ "Event based navigation enables the presentation of HbbTV content to be "
+#~ "driven by the broadcast programme. The most common example is the "
+#~ "presentation of a red button at the start of a TV programme or advert to "
+#~ "alert the viewer that additional information is available. While the "
+#~ "appearance of the button is usually triggered by MPEG stream events, "
+#~ "alternative channels. e.g. web sockets or application pull-requests, can "
+#~ "be used as well.<br/>Event based navigation is best suited for small "
+#~ "information inserts."
+#~ msgstr ""
+#~ "La navigazione basata su eventi consente la presentazione di contenuti "
+#~ "HbbTV guidati dal programma di trasmissione. L'esempio più comune è la "
+#~ "presentazione di un pulsante rosso all'inizio di un programma televisivo "
+#~ "o di un annuncio per avvertire il visualizzatore che sono disponibili "
+#~ "ulteriori informazioni. Mentre l'aspetto del pulsante viene generalmente "
+#~ "attivato da eventi MPEG stream, canali alternativi. per esempio. Le prese "
+#~ "web o le richieste di richieste di applicazione. <br/> La navigazione a "
+#~ "base di eventi è più adatta per piccoli inserti di informazioni."

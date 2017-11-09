@@ -1,0 +1,439 @@
+# Copyright (C) 2017 MPAT core plugin
+# This file is distributed under the same license as the MPAT core plugin package.
+msgid ""
+msgstr ""
+"Project-Id-Version: MPAT core plugin 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/mpat-plugins\n"
+"POT-Creation-Date: 2017-10-19 13:29+0200\n"
+"PO-Revision-Date: 2017-10-19 13:37+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fi_FI\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.11\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: AjaxCalls.php:14
+msgid "cannot get post content"
+msgstr "cannot get post content"
+
+#: AjaxCalls.php:18 AjaxCalls.php:31 AjaxCalls.php:76
+msgid "no id provided!"
+msgstr "ei tunnusta!"
+
+#: AjaxCalls.php:67
+msgid "Error"
+msgstr "Virhe"
+
+#: AjaxCalls.php:92
+msgid "no template data!"
+msgstr "ei mallitietoja!"
+
+#: AjaxCalls.php:129
+msgid "Red"
+msgstr "Punainen"
+
+#: AjaxCalls.php:147
+msgid "Items saved"
+msgstr "Tallennetut kohteet"
+
+#: AjaxCalls.php:149
+msgid "Items not found"
+msgstr "Tietoja ei löytynyt"
+
+#: ContentManagement/PageManagement.php:44
+#: ContentManagement/PageManagement.php:45
+msgid "Scheduled Update"
+msgstr "Ajoitettu päivitys"
+
+#: ContentManagement/PageManagement.php:151
+msgid "Original"
+msgstr "Alkuperäinen"
+
+#: ContentManagement/PageManagement.php:183
+#: ContentManagement/PageManagement.php:450
+msgid "Create new scheduled update"
+msgstr "Luo uusi aikataulutettu päivitys"
+
+#: ContentManagement/PageManagement.php:186
+msgid "Publish Now"
+msgstr "Julkaise nyt"
+
+#: ContentManagement/PageManagement.php:208
+#: ContentManagement/PageManagement.php:335
+#: ContentManagement/PageManagement.php:337
+msgid "Releasedate"
+msgstr "Julkaisupäivä"
+
+#: ContentManagement/PageManagement.php:245
+msgid "Could not schedule %s %s"
+msgstr "%s %s ei voitu ajoittaa"
+
+#: ContentManagement/PageManagement.php:247
+msgid "Back"
+msgstr "Takaisin"
+
+#: ContentManagement/PageManagement.php:273
+msgid "Scheduled revisions"
+msgstr "Ajoitetut tarkistukset"
+
+#: ContentManagement/PageManagement.php:302
+msgid "Save"
+msgstr "Tallentaa"
+
+#: ContentManagement/PageManagement.php:340
+#: ContentManagement/PageManagement.php:342
+msgid "Time"
+msgstr "Aika"
+
+#: ContentManagement/PageManagement.php:354
+msgid "Please enter <i>Time</i> as %s"
+msgstr "Kirjoita <i>Aika</i> as %s"
+
+#: ContentManagement/PageManagement.php:357
+msgid ""
+"The Releasedate is in the past, this post will be published 5 Minutes from "
+"now."
+msgstr ""
+"Julkaisupäivä on aiemmin, tämä viesti julkaistaan viiden minuutin kuluttua."
+
+#: ContentManagement/PageManagement.php:397
+msgid "Original revision"
+msgstr "Alkuperäinen versio"
+
+#: ContentManagement/PageManagement.php:440
+msgid "Current draft revision"
+msgstr "Nykyinen luonnoksen tarkistus"
+
+#: ContentManagement/PageManagement.php:440
+msgid "Unscheduled draft revision"
+msgstr "Suunniteltu tarkistusluonnos"
+
+#: ContentManagement/PageManagement.php:853
+msgid "Clone this item"
+msgstr "Kloonaa tämä kohde"
+
+#: ContentManagement/PageManagement.php:853
+msgid "Clone"
+msgstr "Kloonata"
+
+#: ContentManagement/PageManagement.php:870
+msgid "Copy to a new draft"
+msgstr "Kopioi uusi luonnos"
+
+#: ContentManagement/PageManagement.php:949
+msgid "No pages selected!"
+msgstr "Sivua ei ole valittu!"
+
+#: PostTypes/Page.php:81 PostTypes/PageModel.php:53
+msgid "User permissions"
+msgstr "Käyttäjäoikeudet"
+
+#: PostTypes/Page.php:90 PostTypes/PageModel.php:62
+msgid "Content Editor"
+msgstr "Sisältöeditori"
+
+#: PostTypes/Page.php:133 PostTypes/PageModel.php:105
+msgid "Allowed content editors"
+msgstr "Sallitut sisällön toimittajat"
+
+#: PostTypes/PageLayout.php:13
+msgid "Page Layouts"
+msgstr "Sivuasettelut"
+
+#: PostTypes/PageLayout.php:14
+msgid "Page Layout"
+msgstr "Sivun asettelu"
+
+#: PostTypes/PageModel.php:18
+msgid "Page Models"
+msgstr "Sivumallit"
+
+#: PostTypes/PageModel.php:19
+msgid "Page Model"
+msgstr "Sivumalli"
+
+#: REST/AssetsSearchController.php:127
+msgid "Sort collection by object attribute."
+msgstr "Lajittele keräys objektin attribuutin mukaan."
+
+#: REST/AssetsSearchController.php:299
+msgid "The date the object was published, in the site's timezone."
+msgstr "Päivämäärä, jona kohde julkaistiin, sivuston aikavyöhykkeellä."
+
+#: REST/AssetsSearchController.php:305
+msgid "The date the object was published, as GMT."
+msgstr "Päivämäärä, jona kohde julkaistiin, GMT."
+
+#: REST/AssetsSearchController.php:329
+msgid "Unique identifier for the object."
+msgstr "Ainutlaatuinen tunniste objektille."
+
+#: REST/AssetsSearchController.php:335
+msgid "URL to the object."
+msgstr "URL-osoite kohteeseen."
+
+#: REST/AssetsSearchController.php:342
+msgid "The date the object was last modified, in the site's timezone."
+msgstr ""
+"Päivämäärä, jona objektia on viimeksi muutettu, sivuston aikavyöhykkeellä."
+
+#: REST/AssetsSearchController.php:349
+msgid "The date the object was last modified, as GMT."
+msgstr "Päivämäärä, jona objekti on viimeksi muutettu, GMT."
+
+#: REST/AssetsSearchController.php:356
+msgid "A password to protect access to the post."
+msgstr "Salasana, jolla suojataan pääsy postitse."
+
+#: REST/AssetsSearchController.php:361
+msgid "An alphanumeric identifier for the object unique to its type."
+msgstr "Aakkosnumeerinen tunniste sille tyypilliselle objektille."
+
+#: REST/AssetsSearchController.php:369
+msgid "A named status for the object."
+msgstr "Objektin nimetty tila."
+
+#: REST/AssetsSearchController.php:375
+msgid "Type of Post for the object."
+msgstr "Postin tyyppi objektille."
+
+#: REST/AssetsSearchController.php:384
+msgid "The title for the object."
+msgstr "Kohteen otsikko."
+
+#: REST/AssetsSearchController.php:389
+msgid "Title for the object, as it exists in the database."
+msgstr "Otsikko objektille, koska se on tietokannassa."
+
+#: REST/AssetsSearchController.php:394
+msgid "HTML title for the object, transformed for display."
+msgstr "Objektin HTML-otsikko, joka muuttuu näytöksi."
+
+#: REST/AssetsSearchController.php:402
+msgid "The content for the object."
+msgstr "Kohteen sisältö."
+
+#: REST/AssetsSearchController.php:407
+msgid "Content for the object, as it exists in the database."
+msgstr "Esineen sisältö, koska se on tietokannassa."
+
+#: REST/AssetsSearchController.php:412
+msgid "HTML content for the object, transformed for display."
+msgstr "Objektin HTML-sisältö, joka muuttuu näytettäväksi."
+
+#: REST/AssetsSearchController.php:420
+msgid "The id for the author of the object."
+msgstr "Kohteen kirjoittajan tunnus."
+
+#: REST/AssetsSearchController.php:426
+msgid "The excerpt for the object."
+msgstr "Esineen kohde."
+
+#: REST/AssetsSearchController.php:431
+msgid "Excerpt for the object, as it exists in the database."
+msgstr "Esine objektille, koska se on tietokannassa."
+
+#: REST/AssetsSearchController.php:436
+msgid "HTML excerpt for the object, transformed for display."
+msgstr "HTML-leikkaus kohteelle, joka muunnetaan näyttöä varten."
+
+#: REST/AssetsSearchController.php:444
+msgid "The id of the featured media for the object."
+msgstr "Objektin esillä olevan median tunnus."
+
+#: REST/LayoutRest.php:114 REST/LayoutRest.php:128 REST/LayoutRest.php:141
+#: REST/LayoutRest.php:153 REST/ModelRest.php:114 REST/ModelRest.php:128
+#: REST/ModelRest.php:141 REST/ModelRest.php:153 REST/OptionsRest.php:105
+#: REST/OptionsRest.php:115
+msgid "message"
+msgstr "viesti"
+
+#: Settings/Analytics.php:9
+msgid "Analytics systems"
+msgstr "Analytics-järjestelmät"
+
+#: Settings/Analytics.php:10
+msgid "Analytics"
+msgstr "Analytics"
+
+#: Settings/ApplicationManager.php:8 Settings/ApplicationManager.php:9
+#: Settings/ApplicationManager.php:19
+msgid "Application Manager"
+msgstr "Sovelluspäällikkö"
+
+#: Settings/ApplicationManager.php:26
+msgid "Navigation model"
+msgstr "Navigointi malli"
+
+#: Settings/ApplicationManager.php:37
+msgid ""
+"\"Smooth\" components navigation <small>(when navigating within components "
+"which support this mode, end-user is not required to switch between "
+"focuses)</small>"
+msgstr ""
+"\"Sileät\" komponentit navigointi <small> (kun navigoidaan tällä tilassa "
+"tukeviin komponentteihin, loppukäyttäjää ei tarvitse vaihtaa keskipisteiden "
+"välillä) </small>"
+
+#: Settings/ApplicationManager.php:50
+msgid "Root application url"
+msgstr "Root-sovelluksen URL-osoite"
+
+#: Settings/ApplicationManager.php:63
+msgid ""
+"Slideflow experimental mode <small>(optimizes animation steps for better "
+"performance)</small>"
+msgstr ""
+"Slideflow kokeellinen tila <small> (optimoi animaatiovaiheet paremman "
+"suorituskyvyn) </small>"
+
+#: Settings/ApplicationManager.php:77
+msgid "Slideflow show arrows"
+msgstr "Slideflow näyttää nuolet"
+
+#: Settings/ApplicationManager.php:89
+msgid "Slideflow orientation"
+msgstr "Slideflow-suunta"
+
+#: Settings/ApplicationManager.php:105
+msgid "Slideflow pages order"
+msgstr "Slideflow-sivujen tilaus"
+
+#: Settings/ApplicationManager.php:122
+msgid "App Language"
+msgstr "App-kieli"
+
+#: Settings/AssetsManager.php:12
+msgid "Assets"
+msgstr "Varat"
+
+#: Settings/AssetsManager.php:13
+msgid "Assets Library"
+msgstr "Omaisuuskirjasto"
+
+#: Settings/AssetsManager.php:13
+msgid "Library"
+msgstr "Kirjasto"
+
+#: Settings/AssetsManager.php:26
+msgid "Settings"
+msgstr "Asetukset"
+
+#: Settings/NetAdm.php:14 Settings/NetAdm.php:15
+msgid "App Model"
+msgstr "Sovellusmalli"
+
+#: Settings/NetAdm.php:29
+msgid "Choose Application Model"
+msgstr "Valitse Sovellusmalli"
+
+#: Settings/Piwik.php:20
+msgid "Piwik configuration"
+msgstr "Piwik-kokoonpano"
+
+#: Settings/Piwik.php:27
+msgid "Enable Piwik tracking"
+msgstr "Ota Piwik-seuranta käyttöön"
+
+#: Settings/Piwik.php:40
+msgid "Piwik server URL"
+msgstr "Piwik-palvelimen URL-osoite"
+
+#: Settings/Piwik.php:53
+msgid "Piwik site ID"
+msgstr "Piwik-sivuston tunnus"
+
+#: TimeLine/preview.php:8
+msgid "Preview"
+msgstr "Ennakkoesitys"
+
+#: UserRoles/Role.php:158
+msgid "My Sites"
+msgstr "Omat sivustot"
+
+#: UserRoles/Role.php:170
+msgid "Network Admin"
+msgstr "Verkon ylläpitäjä"
+
+#: UserRoles/Role.php:177
+msgid "Dashboard"
+msgstr "Kojelauta"
+
+#: UserRoles/Role.php:183
+msgid "Sites"
+msgstr "Sivustot"
+
+#: Widgets/SampleWidget.php:10
+msgid "Sample widget"
+msgstr "Näyte-widget"
+
+#: Widgets/SampleWidget.php:12
+msgid "Sample widget for mpat."
+msgstr "Esimerkki widgetille mpatille."
+
+#: mpat-core.php:118
+msgid "ToolTips"
+msgstr "Viive vihjeiden näkyvän"
+
+#: mpat-core.php:125
+msgid "Active"
+msgstr "Aktiivinen"
+
+#: mpat-core.php:137
+msgid "Style"
+msgstr "Tyyli"
+
+#: mpat-core.php:147
+msgid "Delay for the ToolTips to appear"
+msgstr "Viive vihjeiden näkyvän"
+
+#: mpat-core.php:170
+msgid ""
+"In case you need a quicker or more thorough walkthru while creating MPAT "
+"pages, you can fine-tune here the appearance of the tooltips."
+msgstr ""
+"Kotona asia te kaivata vilkastuttaa eli enemmän aimo astua rastas "
+"jotavastoin aiheuttava mpat sivu, te kanisteri hienosti-laulelma tähän asu-"
+"lta tooltips."
+
+#: mpat-core.php:260
+msgid "Layout ready"
+msgstr "Asettelu valmis"
+
+#: mpat-core.php:264
+msgid "Layout ready <span class=\"count\">(%s)</span>"
+msgid_plural "Layout ready <span class=\"count\">(%s)</span>"
+msgstr[0] "Asettelu valmis <span class=\"count\">(%s)</span>"
+msgstr[1] "Asettelu valmis <span class=\"count\">(%s)</span>"
+
+#: mpat-core.php:268
+msgid "Pending layout approval"
+msgstr "Odottaa layout-hyväksyntää"
+
+#: mpat-core.php:272
+msgid "Pending layout approval <span class=\"count\">(%s)</span>"
+msgid_plural "Pending layout approval <span class=\"count\">(%s)</span>"
+msgstr[0] "Odottaa layout-hyväksyntää <span class=\"count\">(%s)</span>"
+msgstr[1] "Odottaa layout-hyväksyntää <span class=\"count\">(%s)</span>"
+
+#. Plugin Name of the plugin/theme
+msgid "MPAT core plugin"
+msgstr "MPAT-ytimen laajennus"
+
+#. Plugin URI of the plugin/theme
+#. Author URI of the plugin/theme
+msgid "http://www.mpat.eu"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Main MPAT plugins which includes the most of core modules."
+msgstr ""
+"Pääasialliset MPAT-laajennukset, jotka sisältävät suurimman osan "
+"ydinmoduuleista."
+
+#. Author of the plugin/theme
+msgid "MPAT"
+msgstr ""

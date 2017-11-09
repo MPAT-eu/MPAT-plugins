@@ -1,0 +1,508 @@
+# Copyright (C) 2017 MPAT core plugin
+# This file is distributed under the same license as the MPAT core plugin package.
+msgid ""
+msgstr ""
+"Project-Id-Version: MPAT core plugin 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/mpat-plugins\n"
+"POT-Creation-Date: 2017-10-30 09:48+0100\n"
+"PO-Revision-Date: 2017-10-30 09:48+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr_FR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.11\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: AjaxCalls.php:14
+msgid "cannot get post content"
+msgstr "ne peut pas obtenir de contenu de publication"
+
+#: AjaxCalls.php:18 AjaxCalls.php:31 AjaxCalls.php:76
+msgid "no id provided!"
+msgstr "aucun identifiant fourni!"
+
+#: AjaxCalls.php:67
+msgid "Error"
+msgstr "Erreur"
+
+#: AjaxCalls.php:92
+msgid "no template data!"
+msgstr "pas de données de modèle!"
+
+#: AjaxCalls.php:129
+msgid "Red"
+msgstr "Rouge"
+
+#: AjaxCalls.php:147
+msgid "Items saved"
+msgstr "Articles sauvegardés"
+
+#: AjaxCalls.php:149
+msgid "Items not found"
+msgstr "Articles non trouvés"
+
+#: ContentManagement/PageManagement.php:44
+#: ContentManagement/PageManagement.php:45
+msgid "Scheduled Update"
+msgstr "Mise à jour programmée"
+
+#: ContentManagement/PageManagement.php:151
+msgid "Original"
+msgstr "Original"
+
+#: ContentManagement/PageManagement.php:183
+#: ContentManagement/PageManagement.php:450
+msgid "Create new scheduled update"
+msgstr "Créer une nouvelle mise à jour programmée"
+
+#: ContentManagement/PageManagement.php:186
+msgid "Publish Now"
+msgstr "Publiez maintenant"
+
+#: ContentManagement/PageManagement.php:208
+#: ContentManagement/PageManagement.php:335
+#: ContentManagement/PageManagement.php:337
+msgid "Releasedate"
+msgstr "Date de sortie"
+
+#: ContentManagement/PageManagement.php:245
+msgid "Could not schedule %s %s"
+msgstr "Impossible de planifier %s %s"
+
+#: ContentManagement/PageManagement.php:247
+msgid "Back"
+msgstr "Retour"
+
+#: ContentManagement/PageManagement.php:273
+msgid "Scheduled revisions"
+msgstr "Révisions programmées"
+
+#: ContentManagement/PageManagement.php:302
+msgid "Save"
+msgstr "Sauvegarder"
+
+#: ContentManagement/PageManagement.php:340
+#: ContentManagement/PageManagement.php:342
+msgid "Time"
+msgstr "Temps"
+
+#: ContentManagement/PageManagement.php:354
+msgid "Please enter <i>Time</i> as %s"
+msgstr "Saisissez <i>Heure</i> en %s"
+
+#: ContentManagement/PageManagement.php:357
+msgid ""
+"The Releasedate is in the past, this post will be published 5 Minutes from "
+"now."
+msgstr ""
+"La date de sortie est dans le passé, cette publication sera publiée dans 5 "
+"minutes à partir de maintenant."
+
+#: ContentManagement/PageManagement.php:397
+msgid "Original revision"
+msgstr "Révision d'origine"
+
+#: ContentManagement/PageManagement.php:440
+msgid "Current draft revision"
+msgstr "Brouillon de révision actuel"
+
+#: ContentManagement/PageManagement.php:440
+msgid "Unscheduled draft revision"
+msgstr "Révision provisoire non prévue"
+
+#: ContentManagement/PageManagement.php:853
+msgid "Clone this item"
+msgstr "Cloner cet élément"
+
+#: ContentManagement/PageManagement.php:853
+msgid "Clone"
+msgstr "Cloner"
+
+#: ContentManagement/PageManagement.php:870
+msgid "Copy to a new draft"
+msgstr "Copier vers un nouveau brouillon"
+
+#: ContentManagement/PageManagement.php:949
+msgid "No pages selected!"
+msgstr "Aucune page sélectionnée!"
+
+#: PostTypes/Page.php:81 PostTypes/PageModel.php:53
+msgid "User permissions"
+msgstr "Autorisations d'utilisateur"
+
+#: PostTypes/Page.php:90 PostTypes/PageModel.php:62
+msgid "Content Editor"
+msgstr "Éditeur de contenu"
+
+#: PostTypes/Page.php:133 PostTypes/PageModel.php:105
+msgid "Allowed content editors"
+msgstr "Editeurs de contenu autorisés"
+
+#: PostTypes/PageLayout.php:13
+msgid "Page Layouts"
+msgstr "Mise en page"
+
+#: PostTypes/PageLayout.php:14
+msgid "Page Layout"
+msgstr "Mise en page"
+
+#: PostTypes/PageModel.php:18
+msgid "Page Models"
+msgstr "Modèles de page"
+
+#: PostTypes/PageModel.php:19
+msgid "Page Model"
+msgstr "Modèle de page"
+
+#: REST/AssetsSearchController.php:127
+msgid "Sort collection by object attribute."
+msgstr "Trier la collection par attribut d'objet."
+
+#: REST/AssetsSearchController.php:299
+msgid "The date the object was published, in the site's timezone."
+msgstr ""
+"La date à laquelle l'objet a été publié, dans le fuseau horaire du site."
+
+#: REST/AssetsSearchController.php:305
+msgid "The date the object was published, as GMT."
+msgstr "La date à laquelle l'objet a été publié, comme GMT."
+
+#: REST/AssetsSearchController.php:329
+msgid "Unique identifier for the object."
+msgstr "Identificateur unique pour l'objet."
+
+#: REST/AssetsSearchController.php:335
+msgid "URL to the object."
+msgstr "URL de l'objet."
+
+#: REST/AssetsSearchController.php:342
+msgid "The date the object was last modified, in the site's timezone."
+msgstr ""
+"La date à laquelle l'objet a été modifié pour la dernière fois, dans le "
+"fuseau horaire du site."
+
+#: REST/AssetsSearchController.php:349
+msgid "The date the object was last modified, as GMT."
+msgstr ""
+"La date à laquelle l'objet a été modifié pour la dernière fois, comme GMT."
+
+#: REST/AssetsSearchController.php:356
+msgid "A password to protect access to the post."
+msgstr "Un mot de passe pour protéger l'accès à la publication."
+
+#: REST/AssetsSearchController.php:361
+msgid "An alphanumeric identifier for the object unique to its type."
+msgstr "Un identifiant alphanumérique pour l'objet unique à son type."
+
+#: REST/AssetsSearchController.php:369
+msgid "A named status for the object."
+msgstr "Un statut nommé pour l'objet."
+
+#: REST/AssetsSearchController.php:375
+msgid "Type of Post for the object."
+msgstr "Type de poste pour l'objet."
+
+#: REST/AssetsSearchController.php:384
+msgid "The title for the object."
+msgstr "Le titre de l'objet."
+
+#: REST/AssetsSearchController.php:389
+msgid "Title for the object, as it exists in the database."
+msgstr "Titre de l'objet, tel qu'il existe dans la base de données."
+
+#: REST/AssetsSearchController.php:394
+msgid "HTML title for the object, transformed for display."
+msgstr "Titre HTML de l'objet, transformé pour affichage."
+
+#: REST/AssetsSearchController.php:402
+msgid "The content for the object."
+msgstr "Le contenu de l'objet."
+
+#: REST/AssetsSearchController.php:407
+msgid "Content for the object, as it exists in the database."
+msgstr "Contenu de l'objet, tel qu'il existe dans la base de données."
+
+#: REST/AssetsSearchController.php:412
+msgid "HTML content for the object, transformed for display."
+msgstr "Contenu HTML pour l'objet, transformé pour l'affichage."
+
+#: REST/AssetsSearchController.php:420
+msgid "The id for the author of the object."
+msgstr "L'id pour l'auteur de l'objet."
+
+#: REST/AssetsSearchController.php:426
+msgid "The excerpt for the object."
+msgstr "L'extrait de l'objet."
+
+#: REST/AssetsSearchController.php:431
+msgid "Excerpt for the object, as it exists in the database."
+msgstr "Extrait pour l'objet, tel qu'il existe dans la base de données."
+
+#: REST/AssetsSearchController.php:436
+msgid "HTML excerpt for the object, transformed for display."
+msgstr "Extrait HTML pour l'objet, transformé pour l'affichage."
+
+#: REST/AssetsSearchController.php:444
+msgid "The id of the featured media for the object."
+msgstr "L'identifiant des médias en vedette pour l'objet."
+
+#: REST/LayoutRest.php:114 REST/LayoutRest.php:128 REST/LayoutRest.php:141
+#: REST/LayoutRest.php:153 REST/ModelRest.php:114 REST/ModelRest.php:128
+#: REST/ModelRest.php:141 REST/ModelRest.php:153 REST/OptionsRest.php:105
+#: REST/OptionsRest.php:116
+msgid "message"
+msgstr "message"
+
+#: Settings/Analytics.php:9
+msgid "Analytics systems"
+msgstr "Systèmes d'Analytiques"
+
+#: Settings/Analytics.php:10
+msgid "Analytics"
+msgstr "Analytique"
+
+#: Settings/ApplicationManager.php:8 Settings/ApplicationManager.php:9
+#: Settings/ApplicationManager.php:19
+msgid "Application Manager"
+msgstr "Gestionnaire d'applications"
+
+#: Settings/ApplicationManager.php:26
+msgid "Navigation model"
+msgstr "Modèle de navigation"
+
+#: Settings/ApplicationManager.php:37
+msgid ""
+"\"Smooth\" components navigation <small>(when navigating within components "
+"which support this mode, end-user is not required to switch between "
+"focuses)</small>"
+msgstr ""
+"La navigation des composants \"lisse\" <small>(lorsque vous naviguez dans "
+"les composants qui prennent en charge ce mode, l'utilisateur final n'est pas "
+"obligé de basculer entre les concentrés) </small>"
+
+#: Settings/ApplicationManager.php:50
+msgid "Root application url"
+msgstr "URL de l'application racine"
+
+#: Settings/ApplicationManager.php:63
+msgid ""
+"Slideflow experimental mode <small>(optimizes animation steps for better "
+"performance)</small>"
+msgstr ""
+"Mode expérimental Slideflow <small>(optimise les étapes d'animation pour une "
+"meilleure performance) </small>"
+
+#: Settings/ApplicationManager.php:77
+msgid "Slideflow show arrows"
+msgstr "Flux de diapositives montrer les flèches"
+
+#: Settings/ApplicationManager.php:89
+msgid "Slideflow orientation"
+msgstr "Orientation du flux de diapositives"
+
+#: Settings/ApplicationManager.php:105
+msgid "Slideflow pages order"
+msgstr "Ordre des pages du flux de diapositives"
+
+#: Settings/ApplicationManager.php:122
+msgid "App Language"
+msgstr "Langue d'application"
+
+#: Settings/AssetsManager.php:12
+msgid "Assets"
+msgstr "Actifs"
+
+#: Settings/AssetsManager.php:13
+msgid "Assets Library"
+msgstr "Bibliothèque d'actifs"
+
+#: Settings/AssetsManager.php:13
+msgid "Library"
+msgstr "Bibliothèque"
+
+#: Settings/AssetsManager.php:26
+msgid "Settings"
+msgstr "Paramètres"
+
+#: Settings/NetAdm.php:14 Settings/NetAdm.php:15
+msgid "App Model"
+msgstr "Modèle d'application"
+
+#: Settings/NetAdm.php:29
+msgid "Choose Application Model"
+msgstr "Choisir le modèle d'application"
+
+#: Settings/Piwik.php:20
+msgid "Piwik configuration"
+msgstr "Configuration de Piwik"
+
+#: Settings/Piwik.php:27
+msgid "Enable Piwik tracking"
+msgstr "Activer le suivi de Piwik"
+
+#: Settings/Piwik.php:40
+msgid "Piwik server URL"
+msgstr "URL du serveur Piwik"
+
+#: Settings/Piwik.php:53
+msgid "Piwik site ID"
+msgstr "Identifiant du site Piwik"
+
+#: TimeLine/preview.php:8
+msgid "Preview"
+msgstr "Aperçu"
+
+#: UserRoles/Role.php:158
+msgid "My Sites"
+msgstr "Mes sites"
+
+#: UserRoles/Role.php:170
+msgid "Network Admin"
+msgstr "Administration de réseau"
+
+#: UserRoles/Role.php:177
+msgid "Dashboard"
+msgstr "Tableau de bord"
+
+#: UserRoles/Role.php:183
+msgid "Sites"
+msgstr "Sites"
+
+#: Widgets/SampleWidget.php:10
+msgid "Sample widget"
+msgstr "Exemple de widget"
+
+#: Widgets/SampleWidget.php:12
+msgid "Sample widget for mpat."
+msgstr "Exemple de widget pour mpat."
+
+#: mpat-core.php:118
+msgid "ToolTips"
+msgstr "Info-bulles"
+
+#: mpat-core.php:125
+msgid "Active"
+msgstr ""
+
+#: mpat-core.php:137
+msgid "Style"
+msgstr ""
+
+#: mpat-core.php:147
+msgid "Delay (ms) for the ToolTips to appear"
+msgstr "Délai (en millisecondes) pour que les Info-bulles apparaissent"
+
+#: mpat-core.php:170
+msgid ""
+"In case you need a quicker or more thorough walkthru while creating MPAT "
+"pages, you can fine-tune here the appearance of the tooltips."
+msgstr ""
+"Dans le cas où vous avez besoin d'une marche plus rapide ou plus approfondie "
+"à travers la création de pages MPAT, vous pouvez affiner ici l'apparence des "
+"info-bulles."
+
+#: mpat-core.php:180
+msgid "ms"
+msgstr ""
+
+#: mpat-core.php:260
+msgid "Layout ready"
+msgstr "Mise en page prête"
+
+#: mpat-core.php:264
+msgid "Layout ready <span class=\"count\">(%s)</span>"
+msgid_plural "Layout ready <span class=\"count\">(%s)</span>"
+msgstr[0] "Mise en page prête <span class=\"count\">(%s)</span>"
+msgstr[1] "Mise en page prête <span class=\"count\">(%s)</span>"
+
+#: mpat-core.php:268
+msgid "Pending layout approval"
+msgstr "En attente d'approbation de mise en page"
+
+#: mpat-core.php:272
+msgid "Pending layout approval <span class=\"count\">(%s)</span>"
+msgid_plural "Pending layout approval <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+"En attente d'approbation de mise en page <span class=\"count\">(%s)</span>"
+msgstr[1] ""
+"En attente d'approbation de mise en page <span class=\"count\">(%s)</span>"
+
+#. Plugin Name of the plugin/theme
+msgid "MPAT core plugin"
+msgstr "MPAT plugin core"
+
+#. Plugin URI of the plugin/theme
+#. Author URI of the plugin/theme
+msgid "http://www.mpat.eu"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Main MPAT plugins which includes the most of core modules."
+msgstr ""
+"Extension principal de MPAT qui comprend la plupart des modules de base."
+
+#. Author of the plugin/theme
+msgid "MPAT"
+msgstr ""
+
+#~ msgid "Delay for the ToolTips to appear"
+#~ msgstr "Délai (en millisecondes) pour que les info-bulles apparaissent"
+
+#~ msgid ""
+#~ "This model is most commonly used for HbbTV apps. From a landing page "
+#~ "users access additional content by selecting on screen buttons using the "
+#~ "arrow keys - similar to a website. Often shortcut colour/numeric buttons "
+#~ "can be used as well.<br/>Although this model is common it is not well "
+#~ "suited to digital storytelling as the users path is arbitrary, therefore, "
+#~ "each page needs to be able to stand on its own."
+#~ msgstr ""
+#~ "Ce modèle est le plus utilisé pour les applications HbbTV. À partir d'une "
+#~ "page de destination, les utilisateurs accèdent à un contenu "
+#~ "supplémentaire en sélectionnant sur les boutons d'écran à l'aide des "
+#~ "touches fléchées - semblable à un site Web. Souvent, les boutons "
+#~ "couleur / numériques peuvent également être utilisés. <br/> Bien que ce "
+#~ "modèle soit commun, il ne convient pas à la narration numérique car le "
+#~ "chemin des utilisateurs est arbitraire, chaque page doit donc être seule."
+
+#~ msgid ""
+#~ "SlideFlow navigation allows the content creator to design full-screen "
+#~ "application pages, and specify the order in which they are presented. The "
+#~ "user experience is similar to browsing through a PowerPoint slide "
+#~ "presentation.<br />While pages can contain selectable hotspots to provide "
+#~ "additional content and information related to the currently presented "
+#~ "page, navigation between the individual pages is sequential, allowing the "
+#~ "content creator to build upon information presented on earlier pages and "
+#~ "establish a narrative flow."
+#~ msgstr ""
+#~ "La navigation SlideFlow permet au créateur de contenu de concevoir des "
+#~ "pages d'application plein écran et de spécifier l'ordre dans lequel elles "
+#~ "sont présentées. L'expérience de l'utilisateur est semblable à la "
+#~ "navigation à travers une présentation de diapositives PowerPoint. <br /> "
+#~ "Bien que les pages puissent contenir des points chauds sélectionnables "
+#~ "pour fournir du contenu supplémentaire et des informations relatives à la "
+#~ "page actuellement présentée, la navigation entre les pages individuelles "
+#~ "est séquentielle, permettant au créateur de contenu de construire Sur les "
+#~ "informations présentées sur les pages antérieures et établir un flux "
+#~ "narratif."
+
+#~ msgid ""
+#~ "Event based navigation enables the presentation of HbbTV content to be "
+#~ "driven by the broadcast programme. The most common example is the "
+#~ "presentation of a red button at the start of a TV programme or advert to "
+#~ "alert the viewer that additional information is available. While the "
+#~ "appearance of the button is usually triggered by MPEG stream events, "
+#~ "alternative channels. e.g. web sockets or application pull-requests, can "
+#~ "be used as well.<br/>Event based navigation is best suited for small "
+#~ "information inserts."
+#~ msgstr ""
+#~ "La navigation basée sur les événements permet de diffuser le contenu de "
+#~ "HbbTV par le programme de diffusion. L'exemple le plus courant est la "
+#~ "présentation d'un bouton rouge au début d'un programme télévisé ou d'une "
+#~ "annonce pour avertir le spectateur que des informations supplémentaires "
+#~ "sont disponibles. Alors que l'apparition du bouton est généralement "
+#~ "déclenchée par des événements de flux MPEG, des canaux alternatifs. par "
+#~ "exemple. Les sockets web ou les demandes d'extraction d'applications "
+#~ "peuvent également être utilisées. <br/> La navigation basée sur "
+#~ "l'événement est la mieux adaptée aux petites insertions d'informations."

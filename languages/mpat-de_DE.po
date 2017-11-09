@@ -1,0 +1,443 @@
+# Copyright (C) 2017 MPAT core plugin
+# This file is distributed under the same license as the MPAT core plugin package.
+msgid ""
+msgstr ""
+"Project-Id-Version: MPAT core plugin 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/mpat-plugins\n"
+"POT-Creation-Date: 2017-10-19 13:37+0200\n"
+"PO-Revision-Date: 2017-10-19 13:38+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de_DE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.11\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: AjaxCalls.php:14
+msgid "cannot get post content"
+msgstr "kann keinen Post-Inhalt erhalten"
+
+#: AjaxCalls.php:18 AjaxCalls.php:31 AjaxCalls.php:76
+msgid "no id provided!"
+msgstr "keine ID vorhanden!"
+
+#: AjaxCalls.php:67
+msgid "Error"
+msgstr "Fehler"
+
+#: AjaxCalls.php:92
+msgid "no template data!"
+msgstr "keine Template-Daten vorhanden!"
+
+#: AjaxCalls.php:129
+msgid "Red"
+msgstr "Rot"
+
+#: AjaxCalls.php:147
+msgid "Items saved"
+msgstr "Artikel gespeichert"
+
+#: AjaxCalls.php:149
+msgid "Items not found"
+msgstr "Artikel nicht gefunden"
+
+#: ContentManagement/PageManagement.php:44
+#: ContentManagement/PageManagement.php:45
+msgid "Scheduled Update"
+msgstr "Geplante Aktualisierung"
+
+#: ContentManagement/PageManagement.php:151
+msgid "Original"
+msgstr "Original"
+
+#: ContentManagement/PageManagement.php:183
+#: ContentManagement/PageManagement.php:450
+msgid "Create new scheduled update"
+msgstr "Neues geplantes Update erstellen"
+
+#: ContentManagement/PageManagement.php:186
+msgid "Publish Now"
+msgstr "Jetzt veröffentlichen"
+
+#: ContentManagement/PageManagement.php:208
+#: ContentManagement/PageManagement.php:335
+#: ContentManagement/PageManagement.php:337
+msgid "Releasedate"
+msgstr "Veröffentlichungsdatum"
+
+#: ContentManagement/PageManagement.php:245
+msgid "Could not schedule %s %s"
+msgstr "Konnte nicht %s %s planen"
+
+#: ContentManagement/PageManagement.php:247
+msgid "Back"
+msgstr "Zurück"
+
+#: ContentManagement/PageManagement.php:273
+msgid "Scheduled revisions"
+msgstr "Geplante Revisionen"
+
+#: ContentManagement/PageManagement.php:302
+msgid "Save"
+msgstr "Speichern"
+
+#: ContentManagement/PageManagement.php:340
+#: ContentManagement/PageManagement.php:342
+msgid "Time"
+msgstr "Zeit"
+
+#: ContentManagement/PageManagement.php:354
+msgid "Please enter <i>Time</i> as %s"
+msgstr "Bitte geben Sie <i>Zeit</i> als %s ein"
+
+#: ContentManagement/PageManagement.php:357
+msgid ""
+"The Releasedate is in the past, this post will be published 5 Minutes from "
+"now."
+msgstr ""
+"Das Veröffentlichungsdatum liegt in der Vergangenheit, dieser Beitrag wird "
+"in 5 Minuten veröffentlicht."
+
+#: ContentManagement/PageManagement.php:397
+msgid "Original revision"
+msgstr "Ursprüngliche Revision"
+
+#: ContentManagement/PageManagement.php:440
+msgid "Current draft revision"
+msgstr "Aktueller Entwurf Revision"
+
+#: ContentManagement/PageManagement.php:440
+msgid "Unscheduled draft revision"
+msgstr "Ungeplante Entwurfsrevision"
+
+#: ContentManagement/PageManagement.php:853
+msgid "Clone this item"
+msgstr "Klonen Sie diesen Gegenstand"
+
+#: ContentManagement/PageManagement.php:853
+msgid "Clone"
+msgstr "Klon"
+
+#: ContentManagement/PageManagement.php:870
+msgid "Copy to a new draft"
+msgstr "Kopiere in einen neuen Entwurf"
+
+#: ContentManagement/PageManagement.php:949
+msgid "No pages selected!"
+msgstr "Keine Seiten ausgewählt!"
+
+#: PostTypes/Page.php:81 PostTypes/PageModel.php:53
+msgid "User permissions"
+msgstr "Benutzerberechtigungen"
+
+#: PostTypes/Page.php:90 PostTypes/PageModel.php:62
+msgid "Content Editor"
+msgstr "Content-Editor"
+
+#: PostTypes/Page.php:133 PostTypes/PageModel.php:105
+msgid "Allowed content editors"
+msgstr "Erlaubte Inhalts-Bearbeiter"
+
+#: PostTypes/PageLayout.php:13
+msgid "Page Layouts"
+msgstr "Seitenlayouts"
+
+#: PostTypes/PageLayout.php:14
+msgid "Page Layout"
+msgstr "Seitenlayout"
+
+#: PostTypes/PageModel.php:18
+msgid "Page Models"
+msgstr "Seiten-Modelle"
+
+#: PostTypes/PageModel.php:19
+msgid "Page Model"
+msgstr "Seiten-Modell"
+
+#: REST/AssetsSearchController.php:127
+msgid "Sort collection by object attribute."
+msgstr "Nach Objektattribut sortieren."
+
+#: REST/AssetsSearchController.php:299
+msgid "The date the object was published, in the site's timezone."
+msgstr ""
+"Das Datum, an dem das Objekt veröffentlicht wurde, in der Zeitzone der "
+"Website."
+
+#: REST/AssetsSearchController.php:305
+msgid "The date the object was published, as GMT."
+msgstr "Das Datum, an dem das Objekt veröffentlicht wurde, als GMT."
+
+#: REST/AssetsSearchController.php:329
+msgid "Unique identifier for the object."
+msgstr "Eindeutige ID für das Objekt."
+
+#: REST/AssetsSearchController.php:335
+msgid "URL to the object."
+msgstr "URL zum Objekt."
+
+#: REST/AssetsSearchController.php:342
+msgid "The date the object was last modified, in the site's timezone."
+msgstr ""
+"Das Datum, an dem das Objekt zuletzt geändert wurde, in der Zeitzone der "
+"Website."
+
+#: REST/AssetsSearchController.php:349
+msgid "The date the object was last modified, as GMT."
+msgstr "Das Datum, an dem das Objekt zuletzt geändert wurde, als GMT."
+
+#: REST/AssetsSearchController.php:356
+msgid "A password to protect access to the post."
+msgstr "Ein Passwort zum Schutz des Zugangs zum Post."
+
+#: REST/AssetsSearchController.php:361
+msgid "An alphanumeric identifier for the object unique to its type."
+msgstr ""
+"Eine alphanumerische Kennung für das Objekt, die für seinen Typ eindeutig "
+"ist."
+
+#: REST/AssetsSearchController.php:369
+msgid "A named status for the object."
+msgstr "Ein benannter Status für das Objekt."
+
+#: REST/AssetsSearchController.php:375
+msgid "Type of Post for the object."
+msgstr "Art des Posts für das Objekt."
+
+#: REST/AssetsSearchController.php:384
+msgid "The title for the object."
+msgstr "Der Titel für das Objekt."
+
+#: REST/AssetsSearchController.php:389
+msgid "Title for the object, as it exists in the database."
+msgstr "Titel für das Objekt, wie es in der Datenbank vorhanden ist."
+
+#: REST/AssetsSearchController.php:394
+msgid "HTML title for the object, transformed for display."
+msgstr "HTML-Titel für das Objekt, umgewandelt für die Anzeige."
+
+#: REST/AssetsSearchController.php:402
+msgid "The content for the object."
+msgstr "Der Inhalt für das Objekt."
+
+#: REST/AssetsSearchController.php:407
+msgid "Content for the object, as it exists in the database."
+msgstr "Inhalt für das Objekt, wie es in der Datenbank vorhanden ist."
+
+#: REST/AssetsSearchController.php:412
+msgid "HTML content for the object, transformed for display."
+msgstr "HTML-Inhalt für das Objekt, umgewandelt für die Anzeige."
+
+#: REST/AssetsSearchController.php:420
+msgid "The id for the author of the object."
+msgstr "Die ID für den Autor des Objekts."
+
+#: REST/AssetsSearchController.php:426
+msgid "The excerpt for the object."
+msgstr "Der Auszug für das Objekt."
+
+#: REST/AssetsSearchController.php:431
+msgid "Excerpt for the object, as it exists in the database."
+msgstr "Auszug für das Objekt, wie es in der Datenbank existiert."
+
+#: REST/AssetsSearchController.php:436
+msgid "HTML excerpt for the object, transformed for display."
+msgstr "HTML-Auszug für das Objekt, umgewandelt für die Anzeige."
+
+#: REST/AssetsSearchController.php:444
+msgid "The id of the featured media for the object."
+msgstr "Die ID der vorgestellten Medien für das Objekt."
+
+#: REST/LayoutRest.php:114 REST/LayoutRest.php:128 REST/LayoutRest.php:141
+#: REST/LayoutRest.php:153 REST/ModelRest.php:114 REST/ModelRest.php:128
+#: REST/ModelRest.php:141 REST/ModelRest.php:153 REST/OptionsRest.php:105
+#: REST/OptionsRest.php:115
+msgid "message"
+msgstr "Meldung"
+
+#: Settings/Analytics.php:9
+msgid "Analytics systems"
+msgstr "Analytics-Systeme"
+
+#: Settings/Analytics.php:10
+msgid "Analytics"
+msgstr "Analytics"
+
+#: Settings/ApplicationManager.php:8 Settings/ApplicationManager.php:9
+#: Settings/ApplicationManager.php:19
+msgid "Application Manager"
+msgstr "Anwendungs-Manager"
+
+#: Settings/ApplicationManager.php:26
+msgid "Navigation model"
+msgstr "Navigations-Modell"
+
+#: Settings/ApplicationManager.php:37
+msgid ""
+"\"Smooth\" components navigation <small>(when navigating within components "
+"which support this mode, end-user is not required to switch between "
+"focuses)</small>"
+msgstr ""
+"\"Smooth\"-Komponenten Navigation <small>(beim Navigieren innerhalb von "
+"Komponenten, die diesen Modus unterstützen, ist der Endbenutzer nicht "
+"verpflichtet, zwischen den Fokusen zu wechseln)</small>"
+
+#: Settings/ApplicationManager.php:50
+msgid "Root application url"
+msgstr "Root-Anwendung URL"
+
+#: Settings/ApplicationManager.php:63
+msgid ""
+"Slideflow experimental mode <small>(optimizes animation steps for better "
+"performance)</small>"
+msgstr ""
+"Slideflow-Experimentalmodus <small> (optimiert Animationsschritte für "
+"bessere Leistung) </small>"
+
+#: Settings/ApplicationManager.php:77
+msgid "Slideflow show arrows"
+msgstr "Slideflow-Pfeile anzeigen"
+
+#: Settings/ApplicationManager.php:89
+msgid "Slideflow orientation"
+msgstr "Slideflow-Orientierung"
+
+#: Settings/ApplicationManager.php:105
+msgid "Slideflow pages order"
+msgstr "Slideflow-Seiten Reihenfolge"
+
+#: Settings/ApplicationManager.php:122
+msgid "App Language"
+msgstr "App-Sprache"
+
+#: Settings/AssetsManager.php:12
+msgid "Assets"
+msgstr "Medien"
+
+#: Settings/AssetsManager.php:13
+msgid "Assets Library"
+msgstr "Medianibliothek"
+
+#: Settings/AssetsManager.php:13
+msgid "Library"
+msgstr "Bibliothek"
+
+#: Settings/AssetsManager.php:26
+msgid "Settings"
+msgstr "Einstellungen"
+
+#: Settings/NetAdm.php:14 Settings/NetAdm.php:15
+msgid "App Model"
+msgstr "App-Modell"
+
+#: Settings/NetAdm.php:29
+msgid "Choose Application Model"
+msgstr "Wählen Sie ein Anwendungsmodell"
+
+#: Settings/Piwik.php:20
+msgid "Piwik configuration"
+msgstr "Piwik-Konfiguration"
+
+#: Settings/Piwik.php:27
+msgid "Enable Piwik tracking"
+msgstr "Piwik-Tracking aktivieren"
+
+#: Settings/Piwik.php:40
+msgid "Piwik server URL"
+msgstr "Piwik-Server-URL"
+
+#: Settings/Piwik.php:53
+msgid "Piwik site ID"
+msgstr "Piwik Website-ID"
+
+#: TimeLine/preview.php:8
+msgid "Preview"
+msgstr "Vorschau"
+
+#: UserRoles/Role.php:158
+msgid "My Sites"
+msgstr "Meine Seiten"
+
+#: UserRoles/Role.php:170
+msgid "Network Admin"
+msgstr "Netzwerk-Admin"
+
+#: UserRoles/Role.php:177
+msgid "Dashboard"
+msgstr "Übersicht"
+
+#: UserRoles/Role.php:183
+msgid "Sites"
+msgstr "Webseiten"
+
+#: Widgets/SampleWidget.php:10
+msgid "Sample widget"
+msgstr "Beispiel-Widget"
+
+#: Widgets/SampleWidget.php:12
+msgid "Sample widget for mpat."
+msgstr "Beispiel-Widget für MPAT"
+
+#: mpat-core.php:118
+msgid "ToolTips"
+msgstr "QuickInfos"
+
+#: mpat-core.php:125
+msgid "Active"
+msgstr "Active"
+
+#: mpat-core.php:137
+msgid "Style"
+msgstr "Stil"
+
+#: mpat-core.php:147
+msgid "Delay for the ToolTips to appear"
+msgstr "Verzögerung für die Anzeige der QuickInfos"
+
+#: mpat-core.php:170
+msgid ""
+"In case you need a quicker or more thorough walkthru while creating MPAT "
+"pages, you can fine-tune here the appearance of the tooltips."
+msgstr ""
+"Falls Sie einen schnelleren oder gründlichen Spaziergang durch die "
+"Erstellung MPAT Seiten benötigen, können Sie hier das Erscheinungsbild der "
+"QuickInfos abstimmen."
+
+#: mpat-core.php:260
+msgid "Layout ready"
+msgstr "Layout bereit"
+
+#: mpat-core.php:264
+msgid "Layout ready <span class=\"count\">(%s)</span>"
+msgid_plural "Layout ready <span class=\"count\">(%s)</span>"
+msgstr[0] "Layout bereit <span class=\"count\">(%s)</span>"
+msgstr[1] "Layout bereit <span class=\"count\">(%s)</span>"
+
+#: mpat-core.php:268
+msgid "Pending layout approval"
+msgstr "Ausstehende Layout-Genehmigung"
+
+#: mpat-core.php:272
+msgid "Pending layout approval <span class=\"count\">(%s)</span>"
+msgid_plural "Pending layout approval <span class=\"count\">(%s)</span>"
+msgstr[0] "Ausstehende Layout-Genehmigung <span class=\"count\"> (%s) </span>"
+msgstr[1] "Ausstehende Layout-Genehmigung <span class=\"count\"> (%s) </span>"
+
+#. Plugin Name of the plugin/theme
+msgid "MPAT core plugin"
+msgstr "MPAT-Core-Plugin"
+
+#. Plugin URI of the plugin/theme
+#. Author URI of the plugin/theme
+msgid "http://www.mpat.eu"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Main MPAT plugins which includes the most of core modules."
+msgstr "Haupt-MPAT-Plugin, welches die meisten Core-Module enthält."
+
+#. Author of the plugin/theme
+msgid "MPAT"
+msgstr ""

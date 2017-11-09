@@ -1,0 +1,21 @@
+{
+    "name" : "mpat/mpat-plugins",
+    "description" : "MPAT main plugin",
+    "version" : "1.0.0",
+    "license" : "MIT",
+    "authors" : [{
+            "name" : "Stefano Miccoli",
+            "email" : "stefano.miccoli@finconsgroup.com"
+        }
+    ],
+    "type" : "wordpress-plugin",
+    "autoload": {
+       "psr-4": {
+           "MPAT\\": ""
+        }
+    },
+    "require": {
+        "php": ">=5.5",
+        "composer/installers": "~1.0.12"
+    }
+}

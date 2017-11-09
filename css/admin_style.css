@@ -1,0 +1,2004 @@
+/**
+ *
+ * Copyright (c) 2017 MPAT Consortium , All rights reserved.
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library. If not, see <http://www.gnu.org/licenses/>.
+ *
+ * AUTHORS:
+ * Miggi Zwicklbauer (miggi.zwicklbauer@fokus.fraunhofer.de)
+ * Thomas Tröllmich  (thomas.troellmich@fokus.fraunhofer.de)
+ * Jean-Philippe Ruijs (jean-philippe.ruijs@telecom.paristech.fr)
+ * Benedikt Vogel    (vogel@irt.de)
+ *
+ **/
+ .mpat .right {
+    position: fixed;
+    right: 0px;
+    float: right;
+}
+
+.mpat .left {
+    float: left;
+}
+
+.mpat .react-grid-layout {
+    background-color: transparent;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: height 200ms ease;
+}
+
+.mpat .layout-builder-container .react-grid-item {
+    background: #305080;
+}
+
+.react-grid-item.editBox.cssTransforms {z-index:1} .react-grid-item.editBox.cssTransforms:hover {z-index:2}
+
+.mpat .react-grid-item {
+  border: 2px solid #000;
+  box-shadow: inset 0 0 5px 5px #FFF;
+  z-index: 2;
+}
+
+.mpat .content-editor-container div.react-grid-item.active {
+    z-index: 2;
+    border: 3px solid red;
+}
+
+.mpat .react-grid-item.static {
+  border: 2px solid #000;
+  box-shadow: inset 0 0 5px 5px #8899BB;
+  z-index: 2;
+}
+
+.mpat .react-grid-item.cssTransforms {
+    transition-property: transform;
+}
+
+.mpat .react-grid-item.resizing {
+    background: #3994D8;
+    z-index: 1;
+}
+
+.mpat .react-grid-item.react-draggable-dragging {
+    background: #3994D8;
+    transition: none;
+    z-index: 3;
+}
+
+.mpat .react-grid-item.react-grid-placeholder {
+    background: #59c3f7;
+    opacity: 0.2;
+    transition-duration: 100ms;
+    z-index: 2;
+  /* CSS validator says: none of this exists
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    */
+}
+
+.mpat .react-grid-item>.react-resizable-handle {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    bottom: 0;
+    right: 0;
+    background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/Pg08IS0tIEdlbmVyYXRvcjogQWRvYmUgRmlyZXdvcmtzIENTNiwgRXhwb3J0IFNWRyBFeHRlbnNpb24gYnkgQWFyb24gQmVhbGwgKGh0dHA6Ly9maXJld29ya3MuYWJlYWxsLmNvbSkgLiBWZXJzaW9uOiAwLjYuMSAgLS0+DTwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DTxzdmcgaWQ9IlVudGl0bGVkLVBhZ2UlMjAxIiB2aWV3Qm94PSIwIDAgNiA2IiBzdHlsZT0iYmFja2dyb3VuZC1jb2xvcjojZmZmZmZmMDAiIHZlcnNpb249IjEuMSINCXhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbDpzcGFjZT0icHJlc2VydmUiDQl4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjZweCIgaGVpZ2h0PSI2cHgiDT4NCTxnIG9wYWNpdHk9IjAuMzAyIj4NCQk8cGF0aCBkPSJNIDYgNiBMIDAgNiBMIDAgNC4yIEwgNCA0LjIgTCA0LjIgNC4yIEwgNC4yIDAgTCA2IDAgTCA2IDYgTCA2IDYgWiIgZmlsbD0iIzAwMDAwMCIvPg0JPC9nPg08L3N2Zz4=');
+    background-position: bottom right;
+    background-repeat: no-repeat;
+    background-origin: content-box;
+    box-sizing: border-box;
+    cursor: se-resize;
+}
+
+.mpat .fullscreen {
+    position: fixed;
+    background: white;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 99999;
+    padding: 20px;
+}
+
+.mpat .mpat-editor-fullscreen .page-fields {
+    display: none;
+}
+
+.mpat .content-editor-container .editor-controls {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.mpat .content-editor-container .editor-controls button:focus {
+    background: #59C3F7;
+}
+
+.mpat .content-editor-container .editor-controls span {
+    color: #fff;
+    font-size: 19px;
+}
+
+.mpat .textcontent-preview, .launchercontent-preview {
+    word-wrap: break-word;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    overflow: hidden;
+}
+
+/*
+copied some reset.css directives to fit the frontend look & feel
+DO NOT REMOVE: discuss together if needed
+NEED more generic class for every component not specific to text (image has already some styles, menu, ecc)
+*/
+.mpat .mpat-frontend-preview p * {
+    font-size: 16px;
+    line-height: 1.5em;
+}
+
+.mpat .mpat-frontend-preview p {
+    margin: 0;
+    padding: 0;
+    /* copy and paste, itll become dynamic when font families will be defined in customizer */
+}
+
+/* end of preview ux styles */
+.mpat .editHeader {
+    font-size: 14px;
+    line-height: 24px;
+    /*padding: 10px;*/
+    /*border-bottom: 1px solid #ddd;*/
+}
+
+.mpat .editHeader+div span, .editHeader+div input {
+    margin: 3px;
+}
+
+.mpat .editHeader select, input[type='text'] {
+    margin-right: 10px;
+    border-radius: 0;
+}
+
+.mpat .editHeader input[type='text'] {
+    height: 24px;
+}
+.mpat .editHeader input[type='button']{
+    color: #43B4F9;
+    text-transform: uppercase;
+    height: 44px !important;
+    background-color: #fff;
+    cursor: pointer;
+    border: 2px solid #43B4F9;
+    border-radius: 3px;
+    padding: 0 10px 0 35px;
+    vertical-align: middle;
+}
+
+.mpat .component-menu button.button-back {
+    position: fixed;
+    bottom: -5px;
+    right: 100px;
+    height: auto;
+}
+
+.mpat .editHeader input[type='button'].button-back {
+    background-image: url('../assets/arrow_left.svg');
+    background-size: 35%;
+    background-repeat: no-repeat;
+    background-position: 4px;
+}
+
+.mpat .editHeader .dashicons {
+    color: #43B4F9;
+    background-color: #fff;
+    height: 30px;
+    line-height: 30px;
+    margin: 0;
+    cursor: pointer;
+    padding: 0 5px;
+    text-align: center;
+    border: 2px solid #43B4F9;
+    border-radius: 3px;
+    width: initial;
+    top: 10px;
+}
+
+.mpat .editHeader .boxHeader div .dashicons {
+    color: white;
+    background-color: rgba(0,0,0,0.05);
+    height: 30px;
+    line-height: 30px;
+    margin-top: 0;
+    margin-right: 3px;
+    cursor: pointer;
+    text-align: center;
+    border: none;
+}
+
+.mpat .editHeader .boxHeader div .dashicons:before {
+    font: normal 20px/30px dashicons !important;
+    display: inline;
+    font-weight: 300;
+}
+
+.mpat .editHeader .dashicons:before {
+    font: normal 20px/30px dashicons !important;
+    display: inline;
+    font-weight: 300;
+}
+
+.mpat .editHeader .dashicons:hover {
+    color: #59C3F7;
+    border: 2px solid #59C3F7;
+}
+
+.mpat .editHeader span.blue_white_link, .mpat .content-editor-container .component span:not(.padded_or) {
+    width: auto;
+    color: #43B4F9;
+    background-color: #fff;
+    border: 2px solid #43B4F9;
+    height: 44px;
+    cursor: pointer;
+    padding-right: 10px;
+    border-radius: 3px;
+    display: inline-block;
+    text-transform: uppercase;
+    margin: 0 10px 10px 0;
+}
+
+.mpat .editHeader span.blue_white_link:hover,
+.mpat .content-editor-container .component span:hover {
+   color: #59C3F7 !important;
+   border: 2px solid #59C3F7;
+}
+
+.mpat .editHeader span svg,
+.mpat .content-editor-container .component span svg{
+  height: 70%;
+  fill: #43B4F9;
+  vertical-align: middle;
+  margin-top:-3px;
+}
+
+.mpat .editHeader span svg:hover, .content-editor-container .component span svg:hover {
+    fill: #59C3F7;
+}
+
+.mpat .content-editor-container span, .content-editor-container select, .content-editor-container .component span, .editor-container span, .editor-container select {
+    font-size: 14px;
+    color: #475455;
+}
+
+.mpat label,
+.mpat input[type=text],
+.mpat input[type=number],
+.mpat button,
+.mpat input.button {
+    height: 44px;
+    /*line-height: 44px;*/
+    font-size: 14px;
+}
+.mpat label {
+    width: auto;
+    color: #23282d;
+    padding-right: 10px;
+    display: inline-block;
+    text-transform: uppercase;
+}
+.mpat input[type=text],
+.mpat input[type=number] {
+    background-color: #fff;
+    border: none;
+    box-shadow: none;
+    border-bottom: 2px solid #43B4F9;
+    margin:0;
+}
+#post-body-content {
+    margin:0;
+}
+.mpat .postbox {
+    border:0;
+    background:inherit;
+}
+#submit {
+    float:right;
+    margin:20px;
+}
+#poststuff h2 {
+    font-size: 16pt;
+    font-weight: normal;
+}
+.mpat .editHeader {
+    border:none;
+    position:relative;
+}
+.mpat .editHeader label {
+    width:170px !important;
+}
+/*
+.mpat .editHeader h2 {
+    margin-left:-20px !important;
+}*/
+.mpat .state-editor-container.editHeader h2 {
+    margin-left:0 !important;
+}
+.mpat .editHeader input[type=text],
+.mpat .editHeader input[type=number]{
+    width:180px;
+}
+.mpat .editHeader tr {
+    height:60px;
+}
+.mpat .editHeader th {
+    text-align: left;
+    border-bottom:1px solid #ccc;
+    text-transform: uppercase;
+}
+.mpat .oMainContent {
+    margin:20px;
+}
+
+#titlewrap { display:none !important; }
+.mpat .handlediv { display:none !important; }
+#slugdiv { display:none !important; }
+#members-cp { display:none !important; }
+#normal-sortables { display:none !important; }
+.mpat .wp-heading-inline { display:none !important; }
+#titlediv .inside { display:none !important; }
+button.handledi { display:none !important; }
+.mpat .updated { display:none !important; }
+.mpat .wrap:not(#wp-media-grid) .page-title-action { display:none !important; }
+.mpat #screen-options-link-wrap { display:none !important; }
+.mpat .ui-sortable-handle { display:none !important; }
+#postbox-container-1 > div > div:not(#layout_builder):not(#content_editor):not(#meta_mpat_sc_publish_revisions):not(#meta_mpat_sc_publish) {
+    display:none !important;
+}
+#meta_mpat_sc_publish_revisions, #meta_mpat_sc_publish {
+    display:none;
+}
+
+#poststuff {
+    padding-top:0;
+}
+#link_wrapper .note {
+    margin-left:10px;
+}
+.mpat .overlay, .overlayWrap {
+    position:absolute;
+    background-color: rgba(46, 56, 61, 0.9);
+    width:100%;
+    height:2000px;
+    top:0;
+    left:0;
+    bottom:0;
+    right:0;
+    flex: 1;
+    justify-content: center;
+    display: none;
+}
+.mpat .overlayWrap {
+    background-color:transparent;
+    z-index:20;
+}
+.mpat .overlayContent {
+    background-color: #fff;
+    position: relative;
+    padding:20px;
+    display: inline-table;
+    /*width:80%;
+    height:auto;*/
+}
+.mpat .hidden {
+    display:none;
+}
+.mpat .hsBack {
+    position: absolute;
+    top: -200px;
+    left: 0px;
+    background-color: rgba(0,0,0,0.8);
+    width: 100%;
+    right: 0;
+    bottom: -600px;
+    z-index: 900;
+}
+.mpat .hsBound {
+    z-index: 1000;
+    background-color: #fff;
+    position: absolute;
+    width: 800px;
+    height: 700px;
+    left: 100px;
+    top: 100px;
+    padding:40px;
+}
+.mpat .hsInner {
+    overflow-y: scroll;
+    position: absolute;
+    bottom: 40px;
+    top: 100px;
+    height: auto;
+    right: 0;
+    left: 40px;
+}
+.mpat .hsInner table {
+    width:95%;
+}
+
+/* MPAT Admin Headlines */
+
+.mpat .content-editor-container h1,
+.mpat .content-editor-container h2,
+.mpat .content-editor-container h3,
+.mpat .editor-container h2 {
+    padding: 10px 0 !important;
+}
+
+.mpat .content-editor-container h1 {
+    font-size: 26px !important;
+    font-weight: lighter !important;
+}
+
+.mpat .content-editor-container h2, .editor-container h2 {
+    font-size: 20px !important;
+    font-weight: lighter !important;
+}
+
+.mpat .content-editor-container h3 {
+    font-size: 16px !important;
+    font-weight: normal !important;
+}
+
+
+/* MPAT Admin Inputs */
+
+.mpat .content-editor-container input[type=text],
+.mpat .editor-container input[type=text],
+.mpat .content-editor-container input[type=number],
+.mpat .editor-container input[type=number] {
+    height: 44px;
+    font-size: 14px;
+    background-color: #F4F4F4;
+    border: none;
+    box-shadow: none;
+    border-bottom: 2px solid #43B4F9;
+    margin: 0 10px 10px 0;
+}
+
+.mpat .content-editor-container input[type=checkbox],
+.mpat .editHeader input[type=checkbox] {
+    height: 25px;
+    width: 25px;
+    padding: 2px !important;
+    background-color: #FFF;
+    box-shadow: none;
+    border: 2px solid #43B4F9;
+    border-radius: 3px;
+    cursor: pointer;
+  /*  margin: 0 10px 10px 0; */
+}
+
+.mpat .content-editor-container input[type="checkbox"]:checked,
+.mpat .editHeader input[type=checkbox]:checked {
+   background-color: #43B4F9;
+}
+
+.mpat .content-editor-container input[type="checkbox"]:before,
+.mpat .editHeader input[type=checkbox]:before {
+   color: #fff;
+}
+
+
+/*  MPAT Admin Buttons */
+
+/*
+.mpat .content-editor-container .button,
+.mpat .editor-container .button{
+    color: #fff;
+    font-size: 14px;
+    text-transform: uppercase;
+    background: #43B4F9;
+    border: none;
+    box-shadow: none;
+    border-radius: 3px;
+    height: 44px;
+    margin: 0 10px 10px 0;
+}
+
+.mpat .content-editor-container .button:hover, .editor-container .button:hover {
+    color: #fff;
+    background: #59C3F7;
+}
+
+*/
+
+/*  MPAT Admin Select */
+
+.mpat .content-editor-container select {
+    color: #43B4F9;
+    font-size: 14px;
+    background: #43B4F9;
+    background-color:#fff;
+    padding: 0 10px;
+    border: none;
+    border:2px solid #43B4F9;
+    text-transform: uppercase;
+    border-radius: 3px;
+    height: 44px;
+    cursor:pointer;
+    padding:0 30px;
+    width:180px;
+}
+.mpat .content-editor-container select option {
+    padding:10px;
+}
+
+div.component {
+    padding:20px;
+    /*border:1px solid #ccc;*/
+}
+div.component>h2 {
+    border-bottom:1px solid #ccc;
+    margin:0 0 20px -10px !important;
+}
+div.component p {
+    font-size:inherit;
+}
+.mpat .button.img_left {
+    position:relative;
+    padding-left:40px
+}
+.mpat .button.white_blue.img_left svg {
+    height:30px;
+    position:absolute;
+    left:5px;
+    margin-top:-2px;
+    fill:#43B4F9;
+}
+.mpat .notice {
+    padding:10px;
+    margin:10px;
+    border:1px solid #ccc986;
+    background-color:#fffdcc;
+    border-radius:3px;
+}
+.mpat .imagecontent-preview, .videocontent-preview, .audiocontent-preview {
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+/*  MPAT Admin Boxes */
+
+.mpat .template-list {
+    height: 500px;
+    overflow: scroll;
+    margin-top: 50px;
+    color: #72777c;
+    background-color: transparent;
+    padding: 0;
+    border: 1px solid #ddd;
+}
+
+.mpat .template-list li {
+    cursor: pointer;
+    border-bottom: 1px solid #ddd;
+    padding: 8px
+}
+
+.mpat .template-list li:hover {
+    background-color: #ddd;
+}
+
+.mpat .app-list {
+    max-width: 500px;
+    overflow: scroll;
+    color: #72777c;
+    background-color: white;
+    padding: 0;
+    border: 1px solid #ddd;
+}
+
+.mpat .app-list .list-item {
+    cursor: pointer;
+    border-bottom: 1px solid #ddd;
+    padding: 8px
+}
+
+.mpat .box-wrapper {
+    height: 100%;
+    box-sizing: border-box;
+}
+
+#styleEditor {
+  z-index: 10;
+}
+
+#styleControls {
+  /*text-align: right;*/
+  display: inline-block;
+}
+
+#styleEditor button {
+    margin: 0 10px;
+}
+
+#styleExample {
+    display: inline-block;
+    height: 100%;
+    padding: 0px;
+    vertical-align: top;
+    font-size: 18px;
+    text-align: center;
+    margin: 0 10px;
+    min-width: 150px;
+    color: #000;
+}
+
+.mpat .editHeader button {
+    border: 2px solid #43B4F9;
+    border-radius: 3px;
+    font-size: 14px;
+    cursor: pointer;
+    text-transform: uppercase;
+    color: #43B4F9;
+    background-color: #fff;
+}
+
+.mpat .editBox.lockedBox {
+    box-shadow: none;
+    color: transparent;
+    border: none;
+}
+
+.mpat .editBox {
+    position: relative;
+    box-sizing: border-box;
+}
+
+.mpat .chooseTargetMode,
+.mpat .react-grid-item {
+    line-height: 32px;
+    color: transparent;
+    font-size: 30px;
+}
+
+.mpat .editBox.chooseTargetMode:hover {
+    color: white;
+    box-shadow: inset 0 0 5px 5px gray;
+    font-size: 30px;
+}
+
+.mpat .editBox.lockedBox.chooseTargetMode:hover {
+    color: transparent;
+    box-shadow: none;
+}
+
+.mpat .choosePageModel .react-grid-item {
+    color: orangered;
+    box-shadow: inset 0 0 5px 5px gray;
+    font-size: 30px;
+}
+
+.mpat .choosePageModelText {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+}
+
+.mpat .boxHeader {
+    left: 0;
+    top: 0;
+    position: absolute;
+    width: 100%;
+    height: 40px;
+}
+
+.mpat .boxHeader div {
+    width: 40px;
+    height: 40px;
+    fill: white;
+    float: left;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, .1);
+}
+
+.mpat .boxHeader .boxInfo {
+  width: 95px;
+  height: auto;
+  padding: 5px;
+  font-size: 14px;
+  line-height: 14px;
+    color: white;
+    font-weight: 400;
+}
+
+.mpat .boxInfo input{
+    font-size: 0.8em;
+    height:0.8em;
+    width: 64px;
+}
+.mpat .boxHeader div:hover {
+    background-color: rgba(0, 0, 0, .4);
+}
+
+/*.boxHeader .boxInfo:hover {
+    background-color: rgba(0, 0, 0, .1);
+}*/
+
+.mpat .boxHeader div span {
+    font-size: 20px;
+    margin: 10px;
+    color: white;
+}
+
+.mpat .boxHeader .right {
+    float: right;
+}
+
+.mpat .content-editor-container .editHeader .hard-right-top,
+.mpat .layout-builder-container .editHeader .hard-right-top  {
+    position: fixed;
+    right: 0px;
+    top: 25px;
+    z-index: 20;
+}
+
+.mpat .content-editor-container .hard-right-top  {
+    position: fixed;
+    right: 0px;
+    top: 30px;
+    z-index: 10;
+}
+
+.mpat .hard-right-top select {
+    padding: 0;
+    margin: 0;
+}
+
+.mpat hard-right-top tr td:first-child,
+.mpat hard-right-top tr td:last-child{
+    min-width: 0;
+}
+
+.mpat .boolean-input {
+    padding: 0px;
+    line-height: normal;
+    text-align: center;
+}
+
+.mpat .color-input {
+    padding: 0px;
+    line-height: normal;
+}
+
+.mpat .color-input .color-preview {
+    width: 2em;
+    height: 2em;
+    margin: 3px;
+    float: left;
+}
+
+.mpat .color-input input {
+    float: left;
+}
+
+.mpat .color-input input.invalid {
+    background-color: #ff5751;
+}
+
+.mpat .videocontent-preview svg, .audiocontent-preview svg {
+    width: auto !important;
+    height: 50% !important;
+    position: absolute;
+    top: 50%;
+    bottom: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.mpat .mpat-content-preview {
+    /*    position: absolute;
+    top: 0;
+    left: 0; */
+    z-index: -1;
+}
+
+.mpat .mpat-image-preview {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center center;
+}
+
+
+/* Gallery */
+
+.mpat .gallery-container {
+    position: relative;
+}
+
+span.gallery-arrow {
+    position: absolute;
+    top: 46%;
+    font-size: 25px;
+    color: white;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 5px;
+    border-radius: 6px;
+    vertical-align: middle;
+    line-height: 20px;
+    height: 25px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.mpat .gallery-arrow-left {
+    left: 10px;
+}
+
+.mpat .gallery-arrow-right {
+    right: 10px;
+}
+
+.mpat .gallery-dots {
+    position: absolute;
+    bottom: 15px;
+    width: 100%;
+    text-align: center;
+}
+
+.mpat .gallery-dot {
+    margin: 0 5px;
+}
+
+
+/* End Gallery */
+
+
+/****Launcher****/
+
+.mpat .launcher-settings {
+    width: 70%;
+    float: left;
+}
+
+.mpat .launcher-tooltips {
+    width: 30%;
+    float: left;
+    line-height: 22px;
+}
+
+.mpat .launcher-header {
+    display: inline-block;
+}
+
+
+/* GRID START */
+
+.mpat .gridview {
+    display: inline-block;
+    padding: 0px;
+    margin: 0px;
+    position: absolute;
+}
+
+.mpat .safe-area1 {
+    position: absolute;
+    pointer-events: none;
+    border: #00A99D solid 2px;
+    width: 80%;
+    height: 90%;
+    top: 5%;
+    left: 10%;
+    padding: 0px;
+    margin: 0px;
+}
+
+.mpat .safe-area2 {
+    position: absolute;
+    pointer-events: none;
+    border: #25C1B2 dotted 2px;
+    width: 93%;
+    height: 93%;
+    top: 3.5%;
+    left: 3.5%;
+    padding: 0px;
+    margin: 0px;
+}
+
+.mpat .showGrid {
+    position: absolute;
+    pointer-events: none;
+    border: #3994D8 solid 1px;
+    width: 100%;
+    height: 100%;
+    top: 0%;
+    left: 0%;
+    padding: 0px;
+    margin: 0px;
+}
+
+.mpat .grid {
+    border: rgba(0, 0, 0, 0.2) solid 1px;
+    /*border: lightblue solid 1px;*/
+    padding: 0px;
+    margin: 0px;
+    position: absolute;
+}
+
+
+/* END grid*/
+
+
+/* State Editor */
+
+.mpat .state-editor-container {
+    position: relative;
+    /*overflow: hidden;*/
+}
+
+.mpat .state-menu ul li {
+    margin:5px 0;
+}
+
+.mpat .state-menu ul li.selected {
+    background-color: #fff;
+}
+
+.mpat .state-menu ul li:hover {
+    background-color: lightgrey;
+}
+
+.mpat .state-menu {
+    position: absolute;
+    top: 0;
+    text-align: right;
+    /*bottom: 0;*/
+    right: 0;
+    width: 30%;
+    transition: left 500ms;
+    overflow: hidden;
+    background-color:#f4f4f4;
+}
+.mpat .state-menu.collapsed {
+    left: 100%;
+    transition: left 500ms;
+}
+
+.mpat .component-menu {
+    width: 80%;
+}
+
+.mpat .state-menu.collapsed+.component-menu {
+    width: 100%;
+    transition: width 500ms;
+}
+
+.mpat .state-menu li span.dashicons, .state-menu button {
+    margin-left: 5px;
+}
+.mpat .state-menu button {
+    margin-right:10px;
+}
+
+.mpat .previewarea2 {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+#previewareaiframe1 {
+    position: relative;
+    background-image: url("../assets/timelinebg.jpg");
+    width: 1280px;
+    height: 720px;
+    transform: scale(0.75);
+    transform-origin: 0 0;
+    -moz-transform: scale(0.75);
+    -moz-transform-origin: 0 0;
+    -o-transform: scale(0.75);
+    -o-transform-origin: 0 0;
+    -webkit-transform: scale(0.75);
+    -webkit-transform-origin: 0 0;
+}
+
+.mpat .previewarea {
+    width: 960px;
+    height: 580px;
+    border: 1px solid black;
+    background-color: white;
+    margin: 5px;
+    display: inline-block;
+    position: relative;
+}
+
+#previewareaiframeback {
+    background-image: url("../assets/timelinebg.jpg");
+}
+
+.mpat .previewarea iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1280px;
+    height: 720px;
+    transform: scale(0.75);
+    transform-origin: 0 0;
+    -moz-transform: scale(0.75);
+    -moz-transform-origin: 0 0;
+    -o-transform: scale(0.75);
+    -o-transform-origin: 0 0;
+    -webkit-transform: scale(0.75);
+    -webkit-transform-origin: 0 0;
+}
+
+#previewareaiframe {
+    position: relative;
+    background-color: black;
+    width: 1280px;
+    height: 720px;
+    transform: scale(0.75);
+    transform-origin: 0 0;
+    -moz-transform: scale(0.75);
+    -moz-transform-origin: 0 0;
+    -o-transform: scale(0.75);
+    -o-transform-origin: 0 0;
+    -webkit-transform: scale(0.75);
+    -webkit-transform-origin: 0 0;
+}
+
+#timelinecontainer.timeline-container {
+    display: inline-block;
+    border: 1px solid black;
+    padding: 10px;
+    margin: 10px;
+}
+
+.mpat .timeline-container table {
+    width: 100%;
+}
+
+.mpat .timeline-container table tr td {
+    background-color: #E0E0E0;
+}
+
+.mpat .timeline-button {
+    color: #fff;
+    font-size: 14px;
+    text-transform: uppercase;
+    background: #43B4F9;
+    border: none;
+    box-shadow: none;
+    border-radius: 3px;
+    height: 40px;
+    margin: 5px 3px 5px 3px;
+    padding: 0 5px 0 5px;
+}
+
+#timelinecontainer .addelement-button {
+    margin: 10px 10% 10px 10%;
+    width: 80%;
+}
+
+#timelinecontainer .timeline-elt-select {
+    color: #fff;
+    font-size: 14px;
+    text-transform: uppercase;
+    background: #43B4F9;
+    border: none;
+    box-shadow: none;
+    border-radius: 3px;
+    height: 44px;
+    margin: 5px;
+}
+
+#timelinecontainer .timeline-elt-button {
+    color: #fff;
+    font-size: 14px;
+    background: #43B4F9;
+    border: none;
+    box-shadow: none;
+    border-radius: 3px;
+    height: 28px;
+    margin: 0 10px 0 10px;
+}
+
+.mpat .floatRight {
+  margin-right: 5px;
+  float: right;
+  overflow: auto;
+}
+
+#timelineedit {
+    margin-top: 60px;
+}
+
+#timelineedit button.button.dashicons {
+    font-size: 30px;
+    padding: 0 35px 0 10px;
+}
+
+#publish {
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+    height: auto;
+}
+/** UIEditor Start **/
+
+#wpcontent {
+	background-color:#f4f4f4;
+}
+#wpbody {
+	font-weight: lighter;
+	font-size: 14pt;
+}
+#wpfooter {
+    display: none;
+}
+#application-manager-form h1 {
+	font-size: 26pt;
+}
+#application-manager-form h2 {
+	font-size: 20pt;
+}
+#application-manager-form h2 {
+	font-size: 16pt;
+	font-weight: normal;
+}
+/*#submit.button {
+	background-color:#43b4f9;
+	text-transform: uppercase;
+	border:2px solid #43b4f9;
+	line-height: 40px;
+	border-radius: 3px;
+	box-shadow: none;
+	text-shadow: none;
+	height:44px
+}
+#submit.button:hover {
+	background-color:#59c3f7;
+	border-color:#59c3f7;
+}*/
+#application-manager-container .app-list {
+	overflow:auto;
+}
+#application-manager-container p {
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+
+}
+#application-manager-container .list-item {
+    cursor: move;
+    cursor: -moz-grab;
+    cursor: -webkit-grab;
+    margin: 3px;
+    border: 1px solid #a7d9f2;
+    border-radius: 3px;
+    padding: 20px;
+}
+#application-manager-container .list-item:hover {
+    background-color: #f8feff;
+    border: 2px solid #43b4f9;
+    padding: 19px;
+}
+
+.mpat .nav-selector, .nav-selector>div {
+    position: relative;
+}
+
+.mpat .nav-selector>div {
+    display: inline-block;
+    border: 1px solid #d0d8dd;
+    margin: 20px;
+    padding: 50px 80px;
+    background-color: #fff;
+    cursor: pointer;
+  /* CSS validator says: does not exist
+    user-select: none;
+    */
+}
+
+.mpat .nav-selector>div.selected {
+    border: 2px solid #43b4f9;
+    background-color: #f8feff;
+    padding: 49px 79px;
+}
+
+.mpat .nav-selector>div:first-child {
+    margin-left:0;
+}
+
+.mpat .nav-selector>div:hover {
+    border-color: #a7d9f2;
+}
+
+.mpat .leadin-nav-model input[type=radio] {
+    display: none;
+}
+
+#wpbody label {
+    cursor: inherit;
+}
+
+#submit,
+button.white_blue,
+button.blue_white,
+button.green_white
+{
+    background-color:#43b4f9;
+    text-transform: uppercase !important;
+    border: 2px solid #43b4f9;
+    line-height: 40px;
+    border-radius: 3px;
+    box-shadow: none;
+    text-shadow: none;
+    height: 44px;
+    cursor: pointer;
+    padding: 0 20px;
+}
+.mpat .button {
+    border-width: 2px !important;
+}
+
+.mpat button.white_blue {
+    background-color:#fff;
+    border-color:#43B4F9;
+    color:#43B4F9;
+}
+.mpat button.white_blue.selected {
+    background-color: #fff;
+    border-color: #3994D8;
+    color: #3994D8;
+}
+.mpat button.blue_white,
+.mpat #undoRedo.undoRedo button.blue_white,
+.mpat #undoRedo.undoRedo input[type='button'].blue_white{
+    background-color: #43B4F9;
+    border-color: #43B4F9;
+    color: #fff;
+}
+.mpat button.blue_white.selected,
+.mpat #undoRedo.undoRedo button.blue_white.selected,
+.mpat #undoRedo.undoRedo input[type='button'].blue_white.selected {
+    background-color: #3994D8;
+    border-color: #3994D8;
+    color: #fff;
+}
+#submit,
+.mpat button.green_white,
+.mpat input.button.green_white {
+    background-color: #25C1B2;
+    border-color: #25C1B2;
+    color: #fff;
+}
+
+.mpat button.green_white.selected,
+.mpat input.button.green_white.selected {
+    background-color: #00A99D;
+    border-color: #00A99D;
+    color: #fff;
+}
+
+.mpat button.white_blue:disabled,
+.mpat button.blue_white:disabled,
+.mpat button.green_white:disabled,
+.mpat input.button.green_white:disabled{
+    background-color: #fff !important;
+    border-color: #D0D8DD !important;
+    color: #D0D8DD !important;
+    cursor: pointer !important;
+    padding: 0 20px !important;
+}
+
+.mpat #undoRedo.undoRedo button.blue_white:disabled,
+.mpat #undoRedo.undoRedo input[type='button'].blue_white:disabled {
+    background-color: #fff !important;
+    border-color: #D0D8DD !important;
+    color: #D0D8DD !important;
+    cursor: pointer !important;
+    padding: 0 10px;
+}
+
+.mpat button.white_blue:hover {
+    background-color: #fff;
+    border-color: #59C3F7;
+    color: #59C3F7;
+}
+.mpat button.blue_white:hover {
+    background-color: #59C3F7;
+    border-color: #59C3F7;
+    color: #fff;
+}
+#submit:hover,
+.mpat button.green_white:hover,
+.mpat input.button.green_white:hover{
+    background-color: #37D1BE;
+    border-color: #37D1BE;
+    color: #fff;
+}
+
+.mpat .leadin-nav-model button {
+    margin:0 5px 5px 0 !important;
+}
+.mpat .leadin-nav-model td {
+    position: relative;
+}
+.mpat .leadin-nav-model .description {
+    position: relative;
+    background: #43b4f9;
+    border: 1px solid #3994d8;
+    border-radius: 3px;
+    padding: 0px;
+    color: #fff;
+}
+
+.mpat .leadin-nav-model .description:after, .leadin-nav-model .description:before {
+	bottom: 100%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+div#navmodelcaret.navmodelcaret {
+    background: transparent;
+    border-bottom: 17px solid #43b4f9;
+    border-right: 17px solid transparent;
+    border-left: 17px solid transparent;
+    border-top: 17px solid transparent;
+    width: 0 !important;
+    height: 0 !important;
+    position: absolute;
+    bottom: 2px;
+    padding: 0;
+    margin: 0;
+    margin-left: -17px;
+}
+
+.mpat .leadin-nav-model .description-img {
+    width: 250px;
+    height: 150px;
+    background-color: #fff;
+    border: 1px solid #444;
+    padding: 10px;
+}
+.mpat .leadin-nav-model table th {
+    color: #fff;
+    padding-left: 10px;
+}
+.mpat .leadin-nav-model table td {
+    vertical-align: top;
+    text-align: left;
+    width: 30%;
+}
+.mpat .dashicons-editor-expand {
+    position: absolute;
+    right: 20px;
+}
+.mpat .dashicons-editor-expand {
+  /*  top:0;
+    margin-top:-30px; */
+}
+.mpat .editHeader .dashicons {
+    margin-right: 0;
+    top: 10px;
+}
+.mpat .editHeader br {
+    margin: 5px;
+}
+.mpat .blue_white_link {
+    background-color: #fff;
+}
+
+/* LAYOUT LIST PAGE */
+#contextual-help-link-wrap {
+    display: none;
+}
+
+.mpat .galleryItemCrop {
+    padding: 0;
+    margin: 0;
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: rgba(0,0,0,0.6);
+    border-radius: 0;
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    cursor:pointer;
+}
+.mpat .galleryItemCrop svg {
+    height: 100%;
+    width: 100%;
+    vertical-align: initial;
+    fill:#bbb;
+}
+.mpat .galleryItemCrop:hover {
+    background: rgba(0,0,0,0.8);
+}
+.mpat .galleryItemCrop svg:hover {
+    fill:#fff;
+}
+.mpat .galleryItemRemove {
+    top:-12px;
+    right:-12px;
+}
+/** UIEditor End **/
+
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+/*   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;*/
+}
+
+ul {
+    padding: 0px;
+    margin-top: 0px;
+}
+
+#eventsxml {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.mpat .borderLine {
+    border-style: solid;
+    /*border-color: #0073aa;*/
+    /*	border-color: #006799;*/
+    /*border-color : #0085ba;*/
+    border-color: black;
+    border-width: 1px;
+    padding: 10px;
+    margin: 10px;
+}
+
+.mpat .leftColumn {
+    width: 970px;
+}
+
+.mpat .rightColumn {
+    position: absolute;
+    left: 970px;
+    top: 5px;
+    width: 250px;
+}
+
+.mpat .previewarea {
+    width: 960px;
+    height: 540px;
+    border: 1px solid black;
+    background-color: white;
+    margin: 5px;
+}
+
+.mpat .timeline {
+    position: relative;
+    width: 960px;
+    height: 42px;
+    border: 1px solid black;
+    background-color: white;
+    margin: 5px;
+    z-index: 0;
+}
+
+.mpat .timerange {
+    position: absolute;
+    top: 0px;
+    height: 40px;
+    background-color: lightblue;
+    display: inline-block;
+    z-index: 2;
+    border: 1px solid black;
+    text-align: center;
+    overflow: hidden;
+}
+
+.mpat .timeScale {
+    position: absolute;
+    width: 960px;
+    height: 12px;
+    top: 44px;
+    left: 0px;
+    border-bottom: 1px solid gray;
+    overflow: visible;
+    font-weight: bold;
+}
+
+.mpat .tick {
+    width: 0px;
+    position: absolute;
+    border-left: 1px solid black;
+}
+
+.mpat .ticktext {
+    width: 60px;
+    position: absolute;
+    top: 14px;
+    color: gray;
+    font-size: 10px;
+    text-align: center;
+}
+
+.mpat .trresize {
+    position: absolute;
+    top: 23px;
+    right: 0px;
+    height: 19px;
+    background-color: darkslategray;
+    color: white;
+    z-index: 2;
+    font-size: 10pt;
+    line-height: 1.3em;
+}
+
+.mpat .trrestart {
+    position: absolute;
+    top: 19px;
+    left: 0px;
+    height: 20px;
+    background-color: darkslategray;
+    color: white;
+    z-index: 3;
+    border: 1px solid darkslategray;
+}
+
+.mpat .timemarker {
+    position: absolute;
+    background-color: rgba(255, 0, 0, 0.5);
+    z-index: 100;
+}
+
+.mpat .addpagesbutton {
+    min-height: 32px;
+    min-width: 32px;
+    border: 1px solid orange;
+    display: inline;
+}
+
+.mpat .button {
+    min-height: 44px;
+    min-width: 44px;
+    border: 1px solid orange;
+    display: inline;
+}
+
+.mpat .headrow {
+    background-color: darkgray;
+}
+
+.mpat .row {
+    background-color: lightblue;
+}
+
+.mpat .timelinevalue {
+    font-size: 0.8em;
+    height: 20px;
+    /*	margin-left: 5px;
+    margin-top: 32px;*/
+    width: 100px;
+}
+
+.mpat .button_space {
+    margin: 0.25em;
+}
+
+.mpat .mediatype {
+    font-size: 0.8em;
+    font-style: italic;
+    height: 20px;
+}
+
+.mpat .inputDsmcc {
+    font-size: 0.8em;
+}
+
+#propsheet {
+    margin-top: 3em;
+    margin-left: 0.5em;
+}
+
+#previewareaiframe {
+    background-color: black;
+    width: 1280px;
+    height: 720px;
+    transform: scale(0.75);
+    transform-origin: 0 0;
+    -moz-transform: scale(0.75);
+    -moz-transform-origin: 0 0;
+    -o-transform: scale(0.75);
+    -o-transform-origin: 0 0;
+    -webkit-transform: scale(0.75);
+    -webkit-transform-origin: 0 0;
+}
+
+#scenariotitle {
+    min-width: 400px;
+}
+
+.mpat .statusinfo {
+    background-color: inherit;
+    /* 	color:#0085ba; */
+    color: inherit;
+    border-style: none;
+    min-width: 400px;
+    font-weight: bolder;
+    font-style: italic;
+    /*max-height: inherit;
+    font-size: 0.9em;*/
+}
+
+.mpat .statusinfo::before {
+    content: "«";
+}
+
+.mpat .statusinfo::after {
+    content: '»';
+}
+
+#projectview {
+    min-width: 358px;
+    min-height: 300px;
+    font-family: monospace;
+    font-size: 0.7em;
+}
+
+#ps_dsmcc_textarea {
+    float: right;
+    width: 720px;
+    min-height: 100px;
+    font-size: 0.8em;
+    font-family: monospace;
+    column-span: all;
+}
+/* Tooltip text */
+.mpat .tooltip {
+    position: relative;
+    font-family: 'Source Sans Pro', sans-serif;
+    display: inline;
+}
+.mpat .tooltip .tooltiptext {
+    opacity: 0;
+  display: inline-block;
+  visibility: hidden;
+    position: absolute;
+    padding: 25px 15px 25px 15px;
+  transition: opacity 0.35s;
+  -moz-transition: opacity 0.35s;
+  -webkit-transition: opacity 0.35s;
+  transition-delay: 0.35s;
+  -webkit-transition-delay: 0.35s;
+  z-index: 3;
+}
+.mpat .tooltip .tooltiptext.blue:before{
+    content:'';
+    width:0;
+    height:0;
+    position:absolute;
+    border-top: 8px transparent ;
+    border-bottom: 8px solid #43b4f9;
+    border-right:8px solid transparent;
+    border-left:8px solid transparent;
+    top:-8px;
+    left: 90px;
+
+}
+.mpat .tooltip:hover .tooltiptext{
+    opacity: 0.88;
+  visibility: visible;
+    min-width: 160px;
+    height: auto;
+    display: inline-block;
+    font-size: 14pt;
+    font-weight: lighter;
+    font-kerning: auto;
+    text-align: center;
+    top: 38px;
+    left: 0px;
+    position: absolute;
+    z-index: 3;
+
+}
+.mpat .tooltip:hover .tooltiptext.white {
+    color:#43b4f9;
+    background-color: white;
+    border: 2px dashed #43b4f9;
+}
+.mpat .tooltip:hover .tooltiptext.blue {
+    color: white;
+    background-color:#43b4f9;
+    border: 2px #3994d8;
+    border-radius: 3px;
+}
+
+.mpat .borderLine label {
+    text-transform: none !important;
+    vertical-align: middle;
+    height: 20px !important;
+    line-height: 1.4em;
+}
+
+.mpat .timelineeditor {
+    line-height: 1.8em;
+}
+
+.mpat .coloredrect {
+    width: 40px;
+    height: 24px;
+    vertical-align: middle;
+    float: right;
+    margin: 5px;
+}
+
+
+/* ==> hotspotEditor*/
+.mpat .hsPopoShadow {
+    box-shadow: 0px 0px 60px 0px rgba(0,0,0,1);
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    width: 800px;
+    height: 720px;
+    background: white;
+    z-index: 900;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+/*<== hotspotEditor*/
+
+.mpat .padded_or, .mpat .padded_or:hover {
+    color: black!important;
+    margin-left: 15px!important;
+    margin-right: 15px!important;
+    border: none!important;
+    background: none!important;
+    padding-right: 0px!important;
+    display: inline;
+}
+
+.hard-right-top #undoRedo.undoRedo {
+    position: initial;
+    bottom: initial;
+    right: initial;
+}
+
+.hard-right-top #undoRedo.undoRedo input {
+    padding: 0 10px 0 10px;
+}
+
+#undoRedo.undoRedo {
+    position: fixed;
+    bottom: 5px;
+    right: 5px;
+    padding: initial;
+}
+
+#wpadminbar li#pageeditorstatus p.page_editor_status {
+    color: yellow;
+    margin-left: 20px;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.mpat .inside {
+  padding: 0;
+}
+
+.mpat .editor_preview_div {
+  padding-bottom: 10px;
+}
+
+.mpat .wrap {
+  margin: 0
+}
+
+#poststuff .inside {
+  margin: 0;
+}
+
+.mpat .colorChooser {
+    position: absolute;
+}
+
+.mpat .mm-popup.mm-popup--visible {
+    display: inline-block;
+    position: fixed;
+    top: 10%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    max-height: 80%;
+    max-width: 800px;
+    background-color: white;
+    overflow-y: scroll;
+    padding: 10px;
+    z-index: 100;
+    box-shadow: 0px 0px 5px 2px black;
+}
+
+.mpat .mm-popup, .mpat .mm-popup__close {
+    display: none;
+}
+
+.mpat .pmmleft {
+    min-width: 30px;
+}
+
+.mpat .pmmcenter {
+    min-width: 100px;
+}
+
+.mpat .pmmright {
+    text-align: center;
+    min-width: 30px;
+}
+
+.pagemodeltable {
+    margin: 10px;
+    border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.pagemodeltable td {
+    background-color: #EEE;
+    border: 1px solid black;
+    text-align: center;
+    padding: 3px;
+}
+
+div#mpat_elements.mpat div#timelinewizard.timelinewizard {
+  font-size: 18px;
+}
+
+div#mpat_elements.mpat div#timelinewizard.timelinewizard p {
+  font-size: 18px;
+  margin: 0;
+  padding: 0;
+}
+
+.mpat div.editboxsizeandposition table {
+  margin-left: 80px;
+}
+
+.mpat div.editboxsizeandposition label {
+  margin-top: 20px;
+}
+
+.mpat div.editboxsizeandposition input {
+  width: 100px;
+}
+
+.mpat div.editboxsizeandposition button {
+  margin: 10px;
+}
+
+.mpat div.editboxsizeandposition span {
+  color: red;
+  font-size: 16pt;
+  line-height: 60px;
+  font-weight: 700;
+}
+
+.mpat div.tinymcecontainer {
+  max-width: 70%;
+}
+
+.mpat div.tltooltip div.tltooltiptext {
+  opacity: 0;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 10;
+  top: 50px;
+  font-size: 70%;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.mpat div.tltooltip:hover div.tltooltiptext {
+  opacity: 0.8;
+  transition: opacity 1s, display 1s;
+}
+
+.shadowstreamev {
+  background: linear-gradient(to right, rgba(87,178,102,1), rgba(87,178,102,0));
+  position: absolute;
+  top: 0;
+  height: 42px;
+  width: 120px;
+  line-height: 35px;
+}
+
+.mpat .StreamEvent {
+  background-color: #57b266;
+}
+
+.mpat .MediaEvent {
+  background-color: #6acdc9;
+}
+
+.shadowkeyev {
+  background: linear-gradient(to right, rgba(66,92,173,1), rgba(66,92,173,0));
+  color: white;
+  position: absolute;
+  top: 0;
+  height: 42px;
+  width: 120px;
+  line-height: 35px;
+}
+
+.mpat .KeyEvent {
+  background-color: #425cad;
+  color: white;
+}
+
+.mpat .TimeEvent {
+  background-color: #FF8888;
+}
+
+.shadowclockev {
+  background: linear-gradient(to right, rgba(255,136,68,1), rgba(255,136,68,0));
+  position: absolute;
+  top: 0;
+  height: 42px;
+  width: 120px;
+  line-height: 35px;
+}
+
+.mpat .ClockEvent {
+  background-color: #FF8844;
+}
+
+.mpat .StreamEvent.selected {
+  background-color: #03ff4e;
+}
+
+.mpat .MediaEvent.selected {
+  background-color: #00faff;
+}
+
+.mpat .KeyEvent.selected {
+  background-color: #0072ff;
+}
+
+.mpat .TimeEvent.selected {
+  background-color: #FFCCCC;
+}
+
+.mpat .ClockEvent.selected {
+  background-color: #FFCC44;
+}
+

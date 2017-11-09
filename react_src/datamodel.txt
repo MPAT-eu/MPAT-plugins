@@ -1,0 +1,66 @@
+//The Layout Builder saves its data (Post meta) as follows:
+
+{
+    layout: [
+        {
+            i: <random area ID>,
+            w: <area width>,
+            h: <area height>,
+            x: <area x grid-coordinates>,
+            y: <area y grid-coordinates>
+        },
+        {
+            i: <random area ID>,
+            w: <area width>,
+            h: <area height>,
+            x: <area x grid-coordinates>,
+            y: <area y grid-coordinates>
+        },
+    ]
+}
+
+//The grid currently has 32 Columns and 18 Rows
+
+//The Pagebuilder fills those Boxes with Content
+
+{
+    layout_id: <The ID of the Layout-Post chosen in the dropdown>
+    content: {
+        <random area ID>: {
+            navigable: true/false,
+            comp_screen: false/<Companion Screen URL>
+            data: {
+                text: "Random Text"
+            }
+            type: "text"
+        },
+        <random area ID>: {
+            navigable: true/false,
+            comp_screen: false/<Companion Screen URL>
+            data: {
+                thumbnail: <Image URL>
+                url: <Video URL>
+                autostart: true/false,
+                fullscreen: true/false,
+            },
+            type: "video"
+        },
+        <random area ID>: {
+            navigable: true/false,
+            comp_screen: false/<Companion Screen URL>
+            data: {
+                thumbnail: <Image URL>
+                url: <Video URL>
+                autostart: true/false,
+                fullscreen: true/false,
+            },
+            type: "video360"
+        },
+        <random area ID>: {
+            navigable: true/false,
+            comp_screen: false/<Companion Screen URL>
+            data: <Image URL>,
+            type: "image"
+        }
+    }
+}
