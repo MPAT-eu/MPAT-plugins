@@ -133,9 +133,8 @@ function updateClone($postid) {
             }
         }
     }
-  }
-  /* end update clones */
-  return $meta;
+    /* end update clones */
+    return $meta;
 }
 
     // get the meta and layout from the db

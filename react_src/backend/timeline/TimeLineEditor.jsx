@@ -31,6 +31,7 @@ import PublishButton from './PublishButton';
 import RestoreButton from './RestoreButton';
 import DeleteButton from './DeleteButton';
 import DSMCC from './DSMCC';
+import BeeBeeBoxEvent from './BeeBeeBoxEvent';
 import { noSubmitOnEnter } from '../utils';
 import Constants from '../../constants';
 
@@ -277,8 +278,11 @@ export default class TimeLineEditor extends React.PureComponent {
             <ElementMenu storeState={this.props.storeState} actions={this.props.actions}/>
           </div>
           {this.broadcast() &&
-            <div>
+          <div>
             <DSMCC />
+            <BeeBeeBoxEvent
+              storeState={this.props.storeState}
+            />
           </div>}
         </div>
       </div>

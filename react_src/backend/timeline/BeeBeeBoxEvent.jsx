@@ -174,14 +174,16 @@ export default class BeeBeeBoxEvent extends React.PureComponent {
 
   render() {
     return (
-      <details>
-        <summary>{i18n.title}</summary>
-        <ButtonWP
-          value={i18n.button.link} title={i18n.button.title}
-          action={this.generateBeeBeeBoxStreamEventXML}
-        />
-        <textarea id="eventsxml" />
-      </details>
+      <div  className="borderLine">
+        <details>
+          <summary>{i18n.title}</summary>
+          <ButtonWP
+            value={i18n.button.link} title={i18n.button.title}
+            action={this.generateBeeBeeBoxStreamEventXML}
+          />
+          <textarea id="eventsxml" />
+        </details>
+      </div>
     );
   }
 }
