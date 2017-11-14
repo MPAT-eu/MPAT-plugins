@@ -164,6 +164,10 @@ export default class Draggable extends React.PureComponent {
   }
 
   render() {
+    this.currentObjectPosition = {
+      x: this.props.x,
+      y: this.props.y
+    };
     return (
       <div
         className="tltooltip"

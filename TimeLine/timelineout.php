@@ -109,25 +109,29 @@ foreach ($remoteIconsOptions as $option) {
     TimeLineInfoString: <?php
 
 function updateClone($postid) {
-  $meta = get_post_meta($postid, 'mpat_content', true);
-  /* update clones */
-  $content = $meta['content'];
-  forEach ($content as $boxKey => $boxValue) {
-    forEach ($boxValue as $stateKey => $stateValue) {
-      if ($stateValue['type'] == 'clone') {
-        $componentData = $stateValue['data'];
-        if (array_key_exists('boxId', $componentData) &&
-          array_key_exists('stateId', $componentData)) {
-          $boxId = $componentData['boxId'];
-          $stateId = $componentData['stateId'];
-          $modelPageMeta = get_post_meta($stateValue['data']['pageId'], 'mpat_content', true);
-          $tmp = $modelPageMeta['content'];
-          if (array_key_exists($boxId, $tmp) && array_key_exists($stateId, $tmp[$boxId])) {
-            $meta['content'][$boxKey][$stateKey] = $tmp[$boxId][$stateId];
-            continue 2;
-          }
+    $meta = get_post_meta($postid, 'mpat_content', true);
+    /* update clones */
+    $content = $meta['content'];
+    if ($content === null) {
+        return null;
+    }
+    forEach ($content as $boxKey => $boxValue) {
+        forEach ($boxValue as $stateKey => $stateValue) {
+            if ($stateValue['type'] == 'clone') {
+                $componentData = $stateValue['data'];
+                if (array_key_exists('boxId', $componentData) &&
+                    array_key_exists('stateId', $componentData)) {
+                    $boxId = $componentData['boxId'];
+                    $stateId = $componentData['stateId'];
+                    $modelPageMeta = get_post_meta($stateValue['data']['pageId'], 'mpat_content', true);
+                    $tmp = $modelPageMeta['content'];
+                    if (array_key_exists($boxId, $tmp) && array_key_exists($stateId, $tmp[$boxId])) {
+                        $meta['content'][$boxKey][$stateKey] = $tmp[$boxId][$stateId];
+                        continue 2;
+                    }
+                }
+            }
         }
-      }
     }
   }
   /* end update clones */

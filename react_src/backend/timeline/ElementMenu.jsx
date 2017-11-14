@@ -107,12 +107,14 @@ export default class ElementMenu extends React.PureComponent {
 
   getTimeRange(eventType) {
     const range = this.getFreeRegion();
-    if (range === null) {
+    if (range === null || range.start < 0 || range.width < 0 ||
+      range.start + range.width > this.props.storeState.timeLineLength) {
       return null;
     }
     log(`freeRegion ${range.start} ${range.width}`);
     const sfd = this.props.storeState.sizeFromDuration;
-    const w = (eventType === 'TimeEvent' || eventType === 'MediaEvent' ? range.width : Math.min(constWidth, range.width));
+    const w = (eventType === 'TimeEvent' || eventType === 'MediaEvent' ?
+      range.width : Math.min(constWidth, range.width));
     const v = {
       // generated ID in case we add one post multiple times
       id: Object(this.props.storeState.ranges).length,

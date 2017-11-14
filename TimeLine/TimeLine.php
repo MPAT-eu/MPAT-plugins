@@ -63,13 +63,15 @@ class TimeLine {
   }
 
   function getTimeLineUrl() {
-    $prefix = get_option('timeline_uri_prefix', self::$timeline_uri_prefix);
-    return $_SERVER['WP_SITEURL'] . "$prefix/timeline";
+      $details = get_blog_details(get_current_blog_id());
+      $prefix = get_option('timeline_uri_prefix', self::$timeline_uri_prefix);
+      return $_SERVER['WP_HOME'] . substr($details->path, 1) . "$prefix/timeline";
   }
 
   function getDsmccUrl() {
+      $details = get_blog_details(get_current_blog_id());
     $prefix = get_option('timeline_uri_prefix', self::$timeline_uri_prefix);
-    return $_SERVER['WP_SITEURL'] . "$prefix/event";
+    return $_SERVER['WP_HOME'] . substr($details->path, 1) . "$prefix/event";
   }
 
   function load() {
