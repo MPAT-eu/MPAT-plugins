@@ -15,11 +15,10 @@
  *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
- * 
- * AUTHORS:
- * Jean-Philippe Ruijs (jean-philippe.ruijs@telecom.paristech.fr) 
  *
- * lost i(18)n translations
+ * AUTHORS:
+ * Jean-Philippe Ruijs (jean-philippe.ruijs@telecom.paristech.fr)
+ * Jean-Claude Dufourd (jean-claude.dufourd@telecom-paristech.fr
  *
  **/
 import React from 'react';
@@ -113,7 +112,7 @@ componentLoader.registerComponent(
             label: "Dots styles",
             fieldType: "separator"
         },
-        
+
         fill: {
             label: "Dot focused color",
             fieldType: "color",

@@ -17,6 +17,7 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  *
+ * Jean-Claude Dufourd (jean-claude.dufourd@telecom-paristech.fr
  **/
 namespace MPAT\PostTypes;
 
@@ -25,7 +26,7 @@ use MPAT\UserRoles\ContentEditor;
 class Page extends PostType {
 
   public $slug = "page";
-  
+
   public function __construct() {
   	parent::__construct();
   	add_action("rest_api_init", array(&$this, "register_rest_fields"));
@@ -35,7 +36,7 @@ class Page extends PostType {
     remove_post_type_support('page', 'comments' );
     remove_post_type_support('page', 'editor');
   }
-  
+
   public function register_rest_fields() {
   	register_rest_field('page', 'mpat_content', array(
   		'get_callback' => array(&$this, 'get_meta_mpat_content'),
@@ -48,33 +49,33 @@ class Page extends PostType {
   		'schema' => null,
   	));
   }
-  
-  
+
+
   function get_meta_mpat_content($post, $field_name, $request) {
   	$mpatContent = get_post_meta($post['id'], 'mpat_content', true);
   	if ($mpatContent && $mpatContent['layoutId']) {
   		$layoutPost = get_post_meta($mpatContent['layoutId'], 'mpat_content', true);
   		if ($layoutPost && $layoutPost['layout']) $mpatContent["layout"] = $layoutPost['layout'];
   	}
-  	
+
   	$mpatContent["parent"] = ($post["parent"] && $post["parent"]!= $post["id"]) ? get_permalink($post["parent"]) : "";
-	return $mpatContent;  	
+	return $mpatContent;
   }
-  
+
   function put_meta_mpat_content($value, $post, $field_name) {
   	unset($value["layout"]);
   	unset($value["parent"]);
   	return update_post_meta($post->ID, 'mpat_content', $value);
   }
-  
+
   function get_meta_mpat_sc_publish_pubdate($post, $field_name, $request) {
   	return get_post_meta($post['id'], 'mpat_sc_publish_pubdate', true);
   }
-  
+
   function put_meta_mpat_sc_publish_pubdate($value, $post, $field_name) {
   	return update_post_meta($post->ID, 'mpat_sc_publish_pubdate', $value);
   }
-  
+
 
   public function update_capabilities() {
     $page_post_type = get_post_type_object($this->slug);

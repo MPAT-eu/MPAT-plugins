@@ -20,6 +20,7 @@
  * Miggi Zwicklbauer (miggi.zwicklbauer@fokus.fraunhofer.de)
  * Thomas Tröllmich  (thomas.troellmich@fokus.fraunhofer.de)
  * Benedikt Vogel    (vogel@irt.de)
+ * Jean-Claude Dufourd (jean-claude.dufourd@telecom-paristech.fr
  *
  **/
 import React from 'react';

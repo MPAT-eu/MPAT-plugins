@@ -20,8 +20,10 @@
  * AUTHORS:
  * Miggi Zwicklbauer (miggi.zwicklbauer@fokus.fraunhofer.de)
  * Thomas Tröllmich  (thomas.troellmich@fokus.fraunhofer.de)
+ * Jean-Claude Dufourd (jean-claude.dufourd@telecom-paristech.fr
  * Benedikt Vogel 	 (vogel@irt.de)
- * 
+ * Jean-Claude Dufourd (jean-claude.dufourd@telecom-paristech.fr
+ *
  **/
 /**
  * @link              URL to plugin homepage
@@ -135,14 +137,14 @@ class Core {
 
 
 	/** tooltip configuration in general settings */
-	function tooltips_section() {  
-		add_settings_section(  
-			'tooltip_settings_section', // Section ID 
+	function tooltips_section() {
+		add_settings_section(
+			'tooltip_settings_section', // Section ID
 			__('ToolTips', "mpat"), // Section Title
 			array(&$this,'tooltip_section_cb'), // Callback
 			'general' // This makes the section show up on the General Settings Page
 		);
-		
+
 		add_settings_field( // Option tooltips_active
 			'tooltips_active', // Option ID
 			__('Active', "mpat"), // Label
@@ -151,65 +153,65 @@ class Core {
 			'tooltip_settings_section', // Name of our section
 			array( // The $args
 				'tooltips_active' // Should match Option ID
-			)  
-		); 
+			)
+		);
 		register_setting('general','tooltips_active', 'esc_attr');
-		
-		add_settings_field( 
+
+		add_settings_field(
 			'tooltips_style',
 			__('Style',"mpat"),
 			array(&$this,'tooltip_select_cb'),
 			'general',
 			'tooltip_settings_section',
 			array('tooltips_style')
-		);  
+		);
 		register_setting('general','tooltips_style', 'esc_attr');
- 
+
 		add_settings_field(
 			'tooltips_delay',
 			__('Delay (ms) for the ToolTips to appear',"mpat"),
 			array(&$this,'tooltip_nb_cb'),
 			'general',
 			'tooltip_settings_section',
-			array('tooltips_delay')  
-		); 
+			array('tooltips_delay')
+		);
 		register_setting('general','tooltips_delay', 'esc_attr');
 		/*
 		// only for dev since we remove console.log at build time
-		add_settings_field( 
+		add_settings_field(
 			'tooltips_debug',
 			__('Debug ToolTips',"mpat"),
 			array(&$this,'tooltip_checkbox_cb'),
 			'general',
 			'tooltip_settings_section',
 			array('tooltips_debug')
-		);  
+		);
 		register_setting('general','tooltips_debug', 'esc_attr');
 		*/
-		
+
 	}
-	
+
 	function tooltip_section_cb() { // Section Callback
-		_e('In case you need a quicker or more thorough walkthru while creating MPAT pages, you can fine-tune here the appearance of the tooltips.', 'mpat');  
+		_e('In case you need a quicker or more thorough walkthru while creating MPAT pages, you can fine-tune here the appearance of the tooltips.', 'mpat');
 	}
-	
+
 	function tooltip_text_cb($args) {  // input text Callback
 		$option = get_option($args[0],'');
 		echo '<input type="text" id="'. $args[0] .'" name="'. $args[0] .'" value="'. $option .'" />';
 	}
-	
+
 	function tooltip_nb_cb($args) {  // input number for delay Callback
 		$option = get_option($args[0],'');
 		echo '<input type="number" style="width: 64px" min="0" max="3000" step="150" title="'.__('ms',"mpat").'" id="'. $args[0] .'" name="'. $args[0] .'" value="'. $option .'" />';
 	}
-	
+
 	function tooltip_checkbox_cb($args) {  // input checkbox Callback
 		$option = get_option($args[0],'');
 		$cmp = strcmp($option , "on");
 		$chk = ($cmp == 0) ? 'checked' : '';
 		echo '<input type="checkbox" id="'. $args[0] .'" name="'. $args[0] .'" '. $chk .' />';
 	}
-	
+
 	function tooltip_select_cb($args) {  // select Callback
 		$option = get_option($args[0],'');
 		$options = ['white','blue'];
@@ -339,7 +341,7 @@ class Core {
 	public function enqueue_frontend_scripts() {
 		global $post;
     $applicationManager = get_option("mpat_application_manager");
-    
+
 		$this->enqueue_frontend_scripts_TV();
 		// generic code
 		wp_register_script('keycodes', get_template_directory_uri(__FILE__) . '/frontend/js/keycodes.js');

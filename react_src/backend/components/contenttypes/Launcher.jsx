@@ -20,6 +20,7 @@
  * Miggi Zwicklbauer (miggi.zwicklbauer@fokus.fraunhofer.de)
  * Thomas Tröllmich  (thomas.troellmich@fokus.fraunhofer.de)
  * Jean-Philippe Ruijs (jean-philippe.ruijs@telecom.paristech.fr)
+ * Jean-Claude Dufourd (jean-claude.dufourd@telecom-paristech.fr
  *
  **/
 import React, { PropTypes as Types } from 'react';

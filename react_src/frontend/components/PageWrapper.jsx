@@ -19,6 +19,7 @@
  * AUTHORS:
  * Miggi Zwicklbauer (miggi.zwicklbauer@fokus.fraunhofer.de)
  * Thomas Tröllmich  (thomas.troellmich@fokus.fraunhofer.de)
+ * Jean-Claude Dufourd (jean-claude.dufourd@telecom-paristech.fr
  *
  **/
 import React from 'react';
@@ -41,9 +42,9 @@ function sanitizeData(data) {
   return data;
 }
 
-export default function PageWrapper({ 
-        style, 
-        data, 
+export default function PageWrapper({
+        style,
+        data,
         pageUtils = {
           getCurrentPage: () => {},
           goToPage: () => {},

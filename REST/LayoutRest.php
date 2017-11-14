@@ -18,6 +18,7 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  *
  * AUTHORS:
+ * Jean-Claude Dufourd (jean-claude.dufourd@telecom-paristech.fr
  * Jean-Philippe Ruijs (jean-philippe.ruijs@telecom.paristech.fr)
  *
  **/

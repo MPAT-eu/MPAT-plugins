@@ -19,7 +19,7 @@
  *
  * AUTHORS:
  * Jean-Philippe Ruijs (jean-philippe.ruijs@telecom.paristech.fr)
- * Jean-Claude Dufourd (jean-claude.dufourd@telecom.paristech.fr)
+ * Jean-Claude Dufourd (jean-claude.dufourd@telecom-paristech.fr)
  *
  **/
 namespace MPAT\TimeLine;

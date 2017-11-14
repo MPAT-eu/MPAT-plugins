@@ -19,6 +19,7 @@
  * AUTHORS:
  * Miggi Zwicklbauer (miggi.zwicklbauer@fokus.fraunhofer.de)
  * Thomas Tröllmich  (thomas.troellmich@fokus.fraunhofer.de)
+ * Jean-Claude Dufourd (jean-claude.dufourd@telecom-paristech.fr
  *
  **/
 import React from 'react';
@@ -184,7 +185,7 @@ class MenuContent extends React.Component {
     const componentClass = (this.props.orientation === 'horizontal') ?
       'menu-content horizontal-menu-component' : 'menu-content vertical-menu-component';
     return (
-      <div> 
+      <div>
          {(this.props.title) && <h2>{this.props.title}</h2>}
          <ul className={componentClass}>
            {this.props.listArray.map((item, i) => {

@@ -19,6 +19,7 @@
  * AUTHORS:
  * Miggi Zwicklbauer (miggi.zwicklbauer@fokus.fraunhofer.de)
  * Thomas Tröllmich  (thomas.troellmich@fokus.fraunhofer.de)
+ * Jean-Claude Dufourd (jean-claude.dufourd@telecom-paristech.fr
  * Benedikt Vogel    (vogel@irt.de)
  *
  **/

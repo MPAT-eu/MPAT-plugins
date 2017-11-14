@@ -18,6 +18,7 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  *
  * AUTHORS:
+ * Jean-Claude Dufourd (jean-claude.dufourd@telecom-paristech.fr
  * Jean-Philippe Ruijs (jean-philippe.ruijs@telecom.paristech.fr)
  *
  **/
@@ -51,7 +52,7 @@ class PageLayout extends PostType {
     }
 
     public function save_metaboxes($post_id, $post, $update) {
-    	
+
     	if (isset($_REQUEST['mpat_content'])) {
 	        $mpat_content = json_decode(stripslashes($_REQUEST['mpat_content']),true);
 	        update_post_meta($post_id,'mpat_content',$mpat_content);

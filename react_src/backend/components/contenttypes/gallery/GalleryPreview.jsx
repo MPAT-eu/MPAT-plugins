@@ -16,6 +16,7 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  *
+ * Jean-Claude Dufourd (jean-claude.dufourd@telecom-paristech.fr
  **/
 import React, { PropTypes as Types } from 'react';
 import autobind from 'class-autobind';
@@ -82,17 +83,17 @@ export default class GalleryPreview extends React.PureComponent {
     return (
 
       <div className="mpat-content-preview">
-            
-        {arrows && 
-        <div> 
+
+        {arrows &&
+        <div>
           <span className="gallery-arrow gallery-arrow-left" onClick={() => this.prev()}>&larr;</span>
         </div>
         }
-  
+
         <img src={imageUrl} style={imgStyle} />
-  
-       {arrows && 
-        <div> 
+
+       {arrows &&
+        <div>
           <span className="gallery-arrow gallery-arrow-right" onClick={() => this.next()}>&rarr;</span>
         </div>
        }
