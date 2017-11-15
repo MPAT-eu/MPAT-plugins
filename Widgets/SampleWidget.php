@@ -18,7 +18,7 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  *
  * AUTHORS:
- * Jean-Philippe Ruijs (jean-philippe.ruijs@telecom.paristech.fr)
+ * Jean-Philippe Ruijs (github.com/jeanphilipperuijs)
  *
  **/
 namespace MPAT\Widgets;

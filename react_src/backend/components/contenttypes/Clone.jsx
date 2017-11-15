@@ -18,7 +18,7 @@
  *
  * AUTHORS:
  * Jean-Claude Dufourd (jean-claude.dufourd@telecom-paristech.fr
- * Jean-Philippe Ruijs (jean-philippe.ruijs@telecom.paristech.fr)
+ * Jean-Philippe Ruijs (github.com/jeanphilipperuijs)
  *
  **/
 import React, { PropTypes as Types } from 'react';

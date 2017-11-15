@@ -19,7 +19,7 @@
  *
  * AUTHORS:
  * Jean-Claude Dufourd (jean-claude.dufourd@telecom-paristech.fr
- * Jean-Philippe Ruijs (jean-philippe.ruijs@telecom.paristech.fr)
+ * Jean-Philippe Ruijs (github.com/jeanphilipperuijs)
  *
  **/
 namespace MPAT\REST;
