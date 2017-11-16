@@ -19,7 +19,8 @@
  *
  * AUTHORS:
  * Jean-Philippe Ruijs (github.com/jeanphilipperuijs)
- *
+ * Stefano Miccoli (stefano.miccoli@finconsgroup.com)
+ * Marco Ferrari (marco.ferrari@finconsgroup.com)
  **/
 namespace MPAT\Widgets;
 

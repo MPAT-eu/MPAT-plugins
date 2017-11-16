@@ -21,7 +21,7 @@
  * Thomas Tröllmich  (thomas.troellmich@fokus.fraunhofer.de)
  * Jean-Philippe Ruijs (github.com/jeanphilipperuijs)
  * Benedikt Vogel 	 (vogel@irt.de)
- *
+ * Stefano Miccoli (stefano.miccoli@finconsgroup.com)
  **/
 import React, { PropTypes as Types } from 'react';
 import ReactGridLayout from 'react-grid-layout';

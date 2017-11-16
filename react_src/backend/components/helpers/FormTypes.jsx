@@ -18,7 +18,7 @@
  *
  * AUTHORS:
  * Jean-Philippe Ruijs (github.com/jeanphilipperuijs)
- *
+ * Marco Ferrari (marco.ferrari@finconsgroup.com)
  **/
 import React from 'react';
 

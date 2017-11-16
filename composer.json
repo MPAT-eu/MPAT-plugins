@@ -6,6 +6,9 @@
     "authors" : [{
             "name" : "Stefano Miccoli",
             "email" : "stefano.miccoli@finconsgroup.com"
+        },{
+            "name" : "Marco Ferrari",
+            "email" : "marco.ferrari@finconsgroup.com"
         }
     ],
     "type" : "wordpress-plugin",

@@ -20,6 +20,7 @@
  * AUTHORS:
  * Jean-Claude Dufourd (jean-claude.dufourd@telecom-paristech.fr
  * Jean-Philippe Ruijs (github.com/jeanphilipperuijs)
+ * Stefano Miccoli (stefano.miccoli@finconsgroup.com)
  *
  **/
 namespace MPAT\PostTypes;

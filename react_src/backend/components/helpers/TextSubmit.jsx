@@ -20,7 +20,7 @@
  * Miggi Zwicklbauer (miggi.zwicklbauer@fokus.fraunhofer.de)
  * Thomas Tröllmich  (thomas.troellmich@fokus.fraunhofer.de)
  * Jean-Philippe Ruijs (github.com/jeanphilipperuijs)
- *
+ * Stefano Miccoli (stefano.miccoli@finconsgroup.com)
  **/
 import React, { PropTypes as Types } from 'react';
 import { noSubmitOnEnter } from '../../utils';

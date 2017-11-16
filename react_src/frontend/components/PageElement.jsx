@@ -21,7 +21,8 @@
  * Thomas Tröllmich  (thomas.troellmich@fokus.fraunhofer.de)
  * Jean-Claude Dufourd (jean-claude.dufourd@telecom-paristech.fr
  * Benedikt Vogel    (vogel@irt.de)
- *
+ * Stefano Miccoli (stefano.miccoli@finconsgroup.com)
+ * Marco Ferrari (marco.ferrari@finconsgroup.com)
  **/
 import React, { PropTypes as Types } from 'react';
 import { pageElemContainerType, pageElemDefaults } from '../types';

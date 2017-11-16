@@ -23,7 +23,8 @@
  * Jean-Claude Dufourd (jean-claude.dufourd@telecom-paristech.fr
  * Benedikt Vogel 	 (vogel@irt.de)
  * Jean-Claude Dufourd (jean-claude.dufourd@telecom-paristech.fr
- *
+ * Stefano Miccoli (stefano.miccoli@finconsgroup.com)
+ * Marco Ferrari (marco.ferrari@finconsgroup.com)
  **/
 /**
  * @link              URL to plugin homepage

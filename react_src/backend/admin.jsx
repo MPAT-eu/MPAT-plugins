@@ -20,6 +20,8 @@
  * Miggi Zwicklbauer (miggi.zwicklbauer@fokus.fraunhofer.de)
  * Thomas Tröllmich  (thomas.troellmich@fokus.fraunhofer.de)
  * Jean-Philippe Ruijs (github.com/jeanphilipperuijs)
+ * Stefano Miccoli (stefano.miccoli@finconsgroup.com)
+ * Marco Ferrari (marco.ferrari@finconsgroup.com)
  *
  **/
 import React from 'react';

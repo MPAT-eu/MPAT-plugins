@@ -19,7 +19,7 @@
  *
  * AUTHORS:
  * Jean-Philippe Ruijs (github.com/jeanphilipperuijs)
- *
+ * Stefano Miccoli (stefano.miccoli@finconsgroup.com)
  **/
 namespace MPAT\Settings;
 

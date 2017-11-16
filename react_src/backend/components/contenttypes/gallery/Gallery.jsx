@@ -19,7 +19,8 @@
  * AUTHORS:
  * Jean-Philippe Ruijs (github.com/jeanphilipperuijs)
  * Jean-Claude Dufourd (jean-claude.dufourd@telecom-paristech.fr
- *
+ * Stefano Miccoli (stefano.miccoli@finconsgroup.com)
+ * Marco Ferrari (marco.ferrari@finconsgroup.com)
  **/
 import React from 'react';
 import GalleryPreview from './GalleryPreview';

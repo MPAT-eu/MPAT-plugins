@@ -21,7 +21,8 @@
  * Thomas Tröllmich  (thomas.troellmich@fokus.fraunhofer.de)
  * Jean-Philippe Ruijs (github.com/jeanphilipperuijs)
  * Benedikt Vogel 	 (vogel@irt.de)
- *
+ * Stefano Miccoli (stefano.miccoli@finconsgroup.com)
+ * Marco Ferrari (marco.ferrari@finconsgroup.com)
  **/
 import React from 'react';
 import HotSpotEdit from '../HotSpotEdit';

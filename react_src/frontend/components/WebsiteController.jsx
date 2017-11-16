@@ -20,7 +20,7 @@
  * Miggi Zwicklbauer (miggi.zwicklbauer@fokus.fraunhofer.de)
  * Thomas Tröllmich  (thomas.troellmich@fokus.fraunhofer.de)
  * Benedikt Vogel    (vogel@irt.de)
- *
+ * Stefano Miccoli (stefano.miccoli@finconsgroup.com)
  **/
 import React from 'react';
 import autobind from 'class-autobind';

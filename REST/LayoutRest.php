@@ -20,7 +20,7 @@
  * AUTHORS:
  * Jean-Claude Dufourd (jean-claude.dufourd@telecom-paristech.fr
  * Jean-Philippe Ruijs (github.com/jeanphilipperuijs)
- *
+ * Marco Ferrari (marco.ferrari@finconsgroup.com)
  **/
 namespace MPAT\REST;
 

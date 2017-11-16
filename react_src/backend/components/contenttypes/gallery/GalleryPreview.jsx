@@ -16,6 +16,9 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  *
+ * AUTHORS:
+ * Stefano Miccoli (stefano.miccoli@finconsgroup.com)
+ * Marco Ferrari (marco.ferrari@finconsgroup.com)
  * Jean-Claude Dufourd (jean-claude.dufourd@telecom-paristech.fr
  **/
 import React, { PropTypes as Types } from 'react';

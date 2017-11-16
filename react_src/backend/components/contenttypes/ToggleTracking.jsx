@@ -22,7 +22,8 @@
  * Jean-Philippe Ruijs (github.com/jeanphilipperuijs)
  * Benedikt Vogel 	 (vogel@irt.de)
  * Jean-Claude Dufourd (jean-claude.dufourd@telecom-paristech.fr
- *
+ * Stefano Miccoli (stefano.miccoli@finconsgroup.com)
+ * Marco Ferrari (marco.ferrari@finconsgroup.com)
  **/
 import React from 'react';
 import { TextInput, SelectInput } from '../helpers/Inputs';

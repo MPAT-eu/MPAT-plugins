@@ -18,7 +18,8 @@
  *
  * AUTHORS:
  * Jean-Philippe Ruijs (github.com/jeanphilipperuijs)
- *
+ * Stefano Miccoli (stefano.miccoli@finconsgroup.com)
+ * Marco Ferrari (marco.ferrari@finconsgroup.com)
  **/
 import React, { PropTypes as Types } from 'react';
 import { noSubmitOnEnter } from '../../utils';

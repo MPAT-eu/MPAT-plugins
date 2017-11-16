@@ -20,7 +20,7 @@
  * Miggi Zwicklbauer (miggi.zwicklbauer@fokus.fraunhofer.de)
  * Thomas Tröllmich  (thomas.troellmich@fokus.fraunhofer.de)
  * Jean-Philippe Ruijs (github.com/jeanphilipperuijs)
- *
+ * Marco Ferrari (marco.ferrari@finconsgroup.com)
  **/
 import deepAssign from 'assign-deep';
 import { layouts } from './appData';

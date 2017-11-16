@@ -19,7 +19,8 @@
  * AUTHORS:
  * Jean-Claude Dufourd (jean-claude.dufourd@telecom-paristech.fr
  * Jean-Philippe Ruijs (github.com/jeanphilipperuijs)
- *
+ * Stefano Miccoli (stefano.miccoli@finconsgroup.com)
+ * Marco Ferrari (marco.ferrari@finconsgroup.com)
  **/
 import React from 'react';
 import deepAssign from 'assign-deep';

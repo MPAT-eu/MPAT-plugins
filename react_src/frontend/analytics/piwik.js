@@ -18,7 +18,7 @@
  * 
  * AUTHORS:
  * Benedikt Vogel 	 (vogel@irt.de)
- *
+ * Stefano Miccoli (stefano.miccoli@finconsgroup.com)
  **/
 import { log } from '../utils';
 
