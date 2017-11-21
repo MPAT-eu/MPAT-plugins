@@ -236,14 +236,17 @@ function ComponentLoader() {
    * (string) type - component name.
    * (object) new_classes - contains component classes for the edit, view and preview.
    */
-  this.overwriteComponent = function (type, new_classes) {
-    for (let i = 0; i < components.length; i++) {
-      if (components[i].type === type) {
-        components[i].classes = new_classes;
-        break;
+  this.overwriteComponent = function (type, newClasses, options = {}, defaults = {}, styles = {}) {
+      for (let i = 0; i < components.length; i++) {
+        if (components[i].type === type) {
+          components[i].classes = newClasses;
+          components[i].options = options;
+          components[i].defaults = defaults;
+          components[i].styles = styles;
+          break;
+        }
       }
-    }
-  };
+    };
 
   /**
    * (string) type - component name.
