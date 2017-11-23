@@ -222,17 +222,6 @@ export default class TimeLineWizard extends React.PureComponent {
         >
           {i18n.next} &gt;
         </button>
-        <br />
-        <table>
-          <tr>
-            <td>
-              <p>{i18n.timelineURL}: </p>
-            </td>
-            <td>
-              <pre>{window.MPATOther.url.scenario}</pre>
-            </td>
-          </tr>
-        </table>
       </div>
     );
   }

@@ -630,8 +630,8 @@ const en = {
         duration: 'Then what is the duration of the show (in seconds, only important for video on demand) ?'
       },
       tooltip: {
-        streamEvent: 'for use with broadcast..',
-        mediaEvent: 'only useful when a video-on-demand is present...',
+        streamEvent: 'for use with broadcast',
+        mediaEvent: 'only useful when a video-on-demand is present',
         keyEvent: 'can be useful to remove elements added by stream or media events',
         timeEvent: 'useful for splash screens and periodic logos',
         clockEvent: 'useful for elements that need to appear at a certain clock based time'
