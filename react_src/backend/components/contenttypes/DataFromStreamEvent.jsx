@@ -22,21 +22,27 @@
 import React from 'react';
 import autobind from 'class-autobind';
 import { componentLoader } from '../../../ComponentLoader';
+import OptionIO from '../../../OptionIO';
 
 function editView(params) {
   const { data, changeAreaContent, stateId } = params;
-  let origin = '';
-  let period = '';
+  let streameventname = 'id1';
+  let streameventid = 1;
+  let componenttag = 9;
   if (typeof data === 'object') {
-    if (data.origin) {
-      origin = data.origin;
+    if (data.streameventname) {
+      streameventname = data.streameventname;
     }
-    if (data.period) {
-      period = data.period;
+    if (data.streameventid) {
+      streameventid = data.streameventid;
+    }
+    if (data.componenttag) {
+      componenttag = data.componenttag;
     }
   }
   return (
-    <DataEdit stateId={stateId + params.id} {...{ origin, period }} changeAreaContent={changeAreaContent} />
+    <DataFromStreamEventEdit stateId={stateId + params.id} {...{ streameventname, streameventid,
+      componenttag }} changeAreaContent={changeAreaContent} />
   );
 }
 function preview(content = {}) {
@@ -55,16 +61,19 @@ function preview(content = {}) {
 }
 
 /**
- * The Data compoment is a variant of the Text component whose content is grabbed from
- * a URL. The URL should be that of a web service which delivers a piece of text or a
- * HTML fragment
+ * The DataFromStreamEvent compoment is a variant of the Text component whose content is grabbed from
+ * a HbbTV Stream Event
+ *
+ * Using this component is incompatible with using the TimeLine, unless the same event options
+ * are used in both
  */
-class DataEdit extends React.PureComponent {
+class DataFromStreamEventEdit extends React.PureComponent {
 
   static defaultProps = {
     content: {
-      origin: '',
-      period: 0
+      streameventid: 1,
+      streameventname: 'id1',
+      componenttag: 9
     }
   };
 
@@ -75,39 +84,60 @@ class DataEdit extends React.PureComponent {
 
   onChange(key, value) {
     this.props.changeAreaContent({ [key]: value });
+    const tag = (key === 'componenttag' ? value : this.props.content.componenttag);
+    const id = (key === 'streameventid' ? value : this.props.content.streameventid);
+    const name = (key === 'streameventname' ? value : this.props.content.streameventname);
+    OptionIO.getCommon().put(
+      'dsmcc',
+      { tag, id, name },
+      () => {},
+      (e) => {
+        log(e);
+      }
+    );
   }
 
   render() {
-    const { origin, period, stateId } = this.props; // bgColor
+    const { stateId } = this.props;
+    const { componenttag, streameventname, streameventid } = this.props.content;
     return (
       <div>
         <table>
           <tbody>
           <tr>
             <td>
-              <label>External API URL:</label>
-            </td>
-            <td>
-              <input
-                type="text"
-                key={stateId}
-                defaultValue={origin}
-                onChange={e => this.onChange('origin', e.target.value)}
-                style={{width: 800}}
-              /></td>
-          </tr>
-          <tr>
-            <td>
-              <label>
-                Periodic refresh in <br/> seconds (0 for none):
-              </label>
+              <label>Stream Event id:</label>
             </td>
             <td>
               <input
                 type="number"
                 key={stateId}
-                defaultValue={period}
-                onChange={e => this.onChange('period', e.target.value)}
+                defaultValue={streameventid}
+                onChange={e => this.onChange('streameventid', e.target.value)}
+              />
+            </td>
+            <td/>
+            <td>
+              <label>Stream Event name:</label>
+            </td>
+            <td>
+              <input
+                type="text"
+                key={stateId+1}
+                defaultValue={streameventname}
+                onChange={e => this.onChange('streameventname', e.target.value)}
+              /></td>
+          </tr>
+          <tr>
+            <td>
+              <label>Component tag:</label>
+            </td>
+            <td>
+              <input
+                type="number"
+                key={stateId}
+                defaultValue={componenttag}
+                onChange={e => this.onChange('componenttag', e.target.value)}
               /></td>
           </tr>
           </tbody>
@@ -118,7 +148,7 @@ class DataEdit extends React.PureComponent {
 }
 
 componentLoader.registerComponent(
-  'data',
+  'datafromstreamevent',
   {
     edit: editView,
     preview
