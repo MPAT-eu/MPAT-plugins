@@ -28,8 +28,7 @@
  */
     header("Content-Type: text/xml;");
     $default_values = json_encode(array('id'=>1, 'tag'=>9, 'name'=>'id1'));
-    $dsmcc_option = get_option("dsmcc", $default_values);
-    $dsmcc = json_decode($dsmcc_option, true);
+    $dsmcc = get_option("dsmcc", $default_values);
     echo '<?xml version="1.0" encoding="utf-8"?>
 <dsmcc xmlns="urn:dvb:mis:dsmcc:2009">
   <dsmcc_object component_tag="'.$dsmcc['tag'].'">

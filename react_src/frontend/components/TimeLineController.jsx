@@ -199,7 +199,7 @@ export default class TimeLineController extends React.Component {
         log(`vidObj ${vidObj}`);
         /*eslint-disable*/
         // event is a fixed url pointing at the stream event declaration
-        vidObj.addStreamEventListener('event', 'id1', this.handleStreamEvent);
+        vidObj.addStreamEventListener('%20-20/event', 'id1', this.handleStreamEvent);
         /*eslint-enable*/
       } catch (e) {
         log(`unable to register stream event listener ${e}`);

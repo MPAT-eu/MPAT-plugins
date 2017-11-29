@@ -29,6 +29,7 @@ function editView(params) {
   let streameventname = 'id1';
   let streameventid = 1;
   let componenttag = 9;
+  let initialtext = '';
   if (typeof data === 'object') {
     if (data.streameventname) {
       streameventname = data.streameventname;
@@ -39,10 +40,13 @@ function editView(params) {
     if (data.componenttag) {
       componenttag = data.componenttag;
     }
+    if (data.initialtext) {
+      initialtext = data.initialtext;
+    }
   }
   return (
     <DataFromStreamEventEdit stateId={stateId + params.id} {...{ streameventname, streameventid,
-      componenttag }} changeAreaContent={changeAreaContent} />
+      componenttag, initialtext }} changeAreaContent={changeAreaContent} />
   );
 }
 function preview(content = {}) {
@@ -69,10 +73,20 @@ function preview(content = {}) {
  */
 class DataFromStreamEventEdit extends React.PureComponent {
 
+  static propTypes = {
+    content: {
+      initialtext: React.PropTypes.string,
+      streameventname: React.PropTypes.string,
+      streameventid: React.PropTypes.number,
+      componenttag: React.PropTypes.number
+    }
+  };
+
   static defaultProps = {
     content: {
       streameventid: 1,
       streameventname: 'id1',
+      initialtext: '',
       componenttag: 9
     }
   };
@@ -84,6 +98,7 @@ class DataFromStreamEventEdit extends React.PureComponent {
 
   onChange(key, value) {
     this.props.changeAreaContent({ [key]: value });
+    if (key === 'initialtext') return;
     const tag = (key === 'componenttag' ? value : this.props.content.componenttag);
     const id = (key === 'streameventid' ? value : this.props.content.streameventid);
     const name = (key === 'streameventname' ? value : this.props.content.streameventname);
@@ -92,14 +107,14 @@ class DataFromStreamEventEdit extends React.PureComponent {
       { tag, id, name },
       () => {},
       (e) => {
-        log(e);
+        console.log(e);
       }
     );
   }
 
   render() {
     const { stateId } = this.props;
-    const { componenttag, streameventname, streameventid } = this.props.content;
+    const { componenttag, streameventname, streameventid, initialtext } = this.props.content;
     return (
       <div>
         <table>
@@ -126,7 +141,8 @@ class DataFromStreamEventEdit extends React.PureComponent {
                 key={stateId+1}
                 defaultValue={streameventname}
                 onChange={e => this.onChange('streameventname', e.target.value)}
-              /></td>
+              />
+            </td>
           </tr>
           <tr>
             <td>
@@ -135,9 +151,21 @@ class DataFromStreamEventEdit extends React.PureComponent {
             <td>
               <input
                 type="number"
-                key={stateId}
+                key={stateId+2}
                 defaultValue={componenttag}
                 onChange={e => this.onChange('componenttag', e.target.value)}
+              />
+            </td>
+            <td/>
+            <td>
+              <label>Initial text:</label>
+            </td>
+            <td>
+              <input
+                type="text"
+                key={stateId+3}
+                defaultValue={initialtext}
+                onChange={e => this.onChange('initialtext', e.target.value)}
               /></td>
           </tr>
           </tbody>
