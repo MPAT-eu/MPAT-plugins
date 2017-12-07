@@ -886,16 +886,15 @@ class Core {
 }
 
 
+// we should keep autoloading, otherwise MPAT won't work without composer
+spl_autoload_register(__NAMESPACE__ . '\\autoload');
+
 register_activation_hook(__FILE__, array('\MPAT\Core', 'activate_plugin'));
 register_deactivation_hook(__FILE__, array('\MPAT\Core', 'deactivate_plugin'));
 
 \MPAT\Core::get_instance();
 
-// We are using composer AUTOLOADER
-// spl_autoload_register(__NAMESPACE__ . '\\autoload');
-/*
- * DEPRECATED
- */
+
 function autoload($cls) {
 	$cls = ltrim($cls, '\\');
 	if (strpos($cls, __NAMESPACE__) !== 0)
