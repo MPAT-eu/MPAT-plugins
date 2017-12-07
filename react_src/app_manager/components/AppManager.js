@@ -21,6 +21,7 @@
  * Thomas Tröllmich  (thomas.troellmich@fokus.fraunhofer.de)
  * Jean-Philippe Ruijs (github.com/jeanphilipperuijs)
  * Jean-Claude Dufourd (jean-claude.dufourd@telecom-paristech.fr
+ * Benedikt Vogel 	   (vogel@irt.de)
  *
  **/
 import React from 'react';
@@ -95,7 +96,7 @@ class ListItem extends React.Component {
     return (
       <div {...this.props} className="list-item">{name}
         <div style={{float: 'right'}}>
-          {i18n.exclude} 
+          {i18n.exclude}
           <input type="checkbox" checked={excluded} value="1" onChange={e => setContent('excluded', e.target.checked, id)} />
         </div>
       </div>
