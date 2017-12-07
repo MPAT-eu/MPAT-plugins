@@ -15,7 +15,7 @@
  *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * AUTHORS:
  * Jean-Philippe Ruijs (github.com/jeanphilipperuijs)
  *
@@ -26,6 +26,7 @@ import autobind from 'class-autobind';
 
 import ModelIO from '../../../ModelIO';
 import { componentLoader } from '../../../ComponentLoader';
+import CanvasComponent from '../helpers/CanvasComponent';
 
 import Constants from '../../../constants';
 
@@ -110,6 +111,10 @@ export default class PageModelCreator extends React.PureComponent {
   pmfCancel() {
     Popup.close();
     document.getElementById('content_editor').className = 'postbox';
+  }
+
+  componentDidMount() {
+    this.refs.canvascomponent.updateCanvas(this.props.layout);
   }
 
   render() {
@@ -218,6 +223,9 @@ export default class PageModelCreator extends React.PureComponent {
         >
         {Constants.locstr.pageModelCreator.create}
         </button>
+        <div className="canvasforcreatemodel">
+          <CanvasComponent ref="canvascomponent"/>
+        </div>
       </div>
     );
   }

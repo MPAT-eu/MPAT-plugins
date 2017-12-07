@@ -2004,3 +2004,9 @@ div#mpat_elements.mpat div#timelinewizard.timelinewizard p {
   background-color: #FFCC44;
 }
 
+.canvasforcreatemodel {
+  position: absolute;
+  border: 1px solid black;
+  top: 40px;
+  right: 5px;
+}

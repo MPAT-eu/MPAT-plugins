@@ -23,10 +23,12 @@
  **/
 import React, { PropTypes as Types } from 'react';
 import autobind from 'class-autobind';
+
 import { componentLoader } from '../../../ComponentLoader';
 import PageIO from '../../../PageIO';
 import LayoutIO from '../../../LayoutIO';
 import Constants from '../../../constants';
+import CanvasComponent from '../helpers/CanvasComponent';
 
 function editView(params) {
   const { id, data, changeAreaContent } = params;
@@ -84,7 +86,7 @@ class CloneEdit extends React.PureComponent {
     const layoutId = destinationPage.mpat_content.layoutId;
     LayoutIO.getCommon().get(
       (layouts) => {
-        this.refs.canvascomponent.updateCanvas(layouts.find(l => l.ID == layoutId));
+        this.refs.canvascomponent.updateCanvas(layouts.find(l => l.ID == layoutId).mpat_content.layout);
       },
       (e) => {console.log('could not access layout of source');}
     );
@@ -168,31 +170,6 @@ class CloneEdit extends React.PureComponent {
     );
   }
 }
-
-class CanvasComponent extends React.Component {
-
-  componentDidMount() {
-    const ctx = this.refs.canvas.getContext('2d');
-    ctx.fillStyle = '#FFF';
-    ctx.fillRect(0, 0, 256, 144);
-  }
-
-  updateCanvas(layout) {
-    const ctx = this.refs.canvas.getContext('2d');
-    ctx.fillStyle = '#FFF';
-    ctx.fillRect(0, 0, 256, 144);
-    layout.mpat_content.layout.forEach((box, i) => {
-      window.drawComponent(ctx, 2 * box.x, 2 * box.y, 2 * box.w, 2 * box.h, "" + (i + 1));
-    })
-  }
-
-  render() {
-    return (
-      <canvas ref="canvas" width={256} height={144}/>
-    );
-  }
-}
-
 
 componentLoader.registerComponent(
   'clone', {
