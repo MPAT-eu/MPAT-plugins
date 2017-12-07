@@ -94,8 +94,8 @@ class ListItem extends React.Component {
     const { id, excluded, name, setContent } = this.props.children;
     return (
       <div {...this.props} className="list-item">{name}
-        <div className="right">
-          {i18n.exclude}
+        <div style={{float: 'right'}}>
+          {i18n.exclude} 
           <input type="checkbox" checked={excluded} value="1" onChange={e => setContent('excluded', e.target.checked, id)} />
         </div>
       </div>
