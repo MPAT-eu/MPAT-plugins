@@ -828,34 +828,48 @@ export default class PageEditor extends React.PureComponent {
                     , i18n.ttPageStyles)}
                 </td>
               </tr>
+              <tr>
+                <td>
+                  <label>Check styles</label>
+                </td>
+                <td>
+                  <button
+                    type="button"
+                    className="button blue_white"
+                    onClick={this.validateCSS}
+                  >
+                    Check
+                  </button>
+                </td>
+                <td>
+                  &nbsp;&nbsp;
+                </td>
 
-              {!this.props.model &&
-                <tr>
-                  <td>
-                    <label>{i18n.createModelFromPage}</label>
-                  </td>
-                  <td>{getTooltipped(
-                    <button
-                      type="button"
-                      className="button blue_white"
-                      onClick={this.popupPageModel}
-                    >
-                      {i18n.create}
-                    </button>
-                    , i18n.ttCreateModelFromPage)}
-                  </td>
-                </tr>}
+                {!this.props.model &&
+                <td>
+                  <label>{i18n.createModelFromPage}</label>
+                </td>}
+                {!this.props.model &&
+                <td>{getTooltipped(
+                  <button
+                    type="button"
+                    className="button blue_white"
+                    onClick={this.popupPageModel}
+                  >
+                    {i18n.create}
+                  </button>
+                  , i18n.ttCreateModelFromPage)}
+                </td>}
 
-              {this.props.model &&
-                <tr>
-                  <td>
-                    <label>{i18n.pageFromModel}:</label>
-                  </td>
-                  <td>
-                    <label>{this.props.model.origin}</label>
-                  </td>
-                </tr>}
-
+                {this.props.model &&
+                <td>
+                  <label>{i18n.pageFromModel}:</label>
+                </td>}
+                {this.props.model &&
+                <td>
+                  <label>{this.props.model.origin}</label>
+                </td>}
+              </tr>
             </tbody>
           </table>
           {this.mainButtons(true)}
