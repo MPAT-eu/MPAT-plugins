@@ -18,8 +18,9 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  *
  * AUTHORS:
- * Jean-Philippe Ruijs (github.com/jeanphilipperuijs)
- * Stefano Miccoli (stefano.miccoli@finconsgroup.com)
+ * Jean-Philippe Ruijs  (github.com/jeanphilipperuijs)
+ * Stefano Miccoli      (stefano.miccoli@finconsgroup.com)
+ * Benedikt Vogel       (vogel@irt.de)
  **/
 namespace MPAT\Settings;
 
