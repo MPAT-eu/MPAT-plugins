@@ -27,6 +27,7 @@ function editView(params) {
   const { data, changeAreaContent, stateId } = params;
   let origin = '';
   let period = '';
+  let template = '';
   if (typeof data === 'object') {
     if (data.origin) {
       origin = data.origin;
@@ -34,9 +35,13 @@ function editView(params) {
     if (data.period) {
       period = data.period;
     }
+    if (data.template) {
+      template = data.template;
+    }
   }
   return (
-    <DataEdit stateId={stateId + params.id} {...{ origin, period }} changeAreaContent={changeAreaContent} />
+    <DataEdit stateId={stateId + params.id} {...{ template, origin, period }}
+              changeAreaContent={changeAreaContent} />
   );
 }
 function preview(content = {}) {
@@ -64,6 +69,7 @@ class DataEdit extends React.PureComponent {
   static defaultProps = {
     content: {
       origin: '',
+      template: '',
       period: 0
     }
   };
@@ -78,7 +84,7 @@ class DataEdit extends React.PureComponent {
   }
 
   render() {
-    const { origin, period, stateId } = this.props; // bgColor
+    const { origin, template, period, stateId } = this.props; // bgColor
     return (
       <div>
         <table>
@@ -98,6 +104,19 @@ class DataEdit extends React.PureComponent {
           </tr>
           <tr>
             <td>
+              <label>Optional template:</label>
+            </td>
+            <td>
+              <input
+                type="text"
+                key={stateId+1}
+                defaultValue={template}
+                onChange={e => this.onChange('template', e.target.value)}
+                style={{width: 800}}
+              /></td>
+          </tr>
+          <tr>
+            <td>
               <label>
                 Periodic refresh in <br/> seconds (0 for none):
               </label>
@@ -105,7 +124,7 @@ class DataEdit extends React.PureComponent {
             <td>
               <input
                 type="number"
-                key={stateId}
+                key={stateId+2}
                 defaultValue={period}
                 onChange={e => this.onChange('period', e.target.value)}
               /></td>

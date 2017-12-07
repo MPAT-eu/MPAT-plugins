@@ -44,6 +44,7 @@ class DataContent extends React.Component {
 
   static propTypes = {
     origin: Types.string,
+    template: Types.string,
     period: Types.oneOfType([Types.number, Types.string])
   };
 
@@ -54,10 +55,14 @@ class DataContent extends React.Component {
       data: ""
     };
     axios.get(props.origin).then((o) => {
-      this.setState({data: o.data});
+      let str = o.data;
+      if (props.template && props.template !== "") {
+        str = props.template.replace(/\{\{(\w*)\}\}/g, (match, id) => o.data[id]);
+      }
+      this.setState({data: str});
     }).catch((error) => {
       this.setState({data: "error fetching data"});
-      //console.log(error);
+      console.log(error);
     });
     if (props.period > 0) {
       refresh(props.origin, props.period * 1000, this);
@@ -66,9 +71,11 @@ class DataContent extends React.Component {
 
   render() {
     return (
-      <div className="page-element-content text-content" style={{ overflow: 'hidden' }}>
-        {this.state.data}
-      </div>
+      <div
+        className="page-element-content text-content"
+        style={{ overflow: 'hidden' }}
+        dangerouslySetInnerHTML={{__html: this.state.data}}
+      />
     );
   }
 

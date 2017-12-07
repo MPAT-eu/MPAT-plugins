@@ -36,14 +36,16 @@ class DataFromStreamEventContent extends React.Component {
     initialtext: Types.string,
     streameventname: Types.string,
     streameventid: Types.number,
-    componenttag: Types.number
+    componenttag: Types.number,
+    template: Types.string
   };
 
   static defaultProps = {
     initialtext: '',
     streameventname: 'id1',
     streameventid: 1,
-    componenttag: 9
+    componenttag: 9,
+    template: ''
   };
 
   constructor(props) {
@@ -81,15 +83,25 @@ class DataFromStreamEventContent extends React.Component {
 
   handleStreamEvent(streamEvent) {
     // available fields are name / data / text / status
-    this.setState({data: streamEvent.text});
+    try {
+      if (this.props.template) {
+        let data = JSON.parse(streamEvent.text);
+        let str = this.props.template.replace(/\{\{(\w*)\}\}/g, (match, id) => data[id]);
+        this.setState({data: str});
+      } else this.setState({data: streamEvent.text});
+    } catch(error) {
+      this.setState({data: streamEvent.text});
+    }
     log(`streamevent received: "${streamEvent.text}"`);
   }
 
   render() {
     return (
-      <div className="page-element-content text-content" style={{ overflow: 'hidden' }}>
-        {this.state.data}
-      </div>
+      <div
+        className="page-element-content text-content"
+        style={{ overflow: 'hidden' }}
+        dangerouslySetInnerHTML={{__html: this.state.data}}
+      />
     );
   }
 
