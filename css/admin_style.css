@@ -1116,6 +1116,7 @@ span.gallery-arrow {
     border-radius: 3px;
     height: 44px;
     margin: 5px;
+    width: 100%;
 }
 
 #timelinecontainer .timeline-elt-button {
