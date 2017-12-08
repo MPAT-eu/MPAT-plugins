@@ -17,16 +17,20 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  *
  * AUTHORS:
+ * Jean-Claude Dufourd (Telecom ParisTech)
  * Jean-Philippe Ruijs (github.com/jeanphilipperuijs)
  *
  **/
 import React from 'react';
 import TimeRange from './TimeRange';
+import Event from './Event';
 import TimeMarker from './TimeMarker';
 import TimeScale from './TimeScale';
 import RangeTool from './RangeTool';
 import { log } from './Utils';
 import Constants from '../../constants';
+
+let pos = 0;
 
 export default class TimeLine extends React.PureComponent {
 
@@ -52,26 +56,63 @@ export default class TimeLine extends React.PureComponent {
     event.stopPropagation();
   }
 
+  untimed(range) {
+    switch (range.type) {
+      case 'StreamEvent':
+      case 'KeyEvent':
+      case 'ClockEvent':
+        return 1;
+      default:
+        return 0;
+    }
+  }
+
+  position() {
+    return pos++;
+  }
+
   render() {
     const { timeLineLength, timeLineDuration, ranges } = this.props.storeState;
+    const untimed = (ranges === null ? 0 : ranges.reduce((sum, a) => sum + this.untimed(a), 0));
+    pos = 0;
     return (
       <div>
-        {/*eslint-disable*/}
         <div className="timeline" onClick={this.handleClick}>
-          {/*eslint-enable*/}
-          {ranges.map((range, i) => (
-            <TimeRange
-              storeState={this.props.storeState}
-              actions={this.props.actions}
-              key={range.key}
-              i={i}
-            />))}
+          {ranges.map((range, i) =>
+                        (range.type === 'StreamEvent' ||
+                          range.type === 'KeyEvent' ||
+                          range.type === 'ClockEvent') ?
+                          null : (
+                            <TimeRange
+                              storeState={this.props.storeState}
+                              actions={this.props.actions}
+                              key={range.key}
+                              i={i}
+                            />))
+                 .filter(a => a) /* remove null */}
           <TimeMarker storeState={this.props.storeState} actions={this.props.actions} />
           <TimeScale
             pixelLength={+timeLineLength}
             timeLineDuration={+timeLineDuration}
           />
         </div>
+        {untimed > 0 &&
+        <div className="timeline2" onClick={this.handleClick}>
+          {ranges.map((range, i) =>
+                        (range.type === 'StreamEvent' ||
+                          range.type === 'KeyEvent' ||
+                          range.type === 'ClockEvent') ?
+                          (<Event
+                            storeState={this.props.storeState}
+                            actions={this.props.actions}
+                            key={range.key}
+                            i={i}
+                            position={this.position()}
+                            nbuntimed={untimed}
+                          />) : null)
+                 .filter(a => a) /* remove null */}
+        </div>
+        }
         <div id="propsheet">
           <RangeTool storeState={this.props.storeState} actions={this.props.actions} />
         </div>

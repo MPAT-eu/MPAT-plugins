@@ -17,6 +17,7 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  *
  * AUTHORS:
+ * Jean-Claude Dufourd (Telecom ParisTech)
  * Jean-Philippe Ruijs (github.com/jeanphilipperuijs)
  *
  **/
@@ -234,7 +235,6 @@ export default class TimeLineEditor extends React.PureComponent {
               </tr>
             </tbody>
           </table>
-
         </div>
         <div className="rightColumn">
           <div className="floatRight">

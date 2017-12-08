@@ -17,6 +17,7 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  *
  * AUTHORS:
+ * Jean-Claude Dufourd (Telecom ParisTech)
  * Jean-Philippe Ruijs (github.com/jeanphilipperuijs)
  *
  **/
@@ -148,6 +149,38 @@ export default class ElementMenu extends React.PureComponent {
     return v;
   }
 
+  getUnTimeRange(eventType) {
+    const v = {
+      // generated ID in case we add one post multiple times
+      id: Object(this.props.storeState.ranges).length,
+      title: post && post.title,
+      blogid: post && post.blogid,
+      postid: post && post.postid,
+      type: eventType,
+      start: 0,
+      width: 1,
+      begin: 0,
+      duration: 1
+    };
+    if (eventType === 'KeyEvent') {
+      v.keycode = -1;
+    } else if (eventType === 'ClockEvent') {
+      const time = new Date();
+      v.clock = {
+        y: time.getFullYear(),
+        m: time.getMonth() + 1,
+        d: time.getDate(),
+        h: time.getHours(),
+        i: time.getMinutes(),
+        s: time.getSeconds()
+      }
+    } else if (eventType === 'StreamEvent') {
+      v.data = `${autoStreamEventData++}`;
+    }
+    v.url = post && post.guid;
+    return v;
+  }
+
   /* assumption, the scenario is ordered */
   getFreeRegion() {
     const sorted = this.props.storeState.sortedRanges;
@@ -159,7 +192,8 @@ export default class ElementMenu extends React.PureComponent {
     // if no ranges, create one for whole duration
     if (timeranges.length === 0) return { start: 0, width: timeLineLength };
     // if one range is selected and free space after, add there
-    if (selectedRange != null) {
+    if (selectedRange != null &&
+      (selectedRange.type === 'MediaEvent' || selectedRange.type === 'TimeEvent')) {
       if (sortedIndex === timeranges.length - 1) {
         // selected range is last
         if (selectedRange.start + selectedRange.width < timeLineLength) {
@@ -182,8 +216,8 @@ export default class ElementMenu extends React.PureComponent {
       }
     }
     const min = timeranges[sorted[0]].start;
-    const max = timeranges[sorted[timeranges.length - 1]].start +
-      timeranges[sorted[timeranges.length - 1]].width;
+    const max = timeranges[sorted[sorted.length - 1]].start +
+      timeranges[sorted[sorted.length - 1]].width;
     // if space before first range, use it
     if (min > 0) return { start: 0, width: min };
     // if space after last range, use it
@@ -194,7 +228,7 @@ export default class ElementMenu extends React.PureComponent {
       };
     }
     // use first in-between space if any
-    for (let i = 0; i < timeranges.length - 1; i++) {
+    for (let i = 0; i < sorted.length - 1; i++) {
       const s = timeranges[sorted[i]].start + timeranges[sorted[i]].width;
       const e = timeranges[sorted[i + 1]].start;
       if (s < e) return { start: s, width: e - s };
@@ -204,46 +238,41 @@ export default class ElementMenu extends React.PureComponent {
 
   add() {
     log(`ElementMenu add ${value} ${post && post.title}`);
-    switch (value) {
-      case 'MediaEvent':
-      case 'TimeEvent':
-      case 'ClockEvent':
-        if (post === null) return; // do not allow empty page in time-related events
-      /*eslint-disable*/
-      case 'StreamEvent':
-      case 'KeyEvent':
+    if (value === 'Back') {
+      if (post === null) {
+        this.props.actions.changeBack(null);
+      } else {
+        this.props.actions.changeBack(
+          {
+            name: post.title,
+            meta: post.meta,
+            guid: post.guid,
+            blogid: post.blogid,
+            postid: post.postid
+          }
+        );
+      }
+      return;
+    }
+    const timed = (value === 'MediaEvent' || value === 'TimeEvent');
+    if (timed && post === null) return; // do not allow empty page in time-related events
+    if (!timed) {
+      const gtr = this.getUnTimeRange(value);
+      if (value === 'KeyEvent') {
+        log('KeyEvent', gtr);
+        /*eslint-disable*/
+        gtr.keycode = translateKeys(prompt(i18n.enterKeyCode, 'RED'));
         /*eslint-enable*/
-        const gtr = this.getTimeRange(value);
-        if (gtr === null) {
-          // no free space or some other problem
-          TimeLineEditor.updateStatusInfo(i18n.noFreeSpace);
-          return;
-        }
-        if (value === 'KeyEvent') {
-          log('KeyEvent', gtr);
-          /*eslint-disable*/
-          gtr.keycode = translateKeys(prompt(i18n.enterKeyCode, 'RED'));
-          /*eslint-enable*/
-        }
-        this.props.actions.addRange(gtr);
-        break;
-      case 'Back':
-        if (post === null) {
-          this.props.actions.changeBack(null);
-        } else {
-          this.props.actions.changeBack(
-            {
-              name: post.title,
-              meta: post.meta,
-              guid: post.guid,
-              blogid: post.blogid,
-              postid: post.postid
-            }
-          );
-        }
-        break;
-      default:
-        break;
+      }
+      this.props.actions.addRange(gtr);
+    } else {
+      const gtr = this.getTimeRange(value);
+      if (gtr === null) {
+        // no free space or some other problem
+        TimeLineEditor.updateStatusInfo(i18n.noFreeSpace);
+        return;
+      }
+      this.props.actions.addRange(gtr);
     }
   }
 

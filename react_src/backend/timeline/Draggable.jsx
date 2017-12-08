@@ -17,7 +17,7 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  *
  * AUTHORS:
- * Jean-Philippe Ruijs (github.com/jeanphilipperuijs)
+ * Jean-Claude Dufourd (Telecom ParisTech)
  *
  **/
 import React from 'react';

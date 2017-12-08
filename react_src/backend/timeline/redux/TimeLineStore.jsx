@@ -16,6 +16,7 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  *
+ * Jean-Claude Dufourd (Telecom ParisTech)
  **/
 import { createStore } from 'redux';
 import undoable from 'redux-undo';
@@ -66,8 +67,12 @@ function switchRanges(state, index) {
 }
 
 function sortUponAdd(state, range) {
+  // if untimed, then return sortedRanges unmodified
+  if (range.type === 'StreamEvent' || range.type === 'KeyEvent' || range.type === 'ClockEvent') {
+    return state.sortedRanges;
+  }
   let i = 0;
-  while (i < state.ranges.length &&
+  while (i < state.sortedRanges.length &&
          state.ranges[state.sortedRanges[i]].start < range.start) {
     i++;
   }
@@ -166,6 +171,12 @@ function TimeLineApp(state = initialState, action) {
           }
         });
       }
+      // filter untimed events that are still in sortedRanges
+      action.project.sortedRanges =
+        action.project.sortedRanges.filter(i => {
+          const type = action.project.ranges[i].type;
+          return type === 'TimeEvent' || type === 'MediaEvent';
+        });
       // it is a brand new object, not reused, OK to just use
       return action.project;
     default:

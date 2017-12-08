@@ -1504,13 +1504,24 @@ ul {
 }
 
 .mpat .timeline {
-    position: relative;
-    width: 960px;
-    height: 42px;
-    border: 1px solid black;
-    background-color: white;
-    margin: 5px;
-    z-index: 0;
+  position: relative;
+  width: 960px;
+  height: 42px;
+  border: 1px solid black;
+  background-color: white;
+  margin: 5px;
+  z-index: 0;
+}
+
+.mpat .timeline2 {
+  position: relative;
+  width: 960px;
+  height: 42px;
+  border: 1px solid black;
+  background-color: lightgray;
+  margin: 5px;
+  z-index: 0;
+  top: 40px;
 }
 
 .mpat .timerange {

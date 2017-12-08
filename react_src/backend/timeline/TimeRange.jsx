@@ -16,6 +16,8 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  *
+ * Author:
+ * Jean-Claude Dufourd (Telecom ParisTech)
  **/
 import React from 'react';
 import Draggable from './Draggable';
@@ -32,25 +34,12 @@ export default class TimeRange extends React.PureComponent {
   };
 
   static getTooltip(range) {
-    switch (range.type) {
-      case 'TimeEvent':
-      case 'MediaEvent':
-        return `${range.type} ${Math.round(range.begin)} ${Math.round(range.duration)}`;
-      case 'StreamEvent':
-        return `StreamEvent ${range.data}`;
-      case 'KeyEvent':
-        return `KeyEvent ${toKeyNames(range.keycode)}`;
-      case 'ClockEvent':
-        return `ClockEvent ${range.clock.y}/${range.clock.m}/${range.clock.d} ${range.clock.h}:${range.clock.i}:${range.clock.s}`;
-      default:
-        return 'unknown';
-    }
+    return `${range.type} ${Math.round(range.begin)} ${Math.round(range.duration)}`;
   }
 
   constructor(props) {
     super(props);
     this.state = {
-      leftArrow: null,
       mainTR: null,
       rightArrow: null,
       dragged: false

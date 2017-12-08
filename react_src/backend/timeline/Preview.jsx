@@ -16,25 +16,16 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  *
+ * Jean-Claude Dufourd (Telecom ParisTech)
  **/
 import React from 'react';
 
 function findRelevantHit(storeState, x) {
-  const hit1 = storeState.ranges.find(value => (value.start < x && value.start + value.width > x));
-  if (hit1) return hit1;
-  for (let i = 0; i < storeState.ranges.length; i++) {
-    const p = storeState.ranges[storeState.sortedRanges[i]];
-    if (x > p.start + p.width) {
-      // TimeEvent and MediaEvent have an end, so being after one means nothing
-      if (p.type === 'TimeEvent' || p.type === 'MediaEvent') continue;
-      // other events have no end, so being after one means the url they triggered is still on
-      if (i + 1 === storeState.ranges.length ||
-          x < storeState.ranges[storeState.sortedRanges[i+1]].start) {
-        return p;
-      }
-    }
-  }
-  return null;
+  return storeState.ranges.find(value =>
+                                  ((value.type === 'TimeEvent' ||
+                                    value.type === 'MediaEvent')
+                                    && value.start < x
+                                    && value.start + value.width > x));
 }
 
 export default function Preview(props) {
