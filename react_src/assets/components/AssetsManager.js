@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -124,7 +124,7 @@ export default class AssetsManager extends React.Component {
   }
 
   previewImageFormat(cell, row) {
-    return <img src={cell} width="30" height="30" />;
+    return <img src={cell} width="30" height="30" role="presentation" />;
   }
 
   rowGetter(i) {
@@ -186,7 +186,7 @@ export default class AssetsManager extends React.Component {
 let previewImageFormatter = React.createClass({
   render() {
     const url = this.props.value;
-    return (<img src={url} width="30" height="30" />);
+    return (<img src={url} width="30" height="30" role="presentation" />);
   }
 });
 

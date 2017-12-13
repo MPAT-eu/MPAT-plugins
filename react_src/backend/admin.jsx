@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -36,9 +36,6 @@ import { } from 'react-resizable/css/styles.css';
  here in order to get independent from the node_modules folder
  */
 import thunk from 'redux-thunk';
-
-import { updatePreview } from './components/pageeditor/Preview';
-
 import LayoutBuilder from './components/LayoutBuilder';
 import PageEditorContainer from './containers/PageEditorContainer';
 import Resizable from './components/helpers/Resizable';
@@ -102,7 +99,7 @@ window.onload = function onload() {
   }
 };
 
-window.drawComponent = function drawComponent(ctx, x, y, w, h, text="") {
+window.drawComponent = function drawComponent(ctx, x, y, w, h, text = '') {
   ctx.fillStyle = '#333';
   ctx.fillRect(x, y, w, h);
   ctx.strokeStyle = '#AAA';
@@ -110,8 +107,8 @@ window.drawComponent = function drawComponent(ctx, x, y, w, h, text="") {
   ctx.textBaseline = 'middle';
   ctx.font = '22px Arial';
   ctx.fillStyle = '#F90';
-  const textX = x+w/2 - ctx.measureText(text).width/2;
-  const textY = y+h/2;
+  const textX = x + w / 2 - ctx.measureText(text).width / 2;
+  const textY = y + h / 2;
   ctx.fillText(text, textX, textY);
 };
 
@@ -121,8 +118,8 @@ module.exports = {
   ReactDOM,
   componentAPI: componentLoader,
   utils: {
-      openMediaGallery
+    openMediaGallery
   }
-  //analyticsAPI: object
+  // analyticsAPI: object
 
 };

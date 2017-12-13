@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -48,7 +48,7 @@ export default class LayoutBuilder extends React.PureComponent {
       el.id = 'pageeditorstatus';
       document.getElementById('wp-admin-bar-root-default').appendChild(el);
     }
-    el.innerHTML = '<p class="page_editor_status">Layout saved</p>'
+    el.innerHTML = '<p class="page_editor_status">Layout saved</p>';
     window.setTimeout(() => { document.getElementById('pageeditorstatus').innerHTML = ''; }, 5000);
     LayoutBuilder.canLeave = true;
   }
@@ -58,7 +58,7 @@ export default class LayoutBuilder extends React.PureComponent {
     autobind(this);
     this.state = {
       layout: (props.meta && props.meta.layout) ? props.meta.layout : [
-        { i: generateId(), x: 10, y: 10, w: 50, h: 50, minW: 5, minH: 5 },
+        { i: generateId(), x: 10, y: 10, w: 50, h: 50, minW: 5, minH: 5 }
       ],
       background: '',
       hasSafeArea: true,
@@ -239,23 +239,23 @@ export default class LayoutBuilder extends React.PureComponent {
 
   checkBox(box, boxIndex) {
     const box1 = Object.assign({}, box);
-    const w = parseInt(document.getElementById("editBoxW").value);
-    const h = parseInt(document.getElementById("editBoxH").value);
-    const x = parseInt(document.getElementById("editBoxX").value);
-    const y = parseInt(document.getElementById("editBoxY").value);
-    box1.w = (w - w%10)/10;
-    box1.h = (h - h%10)/10;
-    box1.x = (x - x%10)/10;
-    box1.y = (y - y%10)/10;
+    const w = parseInt(document.getElementById('editBoxW').value);
+    const h = parseInt(document.getElementById('editBoxH').value);
+    const x = parseInt(document.getElementById('editBoxX').value);
+    const y = parseInt(document.getElementById('editBoxY').value);
+    box1.w = (w - w % 10) / 10;
+    box1.h = (h - h % 10) / 10;
+    box1.x = (x - x % 10) / 10;
+    box1.y = (y - y % 10) / 10;
     const layout = this.state.layout.slice();
     layout[boxIndex] = box1;
     const valid = this.onLayoutChange(layout,
-                                      { cols: Constants.page.grid.columns,
-                                        rows: Constants.page.grid.rows });
+      { cols: Constants.page.grid.columns,
+        rows: Constants.page.grid.rows });
     if (valid) {
-      document.getElementById(box.i+"message").textContent = '';
+      document.getElementById(`${box.i}message`).textContent = '';
     } else {
-      document.getElementById(box.i+"message").textContent = 'layout is not valid';
+      document.getElementById(`${box.i}message`).textContent = 'layout is not valid';
     }
   }
 
@@ -265,89 +265,89 @@ export default class LayoutBuilder extends React.PureComponent {
     const boxIndex = this.state.layout.indexOf(box);
     Popup.create(
       {
-         content: (
-           <div className="editboxsizeandposition">
-             <h3>Edit box size and position</h3>
-             <table>
-               <tbody>
-               <tr>
-                 <td><label>Width</label></td>
-                 <td>
-                   <input
-                     type="number"
-                     id="editBoxW"
-                     step="10"
-                     defaultValue={box.w*10}
-                     onChange={() => this.checkBox(box, boxIndex)}
-                   />
-                 </td>
-               </tr>
-               <tr>
-                 <td><label>Height</label></td>
-                 <td>
-                   <input
-                     type="number"
-                     id="editBoxH"
-                     step="10"
-                     defaultValue={box.h*10}
-                     onChange={() => this.checkBox(box, boxIndex)}
-                   />
-                 </td>
-               </tr>
-               <tr>
-                 <td><label>Left</label></td>
-                 <td>
-                   <input
-                     type="number"
-                     id="editBoxX"
-                     step="10"
-                     defaultValue={box.x*10}
-                     onChange={() => this.checkBox(box, boxIndex)}
-                   />
-                 </td>
-               </tr>
-               <tr>
-                 <td><label>Top</label></td>
-                 <td>
-                   <input
-                     type="number"
-                     id="editBoxY"
-                     step="10"
-                     defaultValue={box.y*10}
-                     onChange={() => this.checkBox(box, boxIndex)}
-                   />
-                 </td>
-               </tr>
-               </tbody>
-             </table>
-             <button
-               type="button"
-               onClick={() => {
-                 if (document.getElementById(box.i+"message").textContent === '') {
-                   Popup.close();
-                 }
-               }}
-               className="button blue_white"
-             >
+        content: (
+          <div className="editboxsizeandposition">
+            <h3>Edit box size and position</h3>
+            <table>
+              <tbody>
+                <tr>
+                  <td><label>Width</label></td>
+                  <td>
+                    <input
+                      type="number"
+                      id="editBoxW"
+                      step="10"
+                      defaultValue={box.w * 10}
+                      onChange={() => this.checkBox(box, boxIndex)}
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td><label>Height</label></td>
+                  <td>
+                    <input
+                      type="number"
+                      id="editBoxH"
+                      step="10"
+                      defaultValue={box.h * 10}
+                      onChange={() => this.checkBox(box, boxIndex)}
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td><label>Left</label></td>
+                  <td>
+                    <input
+                      type="number"
+                      id="editBoxX"
+                      step="10"
+                      defaultValue={box.x * 10}
+                      onChange={() => this.checkBox(box, boxIndex)}
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td><label>Top</label></td>
+                  <td>
+                    <input
+                      type="number"
+                      id="editBoxY"
+                      step="10"
+                      defaultValue={box.y * 10}
+                      onChange={() => this.checkBox(box, boxIndex)}
+                    />
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <button
+              type="button"
+              onClick={() => {
+                if (document.getElementById(`${box.i}message`).textContent === '') {
+                  Popup.close();
+                }
+              }}
+              className="button blue_white"
+            >
                OK
              </button>
-             <button
-               type="button"
-               onClick={() => {
-                 const layout = this.state.layout.slice();
-                 layout[boxIndex] = saveBox;
-                 this.onLayoutChange(layout,
-                                     { cols: Constants.page.grid.columns,
-                                       rows: Constants.page.grid.rows });
-                 this.forceUpdate();
-                 Popup.close();
-               }}
-               className="button blue_white"
-             >
+            <button
+              type="button"
+              onClick={() => {
+                const layout = this.state.layout.slice();
+                layout[boxIndex] = saveBox;
+                this.onLayoutChange(layout,
+                  { cols: Constants.page.grid.columns,
+                    rows: Constants.page.grid.rows });
+                this.forceUpdate();
+                Popup.close();
+              }}
+              className="button blue_white"
+            >
                Cancel
              </button>
-             <span id={box.i+"message"}></span>
-           </div>
+            <span id={`${box.i}message`} />
+          </div>
          )
       });
   }
@@ -468,22 +468,21 @@ export default class LayoutBuilder extends React.PureComponent {
                     <label>{i18n.previewBackground}: </label>
                   </td>
                   <td>
-                    {getTooltipped
-                      (<div className="editor-container">
-                        <input
-                          type="text"
-                          id="BGUrlInput"
-                          value={this.state.background}
-                          onChange={e => this.setState({ background: e.target.value })}
-                          name="background"
-                          placeholder={i18n.placeholderBg}
-                          onKeyPress={noSubmitOnEnter}
-                        />
-                        <span>&nbsp;&nbsp;OR&nbsp;&nbsp;</span>
-                        <button type="button" target="BGUrlInput" className="button mpat-insert-media blue_white">
-                          {i18n.selectFile}
-                        </button>
-                      </div>, i18n.ttPreviewBg)}
+                    {getTooltipped(<div className="editor-container">
+                      <input
+                        type="text"
+                        id="BGUrlInput"
+                        value={this.state.background}
+                        onChange={e => this.setState({ background: e.target.value })}
+                        name="background"
+                        placeholder={i18n.placeholderBg}
+                        onKeyPress={noSubmitOnEnter}
+                      />
+                      <span>&nbsp;&nbsp;OR&nbsp;&nbsp;</span>
+                      <button type="button" target="BGUrlInput" className="button mpat-insert-media blue_white">
+                        {i18n.selectFile}
+                      </button>
+                    </div>, i18n.ttPreviewBg)}
                   </td>
                 </tr>
                 <tr>

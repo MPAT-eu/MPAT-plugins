@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -69,12 +69,12 @@ export default class Page extends React.PureComponent {
   };
 
   static defaultProps = {
-    allowMedia: true,
+    allowMedia: true
   };
 
   static getBackgroundType(background) {
     if (!background) return false;
-    if (background.match(/^#/)||background.match(/^rgb\(/)||background.match(/^rgba\(/)) {
+    if (background.match(/^#/) || background.match(/^rgb\(/) || background.match(/^rgba\(/)) {
       return 'color';
       // FIXME not every video url has a file extension in it.
       // Maybe we should add a select element to chose whether the background
@@ -144,36 +144,36 @@ export default class Page extends React.PureComponent {
   }
 
   componentWillReceiveProps(nextProps) {
-      if (JSON.stringify(nextProps.content) !== JSON.stringify(this.props.content)) {
-          this.setState({areaStates: this.getAreaStates(nextProps.content)});
-      }
+    if (JSON.stringify(nextProps.content) !== JSON.stringify(this.props.content)) {
+      this.setState({ areaStates: this.getAreaStates(nextProps.content) });
+    }
   }
 
   getAreaStates(content) {
-      const that = this;
-      return Object.assign(
+    const that = this;
+    return Object.assign(
               {}, // protection if empty layout/page
-              ...Object.keys(content).map(function(obj){
-                  let stateActiveId = null;
-                  let isQueryParam = false;
-                  for (let key in content[obj]){
-                      const stateTitle = "state-"+content[obj][key].stateTitle;
-                      if(stateTitle == that.queryParams[obj]){
-                          isQueryParam = true;
-                          return {[obj] : key};
-                      }else{
-                          for(let keyParams in that.queryParams[obj]){
-                              if(stateTitle == that.queryParams[obj][keyParams]){
-                                  isQueryParam = true;
-                                  return {[obj] : key};
-                              }
-                          }
-                      }
-                      if(content[obj][key].stateActive === true ){
-                          stateActiveId = key;
-                      }
+              ...Object.keys(content).map((obj) => {
+                let stateActiveId = null;
+                let isQueryParam = false;
+                for (const key in content[obj]) {
+                  const stateTitle = `state-${content[obj][key].stateTitle}`;
+                  if (stateTitle == that.queryParams[obj]) {
+                    isQueryParam = true;
+                    return { [obj]: key };
                   }
-                  return {[obj] : (stateActiveId != null && isQueryParam == false) ? stateActiveId  : Object.keys(content[obj])[0]};
+                  for (const keyParams in that.queryParams[obj]) {
+                    if (stateTitle == that.queryParams[obj][keyParams]) {
+                      isQueryParam = true;
+                      return { [obj]: key };
+                    }
+                  }
+
+                  if (content[obj][key].stateActive === true) {
+                    stateActiveId = key;
+                  }
+                }
+                return { [obj]: (stateActiveId != null && isQueryParam == false) ? stateActiveId : Object.keys(content[obj])[0] };
               })
       );
   }
@@ -216,15 +216,13 @@ export default class Page extends React.PureComponent {
   deactivateOrBack() {
     if (this.state.focusedIsActive) {
       this.deactivateCurrent();
-    } else {
-      if (this.props.pageUtils.goToPreviousPage) {
+    } else if (this.props.pageUtils.goToPreviousPage) {
         // current navigation support history
-        this.props.pageUtils.goToPreviousPage();
+      this.props.pageUtils.goToPreviousPage();
        // console.log("go to previous");
-      } else if (this.props.parent) {
+    } else if (this.props.parent) {
         // good 'ol parent link
-        window.location.href = this.props.parent;
-      }
+      window.location.href = this.props.parent;
     }
   }
 
@@ -271,9 +269,9 @@ export default class Page extends React.PureComponent {
 
   moveTo(direction) {
       // this.scroll changes the index of the focused component (only if there's an eligible one)
-      this.scroll(direction);
+    this.scroll(direction);
       // this.activateCurrent set active=true for focused item
-      this.activateCurrent();
+    this.activateCurrent();
   }
 
   render() {
@@ -308,23 +306,23 @@ export default class Page extends React.PureComponent {
     const type = Page.getBackgroundType(background);
     // check for colour, image or video as background
     if (type === 'color') {
-        backgroundStyle.backgroundColor = background;
+      backgroundStyle.backgroundColor = background;
     } else if (type === 'video' || type === 'image') {
-        backgroundStyle.backgroundImage = background;
+      backgroundStyle.backgroundImage = background;
     }
 
     const pageStyles = Object.assign({}, backgroundStyle, this.props.styles.container || {});
     if (pageStyles.backgroundImage) {
-        if (pageStyles.backgroundImage.match(/\.(ts|mpegts|mp4|mpd)/)) {
+      if (pageStyles.backgroundImage.match(/\.(ts|mpegts|mp4|mpd)/)) {
             // background image is actually a video, instantiate the player
-            vid = <Video ref={v => (this.backgroundVideo = v)} src={pageStyles.backgroundImage} autoplay />;
-            delete pageStyles.backgroundImage
-        } if (pageStyles.backgroundImage !== 'none' &&
+        vid = <Video ref={v => (this.backgroundVideo = v)} src={pageStyles.backgroundImage} autoplay />;
+        delete pageStyles.backgroundImage;
+      } if (pageStyles.backgroundImage !== 'none' &&
               pageStyles.backgroundImage !== 'initial' &&
               pageStyles.backgroundImage !== 'inherit') {
             // css compliant background image url format
-            pageStyles.backgroundImage = `url(${pageStyles.backgroundImage})`;
-        }
+        pageStyles.backgroundImage = `url(${pageStyles.backgroundImage})`;
+      }
     }
     const pageStyleOverride = {};
     if (pageStyles.backgroundImage === 'none') {
@@ -345,7 +343,7 @@ export default class Page extends React.PureComponent {
           So we can leverage on transparencies
            */}
           <div className="background" style={pageStyles}>
-              {vid}
+            {vid}
           </div>
           <div className="page-elements-container">
             {pageElements}

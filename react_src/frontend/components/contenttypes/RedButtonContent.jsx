@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -60,15 +60,17 @@ class RedButtonContent extends React.Component {
 
   render() {
     return (
-      <div className={classnames({
-        'page-element-content': true,
-        'image-content': true,
-        fullscreen: this.props.active
-      })}
+      <div
+        className={classnames({
+          'page-element-content': true,
+          'image-content': true,
+          fullscreen: this.props.active
+        })}
       >
         <img
           src={this.props.img}
           style={{ visibility: (this.state.visible ? 'visible' : 'hidden') }}
+          role="presentation"
         />
       </div>
     );

@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -58,8 +58,7 @@ const sanitizeState = (state) => {
   const s = deepAssign({}, state);
   // set default layout (first in list) to the page if not defined
   if (!s.layoutId || layouts.findIndex(({ id }) => id === s.layoutId) === -1) {
-    if(layouts && layouts[0] && layouts[0].id)
-      s.layoutId = layouts[0].id;
+    if (layouts && layouts[0] && layouts[0].id) { s.layoutId = layouts[0].id; }
   }
   // set the first layout area as active if not area is defined as active
   const layout = layouts.find(({ id }) => id === s.layoutId);
@@ -70,22 +69,22 @@ const sanitizeState = (state) => {
   layout && layout.data && layout.data.forEach((box) => {
     if (!s.pageContent[box.i] || !Object.keys(s.pageContent[box.i]).length) {
       s.pageContent[box.i] = {};
-      s.pageContent[box.i][generateId()] = instantiateNewState("default", true);
+      s.pageContent[box.i][generateId()] = instantiateNewState('default', true);
     }
   });
 
   return s;
 };
 
-function instantiateNewState( stateTitle, stateActive, componentTitle, componentType = 'text'){
-    const componentInitialValues = componentLoader.getComponentDefaults(componentType);
-    return {
-      type: componentType,
-      stateTitle,
-      stateActive,
-      componentTitle: componentTitle || '',
-      ...componentInitialValues
-    }
+function instantiateNewState(stateTitle, stateActive, componentTitle, componentType = 'text') {
+  const componentInitialValues = componentLoader.getComponentDefaults(componentType);
+  return {
+    type: componentType,
+    stateTitle,
+    stateActive,
+    componentTitle: componentTitle || '',
+    ...componentInitialValues
+  };
 }
 
 export default createReducer(sanitizeState(initialState), {
@@ -112,21 +111,21 @@ export default createReducer(sanitizeState(initialState), {
     return next;
   },
   [CHANGE_AREA_STATE_TYPE]: (state, { newComponentType }, { areaId, stateId = '_0' }) => {
-      const currentAreaState = state.pageContent[areaId][stateId];
-      const newAreaState = instantiateNewState( currentAreaState.stateTitle,
+    const currentAreaState = state.pageContent[areaId][stateId];
+    const newAreaState = instantiateNewState(currentAreaState.stateTitle,
                                                 currentAreaState.stateActive,
                                                 currentAreaState.componentTitle,
                                                 newComponentType);
-      const nextState = deepAssign({}, state);
+    const nextState = deepAssign({}, state);
       // deepAssign doesnt work here when previous element is a structured object which has to be replace with empty object
-      nextState.pageContent[areaId][stateId] = newAreaState; 
-      return nextState;
-    },
+    nextState.pageContent[areaId][stateId] = newAreaState;
+    return nextState;
+  },
   [ADD_AREA_STATE]: mergeState((stateTitle, { areaId }) => ({
     pageContent: {
-	[areaId]: {
+      [areaId]: {
 	    [generateId()]: instantiateNewState(stateTitle, false)
-	}
+      }
     }
   })),
   [DELETE_AREA_STATE]: (state, stateId, areaId) => {
@@ -157,13 +156,13 @@ export default createReducer(sanitizeState(initialState), {
     background
   })),
   [CHANGE_PAGE_STYLES]: (state, styles) => {
-      let next = {
-        pageStyles: styles
-      };
-      next = deepAssign({}, state, next);
-      return next;
+    let next = {
+      pageStyles: styles
+    };
+    next = deepAssign({}, state, next);
+    return next;
   },
-  [CHANGE_AREA_STATE_STYLE]: (state, styles, {areaId, stateId}) => {
+  [CHANGE_AREA_STATE_STYLE]: (state, styles, { areaId, stateId }) => {
     let next = {
       pageContent: {
         [areaId]: {
@@ -179,7 +178,7 @@ export default createReducer(sanitizeState(initialState), {
   /**
    * Change the active area on page init
    */
-  [CHANGE_DEFAULT_ACTIVE]: (state, defaultActive) => { 
+  [CHANGE_DEFAULT_ACTIVE]: (state, defaultActive) => {
     if (defaultActive === state.defaultActive) {
       const next = { ...state };
       delete next.defaultActive;
@@ -188,18 +187,18 @@ export default createReducer(sanitizeState(initialState), {
     return { ...state, defaultActive };
   },
   /**
-   * Change the visible state for the area on page init 
+   * Change the visible state for the area on page init
    */
-  [SET_STATE_ACTIVE]: (state, areaId, stateId ) => {
-      const newState = Object.assign({}, state);
+  [SET_STATE_ACTIVE]: (state, areaId, stateId) => {
+    const newState = Object.assign({}, state);
       // iterate area states
-      for (let key of Object.keys(newState.pageContent[areaId])) {
-	  if(stateId == key){
+    for (const key of Object.keys(newState.pageContent[areaId])) {
+	  if (stateId == key) {
 	      newState.pageContent[areaId][key].stateActive = true;
-	  }else {
+	  } else {
 	      newState.pageContent[areaId][key].stateActive = false;
 	  }
-      }
-      return newState;
+    }
+    return newState;
   }
 });

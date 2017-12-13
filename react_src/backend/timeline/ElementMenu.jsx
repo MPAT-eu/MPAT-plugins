@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -98,7 +98,7 @@ export default class ElementMenu extends React.PureComponent {
   static sortedPages = window.MPATTimeLinePages.map((a) => {
     a.title = a.title.toUpperCase();
     return a;
-  }).sort((a,b) => a.title < b.title ? -1 : 1);
+  }).sort((a, b) => a.title < b.title ? -1 : 1);
 
   constructor() {
     super();
@@ -141,7 +141,7 @@ export default class ElementMenu extends React.PureComponent {
         h: time.getHours(),
         i: time.getMinutes(),
         s: time.getSeconds()
-      }
+      };
     } else if (eventType === 'StreamEvent') {
       v.data = `${autoStreamEventData++}`;
     }
@@ -173,7 +173,7 @@ export default class ElementMenu extends React.PureComponent {
         h: time.getHours(),
         i: time.getMinutes(),
         s: time.getSeconds()
-      }
+      };
     } else if (eventType === 'StreamEvent') {
       v.data = `${autoStreamEventData++}`;
     }
@@ -301,9 +301,11 @@ export default class ElementMenu extends React.PureComponent {
             {this.vod() &&
             <tr>
               <td>
-                <input type="radio" name="action" onChange={() => {
-                  value = i18n.back;
-                }}/>
+                <input
+                  type="radio" name="action" onChange={() => {
+                    value = i18n.back;
+                  }}
+                />
                 Video page {i18n.inTheBack}
               </td>
             </tr>
@@ -311,15 +313,15 @@ export default class ElementMenu extends React.PureComponent {
             {back &&
             <tr>
               <td>
-              {i18n.backPage}: {back.name}
+                {i18n.backPage}: {back.name}
                 <button
                   type="button"
                   className="timeline-elt-button"
                   onClick={this.removeBack}
                 >
-                {i18n.remove}
+                  {i18n.remove}
                 </button>
-                </td>
+              </td>
               </tr>
             }
             <tr>
@@ -336,7 +338,7 @@ export default class ElementMenu extends React.PureComponent {
                     value = 'StreamEvent';
                   }}
                 />
-                {i18n.streamEvent || "Stream Event"} <div className="StreamEvent coloredrect"/>
+                {i18n.streamEvent || 'Stream Event'} <div className="StreamEvent coloredrect" />
               </td>
             </tr>
             }
@@ -350,8 +352,8 @@ export default class ElementMenu extends React.PureComponent {
                     value = 'KeyEvent';
                   }}
                 />
-                {i18n.keyEvent || "Key Event"}
-                <div className="KeyEvent coloredrect"/>
+                {i18n.keyEvent || 'Key Event'}
+                <div className="KeyEvent coloredrect" />
               </td>
             </tr>
             }
@@ -363,8 +365,8 @@ export default class ElementMenu extends React.PureComponent {
                   name="action"
                   onChange={() => { value = 'MediaEvent'; }}
                 />
-                {i18n.mediaEvent || "Media Event"}
-                <div className="MediaEvent coloredrect"/>
+                {i18n.mediaEvent || 'Media Event'}
+                <div className="MediaEvent coloredrect" />
               </td>
             </tr>
             }
@@ -378,8 +380,8 @@ export default class ElementMenu extends React.PureComponent {
                     value = 'TimeEvent';
                   }}
                 />
-                {i18n.timeEvent || "Time Event"}
-                <div className="TimeEvent coloredrect"/>
+                {i18n.timeEvent || 'Time Event'}
+                <div className="TimeEvent coloredrect" />
               </td>
             </tr>
             }
@@ -393,8 +395,8 @@ export default class ElementMenu extends React.PureComponent {
                     value = 'ClockEvent';
                   }}
                 />
-                {i18n.clockEvent || "Clock Event"}
-                <div className="ClockEvent coloredrect"/>
+                {i18n.clockEvent || 'Clock Event'}
+                <div className="ClockEvent coloredrect" />
               </td>
             </tr>
             }
@@ -419,7 +421,7 @@ export default class ElementMenu extends React.PureComponent {
               </option>)}
         </select> <br />
         <button type="button" className="timeline-button addelement-button" onClick={this.add}>
-        {i18n.addElement}
+          {i18n.addElement}
         </button>
       </div>
     );

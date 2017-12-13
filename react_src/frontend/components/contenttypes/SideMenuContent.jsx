@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -185,10 +185,10 @@ export default class SideMenuContent extends React.Component {
         <div className="side-menu" style={style}>
           <div>
             {this.props.listArray.map((item, i) => {
-              const activeElementStyles = (i === this.state.currentIndex && this.props.componentStyles.activeItem) ? this.props.componentStyles.activeItem : {}
+              const activeElementStyles = (i === this.state.currentIndex && this.props.componentStyles.activeItem) ? this.props.componentStyles.activeItem : {};
               return (
                 <div key={item.id} id={item.id}>
-                  <p  className={(i === this.state.currentIndex) ? 'side-menu-item side-menu-item-active' : 'side-menu-item'} style={activeElementStyles}>{item.description}</p>
+                  <p className={(i === this.state.currentIndex) ? 'side-menu-item side-menu-item-active' : 'side-menu-item'} style={activeElementStyles}>{item.description}</p>
                   { i !== itemcount - 1 &&
                     <hr />
                   }

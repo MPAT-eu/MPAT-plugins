@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -34,13 +34,13 @@ export default class CanvasComponent extends React.Component {
     ctx.fillStyle = '#FFF';
     ctx.fillRect(0, 0, 256, 144);
     layout.forEach((box, i) => {
-      window.drawComponent(ctx, 2 * box.x, 2 * box.y, 2 * box.w, 2 * box.h, "" + (i + 1));
-    })
+      window.drawComponent(ctx, 2 * box.x, 2 * box.y, 2 * box.w, 2 * box.h, `${i + 1}`);
+    });
   }
 
   render() {
     return (
-      <canvas ref="canvas" width={256} height={144}/>
+      <canvas ref="canvas" width={256} height={144} />
     );
   }
 }

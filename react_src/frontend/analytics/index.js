@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -63,7 +63,7 @@ export function trackPageview(pageUrl, pageTitle = '') {
 export function trackAction(category, action, name = '', value = '') {
   if (!trackingEnabled) return;
   // create and dispatch the event
-  //log(`tracking action - category: ${category} action: ${action} name: ${name} value: ${value}`);
+  // log(`tracking action - category: ${category} action: ${action} name: ${name} value: ${value}`);
   try {
     const event = new CustomEvent('onMPATevent', {
       detail: {

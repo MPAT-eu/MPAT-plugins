@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -34,14 +34,14 @@ export default function Preview(props) {
   let urlback = '';
   const back = storeState.backComponent;
   if (back) {
-    urlback = back.guid + '#preview';
+    urlback = `${back.guid}#preview`;
   }
   const marker = storeState.marker;
   if (marker) {
     const x = marker.pixel;
     const hit = findRelevantHit(storeState, x);
     if (hit) {
-      url = hit.url + '#preview';
+      url = `${hit.url}#preview`;
     } else {
       url = '';
     }

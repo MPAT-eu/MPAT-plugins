@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -27,7 +27,7 @@ import React from 'react';
 import autobind from 'class-autobind';
 import ReactCrop from 'react-image-crop';
 import axios from 'axios';
-import {getTooltipped} from '../tooltipper.jsx';
+import { getTooltipped } from '../tooltipper.jsx';
 import Constants from '../../constants';
 
 const i18n = Constants.locstr.imageCropper;
@@ -64,28 +64,28 @@ class ImageCropper extends React.PureComponent {
     this.initializeImageEditor();
   }
 
-  componentWillReceiveProps(nextProps){
-      if(nextProps.attachmentId !== this.props.attachmentId){
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.attachmentId !== this.props.attachmentId) {
+      this.setState({
+        imgPreview: this.props.imageSpinner,
+        cropDisabled: false
+      });
+      const reqURL = `${window.window.ajaxurl}?action=mpat_image_editor_nonce&id=${nextProps.attachmentId}`;
+      const that = this;
+
+      axios.get(reqURL).then((result) => {
+        if (result.data.data) {
+          const nonce = result.data.data;
+
           this.setState({
-              imgPreview: this.props.imageSpinner,
-              cropDisabled: false,
+            attachmentId: nextProps.attachmentId,
+            nonce,
+            imgPreview: getPreviewImageUrl(nonce, nextProps.attachmentId),
+            cropDisabled: false
           });
-          const reqURL = `${window.window.ajaxurl}?action=mpat_image_editor_nonce&id=${nextProps.attachmentId}`;
-          const that = this;
-
-          axios.get(reqURL).then((result) => {
-            if (result.data.data) {
-              const nonce = result.data.data;
-
-              this.setState({
-                  attachmentId: nextProps.attachmentId,
-                  nonce: nonce,
-                  imgPreview: getPreviewImageUrl(nonce, nextProps.attachmentId),
-                  cropDisabled: false
-              })
-            }
-          })
-      }
+        }
+      });
+    }
   }
 
   // callback to completed image load in react crop, used to properly enable
@@ -203,11 +203,10 @@ class ImageCropper extends React.PureComponent {
       const imageEndpoint = `${window.wpApiSettings.root + window.wpApiSettings.versionString}media/${that.state.attachmentId}`;
       axios.get(imageEndpoint, { headers: { 'X-WP-Nonce': window.wpApiSettings.nonce } }).then((result) => {
         const media = result.data.media_details;
-        let imageUrl =  media.sizes.full.source_url;
+        let imageUrl = media.sizes.full.source_url;
 
-        if(media.sizes.large){
-            if((media.width > media.sizes.large.width) && (media.height > media.sizes.large.height))
-                imageUrl =  media.sizes.large.source_url;
+        if (media.sizes.large) {
+          if ((media.width > media.sizes.large.width) && (media.height > media.sizes.large.height)) { imageUrl = media.sizes.large.source_url; }
         }
         if (imageUrl) {
           // reload preview image (based on new cropped version) and re enable editor
@@ -264,7 +263,7 @@ class ImageCropper extends React.PureComponent {
       // complete HTML to reload editor, we call the REST endpoint and get updated image info
       const imageEndpoint = `${window.wpApiSettings.root + window.wpApiSettings.versionString}media/${that.state.attachmentId}`;
       axios.get(imageEndpoint, { headers: { 'X-WP-Nonce': window.wpApiSettings.nonce } }).then((result) => {
-        let imageUrl = (result.data.media_details.sizes.large ? result.data.media_details.sizes.large.source_url : result.data.media_details.sizes.full.source_url);
+        const imageUrl = (result.data.media_details.sizes.large ? result.data.media_details.sizes.large.source_url : result.data.media_details.sizes.full.source_url);
         if (imageUrl) {
           // reload preview image (based on new cropped version) and re enable editor
           that.setState({
@@ -313,29 +312,29 @@ class ImageCropper extends React.PureComponent {
 
           <table>
             <tbody>
-            <tr>
-              <td>
-                {getTooltipped(
-                  <button type="button" className="button white_blue" disabled={this.state.cropDisabled} onClick={this.restoreImage}>
-                    {i18n.restore} <img src={(this.state.restoreButtonSpinner) ? this.props.buttonSpinner : null} />
-                  </button>
+              <tr>
+                <td>
+                  {getTooltipped(
+                    <button type="button" className="button white_blue" disabled={this.state.cropDisabled} onClick={this.restoreImage}>
+                      {i18n.restore} <img src={(this.state.restoreButtonSpinner) ? this.props.buttonSpinner : null} role="presentation" />
+                    </button>
                   , i18n.ttRestore)}
-              </td>
-              <td>
-                {getTooltipped(
-                  <button type="button" className="button white_blue" disabled={this.state.cropDisabled || !this.state.pixelCrop} onClick={this.saveImage}>
-                    {i18n.crop} <img src={(this.state.saveButtonSpinner) ? this.props.buttonSpinner : null} />
-                  </button>
+                </td>
+                <td>
+                  {getTooltipped(
+                    <button type="button" className="button white_blue" disabled={this.state.cropDisabled || !this.state.pixelCrop} onClick={this.saveImage}>
+                      {i18n.crop} <img src={(this.state.saveButtonSpinner) ? this.props.buttonSpinner : null} role="presentation" />
+                    </button>
                   , i18n.ttCrop)}
-              </td>
-              <td>
-                {getTooltipped(
-                  <select value={this.state.currentCropRatio} disabled={this.state.cropDisabled} onChange={e => that.setAspect(e.target.value)}>
-                    {ratioValues.map(obj => <option key={obj.key} value={obj.key}>{obj.label}</option>)}
-                  </select>
+                </td>
+                <td>
+                  {getTooltipped(
+                    <select value={this.state.currentCropRatio} disabled={this.state.cropDisabled} onChange={e => that.setAspect(e.target.value)}>
+                      {ratioValues.map(obj => <option key={obj.key} value={obj.key}>{obj.label}</option>)}
+                    </select>
                   , i18n.ttCropRatio)}
-              </td>
-            </tr>
+                </td>
+              </tr>
             </tbody>
           </table>
 

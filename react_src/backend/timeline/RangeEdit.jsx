@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -37,7 +37,7 @@ function protect(r, p, def = '') {
 }
 
 function protectClock(r) {
-  let v = {y: 2017, m:10, d: 10, h: 10, i: 10, s: 10};
+  let v = { y: 2017, m: 10, d: 10, h: 10, i: 10, s: 10 };
   if (r != null && r.clock != null) v = r.clock;
   return v;
 }
@@ -239,16 +239,16 @@ export default class RangeEdit extends React.PureComponent {
                 </td>}
               {(type === 'ClockEvent') &&
                 <td>
-                <input
-                  type="number"
-                  min="2015"
-                  max="2040"
-                  size="4"
-                  step="1"
-                  onChange={this.handleChangeRangeDateYear}
-                  value={clock.y}
-                  onKeyPress={noSubmitOnEnter}
-                />
+                  <input
+                    type="number"
+                    min="2015"
+                    max="2040"
+                    size="4"
+                    step="1"
+                    onChange={this.handleChangeRangeDateYear}
+                    value={clock.y}
+                    onKeyPress={noSubmitOnEnter}
+                  />
                 /
                 <input
                   type="number"
@@ -271,17 +271,17 @@ export default class RangeEdit extends React.PureComponent {
                   value={clock.d}
                   onKeyPress={noSubmitOnEnter}
                 />
-                <br />
-                <input
-                  type="number"
-                  min="0"
-                  max="23"
-                  size="2"
-                  step="1"
-                  onChange={this.handleChangeRangeDateHours}
-                  value={clock.h}
-                  onKeyPress={noSubmitOnEnter}
-                />
+                  <br />
+                  <input
+                    type="number"
+                    min="0"
+                    max="23"
+                    size="2"
+                    step="1"
+                    onChange={this.handleChangeRangeDateHours}
+                    value={clock.h}
+                    onKeyPress={noSubmitOnEnter}
+                  />
                 :
                 <input
                   type="number"
@@ -305,7 +305,7 @@ export default class RangeEdit extends React.PureComponent {
                   value={clock.s}
                   onKeyPress={noSubmitOnEnter}
                 />
-              </td>}
+                </td>}
               <td style={{ width: 15 }} />
               <td>
                 <label htmlFor="editrangebegin">{i18n.event.begin}</label>

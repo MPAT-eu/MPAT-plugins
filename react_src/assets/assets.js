@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -19,9 +19,9 @@
  * AUTHORS:
  * Stefano Miccoli (stefano.miccoli@finconsgroup.com)
  **/
-import AssetsManager from './components/AssetsManager';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import AssetsManager from './components/AssetsManager';
 
 const assets_manager_container = document.getElementById('assets-manager-container');
 if (assets_manager_container) {

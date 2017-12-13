@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -56,7 +56,7 @@ const i18n = new LocalizedStrings({
 const constants = {
   postStreamEvent: {
     url: 'http://beebeebox.enst.fr/beebee/se.php',
-    cType: 'appication/x-form-urlencoded',
+    cType: 'appication/x-form-urlencoded'
   }
 };
 
@@ -175,7 +175,7 @@ export default class BeeBeeBoxEvent extends React.PureComponent {
 
   render() {
     return (
-      <div  className="borderLine">
+      <div className="borderLine">
         <details>
           <summary>{i18n.title}</summary>
           <ButtonWP

@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -173,7 +173,7 @@ function TimeLineApp(state = initialState, action) {
       }
       // filter untimed events that are still in sortedRanges
       action.project.sortedRanges =
-        action.project.sortedRanges.filter(i => {
+        action.project.sortedRanges.filter((i) => {
           const type = action.project.ranges[i].type;
           return type === 'TimeEvent' || type === 'MediaEvent';
         });
@@ -191,9 +191,7 @@ function hasSameProps(obj1, obj2) {
   const obj1Props = Object.keys(obj1);
   const obj2Props = Object.keys(obj2);
   if (obj1Props.length === obj2Props.length) {
-    return obj1Props.every(function(prop) {
-      return obj2Props.indexOf(prop) >= 0;
-    });
+    return obj1Props.every(prop => obj2Props.indexOf(prop) >= 0);
   }
   return false;
 }

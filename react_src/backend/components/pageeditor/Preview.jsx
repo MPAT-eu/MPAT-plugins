@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -31,13 +31,13 @@ export default class Preview extends React.Component {
   childDOM = null;
 
   sendOnEvent(e) {
-      if (e.data == "init") {
-          if (debug) console.log('bound to child iframe');
-          this.childDOM = e.source;
-          this.processClonesAndSend(this.props.info);
+    if (e.data == 'init') {
+      if (debug) console.log('bound to child iframe');
+      this.childDOM = e.source;
+      this.processClonesAndSend(this.props.info);
           // TODO find whe not always working... probably method signature change due to "this"
-          window.removeEventListener("message", this.sendOnEvent);
-      }
+      window.removeEventListener('message', this.sendOnEvent);
+    }
   }
 
   processClonesAndSend(previewInfo) {
@@ -62,7 +62,7 @@ export default class Preview extends React.Component {
       // get the page loader, next is async code
       PageIO.getCommon().get(
         (result) => {
-          todos.forEach(({pageId, boxId, stateId, cloneBoxId, cloneStateName}) => {
+          todos.forEach(({ pageId, boxId, stateId, cloneBoxId, cloneStateName }) => {
             const page = result.find(item => item.id === pageId);
             // substitute the clone with the reference
             if (page) {
@@ -87,30 +87,30 @@ export default class Preview extends React.Component {
   }
 
   constructor(props) {
-      super(props);
+    super(props);
   }
 
 
   componentWillReceiveProps(nextProps) {
       // while not bulletproof, comparing stringified json should
       // minimize the number of false positive updates
-      if (JSON.stringify(nextProps.info) !== JSON.stringify(this.props.info)) {
+    if (JSON.stringify(nextProps.info) !== JSON.stringify(this.props.info)) {
           // console.log("props changed, need to update the iframe content");
-          this.processClonesAndSend(nextProps.info);
-      }
+      this.processClonesAndSend(nextProps.info);
+    }
   }
 
   componentDidMount() {
       // bind to messages coming from the child iframe
-      window.addEventListener('message', (e) => this.sendOnEvent(e));
+    window.addEventListener('message', e => this.sendOnEvent(e));
   }
 
 
   render() {
-      return (
-        <div style={{height: 540}} className="editor_preview_div">
-          <iframe id="previewareaiframe1" src={window.Urls.preview} />
-        </div>
-      );
+    return (
+      <div style={{ height: 540 }} className="editor_preview_div">
+        <iframe id="previewareaiframe1" src={window.Urls.preview} />
+      </div>
+    );
   }
 }

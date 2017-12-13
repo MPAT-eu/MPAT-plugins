@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -77,7 +77,7 @@ class ImageEdit extends React.PureComponent {
       crop: {},
       nonce: false,
       cropDisabled: false,
-      spinnerUploadImage: null,
+      spinnerUploadImage: null
 
     };
   }
@@ -86,7 +86,7 @@ class ImageEdit extends React.PureComponent {
     this.props.changeAreaContent({
       imgUrl: newAttachmentInfo.url,
       postid: this.props.postid
-    })
+    });
   }
 
   mediaGalleryCallback(imgData) {
@@ -145,14 +145,16 @@ class ImageEdit extends React.PureComponent {
                     placeholder={i18n.url}
                     value={this.props.imgUrl}
                     style={{ width: 250 }}
-                    onChange={e => this.setContent("imgUrl", e.target.value)}
+                    onChange={e => this.setContent('imgUrl', e.target.value)}
                   />
                   , i18n.ttUrl)}
                 &nbsp;&nbsp;
-              {getTooltipped(
-                  <button type="button" target="imageUrlInput" className="button white_blue"
-                    onClick={() => this.setImageUrl()}>{i18n.upload}
-                    <img src={this.state.spinnerUploadImage} />
+                {getTooltipped(
+                  <button
+                    type="button" target="imageUrlInput" className="button white_blue"
+                    onClick={() => this.setImageUrl()}
+                  >{i18n.upload}
+                    <img src={this.state.spinnerUploadImage} role="presentation" />
                   </button>
                   , i18n.ttUploadImg)}
               </td>
@@ -166,7 +168,7 @@ class ImageEdit extends React.PureComponent {
                     type="button"
                     target="imageUrlInput"
                     className="button white_blue"
-                    onClick={() => openMediaGallery(this.mediaGalleryCallback, "image")}
+                    onClick={() => openMediaGallery(this.mediaGalleryCallback, 'image')}
                   >
                     {i18n.choose}
                   </button>
@@ -174,7 +176,7 @@ class ImageEdit extends React.PureComponent {
               </td>
             </tr>
             <tr>
-              <td></td>
+              <td />
               <td>
                 <ImageCropper
                   attachmentId={this.props.postid}

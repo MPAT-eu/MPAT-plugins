@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -21,7 +21,7 @@
  * Thomas Tröllmich  (thomas.troellmich@fokus.fraunhofer.de)
  * Jean-Philippe Ruijs (github.com/jeanphilipperuijs)
  * Benedikt Vogel 	 (vogel@irt.de)
- * 
+ *
  **/
 import React, { PropTypes as Types } from 'react';
 import Popup from 'react-popup';
@@ -85,13 +85,13 @@ export default class HotSpotEdit extends React.Component {
     const data = this.state.data;
     data[key] = value;
     this.props.save(data);
-    this.setState({data});
+    this.setState({ data });
   }
 
   toggleView(e) {
     e.preventDefault();
     Popup.create(
-      { content: <HsForm save={this.save} data={this.state.data} />}
+      { content: <HsForm save={this.save} data={this.state.data} /> }
     );
   }
 
@@ -113,7 +113,7 @@ export default class HotSpotEdit extends React.Component {
 }
 
 function Warning() {
-  return <div style={{ color: `${Constants.styleguide.color.warning.text}`}}>{i18n.warning}</div>;
+  return <div style={{ color: `${Constants.styleguide.color.warning.text}` }}>{i18n.warning}</div>;
 }
 
 class HsForm extends React.Component {
@@ -149,11 +149,11 @@ class HsForm extends React.Component {
   }
 
   render() {
-    //return <div></div>
+    // return <div></div>
     return (
       <div>
         <h2>{i18n.hotSpotEdit.title}</h2>
-        <div className="editHeader" style={{width: 700, height: 600, overflow: 'auto'}}>
+        <div className="editHeader" style={{ width: 700, height: 600, overflow: 'auto' }}>
           <table>
             <tbody>
               <tr>
@@ -349,7 +349,7 @@ class HsForm extends React.Component {
             </tbody>
           </table>
         </div>
-        <button class="hard-right blue_white" onClick={Popup.close}>{i18n.hotSpotEdit.done}</button>
+        <button className="hard-right blue_white" onClick={Popup.close}>{i18n.hotSpotEdit.done}</button>
       </div>
     );
   }
@@ -374,7 +374,7 @@ function IconSelector({ type, data, save }) {
         onKeyPress={noSubmitOnEnter}
       />
       &nbsp;&nbsp;<button type="button" className="button white_blue" onClick={openMedia}>{i18n.hotSpotEdit.choose}</button>
-      &nbsp;&nbsp;{ data[prefix + type] && <img alt="" src={data[prefix + type]} style={{ height: '46px', verticalAlign: 'bottom' }} /> }
+      &nbsp;&nbsp;{ data[prefix + type] && <img src={data[prefix + type]} style={{ height: '46px', verticalAlign: 'bottom' }} role="presentation" /> }
     </div>
   );
 }

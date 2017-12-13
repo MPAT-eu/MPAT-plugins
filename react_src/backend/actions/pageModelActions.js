@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -55,7 +55,7 @@ export const changeAreaStateMeta = (areaId, stateId, key, value) => (
   create(CHANGE_AREA_STATE_META, { key, value }, { areaId, stateId })
 );
 export const changeAreaStateType = (areaId, stateId, newComponentType) => (
-  create(CHANGE_AREA_STATE_TYPE, {newComponentType}, { areaId, stateId })
+  create(CHANGE_AREA_STATE_TYPE, { newComponentType }, { areaId, stateId })
 );
 export const addAreaState = (areaId, title) => (
   create(ADD_AREA_STATE, title, { areaId })

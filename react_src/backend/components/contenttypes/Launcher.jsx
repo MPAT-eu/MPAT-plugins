@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -23,6 +23,7 @@
  * Jean-Claude Dufourd (jean-claude.dufourd@telecom-paristech.fr
  * Stefano Miccoli (stefano.miccoli@finconsgroup.com)
  * Marco Ferrari (marco.ferrari@finconsgroup.com)
+ * 
  **/
 import React, { PropTypes as Types } from 'react';
 import { Sortable } from 'react-sortable';
@@ -59,10 +60,10 @@ function preview(content = {}) {
         style={{ backgroundColor: (content.data) ? content.data.bgColor : '' }}
         className="launchercontent-preview"
       >
-        {items.map(item => <img key={item.id} src={item.thumbnail} height="100" width="100" />)}
+        {items.map(item => <img key={item.id} src={item.thumbnail} height="100" width="100" role="presentation" />)}
       </div>
     );
-  } else { console.log('Launcher got no props.listArray'); }
+  } console.log('Launcher got no props.listArray');
 }
 
 const itemType = Types.shape(
@@ -92,6 +93,7 @@ class LauncherEdit extends React.PureComponent {
     elementFormat: Types.oneOf(['landscape', 'square', 'portrait', 'squareInfo']),
     style: Types.string,
     scrollStyle: Types.oneOf(['carousel', 'pagination']),
+    paginationLoop: Types.bool,
     paginationInfo: Types.bool,
     listArray: Types.arrayOf(itemType),
     changeAreaContent: Types.func.isRequired
@@ -102,16 +104,19 @@ class LauncherEdit extends React.PureComponent {
     elementFormat: 'landscape',
     style: 'standard',
     scrollStyle: 'pagination',
+    paginationLoop: false,
     paginationInfo: true,
     listArray: [createDefaultItem()]
   };
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     autobind(this);
+    const collapsed = props.listArray.reduce((result, item) => Object.assign({}, result, { [item.id]: false }), {});
     // FIXME if the content is empty, it should come as undefined and not as an empty string
     this.state = {
-      draggingIndex: null
+      draggingIndex: null,
+      collapsed
     };
   }
 
@@ -155,6 +160,12 @@ class LauncherEdit extends React.PureComponent {
     }
   }
 
+  toggleElementView(id) {
+    const collapsed = this.state.collapsed;
+    collapsed[id] = !collapsed[id];
+    this.setState(collapsed);
+  }
+
   deleteItem(itemId) {
     let { listArray } = this.props;
     const idx = listArray.findIndex(({ id }) => id === itemId);
@@ -163,10 +174,9 @@ class LauncherEdit extends React.PureComponent {
     this.props.changeAreaContent({ listArray });
   }
 
-  addItem(e) {
-    e.preventDefault();
-    let { listArray } = this.props;
-    listArray = listArray.concat([createDefaultItem()]);
+  addItem(index) {
+    const { listArray } = this.props;
+    listArray.splice(index + 1, 0, createDefaultItem());
     this.props.changeAreaContent({ listArray });
   }
 
@@ -189,7 +199,7 @@ class LauncherEdit extends React.PureComponent {
   }
 
   render() {
-    const { orientation, elementFormat, style, scrollStyle, paginationInfo } = this.props;
+    const { orientation, elementFormat, style, scrollStyle, paginationLoop, paginationInfo } = this.props;
     return (
       <div className="component editHeader">
         <h2>{i18n.launcherSettings}</h2>
@@ -199,15 +209,6 @@ class LauncherEdit extends React.PureComponent {
             <p>{i18n.toLinkAPage}</p>
             <p><b>?{this.props.id} ={'<Page Number>'}</b></p>
           </div>
-          {getTooltipped(
-            <span onClick={this.addItem} style={{ float: 'right' }}>
-              <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-                <path d="M50.49,22.85A28.25,28.25,0,1,0,78.74,51.1,28.29,28.29,0,0,0,50.49,22.85Zm0,52.94A24.69,24.69,0,1,1,75.17,51.1,24.71,24.71,0,0,1,50.49,75.79Z" />
-                <path d="M64.47,49.31H52.27V37.12a1.78,1.78,0,1,0-3.57,0V49.31H36.51a1.78,1.78,0,0,0,0,3.57H48.7V65.08a1.78,1.78,0,0,0,3.57,0V52.88H64.47a1.78,1.78,0,0,0,0-3.57Z" />
-              </svg>
-              {i18n.addLauncherElement}
-            </span>
-          , i18n.ttAddLauncherElement)}
         </div>
         <table>
           <tbody>
@@ -277,6 +278,20 @@ class LauncherEdit extends React.PureComponent {
             {scrollStyle === 'pagination' &&
               <tr>
                 <td>
+                  <label>{i18n.paginationLoop}: </label>
+                </td>
+                <td>
+                  <input
+                    type="checkbox"
+                    checked={paginationLoop}
+                    onChange={e => this.setContent('paginationLoop', e.target.checked)}
+                  />
+                </td>
+              </tr>
+            }
+            {scrollStyle === 'pagination' &&
+              <tr>
+                <td>
                   <label>{i18n.showPaginationInfo}: </label>
                 </td>
                 <td>
@@ -311,10 +326,21 @@ class LauncherEdit extends React.PureComponent {
               ))}
           </tbody>
         </table>
-        <div>
+        <div style={{ marginTop: '20px' }}>
+          <div className="list-add-element" onClick={() => this.addItem(-1)}>
+            <span>
+              <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                <path d="M50.49,22.85A28.25,28.25,0,1,0,78.74,51.1,28.29,28.29,0,0,0,50.49,22.85Zm0,52.94A24.69,24.69,0,1,1,75.17,51.1,24.71,24.71,0,0,1,50.49,75.79Z" />
+                <path d="M64.47,49.31H52.27V37.12a1.78,1.78,0,1,0-3.57,0V49.31H36.51a1.78,1.78,0,0,0,0,3.57H48.7V65.08a1.78,1.78,0,0,0,3.57,0V52.88H64.47a1.78,1.78,0,0,0,0-3.57Z" />
+              </svg>
+            </span>
+            <p>{i18n.addLauncherElement}</p>
+          </div>
           {this.props.listArray.map((item, i) => {
             const props = {
               ...item,
+              collapsed: this.state.collapsed[item.id],
+              toggleElementView: this.toggleElementView,
               sharedProps: this.sharedProps(),
               setContent: this.setContent,
               setPageCallbackFunction: this.setPageCallbackFunction,
@@ -358,8 +384,9 @@ class LauncherEdit extends React.PureComponent {
 function LauncherElement(props) {
   const option = obj =>
     <option key={obj.key} disabled={obj.disabled} value={obj.key}>{obj.label}</option>;
-  const { id, title, appUrl, description, thumbnail, sharedProps, setContent, deleteItem, addItem,
-    setPageCallbackFunction, roleData = {}, getTargetComponentStates, role = 'link', contentIcon = ''
+  const { id, title, appUrl, collapsed, toggleElementView, description, thumbnail, sharedProps,
+      setContent, deleteItem, addItem, setPageCallbackFunction, roleData = {}, role = 'link',
+      getTargetComponentStates, contentIcon = ''
     } = props.children;
   const buttonid = `launcherThumbnailInput${id}`;
   const mediaGalleryCallback = function mediaGalleryCallback(imgData) {
@@ -371,179 +398,201 @@ function LauncherElement(props) {
 
   const states = getTargetComponentStates && getTargetComponentStates();
   return (
-    <div
-      {...props}
-      className="list-item"
-      style={{
-        border: '2px #ddd solid',
-        background: '#eee',
-        padding: '5px',
-        margin: '5px',
-        position: 'relative'
-      }}
-    >
-      <table>
-        <tbody>
-          <tr>
-            <td>
-              <label>{i18n.launcherThumbnail}: </label>
-            </td>
-            <td>
-              {getTooltipped(
-                <input
-                  type="text"
-                  id={buttonid}
-                  placeholder={i18n.launcherThumbnailUrl}
-                  value={thumbnail}
-                  onChange={e => setContent('thumbnail', e.target.value, id)}
-                  onKeyPress={noSubmitOnEnter}
-                />
-              , i18n.ttThumbnailUrl)}
-              <p className="" style={{ display: 'inline-block', margin: '0 15px 0 10px' }}>OR</p>
-              {getTooltipped(
-                <button
-                  type="button"
-                  target={buttonid}
-                  className="button mpat-insert-media white_blue"
-                  data-type="image"
-                >{i18n.chooseThumbnail}</button>
-              , i18n.ttThumbnailChoose)}
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <label>{i18n.title}: </label>
-            </td>
-            <td>
-              {getTooltipped(
-                <input
-                  type="text"
-                  placeholder={i18n.launcherTitle}
-                  value={title}
-                  onChange={e => setContent('title', e.target.value, id)}
-                  onKeyPress={noSubmitOnEnter}
-                />
-              , i18n.ttTitle)}
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <label>{i18n.role}: </label>
-            </td>
-            <td>
-              {getTooltipped(
-                <select value={role} onChange={e => setContent('role', e.target.value, id)}>
-                  <option value="link">{i18n.link}</option>
-                  <option disabled={!states} value="control">
-                    {i18n.controlTargetComponent} {!states && '(Choose target first!)'}
-                  </option>
-                </select>
-              , i18n.ttRole)}
-            </td>
-          </tr>
-          {role === 'link' &&
+    <div>
+      <div
+        {...props}
+        className="list-item"
+        style={{
+          border: '2px #ddd solid',
+          background: '#eee',
+          padding: '5px',
+          margin: '5px',
+          position: 'relative'
+        }}
+      >
+        {collapsed &&
+        <div className="list-item-collapsed">
+          <div><img src={thumbnail} role="presentation" /></div>
+          <label>{title}</label>
+          <div onClick={() => toggleElementView(id)} className="dashicons dashicons-arrow-down-alt2" />
+        </div>
+        }
+        {!collapsed &&
+        <table>
+          <tbody>
             <tr>
               <td>
-                <label>Url: </label>
+                <label>{i18n.launcherThumbnail}: </label>
               </td>
               <td>
                 {getTooltipped(
                   <input
                     type="text"
-                    placeholder={i18n.launcherTargetUrl}
-                    value={appUrl}
-                    onChange={e => setContent('appUrl', e.target.value, id)}
+                    id={buttonid}
+                    placeholder={i18n.launcherThumbnailUrl}
+                    value={thumbnail}
+                    onChange={e => setContent('thumbnail', e.target.value, id)}
                     onKeyPress={noSubmitOnEnter}
                   />
-                , i18n.ttUrl)}
+                , i18n.ttThumbnailUrl)}
+                <p className="" style={{ display: 'inline-block', margin: '0 15px 0 10px' }}>OR</p>
+                {getTooltipped(
+                  <button
+                    type="button"
+                    target={buttonid}
+                    className="button mpat-insert-media white_blue"
+                    data-type="image"
+                  >{i18n.chooseThumbnail}</button>
+                , i18n.ttThumbnailChoose)}
               </td>
             </tr>
-          }
-          {role === 'link' &&
             <tr>
               <td>
-                <label>{i18n.pages}: </label>
+                <label>{i18n.title}: </label>
               </td>
               <td>
                 {getTooltipped(
-                  <PageSelector
-                    selectedPage={appUrl}
-                    callbackFunction={setPageCallbackFunction.bind(null, id)}
+                  <input
+                    type="text"
+                    placeholder={i18n.launcherTitle}
+                    value={title}
+                    onChange={e => setContent('title', e.target.value, id)}
+                    onKeyPress={noSubmitOnEnter}
                   />
-                , i18n.ttPages)}
-              </td >
-            </tr >
-          }
-          {role === 'control' &&
+                , i18n.ttTitle)}
+              </td>
+            </tr>
             <tr>
               <td>
-                <label>{i18n.state}: </label>
+                <label>{i18n.role}: </label>
               </td>
               <td>
                 {getTooltipped(
-                  <ComponentStateSelector
-                    onChangeState={setStateContent}
-                    targetState={roleData.targetState}
-                    triggerAction={roleData.triggerAction}
-                    states={states}
-                  />
-                , i18n.ttComponent)}
+                  <select value={role} onChange={e => setContent('role', e.target.value, id)}>
+                    <option value="link">{i18n.link}</option>
+                    <option disabled={!states} value="control">
+                      {i18n.controlTargetComponent} {!states && '(Choose target first!)'}
+                    </option>
+                  </select>
+                , i18n.ttRole)}
               </td>
             </tr>
-          }
-          <tr>
-            <td>
-              <label>{i18n.description}: </label>
-            </td>
-            <td>
-              {getTooltipped(
-                <input
-                  type="text"
-                  placeholder={i18n.launcherDescription}
-                  value={description}
-                  onChange={e => setContent('description', e.target.value, id)}
-                  onKeyPress={noSubmitOnEnter}
-                />
-              , i18n.ttDescription)}
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <label>{i18n.optionalContentIcon}:</label>
-            </td>
-            <td>
-              {getTooltipped(
-                <select value={contentIcon} onChange={e => setContent('contentIcon', e.target.value, id)}>
-                  <option key={0} value="">({i18n.none})</option>
-                  <option key={1} value="hotspot_icon_audio">{i18n.audio}</option>
-                  <option key={2} value="hotspot_icon_link">{i18n.link}</option>
-                  <option key={3} value="hotspot_icon_picture">{i18n.picture}</option>
-                  <option key={4} value="hotspot_icon_text">{i18n.text}</option>
-                  <option key={5} value="hotspot_icon_video">{i18n.video}</option>
-                </select>
-                , i18n.ttOptionalContentIcon)}
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <hr style={{ marginTop: 15, marginBottom: 20 }} />
-      <span onClick={() => deleteItem(id)} style={{ position: 'absolute', right: 5 }}>
-        <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-          <path d="M68.26,31.71h-35a1.78,1.78,0,0,0-1.78,1.94l3.78,44.48A1.78,1.78,0,0,0,37,79.76H64.49a1.78,1.78,0,0,0,1.78-1.63L70,33.65a1.78,1.78,0,0,0-1.78-1.94ZM62.85,76.19H38.64L35.17,35.28H66.32Z" />
-          <path d="M69.17,26.34H52.53V24.23a1.78,1.78,0,0,0-3.57,0v2.11H32.32a1.78,1.78,0,0,0,0,3.57H69.17a1.78,1.78,0,1,0,0-3.57Z" />
-          <path d="M41.31,72a1.78,1.78,0,0,0,1.78,1.63h.16a1.78,1.78,0,0,0,1.62-1.93L42.18,40.53a1.78,1.78,0,0,0-3.56.31Z" />
-          <path d="M58.24,73.67h.16A1.78,1.78,0,0,0,60.17,72l2.68-31.22a1.78,1.78,0,1,0-3.56-.31L56.62,71.74A1.78,1.78,0,0,0,58.24,73.67Z" />
-          <path d="M50.74,73.68a1.79,1.79,0,0,0,1.78-1.78V40.61a1.78,1.78,0,1,0-3.57,0V71.89A1.79,1.79,0,0,0,50.74,73.68Z" />
-        </svg>
-        {i18n.deleteLauncherElement}
-      </span>
-      <span onClick={addItem}style={{ marginLeft: 10 }}>
-        <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-          <path d="M50.49,22.85A28.25,28.25,0,1,0,78.74,51.1,28.29,28.29,0,0,0,50.49,22.85Zm0,52.94A24.69,24.69,0,1,1,75.17,51.1,24.71,24.71,0,0,1,50.49,75.79Z" />
-          <path d="M64.47,49.31H52.27V37.12a1.78,1.78,0,1,0-3.57,0V49.31H36.51a1.78,1.78,0,0,0,0,3.57H48.7V65.08a1.78,1.78,0,0,0,3.57,0V52.88H64.47a1.78,1.78,0,0,0,0-3.57Z" />
-        </svg>
-        {i18n.addLauncherElement}
-      </span>
+            {role === 'link' &&
+              <tr>
+                <td>
+                  <label>Url: </label>
+                </td>
+                <td>
+                  {getTooltipped(
+                    <input
+                      type="text"
+                      placeholder={i18n.launcherTargetUrl}
+                      value={appUrl}
+                      onChange={e => setContent('appUrl', e.target.value, id)}
+                      onKeyPress={noSubmitOnEnter}
+                    />
+                  , i18n.ttUrl)}
+                </td>
+              </tr>
+            }
+            {role === 'link' &&
+              <tr>
+                <td>
+                  <label>{i18n.pages}: </label>
+                </td>
+                <td>
+                  {getTooltipped(
+                    <PageSelector
+                      selectedPage={appUrl}
+                      callbackFunction={setPageCallbackFunction.bind(null, id)}
+                    />
+                  , i18n.ttPages)}
+                </td >
+              </tr >
+            }
+            {role === 'control' &&
+              <tr>
+                <td>
+                  <label>{i18n.state}: </label>
+                </td>
+                <td>
+                  {getTooltipped(
+                    <ComponentStateSelector
+                      onChangeState={setStateContent}
+                      targetState={roleData.targetState}
+                      triggerAction={roleData.triggerAction}
+                      states={states}
+                    />
+                  , i18n.ttComponent)}
+                </td>
+              </tr>
+            }
+            <tr>
+              <td>
+                <label>{i18n.description}: </label>
+              </td>
+              <td>
+                {getTooltipped(
+                  <input
+                    type="text"
+                    placeholder={i18n.launcherDescription}
+                    value={description}
+                    onChange={e => setContent('description', e.target.value, id)}
+                    onKeyPress={noSubmitOnEnter}
+                  />
+                , i18n.ttDescription)}
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label>{i18n.optionalContentIcon}:</label>
+              </td>
+              <td>
+                {getTooltipped(
+                  <select value={contentIcon} onChange={e => setContent('contentIcon', e.target.value, id)}>
+                    <option key={0} value="">({i18n.none})</option>
+                    <option key={1} value="hotspot_icon_audio">{i18n.audio}</option>
+                    <option key={2} value="hotspot_icon_link">{i18n.link}</option>
+                    <option key={3} value="hotspot_icon_picture">{i18n.picture}</option>
+                    <option key={4} value="hotspot_icon_text">{i18n.text}</option>
+                    <option key={5} value="hotspot_icon_video">{i18n.video}</option>
+                  </select>
+                  , i18n.ttOptionalContentIcon)}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        }
+        {!collapsed &&
+        <div onClick={() => toggleElementView(id)} className="dashicons dashicons-arrow-up-alt2" />
+        }
+        {!collapsed &&
+        <button
+          type="button"
+          onClick={() => deleteItem(id)}
+          className="button white_blue img_left"
+          style={{ position: 'absolute', right: 10, bottom: 10 }}
+        >
+          <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+            <path d="M68.26,31.71h-35a1.78,1.78,0,0,0-1.78,1.94l3.78,44.48A1.78,1.78,0,0,0,37,79.76H64.49a1.78,1.78,0,0,0,1.78-1.63L70,33.65a1.78,1.78,0,0,0-1.78-1.94ZM62.85,76.19H38.64L35.17,35.28H66.32Z" />
+            <path d="M69.17,26.34H52.53V24.23a1.78,1.78,0,0,0-3.57,0v2.11H32.32a1.78,1.78,0,0,0,0,3.57H69.17a1.78,1.78,0,1,0,0-3.57Z" />
+            <path d="M41.31,72a1.78,1.78,0,0,0,1.78,1.63h.16a1.78,1.78,0,0,0,1.62-1.93L42.18,40.53a1.78,1.78,0,0,0-3.56.31Z" />
+            <path d="M58.24,73.67h.16A1.78,1.78,0,0,0,60.17,72l2.68-31.22a1.78,1.78,0,1,0-3.56-.31L56.62,71.74A1.78,1.78,0,0,0,58.24,73.67Z" />
+            <path d="M50.74,73.68a1.79,1.79,0,0,0,1.78-1.78V40.61a1.78,1.78,0,1,0-3.57,0V71.89A1.79,1.79,0,0,0,50.74,73.68Z" />
+          </svg>
+          {i18n.deleteLauncherElement}
+        </button>
+        }
+      </div>
+      <div className="list-add-element" onClick={() => addItem(props['data-id'])}>
+        <span>
+          <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+            <path d="M50.49,22.85A28.25,28.25,0,1,0,78.74,51.1,28.29,28.29,0,0,0,50.49,22.85Zm0,52.94A24.69,24.69,0,1,1,75.17,51.1,24.71,24.71,0,0,1,50.49,75.79Z" />
+            <path d="M64.47,49.31H52.27V37.12a1.78,1.78,0,1,0-3.57,0V49.31H36.51a1.78,1.78,0,0,0,0,3.57H48.7V65.08a1.78,1.78,0,0,0,3.57,0V52.88H64.47a1.78,1.78,0,0,0,0-3.57Z" />
+          </svg>
+        </span>
+        <p>{i18n.addLauncherElement}</p>
+      </div>
     </div>
   );
 }

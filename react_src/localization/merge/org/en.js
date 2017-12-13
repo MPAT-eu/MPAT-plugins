@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -113,7 +113,7 @@ const en = {
     enter: 'Trigger when pressing OK on this item',
     focus: 'Trigger when item is focused',
     chooseAnAction: 'Choose an action',
-    assetFinderPlaceholder: "TYPE ASSET NAME"
+    assetFinderPlaceholder: 'TYPE ASSET NAME'
   },
   pageSelector: {
     loading: 'LOADING',
@@ -377,7 +377,7 @@ const en = {
     ttUploadImg: 'Upload an image for this component',
     chooseFromLibrary: 'or choose from library',
     ttChooseImg: 'Select an image from the library for this component',
-    choose: 'Choose',
+    choose: 'Choose'
   },
   launcher: {
     backend: {
@@ -397,6 +397,7 @@ const en = {
       scrollStyle: 'Scroll style',
       optionCarousel: 'Carousel',
       optionPagination: 'Pagination',
+      paginationLoop: 'Loop',
       showPaginationInfo: 'Show Pagination Info',
       addLauncherElement: 'Add Launcher element',
       launcherThumbnail: 'Launcher Thumbnail',
@@ -587,7 +588,7 @@ const en = {
     noArrows: 'no arrows',
     ttArrowColor: '[tooltip arrow color]',
     ttActiveArrowColor: '[tooltip active arrow color]',
-    ttArrowPosition: '[tooltip arrow position]',
+    ttArrowPosition: '[tooltip arrow position]'
   },
   toggleTracking: {
     title: 'Toggle Tracking Settings',

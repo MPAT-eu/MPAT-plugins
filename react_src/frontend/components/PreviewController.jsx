@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -31,7 +31,7 @@ import { application } from '../appData';
 let current;
 
 export function setCurrentControllerState(newData) {
-  current.setState({page: {data: newData}});
+  current.setState({ page: { data: newData } });
 }
 
 export class PreviewController extends React.Component {
@@ -42,8 +42,8 @@ export class PreviewController extends React.Component {
     registerNavigationModel(new DefaultNavigationModel());
     this.state = {
       page: {
-          data: application.post.meta
-      },
+        data: application.post.meta
+      }
     };
     current = this;
   }
@@ -52,7 +52,7 @@ export class PreviewController extends React.Component {
     const { page } = this.state;
     return (
       <div>
-        <PageWrapper data={page.data}/>
+        <PageWrapper data={page.data} />
       </div>
     );
   }

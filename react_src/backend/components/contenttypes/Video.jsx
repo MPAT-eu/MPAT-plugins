@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -32,6 +32,7 @@ import autobind from 'class-autobind';
 import { noSubmitOnEnter } from '../../utils';
 
 import Constants from '../../../constants';
+
 const i18n = Constants.locstr.video;
 
 function editView(params) {
@@ -72,10 +73,10 @@ class VideoEdit extends React.PureComponent {
   }
 
   setContent(key, value) {
-    if (key === "url" || key === "thumbnail") {
+    if (key === 'url' || key === 'thumbnail') {
       this.props.changeAreaContent({
         [key]: value,
-        'asset': '',
+        asset: ''
       });
     } else {
       this.props.changeAreaContent({ [key]: value });
@@ -84,12 +85,12 @@ class VideoEdit extends React.PureComponent {
 
   setAsset(value, item) {
     if (item === null) {
-      this.props.changeAreaContent({ 'asset': value });
+      this.props.changeAreaContent({ asset: value });
     } else {
       this.props.changeAreaContent({
-        'asset': item.meta["_tva_title"],
-        'url': item.meta["_tva_hbbtv_reference_video_url"][0],
-        'thumbnail': item.meta["_tva_preview_image"][0]
+        asset: item.meta._tva_title,
+        url: item.meta._tva_hbbtv_reference_video_url[0],
+        thumbnail: item.meta._tva_preview_image[0]
       });
     }
   }
@@ -122,8 +123,10 @@ class VideoEdit extends React.PureComponent {
                   onChange={e => this.setContent('url', e.target.value)}
                 />
                 <span className="padded_or">{i18n.or}</span>
-                <button type="button" target="videoUrlInput"
-                  className="button mpat-insert-media white_blue" data-type="video">
+                <button
+                  type="button" target="videoUrlInput"
+                  className="button mpat-insert-media white_blue" data-type="video"
+                >
                   {i18n.chooseVideo}
                 </button>
               </td>
@@ -142,8 +145,10 @@ class VideoEdit extends React.PureComponent {
                   onChange={e => this.setContent('thumbnail', e.target.value)}
                 />
                 <span className="padded_or">{i18n.or}</span>
-                <button type="button" target="videoThumbnailInput"
-                  className="button mpat-insert-media white_blue" data-type="image">
+                <button
+                  type="button" target="videoThumbnailInput"
+                  className="button mpat-insert-media white_blue" data-type="image"
+                >
                   {i18n.chooseThumbnail}
                 </button>
               </td>
@@ -153,8 +158,10 @@ class VideoEdit extends React.PureComponent {
                 <label>{i18n.autoPlay}: </label>
               </td>
               <td>
-                <input type="checkbox" checked={autostart}
-                  onChange={e => this.setContent('autostart', e.target.checked)} />
+                <input
+                  type="checkbox" checked={autostart}
+                  onChange={e => this.setContent('autostart', e.target.checked)}
+                />
                 &nbsp;({i18n.startPlaybackWhenPage})
             </td>
             </tr>
@@ -163,8 +170,10 @@ class VideoEdit extends React.PureComponent {
                 <label>{i18n.repeat}: </label>
               </td>
               <td>
-                <input type="checkbox" checked={loop}
-                  onChange={e => this.setContent('loop', e.target.checked)} />
+                <input
+                  type="checkbox" checked={loop}
+                  onChange={e => this.setContent('loop', e.target.checked)}
+                />
                 ({i18n.loop})
             </td>
             </tr>
@@ -174,8 +183,10 @@ class VideoEdit extends React.PureComponent {
                 <label>Live: </label>
               </td>
               <td>
-                <input type="checkbox" checked={live}
-                  onChange={e => this.setContent('live', e.target.checked)} />
+                <input
+                  type="checkbox" checked={live}
+                  onChange={e => this.setContent('live', e.target.checked)}
+                />
                 {/* TODO i18n */}
                 ({ })
             </td>
@@ -185,8 +196,10 @@ class VideoEdit extends React.PureComponent {
                 <label>{i18n.fullscreenStart}: </label>
               </td>
               <td>
-                <input type="checkbox" checked={fullscreen}
-                  onChange={e => this.setContent('fullscreen', e.target.checked)} />
+                <input
+                  type="checkbox" checked={fullscreen}
+                  onChange={e => this.setContent('fullscreen', e.target.checked)}
+                />
                 ({i18n.startVideoFullScr})
             </td>
             </tr>
@@ -195,8 +208,10 @@ class VideoEdit extends React.PureComponent {
                 <label>{i18n.removeBlackBars}: </label>
               </td>
               <td>
-                <input type="checkbox" checked={zoom}
-                  onChange={e => this.setContent('zoom', e.target.checked)} />
+                <input
+                  type="checkbox" checked={zoom}
+                  onChange={e => this.setContent('zoom', e.target.checked)}
+                />
                 ({i18n.zoomVideo})
             </td>
             </tr>
@@ -205,8 +220,10 @@ class VideoEdit extends React.PureComponent {
                 <label>{i18n.playIcon}</label>
               </td>
               <td>
-                <input type="checkbox" checked={playIcon}
-                  onChange={e => this.setContent('playIcon', e.target.checked)} />
+                <input
+                  type="checkbox" checked={playIcon}
+                  onChange={e => this.setContent('playIcon', e.target.checked)}
+                />
                 ({i18n.showPlayIcon})
             </td>
             </tr>
@@ -215,8 +232,10 @@ class VideoEdit extends React.PureComponent {
                 <label>{i18n.showNavBar}</label>
               </td>
               <td>
-                <input type="checkbox" checked={showNavBar}
-                  onChange={e => this.setContent('showNavBar', e.target.checked)} />
+                <input
+                  type="checkbox" checked={showNavBar}
+                  onChange={e => this.setContent('showNavBar', e.target.checked)}
+                />
               </td>
             </tr>
           </tbody>

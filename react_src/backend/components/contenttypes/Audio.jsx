@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -29,7 +29,7 @@ import React, { PropTypes as Types } from 'react';
 import { AudioOff } from '../icons';
 import { componentLoader } from '../../../ComponentLoader';
 import { noSubmitOnEnter } from '../../utils';
-import { getTooltipped } from '../../tooltipper.jsx';
+import { getTooltipped } from '../../tooltipper';
 import Constants from '../../../constants';
 
 const i18n = Constants.locstr.audio;

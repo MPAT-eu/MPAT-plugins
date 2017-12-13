@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -53,38 +53,38 @@ export default class WebsiteController extends React.Component {
   }
 
   goToPage(pageUrl) {
-      if (pageUrl.substring(0, 7) == "page://") {
-          const pageId = pageUrl.substring(7);
-          if (pageId == "previous") {
-              this.goToPrevious();
-          } else {
-              const pageContent = this.pagesStore.getPage(pageId);
-              if (pageContent) {
-                  pageContent.then((page) => {
-                      this.setState({
-                        page: page
-                      });
-                      trackAction('website', 'goToPage', page.page_url);
-                      trackPageview(page.page_url, page.page_title);
-                  });
-              }
-          }
+    if (pageUrl.substring(0, 7) == 'page://') {
+      const pageId = pageUrl.substring(7);
+      if (pageId == 'previous') {
+        this.goToPrevious();
       } else {
-          window.location.href = pageUrl;
+        const pageContent = this.pagesStore.getPage(pageId);
+        if (pageContent) {
+          pageContent.then((page) => {
+            this.setState({
+              page
+            });
+            trackAction('website', 'goToPage', page.page_url);
+            trackPageview(page.page_url, page.page_title);
+          });
+        }
       }
+    } else {
+      window.location.href = pageUrl;
+    }
   }
 
   goToPrevious() {
-      const pageContent = this.pagesStore.getPrevious();
-      if (pageContent) {
-          pageContent.then((page) => {
-              this.setState({
-                page: page
-              });
-              trackAction('website', 'goToPage', page.page_url);
-              trackPageview(page.page_url, page.page_title);
-          }, () => { return; });
-      }
+    const pageContent = this.pagesStore.getPrevious();
+    if (pageContent) {
+      pageContent.then((page) => {
+        this.setState({
+          page
+        });
+        trackAction('website', 'goToPage', page.page_url);
+        trackPageview(page.page_url, page.page_title);
+      }, () => { });
+    }
   }
 
   performAction(type, actionData = {}, trigger = '') {
@@ -112,8 +112,8 @@ export default class WebsiteController extends React.Component {
       }
     } else if (type === 'ait') {
       if (actionData.action === 'launchApplication') {
-        hbbtvlib_createApp('dvb://current.ait/' + actionData.appId +
-                           '?autoshow=1', actionData.fallbackUrl);
+        hbbtvlib_createApp(`dvb://current.ait/${actionData.appId
+                           }?autoshow=1`, actionData.fallbackUrl);
       }
     }
   }

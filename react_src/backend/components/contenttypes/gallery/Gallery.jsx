@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -59,71 +59,71 @@ componentLoader.registerComponent(
     navigable: true
   }, {
     arrowStyles: {
-        containerTitle: {
-            label: "Arrow styles",
-            fieldType: "separator"
+      containerTitle: {
+        label: 'Arrow styles',
+        fieldType: 'separator'
+      },
+      fontSize: {
+        label: 'Arrow Size',
+        fieldType: 'number',
+        fieldProps: {
+          placeholder: 'size in px',
+          minValue: 10,
+          maxValue: 50
         },
-        fontSize: {
-            label: "Arrow Size",
-            fieldType: "number",
-            fieldProps: {
-                placeholder: 'size in px',
-                minValue: 10,
-                maxValue: 50
-            },
-            suffix: 'px',
-            sanitizeValue: (v) => (v.substring(0, v.indexOf('px')) || ''),
-            sanitizeCallback: (e) => (`${e.target.value}px`)
+        suffix: 'px',
+        sanitizeValue: v => (v.substring(0, v.indexOf('px')) || ''),
+        sanitizeCallback: e => (`${e.target.value}px`)
+      },
+      color: {
+        label: 'Arrow color',
+        fieldType: 'color'
+      },
+      backgroundColor: {
+        label: 'Arrow background color',
+        fieldType: 'color'
+      },
+      padding: {
+        label: 'Arrow padding',
+        fieldType: 'number',
+        fieldProps: {
+          placeholder: 'size in px',
+          minValue: 0,
+          maxValue: 50
         },
-        color: {
-            label: "Arrow color",
-            fieldType: "color",
+        suffix: 'px',
+        sanitizeValue: v => (v.substring(0, v.indexOf('px')) || ''),
+        sanitizeCallback: e => (`${e.target.value}px`)
+      },
+      borderRadius: {
+        label: 'Arrow border radius',
+        fieldType: 'number',
+        fieldProps: {
+          placeholder: 'size in px',
+          minValue: 0,
+          maxValue: 50
         },
-        backgroundColor: {
-            label: "Arrow background color",
-            fieldType: "color",
-        },
-        padding: {
-            label: "Arrow padding",
-            fieldType: "number",
-            fieldProps: {
-                placeholder: 'size in px',
-                minValue: 0,
-                maxValue: 50
-            },
-            suffix: 'px',
-            sanitizeValue: (v) => (v.substring(0, v.indexOf('px')) || ''),
-            sanitizeCallback: (e) => (`${e.target.value}px`)
-        },
-        borderRadius: {
-            label: "Arrow border radius",
-            fieldType: "number",
-            fieldProps: {
-                placeholder: 'size in px',
-                minValue: 0,
-                maxValue: 50
-            },
-            suffix: 'px',
-            sanitizeValue: (v) => (v.substring(0, v.indexOf('px')) || ''),
-            sanitizeCallback: (e) => (`${e.target.value}px`)
-        }
+        suffix: 'px',
+        sanitizeValue: v => (v.substring(0, v.indexOf('px')) || ''),
+        sanitizeCallback: e => (`${e.target.value}px`)
+      }
     },
     dotStylesFocused: {
-        containerTitle: {
-            label: "Dots styles",
-            fieldType: "separator"
-        },
+      containerTitle: {
+        label: 'Dots styles',
+        fieldType: 'separator'
+      },
 
-        fill: {
-            label: "Dot focused color",
-            fieldType: "color",
-        }
+      fill: {
+        label: 'Dot focused color',
+        fieldType: 'color'
+      }
     },
     dotStyles: {
-        fill: {
-            label: "Dots color",
-            fieldType: "color",
-        }
+      fill: {
+        label: 'Dots color',
+        fieldType: 'color'
+      }
     }
   }
 );

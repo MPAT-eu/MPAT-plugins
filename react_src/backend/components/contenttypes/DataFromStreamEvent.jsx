@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -49,8 +49,13 @@ function editView(params) {
     }
   }
   return (
-    <DataFromStreamEventEdit stateId={stateId + params.id} {...{ streameventname, streameventid,
-      componenttag, initialtext, template }} changeAreaContent={changeAreaContent} />
+    <DataFromStreamEventEdit
+      stateId={stateId + params.id} {...{ streameventname,
+        streameventid,
+        componenttag,
+        initialtext,
+        template }} changeAreaContent={changeAreaContent}
+    />
   );
 }
 function preview(content = {}) {
@@ -63,7 +68,7 @@ function preview(content = {}) {
     <div
       style={{ overflow: 'hidden' }}
       className="mpat-frontend-preview mpat-content-preview textcontent-preview"
-      dangerouslySetInnerHTML={{ __html: ( content.data ) ? ( content.data.origin ) : '' }}
+      dangerouslySetInnerHTML={{ __html: (content.data) ? (content.data.origin) : '' }}
     />
   );
 }
@@ -125,68 +130,68 @@ class DataFromStreamEventEdit extends React.PureComponent {
       <div>
         <table>
           <tbody>
-          <tr>
-            <td>
-              <label>Stream Event id:</label>
-            </td>
-            <td>
-              <input
-                type="number"
-                key={stateId}
-                defaultValue={streameventid}
-                onChange={e => this.onChange('streameventid', e.target.value)}
-              />
-            </td>
-            <td/>
-            <td>
-              <label>Stream Event name:</label>
-            </td>
-            <td>
-              <input
-                type="text"
-                key={stateId+1}
-                defaultValue={streameventname}
-                onChange={e => this.onChange('streameventname', e.target.value)}
-              />
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <label>Component tag:</label>
-            </td>
-            <td>
-              <input
-                type="number"
-                key={stateId+2}
-                defaultValue={componenttag}
-                onChange={e => this.onChange('componenttag', e.target.value)}
-              />
-            </td>
-            <td/>
-            <td>
-              <label>Initial text:</label>
-            </td>
-            <td>
-              <input
-                type="text"
-                key={stateId+3}
-                defaultValue={initialtext}
-                onChange={e => this.onChange('initialtext', e.target.value)}
-              /></td>
-          </tr>
-          <tr>
-            <td>
-              <label>Optional template:</label>
-            </td>
-            <td>
-              <input
-                type="text"
-                key={stateId+4}
-                defaultValue={template}
-                onChange={e => this.onChange('template', e.target.value)}
-                style={{width: 800}}
-              /></td>
-          </tr>
+            <tr>
+              <td>
+                <label>Stream Event id:</label>
+              </td>
+              <td>
+                <input
+                  type="number"
+                  key={stateId}
+                  defaultValue={streameventid}
+                  onChange={e => this.onChange('streameventid', e.target.value)}
+                />
+              </td>
+              <td />
+              <td>
+                <label>Stream Event name:</label>
+              </td>
+              <td>
+                <input
+                  type="text"
+                  key={stateId + 1}
+                  defaultValue={streameventname}
+                  onChange={e => this.onChange('streameventname', e.target.value)}
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label>Component tag:</label>
+              </td>
+              <td>
+                <input
+                  type="number"
+                  key={stateId + 2}
+                  defaultValue={componenttag}
+                  onChange={e => this.onChange('componenttag', e.target.value)}
+                />
+              </td>
+              <td />
+              <td>
+                <label>Initial text:</label>
+              </td>
+              <td>
+                <input
+                  type="text"
+                  key={stateId + 3}
+                  defaultValue={initialtext}
+                  onChange={e => this.onChange('initialtext', e.target.value)}
+                /></td>
+            </tr>
+            <tr>
+              <td>
+                <label>Optional template:</label>
+              </td>
+              <td>
+                <input
+                  type="text"
+                  key={stateId + 4}
+                  defaultValue={template}
+                  onChange={e => this.onChange('template', e.target.value)}
+                  style={{ width: 800 }}
+                /></td>
+            </tr>
           </tbody>
         </table>
       </div>
