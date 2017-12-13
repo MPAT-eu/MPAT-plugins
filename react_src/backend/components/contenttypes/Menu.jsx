@@ -568,7 +568,12 @@ function MenuElement(props) {
         }
         {!collapsed &&
         getTooltipped(
-          <span onClick={() => deleteItem(id)} style={{ position: 'absolute', right: 5, bottom: 5 }}>
+          <button
+            type="button"
+            onClick={() => deleteItem(id)}
+            className="button white_blue img_left"
+            style={{ position: 'absolute', right: 10, bottom: 10 }}
+          >
             <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
               <path d="M68.26,31.71h-35a1.78,1.78,0,0,0-1.78,1.94l3.78,44.48A1.78,1.78,0,0,0,37,79.76H64.49a1.78,1.78,0,0,0,1.78-1.63L70,33.65a1.78,1.78,0,0,0-1.78-1.94ZM62.85,76.19H38.64L35.17,35.28H66.32Z" />
               <path d="M69.17,26.34H52.53V24.23a1.78,1.78,0,0,0-3.57,0v2.11H32.32a1.78,1.78,0,0,0,0,3.57H69.17a1.78,1.78,0,1,0,0-3.57Z" />
@@ -577,7 +582,7 @@ function MenuElement(props) {
               <path d="M50.74,73.68a1.79,1.79,0,0,0,1.78-1.78V40.61a1.78,1.78,0,1,0-3.57,0V71.89A1.79,1.79,0,0,0,50.74,73.68Z" />
             </svg>
             {i18n.deleteItem}
-          </span>
+          </button>
           , i18n.ttDeleteItem)
         }
       </div>
