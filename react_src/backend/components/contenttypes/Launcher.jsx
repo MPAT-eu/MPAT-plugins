@@ -23,6 +23,7 @@
  * Jean-Claude Dufourd (jean-claude.dufourd@telecom-paristech.fr
  * Stefano Miccoli (stefano.miccoli@finconsgroup.com)
  * Marco Ferrari (marco.ferrari@finconsgroup.com)
+ * 
  **/
 import React, { PropTypes as Types } from 'react';
 import { Sortable } from 'react-sortable';
@@ -92,6 +93,7 @@ class LauncherEdit extends React.PureComponent {
     elementFormat: Types.oneOf(['landscape', 'square', 'portrait', 'squareInfo']),
     style: Types.string,
     scrollStyle: Types.oneOf(['carousel', 'pagination']),
+    paginationLoop: Types.bool,
     paginationInfo: Types.bool,
     listArray: Types.arrayOf(itemType),
     changeAreaContent: Types.func.isRequired
@@ -102,6 +104,7 @@ class LauncherEdit extends React.PureComponent {
     elementFormat: 'landscape',
     style: 'standard',
     scrollStyle: 'pagination',
+    paginationLoop: false,
     paginationInfo: true,
     listArray: [createDefaultItem()]
   };
@@ -189,7 +192,7 @@ class LauncherEdit extends React.PureComponent {
   }
 
   render() {
-    const { orientation, elementFormat, style, scrollStyle, paginationInfo } = this.props;
+    const { orientation, elementFormat, style, scrollStyle, paginationLoop, paginationInfo } = this.props;
     return (
       <div className="component editHeader">
         <h2>{i18n.launcherSettings}</h2>
@@ -274,6 +277,20 @@ class LauncherEdit extends React.PureComponent {
                   , i18n.ttScrollStyle)}
               </td>
             </tr>
+            {scrollStyle === 'pagination' &&
+              <tr>
+                <td>
+                  <label>{i18n.paginationLoop}: </label>
+                </td>
+                <td>
+                  <input
+                    type="checkbox"
+                    checked={paginationLoop}
+                    onChange={e => this.setContent('paginationLoop', e.target.checked)}
+                  />
+                </td>
+              </tr>
+            }
             {scrollStyle === 'pagination' &&
               <tr>
                 <td>

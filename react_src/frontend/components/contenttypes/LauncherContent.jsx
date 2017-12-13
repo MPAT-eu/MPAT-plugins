@@ -24,6 +24,7 @@
  * Jean-Claude Dufourd (jean-claude.dufourd@telecom-paristech.fr
  * Stefano Miccoli (stefano.miccoli@finconsgroup.com)
  * Marco Ferrari (marco.ferrari@finconsgroup.com)
+ *
  **/
 import React, { PropTypes as Types } from 'react';
 import autobind from 'class-autobind';
@@ -213,10 +214,9 @@ PaginationLauncher.propTypes = {
   focused: Types.bool.isRequired
 };
 
-function pageCoordsFromIndex(i, n, rows, cols) {
+function pageCoordsFromIndex(i, rows, cols, nPages) {
   const ipp = rows * cols;
   const page = Math.floor(i / ipp);
-  const nPages = Math.ceil(n / ipp);
   const iCurPage = i % ipp;
   const row = Math.floor(iCurPage / cols);
   const col = Math.floor(iCurPage % cols);
@@ -226,8 +226,7 @@ function pageCoordsFromIndex(i, n, rows, cols) {
   return { page, row, col };
 }
 
-function indexFromPageCoords(page, row, col, nRows, nCols, n) {
-  const nPages = Math.ceil(n / (nRows * nCols));
+function indexFromPageCoords(page, row, col, nRows, nCols, n, nPages) {
   const i = nRows * nCols * page + row * nCols + col;
   if (row < 0 || row >= nRows || col < 0 || col >= nCols || page < 0 || page >= nPages) {
     return;
@@ -238,32 +237,51 @@ function indexFromPageCoords(page, row, col, nRows, nCols, n) {
   return i;
 }
 
-function scrollHorizontalPaginationHorizontal(isLeft, currentIndex, nItems, rows, cols) {
-  const coords = pageCoordsFromIndex(currentIndex, nItems, rows, cols);
-  let { page, col } = coords;
-  const { row } = coords;
+function scrollHorizontalPaginationHorizontal(isLeft, currentIndex, nItems, rows, cols, loop) {
+  const nPages = Math.ceil(nItems / (rows * cols));
+  const coords = pageCoordsFromIndex(currentIndex, rows, cols, nPages);
+  const lastRow = (Math.ceil(nItems / cols) - 1) % rows;
+  const lastColInLastRow = (nItems - 1) % cols;
+  let { page, col, row } = coords;
   if (isLeft) {
     col--;
     if (col < 0) {
       page--;
-      col = cols - 1;
+      if (loop && nPages > 1 && page < 0) {
+        page = nPages - 1;
+        if (row > lastRow) {
+          row = lastRow;
+        }
+        if (row === lastRow) {
+          col = lastColInLastRow;
+        } else {
+          col = cols - 1;
+        }
+      } else {
+        col = cols - 1;
+      }
     }
   } else {
     col++;
-    if (col >= cols) {
+    if (col >= cols || row === 0 && row === lastRow && col > lastColInLastRow) {
       page++;
+      if (loop && nPages > 1 && page >= nPages) {
+        page = 0;
+      } else if (page === nPages - 1 && row > lastRow) {
+        row = lastRow;
+      }
       col = 0;
+    } else if (page === nPages - 1 && row > 0 && row === lastRow && col > lastColInLastRow) {
+      row -= 1;
     }
   }
-  let newIndex = indexFromPageCoords(page, row, col, rows, cols, nItems);
-  if (newIndex === undefined) {
-    newIndex = indexFromPageCoords(page, row - 1, col, rows, cols, nItems);
-  }
+  const newIndex = indexFromPageCoords(page, row, col, rows, cols, nItems, nPages);
   return newIndex;
 }
 
 function scrollHorizontalPaginationVertical(isLeft, currentIndex, nItems, rows, cols) {
-  const coords = pageCoordsFromIndex(currentIndex, nItems, rows, cols);
+  const nPages = Math.ceil(nItems / (rows * cols));
+  const coords = pageCoordsFromIndex(currentIndex, rows, cols, nPages);
   let { col } = coords;
   const { page, row } = coords;
   if (isLeft) {
@@ -271,15 +289,16 @@ function scrollHorizontalPaginationVertical(isLeft, currentIndex, nItems, rows, 
   } else {
     col++;
   }
-  let newIndex = indexFromPageCoords(page, row, col, rows, cols, nItems);
+  let newIndex = indexFromPageCoords(page, row, col, rows, cols, nItems, nPages);
   if (newIndex === undefined) {
-    newIndex = indexFromPageCoords(page, row - 1, col, rows, cols, nItems);
+    newIndex = indexFromPageCoords(page, row - 1, col, rows, cols, nItems, nPages);
   }
   return newIndex;
 }
 
 function scrollVerticalPaginationHorizontal(isUp, currentIndex, nItems, rows, cols) {
-  const coords = pageCoordsFromIndex(currentIndex, nItems, rows, cols);
+  const nPages = Math.ceil(nItems / (rows * cols));
+  const coords = pageCoordsFromIndex(currentIndex, rows, cols, nPages);
   let { row } = coords;
   const { page, col } = coords;
   if (isUp) {
@@ -287,33 +306,45 @@ function scrollVerticalPaginationHorizontal(isUp, currentIndex, nItems, rows, co
   } else {
     row++;
   }
-  let newIndex = indexFromPageCoords(page, row, col, rows, cols, nItems);
+  let newIndex = indexFromPageCoords(page, row, col, rows, cols, nItems, nPages);
   if (newIndex === undefined) {
-    newIndex = indexFromPageCoords(page, row, col - 1, rows, cols, nItems);
+    const lastColInLastRow = (nItems - 1) % cols;
+    newIndex = indexFromPageCoords(page, row, lastColInLastRow, rows, cols, nItems, nPages);
   }
   return newIndex;
 }
 
-function scrollVerticalPaginationVertical(isUp, currentIndex, nItems, rows, cols) {
-  const coords = pageCoordsFromIndex(currentIndex, nItems, rows, cols);
+function scrollVerticalPaginationVertical(isUp, currentIndex, nItems, rows, cols, loop) {
+  const nPages = Math.ceil(nItems / (rows * cols));
+  const coords = pageCoordsFromIndex(currentIndex, rows, cols, nPages);
+  const lastRow = (Math.ceil(nItems / cols) - 1) % rows;
   let { page, row } = coords;
   const { col } = coords;
   if (isUp) {
     row--;
     if (row < 0) {
       page--;
-      row = rows - 1;
+      if (loop && nPages > 1 && page < 0) {
+        page = nPages - 1;
+        row = lastRow;
+      } else {
+        row = rows - 1;
+      }
     }
   } else {
     row++;
-    if (row >= rows) {
+    if (row >= rows || page === nPages - 1 && row > lastRow) {
       page++;
+      if (loop && nPages > 1 && page >= nPages) {
+        page = 0;
+      }
       row = 0;
     }
   }
-  let newIndex = indexFromPageCoords(page, row, col, rows, cols, nItems);
+  let newIndex = indexFromPageCoords(page, row, col, rows, cols, nItems, nPages);
   if (newIndex === undefined) {
-    newIndex = indexFromPageCoords(page, row, col - 1, rows, cols, nItems);
+    const lastColInLastRow = (nItems - 1) % cols;
+    newIndex = indexFromPageCoords(page, row, lastColInLastRow, rows, cols, nItems, nPages);
   }
   return newIndex;
 }
@@ -488,14 +519,14 @@ class LauncherContent extends React.Component {
   }
 
   scrollPagination(hor, ver) {
-    const { orientation = 'horizontal', listArray } = this.props;
+    const { orientation = 'horizontal', listArray, paginationLoop } = this.props;
     let { currentIndex } = this.state;
-    const rows = this.props.nRows;
-    const cols = this.props.nCols;
+    const rows = this.props.nRows - 0;
+    const cols = this.props.nCols - 0;
     if (ver === 0) {
       if (orientation === 'horizontal') {
         currentIndex = scrollHorizontalPaginationHorizontal(hor < 0, currentIndex,
-          listArray.length, rows, cols);
+          listArray.length, rows, cols, paginationLoop);
       } else {
         currentIndex = scrollHorizontalPaginationVertical(hor < 0, currentIndex,
           listArray.length, rows, cols);
@@ -505,7 +536,7 @@ class LauncherContent extends React.Component {
         listArray.length, rows, cols);
     } else {
       currentIndex = scrollVerticalPaginationVertical(ver < 0, currentIndex,
-        listArray.length, rows, cols);
+        listArray.length, rows, cols, paginationLoop);
     }
     if (currentIndex === undefined) {
       return false;

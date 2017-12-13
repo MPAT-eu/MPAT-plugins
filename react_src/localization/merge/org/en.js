@@ -397,6 +397,7 @@ const en = {
       scrollStyle: 'Scroll style',
       optionCarousel: 'Carousel',
       optionPagination: 'Pagination',
+      paginationLoop: 'Loop',
       showPaginationInfo: 'Show Pagination Info',
       addLauncherElement: 'Add Launcher element',
       launcherThumbnail: 'Launcher Thumbnail',
