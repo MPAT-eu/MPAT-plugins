@@ -24,29 +24,30 @@
  * Stefano Miccoli (stefano.miccoli@finconsgroup.com)
  * Marco Ferrari (marco.ferrari@finconsgroup.com)
  **/
-import React from 'react';
+import React, { PropTypes as Types } from 'react';
 import { Sortable } from 'react-sortable';
 import autobind from 'class-autobind';
 import { componentLoader } from '../../../ComponentLoader';
 import { ComponentStateSelector } from '../helpers/Inputs';
 import { noSubmitOnEnter } from '../../utils';
 import { generateId } from '../../../functions';
-import { getTooltipped } from '../../tooltipper.jsx';
+import { getTooltipped } from '../../tooltipper';
 import PageSelector from '../helpers/PageSelector';
-
 import Constants from '../../../constants';
+
+const i18n = Constants.locstr.menu;
 
 function editView(params) {
   const { id, data, changeAreaContent, getComponentStates } = params;
   return (
-        // FIXME put the content directly as props, instead of wrapping it into the 'content' prop
+    // FIXME put the content directly as props, instead of wrapping it into the 'content' prop
     <MenuEdit
       id={id}
       {...data}
       changeAreaContent={changeAreaContent}
       getComponentStates={getComponentStates}
     />
-    );
+  );
 }
 
 function preview(content = {}) {
@@ -60,12 +61,21 @@ function preview(content = {}) {
       <ul>
         {items.map(item => (
           <li key={item.id} style={style}>
-                        ( {item.remoteKey.replace(/VK_/g, '')}) {item.description} </li>
-                ))}
+            ( {item.remoteKey.replace(/VK_/g, '')}) {item.description} </li>
+        ))}
       </ul>
     </div>
   );
 }
+
+const itemType = Types.shape(
+  {
+    appUrl: Types.string,
+    description: Types.string,
+    remoteKey: Types.string,
+    role: Types.string,
+    id: Types.string
+  });
 
 const createDefaultItem = () => ({
   appUrl: '',
@@ -78,12 +88,19 @@ const createDefaultItem = () => ({
 class MenuEdit extends React.PureComponent {
 
   static propTypes = {
-    changeAreaContent: React.PropTypes.func.isRequired
+    changeAreaContent: React.PropTypes.func.isRequired,
+    orientation: Types.oneOf(['horizontal', 'vertical']),
+    loop: Types.bool,
+    sidemenu: Types.bool,
+    showButtons: Types.bool,
+    title: Types.string,
+    listArray: Types.arrayOf(itemType)
   };
 
   static defaultProps = {
     orientation: 'horizontal',
     loop: false,
+    title: '',
     sidemenu: false,
     showButtons: false,
     listArray: [createDefaultItem()]
@@ -92,8 +109,10 @@ class MenuEdit extends React.PureComponent {
   constructor(props) {
     super(props);
     autobind(this);
+    const collapsed = props.listArray.reduce((result, item) => Object.assign({}, result, { [item.id]: false }), {});
     this.state = {
-      draggingIndex: null
+      draggingIndex: null,
+      collapsed
     };
   }
 
@@ -143,9 +162,15 @@ class MenuEdit extends React.PureComponent {
     }
   }
 
-  addItem() {
-    let { listArray } = this.props;
-    listArray = listArray.concat(createDefaultItem());
+  toggleElementView(id) {
+    const collapsed = this.state.collapsed;
+    collapsed[id] = !collapsed[id];
+    this.setState(collapsed);
+  }
+
+  addItem(index) {
+    const { listArray } = this.props;
+    listArray.splice(index + 1, 0, createDefaultItem());
     this.props.changeAreaContent({ listArray });
   }
 
@@ -157,7 +182,7 @@ class MenuEdit extends React.PureComponent {
     this.props.changeAreaContent({ listArray });
   }
 
-    /* guess this just updates the state of the currently dragged item*/
+  /* guess this just updates the state of the currently dragged item*/
 
   updateState(obj) {
     this.setState(obj);
@@ -174,23 +199,23 @@ class MenuEdit extends React.PureComponent {
     return {
       updateItem: this.updateItem,
       remoteKeys: [
-                { key: '', label: 'Select Remote Button' },
-                { key: 'VK_0', label: '0', disabled: false },
-                { key: 'VK_1', label: '1', disabled: false },
-                { key: 'VK_2', label: '2', disabled: false },
-                { key: 'VK_3', label: '3', disabled: false },
-                { key: 'VK_4', label: '4', disabled: false },
-                { key: 'VK_5', label: '5', disabled: false },
-                { key: 'VK_6', label: '6', disabled: false },
-                { key: 'VK_7', label: '7', disabled: false },
-                { key: 'VK_8', label: '8', disabled: false },
-                { key: 'VK_9', label: '9', disabled: false },
-                { key: 'VK_RED', label: 'red', disabled: false },
-                { key: 'VK_YELLOW', label: 'yellow', disabled: false },
-                { key: 'VK_GREEN', label: 'green', disabled: false },
-                { key: 'VK_BLUE', label: 'blue', disabled: false },
-                { key: 'VK_BACK', label: 'back', disabled: false },
-                { key: 'VK_OK', label: 'ok', disabled: false }
+        { key: '', label: 'Select Remote Button' },
+        { key: 'VK_0', label: '0', disabled: false },
+        { key: 'VK_1', label: '1', disabled: false },
+        { key: 'VK_2', label: '2', disabled: false },
+        { key: 'VK_3', label: '3', disabled: false },
+        { key: 'VK_4', label: '4', disabled: false },
+        { key: 'VK_5', label: '5', disabled: false },
+        { key: 'VK_6', label: '6', disabled: false },
+        { key: 'VK_7', label: '7', disabled: false },
+        { key: 'VK_8', label: '8', disabled: false },
+        { key: 'VK_9', label: '9', disabled: false },
+        { key: 'VK_RED', label: 'red', disabled: false },
+        { key: 'VK_YELLOW', label: 'yellow', disabled: false },
+        { key: 'VK_GREEN', label: 'green', disabled: false },
+        { key: 'VK_BLUE', label: 'blue', disabled: false },
+        { key: 'VK_BACK', label: 'back', disabled: false },
+        { key: 'VK_OK', label: 'ok', disabled: false }
       ]
     };
   }
@@ -199,24 +224,12 @@ class MenuEdit extends React.PureComponent {
     const { orientation, showButtons, loop, listArray, sidemenu, title } = this.props;
     return (
       <div className="component editHeader">
-        <h2>{Constants.locstr.menu.menuSettings}</h2>
-        {getTooltipped(
-          <span onClick={this.addItem} style={{ float: 'right' }}>
-            <svg
-              id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 100 100"
-            >
-              <path d="M50.49,22.85A28.25,28.25,0,1,0,78.74,51.1,28.29,28.29,0,0,0,50.49,22.85Zm0,52.94A24.69,24.69,0,1,1,75.17,51.1,24.71,24.71,0,0,1,50.49,75.79Z" />
-              <path d="M64.47,49.31H52.27V37.12a1.78,1.78,0,1,0-3.57,0V49.31H36.51a1.78,1.78,0,0,0,0,3.57H48.7V65.08a1.78,1.78,0,0,0,3.57,0V52.88H64.47a1.78,1.78,0,0,0,0-3.57Z" />
-            </svg> {Constants.locstr.menu.addMenuItem}
-          </span>
-                    , Constants.locstr.menu.ttAddMenuItem)}
-
+        <h2>{i18n.menuSettings}</h2>
         <table>
           <tbody>
             <tr>
               <td>
-                <label>{Constants.locstr.menu.title}: </label>
+                <label>{i18n.title}: </label>
               </td>
               <td>
                 {getTooltipped(
@@ -224,12 +237,12 @@ class MenuEdit extends React.PureComponent {
                     type="text" value={title}
                     onChange={e => this.setContent.call(this, 'title', e.target.value)}
                   />
-                                    , Constants.locstr.menu.ttTitle)}
+                  , i18n.ttTitle)}
               </td>
             </tr>
             <tr>
               <td>
-                <label>{Constants.locstr.menu.sideMenu}: </label>
+                <label>{i18n.sideMenu}: </label>
               </td>
               <td>
                 {getTooltipped(
@@ -237,13 +250,13 @@ class MenuEdit extends React.PureComponent {
                     type="checkbox" id="sidemenu" name="sidemenu" checked={sidemenu}
                     onChange={e => this.setContent.call(this, 'sidemenu', e.target.checked)}
                   />
-                                    /* &nbsp; ( {Constants.locstr.menu.showAsSideMenu} )*/
-                                    , Constants.locstr.menu.ttSideMenu)}
+                  /* &nbsp; ( {i18n.showAsSideMenu} )*/
+                  , i18n.ttSideMenu)}
               </td>
             </tr>
             <tr>
               <td>
-                <label>{Constants.locstr.menu.menuOrient}: </label>
+                <label>{i18n.menuOrient}: </label>
               </td>
               <td>
                 {getTooltipped(
@@ -251,10 +264,10 @@ class MenuEdit extends React.PureComponent {
                     value={orientation}
                     onChange={e => this.setContent.call(this, 'orientation', e.target.value)}
                   >
-                    <option value="horizontal">{Constants.locstr.menu.horizontal}</option>
-                    <option value="vertical">{Constants.locstr.menu.vertical}</option>
+                    <option value="horizontal">{i18n.horizontal}</option>
+                    <option value="vertical">{i18n.vertical}</option>
                   </select>
-                                    , Constants.locstr.menu.ttMenuOrient)}
+                  , i18n.ttMenuOrient)}
               </td>
             </tr>
             <tr>
@@ -267,13 +280,13 @@ class MenuEdit extends React.PureComponent {
                     type="checkbox" id="loop" name="loop" checked={loop}
                     onChange={e => this.setContent.call(this, 'loop', e.target.checked)}
                   />
-                                    /* &nbsp; ( {Constants.locstr.menu.restart} )*/
-                                    , Constants.locstr.menu.ttLoop)}
+                  /* &nbsp; ( {i18n.restart} )*/
+                  , i18n.ttLoop)}
               </td>
             </tr>
             <tr>
               <td>
-                <label>{Constants.locstr.menu.showButtons}: </label>
+                <label>{i18n.showButtons}: </label>
               </td>
               <td>
                 {getTooltipped(
@@ -281,24 +294,34 @@ class MenuEdit extends React.PureComponent {
                     type="checkbox" id="showButtons" name="showButtons" checked={showButtons}
                     onChange={e => this.setContent.call(this, 'showButtons', e.target.checked)}
                   />
-                                    /* &nbsp; ( {Constants.locstr.menu.showRemoteKeys} )*/
-                                    , Constants.locstr.menu.ttShowButtons)}
+                  /* &nbsp; ( {i18n.showRemoteKeys} )*/
+                  , i18n.ttShowButtons)}
               </td>
             </tr>
           </tbody>
         </table>
-        <div>
+        <div style={{ marginTop: '20px' }}>
+          <div className="list-add-element" onClick={() => this.addItem(-1)}>
+            <span>
+              <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                <path d="M50.49,22.85A28.25,28.25,0,1,0,78.74,51.1,28.29,28.29,0,0,0,50.49,22.85Zm0,52.94A24.69,24.69,0,1,1,75.17,51.1,24.71,24.71,0,0,1,50.49,75.79Z" />
+                <path d="M64.47,49.31H52.27V37.12a1.78,1.78,0,1,0-3.57,0V49.31H36.51a1.78,1.78,0,0,0,0,3.57H48.7V65.08a1.78,1.78,0,0,0,3.57,0V52.88H64.47a1.78,1.78,0,0,0,0-3.57Z" />
+              </svg>
+            </span>
+            <p>{i18n.addItem}</p>
+          </div>
           {listArray.map((item, i) => {
             const props = {
               ...item,
+              collapsed: this.state.collapsed[item.id],
+              toggleElementView: this.toggleElementView,
               sharedProps: this.sharedProps(),
               setContent: this.setContent,
               setPageCallbackFunction: this.setPageCallbackFunction,
               deleteItem: this.deleteItem,
               addItem: this.addItem,
-                            //   pageUrls: this.state.pageUrls,
               getTargetComponentStates: this.props.targetComponent &&
-                            this.props.getComponentStates.bind(null, this.props.targetComponent)
+                this.props.getComponentStates.bind(null, this.props.targetComponent)
             };
             return (
               <SortableMenuElement
@@ -309,12 +332,12 @@ class MenuEdit extends React.PureComponent {
                 draggingIndex={this.state.draggingIndex}
                 sortId={i}
                 outline="list"
-                                /*
-                                 Issue MPAT-158: sorting items in firefox leads to redirects to about:blank
-                                 workaround while waiting for a fix from react-sortable
-                                 TODO check if version later than 1.1.0 implements the bugfix and then
-                                 remove this workaround
-                                 */ // sorting items in firefox leads to redirects to about:blank
+                /*
+                 Issue MPAT-158: sorting items in firefox leads to redirects to about:blank
+                 workaround while waiting for a fix from react-sortable
+                 TODO check if version later than 1.1.0 implements the bugfix and then
+                 remove this workaround
+                 */ // sorting items in firefox leads to redirects to about:blank
                 childProps={{
                   onDrop(e) {
                     e.preventDefault();
@@ -333,14 +356,11 @@ class MenuEdit extends React.PureComponent {
 }
 
 function MenuElement(props) {
-  const keyOption = obj => <option
-    key={obj.key} disabled={obj.disabled}
-    value={obj.key}
-  >{obj.label}</option>;
-  const { // pageUrls,
-        id, appUrl, description, remoteKey, sharedProps, setContent,
-        setPageCallbackFunction, deleteItem,
-        addItem, getTargetComponentStates, role = 'link', stateData = {}, appData = {}, aitData = {}
+  const keyOption = obj =>
+    <option key={obj.key} disabled={obj.disabled} value={obj.key}>{obj.label}</option>;
+  const { id, appUrl, description, remoteKey, sharedProps, setContent, setPageCallbackFunction,
+      deleteItem, addItem, getTargetComponentStates, role = 'link', stateData = {}, appData = {},
+      aitData = {}, collapsed, toggleElementView
     } = props.children;
   const isRed = (remoteKey === 'VK_RED');
   const states = getTargetComponentStates && getTargetComponentStates();
@@ -349,9 +369,9 @@ function MenuElement(props) {
     setContent('description', stateData.targetLabel, id);
   };
   const applicationActions = [
-        { key: '', label: Constants.locstr.menu.selectAction },
-        { key: 'back', label: Constants.locstr.menu.goToPrevPage, disabled: false },
-        { key: 'toggle', label: Constants.locstr.menu.toggleApplication, disabled: !(['VK_RED', 'VK_YELLOW', 'VK_BLUE', 'VK_GREEN'].includes(remoteKey)) }
+    { key: '', label: i18n.selectAction },
+    { key: 'back', label: i18n.goToPrevPage, disabled: false },
+    { key: 'toggle', label: i18n.toggleApplication, disabled: !(['VK_RED', 'VK_YELLOW', 'VK_BLUE', 'VK_GREEN'].includes(remoteKey)) }
   ];
 
   const changeButton = function (key) {
@@ -362,226 +382,238 @@ function MenuElement(props) {
   };
 
   return (
-    <div
-      {...props}
-      className="list-item"
-      style={{
-        border: '2px #ddd solid',
-        background: '#eee',
-        padding: '5px',
-        margin: '5px',
-        position: 'relative'
-      }}
-    >
-      <table>
-        <tbody>
-          <tr>
-            <td>
-              <label>{Constants.locstr.menu.label}: </label>
-            </td>
-            <td>
-              {getTooltipped(
-                <input
-                  type="text"
-                  placeholder={Constants.locstr.menu.placeHolderLabel}
-                  value={description}
-                  onChange={e => setContent('description', e.target.value, id)}
-                  onKeyPress={noSubmitOnEnter}
-                />
-                                , Constants.locstr.menu.ttLabel)}
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <label>{Constants.locstr.menu.remoteKey}: </label>
-            </td>
-            <td>
-              {getTooltipped(
-                <select value={remoteKey} onChange={e => changeButton(e.target.value)}>
-                  {sharedProps.remoteKeys.map(keyOption)}
-                </select>/* &nbsp; ( {Constants.locstr.menu.remoteControlKey} )*/
-                                , Constants.locstr.menu.ttRemoteControlKey)}
-            </td>
-          </tr>
+    <div>
+      <div
+        {...props}
+        className="list-item"
+        style={{
+          border: '2px #ddd solid',
+          background: '#eee',
+          padding: '5px',
+          margin: '5px',
+          position: 'relative'
+        }}
+      >
+        {collapsed &&
+        <div className="list-item-collapsed">
+          <div><label>{remoteKey.replace('VK_', '')}</label></div>
+          <label>{description}</label>
+          <div onClick={() => toggleElementView(id)} className="dashicons dashicons-arrow-down-alt2" />
+        </div>
+        }
+        {!collapsed &&
+        <table>
+          <tbody>
+            <tr>
+              <td>
+                <label>{i18n.label}: </label>
+              </td>
+              <td>
+                {getTooltipped(
+                  <input
+                    type="text"
+                    placeholder={i18n.placeHolderLabel}
+                    value={description}
+                    onChange={e => setContent('description', e.target.value, id)}
+                    onKeyPress={noSubmitOnEnter}
+                  />
+                  , i18n.ttLabel)}
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label>{i18n.remoteKey}: </label>
+              </td>
+              <td>
+                {getTooltipped(
+                  <select value={remoteKey} onChange={e => changeButton(e.target.value)}>
+                    {sharedProps.remoteKeys.map(keyOption)}
+                  </select>/* &nbsp; ( {i18n.remoteControlKey} )*/
+                  , i18n.ttRemoteControlKey)}
+              </td>
+            </tr>
 
-          <tr>
-            <td>
-              <label>{Constants.locstr.menu.role}: </label>
-            </td>
-            <td>
-              {getTooltipped(
-                <select value={role} onChange={e => setContent('role', e.target.value, id)}>
-                  <option value="link">{Constants.locstr.menu.link}</option>
-                  <option value="application">{Constants.locstr.menu.controlApplication}</option>
-                  <option disabled={!states} value="control">{Constants.locstr.menu.controlTargetComponent} {!states && '(Choose target first!)'}</option>
-                  <option value="ait">{Constants.locstr.menu.launchAppViaAIT}</option>
-                </select>
-                                , Constants.locstr.menu.ttRole)}
-            </td>
-          </tr>
-          {role === 'link' &&
             <tr>
               <td>
-                <label htmlFor="targetUrlTextField">{Constants.locstr.menu.url}: </label>
+                <label>{i18n.role}: </label>
               </td>
               <td>
                 {getTooltipped(
-                  <input
-                    id="targetUrlTextField"
-                    type="text"
-                    placeholder={Constants.locstr.menu.placeHoldeUrl}
-                    disabled={isRed}
-                    value={appUrl}
-                    onChange={(e) => { setContent('appUrl', e.target.value, id); }}
-                    onKeyPress={noSubmitOnEnter}
-                  />
-                                    , Constants.locstr.menu.ttUrl)}
-              </td>
-            </tr>
-                    }
-          {role === 'link' &&
-            <tr>
-              <td>
-                <label>{Constants.locstr.menu.pages}: </label>
-              </td>
-              <td>
-                {getTooltipped(
-                  <PageSelector
-                    selectedPage={appUrl}
-                    disabled={isRed}
-                    callbackFunction={setPageCallbackFunction.bind(null, id)}
-                  />
-                                    , Constants.locstr.menu.ttPages)}
-              </td>
-            </tr>
-                    }
-          {role === 'ait' &&
-            <tr>
-              <td>
-                <label>{Constants.locstr.menu.appId}: </label>
-              </td>
-              <td>
-                {getTooltipped(
-                  <input
-                    type="text"
-                    value={aitData.appId}
-                    onChange={e => setContent('aitData', {
-                          action: 'launchApplication',
-                          appId: e.target.value,
-                          fallbackUrl: aitData.fallbackUrl
-                        }, id)}
-                    onKeyPress={noSubmitOnEnter}
-                  />
-                                    , Constants.locstr.menu.ttAppId)}
-              </td>
-            </tr>
-                    }
-          {role === 'ait' &&
-            <tr>
-              <td>
-                <label>{Constants.locstr.menu.fallbackUrl}: </label>
-              </td>
-              <td>
-                {getTooltipped(
-                  <input
-                    type="text"
-                    value={aitData.fallbackUrl}
-                    onChange={e => setContent('aitData', {
-                          action: 'launchApplication',
-                          appId: aitData.appId,
-                          fallbackUrl: e.target.value
-                        }, id)}
-                    onKeyPress={noSubmitOnEnter}
-                  />
-                                    , Constants.locstr.menu.ttFallbackUrl)}
-              </td>
-            </tr>
-                    }
-          {role === 'application' &&
-            <tr>
-              <td>
-                <label>{Constants.locstr.menu.appAction}: </label>
-              </td>
-              <td>
-                {getTooltipped(
-                  <select
-                    value={appData.action}
-                    onChange={e => setContent('appData', { action: e.target.value }, id)}
-                  >
-                    {applicationActions.map(keyOption)}
+                  <select value={role} onChange={e => setContent('role', e.target.value, id)}>
+                    <option value="link">{i18n.link}</option>
+                    <option value="application">{i18n.controlApplication}</option>
+                    <option disabled={!states} value="control">{i18n.controlTargetComponent} {!states && '(Choose target first!)'}</option>
+                    <option value="ait">{i18n.launchAppViaAIT}</option>
                   </select>
-                                    , Constants.locstr.menu.ttAppAction)}
+                  , i18n.ttRole)}
               </td>
             </tr>
-                    }
-          {role === 'control' &&
-            <tr>
-              <td>
-                <label>{Constants.locstr.menu.state}: </label>
-              </td>
-              <td>
-                {getTooltipped(
-                  <ComponentStateSelector
-                    onChangeState={setStateContent}
-                    targetState={stateData.targetState}
-                    triggerAction={stateData.triggerAction}
-                    states={states}
-                  />
-                                    , Constants.locstr.menu.ttState)}
-              </td>
-            </tr>
-                    }
-        </tbody>
-      </table>
-      {getTooltipped(
-        <span onClick={e => deleteItem(id)} style={{ right: 10, bottom: 10 }}>
-          <svg
-            id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 100 100"
-          >
-            <path d="M68.26,31.71h-35a1.78,1.78,0,0,0-1.78,1.94l3.78,44.48A1.78,1.78,0,0,0,37,79.76H64.49a1.78,1.78,0,0,0,1.78-1.63L70,33.65a1.78,1.78,0,0,0-1.78-1.94ZM62.85,76.19H38.64L35.17,35.28H66.32Z" />
-            <path d="M69.17,26.34H52.53V24.23a1.78,1.78,0,0,0-3.57,0v2.11H32.32a1.78,1.78,0,0,0,0,3.57H69.17a1.78,1.78,0,1,0,0-3.57Z" />
-            <path d="M41.31,72a1.78,1.78,0,0,0,1.78,1.63h.16a1.78,1.78,0,0,0,1.62-1.93L42.18,40.53a1.78,1.78,0,0,0-3.56.31Z" />
-            <path d="M58.24,73.67h.16A1.78,1.78,0,0,0,60.17,72l2.68-31.22a1.78,1.78,0,1,0-3.56-.31L56.62,71.74A1.78,1.78,0,0,0,58.24,73.67Z" />
-            <path d="M50.74,73.68a1.79,1.79,0,0,0,1.78-1.78V40.61a1.78,1.78,0,1,0-3.57,0V71.89A1.79,1.79,0,0,0,50.74,73.68Z" />
-          </svg>
-          {Constants.locstr.menu.deleteItem}
-        </span>
-                , Constants.locstr.menu.ttDeleteItem)}
-
-
-      {getTooltipped(
-        <span onClick={e => addItem(id)}>
-          <svg
-            id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 100 100"
-          >
+            {role === 'link' &&
+              <tr>
+                <td>
+                  <label htmlFor="targetUrlTextField">{i18n.url}: </label>
+                </td>
+                <td>
+                  {getTooltipped(
+                    <input
+                      id="targetUrlTextField"
+                      type="text"
+                      placeholder={i18n.placeHoldeUrl}
+                      disabled={isRed}
+                      value={appUrl}
+                      onChange={(e) => { setContent('appUrl', e.target.value, id); }}
+                      onKeyPress={noSubmitOnEnter}
+                    />
+                    , i18n.ttUrl)}
+                </td>
+              </tr>
+            }
+            {role === 'link' &&
+              <tr>
+                <td>
+                  <label>{i18n.pages}: </label>
+                </td>
+                <td>
+                  {getTooltipped(
+                    <PageSelector
+                      selectedPage={appUrl}
+                      disabled={isRed}
+                      callbackFunction={setPageCallbackFunction.bind(null, id)}
+                    />
+                    , i18n.ttPages)}
+                </td>
+              </tr>
+            }
+            {role === 'ait' &&
+              <tr>
+                <td>
+                  <label>{i18n.appId}: </label>
+                </td>
+                <td>
+                  {getTooltipped(
+                    <input
+                      type="text"
+                      value={aitData.appId}
+                      onChange={e => setContent('aitData', {
+                        action: 'launchApplication',
+                        appId: e.target.value,
+                        fallbackUrl: aitData.fallbackUrl
+                      }, id)}
+                      onKeyPress={noSubmitOnEnter}
+                    />
+                    , i18n.ttAppId)}
+                </td>
+              </tr>
+            }
+            {role === 'ait' &&
+              <tr>
+                <td>
+                  <label>{i18n.fallbackUrl}: </label>
+                </td>
+                <td>
+                  {getTooltipped(
+                    <input
+                      type="text"
+                      value={aitData.fallbackUrl}
+                      onChange={e => setContent('aitData', {
+                        action: 'launchApplication',
+                        appId: aitData.appId,
+                        fallbackUrl: e.target.value
+                      }, id)}
+                      onKeyPress={noSubmitOnEnter}
+                    />
+                    , i18n.ttFallbackUrl)}
+                </td>
+              </tr>
+            }
+            {role === 'application' &&
+              <tr>
+                <td>
+                  <label>{i18n.appAction}: </label>
+                </td>
+                <td>
+                  {getTooltipped(
+                    <select
+                      value={appData.action}
+                      onChange={e => setContent('appData', { action: e.target.value }, id)}
+                    >
+                      {applicationActions.map(keyOption)}
+                    </select>
+                    , i18n.ttAppAction)}
+                </td>
+              </tr>
+            }
+            {role === 'control' &&
+              <tr>
+                <td>
+                  <label>{i18n.state}: </label>
+                </td>
+                <td>
+                  {getTooltipped(
+                    <ComponentStateSelector
+                      onChangeState={setStateContent}
+                      targetState={stateData.targetState}
+                      triggerAction={stateData.triggerAction}
+                      states={states}
+                    />
+                    , i18n.ttState)}
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+        }
+        {!collapsed &&
+        <div onClick={() => toggleElementView(id)} className="dashicons dashicons-arrow-up-alt2" />
+        }
+        {!collapsed &&
+        getTooltipped(
+          <span onClick={() => deleteItem(id)} style={{ position: 'absolute', right: 5, bottom: 5 }}>
+            <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+              <path d="M68.26,31.71h-35a1.78,1.78,0,0,0-1.78,1.94l3.78,44.48A1.78,1.78,0,0,0,37,79.76H64.49a1.78,1.78,0,0,0,1.78-1.63L70,33.65a1.78,1.78,0,0,0-1.78-1.94ZM62.85,76.19H38.64L35.17,35.28H66.32Z" />
+              <path d="M69.17,26.34H52.53V24.23a1.78,1.78,0,0,0-3.57,0v2.11H32.32a1.78,1.78,0,0,0,0,3.57H69.17a1.78,1.78,0,1,0,0-3.57Z" />
+              <path d="M41.31,72a1.78,1.78,0,0,0,1.78,1.63h.16a1.78,1.78,0,0,0,1.62-1.93L42.18,40.53a1.78,1.78,0,0,0-3.56.31Z" />
+              <path d="M58.24,73.67h.16A1.78,1.78,0,0,0,60.17,72l2.68-31.22a1.78,1.78,0,1,0-3.56-.31L56.62,71.74A1.78,1.78,0,0,0,58.24,73.67Z" />
+              <path d="M50.74,73.68a1.79,1.79,0,0,0,1.78-1.78V40.61a1.78,1.78,0,1,0-3.57,0V71.89A1.79,1.79,0,0,0,50.74,73.68Z" />
+            </svg>
+            {i18n.deleteItem}
+          </span>
+          , i18n.ttDeleteItem)
+        }
+      </div>
+      <div className="list-add-element" onClick={() => addItem(props['data-id'])}>
+        <span>
+          <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
             <path d="M50.49,22.85A28.25,28.25,0,1,0,78.74,51.1,28.29,28.29,0,0,0,50.49,22.85Zm0,52.94A24.69,24.69,0,1,1,75.17,51.1,24.71,24.71,0,0,1,50.49,75.79Z" />
             <path d="M64.47,49.31H52.27V37.12a1.78,1.78,0,1,0-3.57,0V49.31H36.51a1.78,1.78,0,0,0,0,3.57H48.7V65.08a1.78,1.78,0,0,0,3.57,0V52.88H64.47a1.78,1.78,0,0,0,0-3.57Z" />
           </svg>
-          {Constants.locstr.menu.addItem}
         </span>
-                , Constants.locstr.menu.ttAddItem)}
+        <p>{i18n.addItem}</p>
+      </div>
     </div>
   );
 }
 
+MenuElement.propTypes = {
+  children: itemType
+};
+
 MenuElement.prototype.displayName = 'SortableMenuElement';
 
 const SortableMenuElement = Sortable(MenuElement);
-componentLoader.registerComponent('menu', {
-  edit: editView,
-  preview
-}, {
-  isHotSpottable: false,
-  isScrollable: true,
-  hasNavigableGUI: true,
-  isStylable: true,
-  isComponentTrigger: true
-}, {
-  navigable: true
-},
+componentLoader.registerComponent('menu',
   {
+    edit: editView,
+    preview
+  }, {
+    isHotSpottable: false,
+    isScrollable: true,
+    hasNavigableGUI: true,
+    isStylable: true,
+    isComponentTrigger: true
+  }, {
+    navigable: true
+  }, {
     activeItem: {
       containerTitle: {
         label: 'Active item specific styles',
@@ -629,5 +661,4 @@ componentLoader.registerComponent('menu', {
       }
     }
   }
-
 );
