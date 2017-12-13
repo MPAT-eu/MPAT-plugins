@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -35,7 +35,7 @@ function editView(params) {
   const { id, data, changeAreaContent, context, stateId } = params;
   return (
     // FIXME empty content should come as undefined, not as empty string
-    <RedEdit id={id} {...(data === '' ? {} : data) } changeAreaContent={changeAreaContent} />
+    <RedEdit id={id} {...(data === '' ? {} : data)} changeAreaContent={changeAreaContent} />
   );
 }
 function preview(content = {}) {
@@ -106,7 +106,7 @@ class RedEdit extends React.PureComponent {
                   />
                   , Constants.locstr.redbutton.ttImageUrl)}
                 &nbsp;&nbsp;
-              {getTooltipped(
+                {getTooltipped(
                   <button
                     type="button"
                     target="mediaUploaderTarget"

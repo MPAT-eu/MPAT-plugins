@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -63,28 +63,24 @@ export function mergeState(reducer) {
 }
 
 export function openMediaGallery(callbackFunction, type = undefined, multiple = false) {
-
   const options = {
     frame: 'post',
     state: 'insert',
     title: wp.media.view.l10n.addMedia,
-    multiple: multiple,
-    library: { type: type }
+    multiple,
+    library: { type }
   };
 
   const frame = wp.media(options);
 
   frame.on('insert', () => {
-
     const selection = frame.state().get('selection');
     selection.each((attachment) => {
-
       callbackFunction({
         imgUrl: (attachment.attributes.sizes.large ? attachment.attributes.sizes.large.url : attachment.attributes.sizes.full.url),
         id: attachment.id,
         fullImgUrl: attachment.attributes.sizes.full.url
       });
-
     });
   });
 
@@ -103,7 +99,7 @@ export function noSubmitOnEnter(ev) {
 
 /**
  * string formatted date string
- * @param {*} d 
+ * @param {*} d
  */
 function getDate(d) {
   return new Date(d).toTimeString().replace(/.*(\d{2}:\d{2}:\d{2}).*/, '$1');
@@ -111,7 +107,7 @@ function getDate(d) {
 
 /**
  * Generate XML formatted event
- * @param {*} timestamp 
+ * @param {*} timestamp
  * @param {*} value
  * @author Jean-Philippe Ruijs
  */
@@ -122,9 +118,9 @@ export function getEvent(t, v) {
 
 /**
  * Generate a DSMCC streamevent formatted in XML string
- * @param {*} componentTag 
- * @param {*} streamEventId 
- * @param {*} streamEventName 
+ * @param {*} componentTag
+ * @param {*} streamEventId
+ * @param {*} streamEventName
  * @author Jean-Philippe Ruijs
  */
 export function getDsmcc(componentTag, streamEventId, streamEventName) {

@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -36,10 +36,11 @@ const fr = require('./org/fr');
 const it = require('./org/it');
 const nl = require('./org/nl');
 const en = require('./org/en');
-const exppath = __dirname + "/export";
-console.log('merging to ' + exppath);
 
-const org = JSON.stringify(en); //FIXME quick fix to simulate immutability
+const exppath = `${__dirname}/export`;
+console.log(`merging to ${exppath}`);
+
+const org = JSON.stringify(en); // FIXME quick fix to simulate immutability
 
 let m = new Merge2File('de', de, JSON.parse(org), exppath);
 m.save();

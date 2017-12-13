@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -116,7 +116,7 @@ const fr = {
     noTitle: 'pas de titre',
     error: 'ERREUR',
     assetFinderPlaceholder: 'Tapez nom du "asset"'
-   },
+  },
   styles: {
     choose: 'Choisissez',
     typeUrlOrSelectMedia: 'Saisissez URL ou sélectionnez un média'
@@ -280,7 +280,7 @@ const fr = {
       corrupt: 'Contenu corrompu ou invalide',
       available: 'Contenu non disponible',
       positition: 'Contenu non disponible dans cette position donné',
-      blocked: 'Contenu non disponible en raison du contrôle parental' //(by ETSI 1.2.1)
+      blocked: 'Contenu non disponible en raison du contrôle parental' // (by ETSI 1.2.1)
     },
     state: {
       stopped: 'ARRÊTÉ',

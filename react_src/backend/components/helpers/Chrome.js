@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -15,7 +15,7 @@
  *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * AUTHORS:
  * Jean-Philippe Ruijs (github.com/jeanphilipperuijs)
  *
@@ -131,7 +131,7 @@ export const Chrome = ({ onChange, disableAlpha, rgb, hsl, hsv, hex, renderers }
           pointer={ChromePointerCircle}
           onChange={onChange}
         />
-      </div>,i18n.ttSaturation)}
+      </div>, i18n.ttSaturation)}
       <div style={styles.body}>
         <div style={styles.controls} className="flexbox-fix">
           <div style={styles.color}>
@@ -141,14 +141,14 @@ export const Chrome = ({ onChange, disableAlpha, rgb, hsl, hsv, hex, renderers }
             </div>
           </div>
           <div style={styles.toggles}>
-          {getTooltipped(<div style={styles.hue}>
+            {getTooltipped(<div style={styles.hue}>
               <Hue
                 style={styles.Hue}
                 hsl={hsl}
                 pointer={ChromePointer}
                 onChange={onChange}
               />
-            </div>,i18n.ttHue)}
+            </div>, i18n.ttHue)}
             {getTooltipped(<div style={styles.alpha}>
               <Alpha
                 style={styles.Alpha}
@@ -158,20 +158,20 @@ export const Chrome = ({ onChange, disableAlpha, rgb, hsl, hsv, hex, renderers }
                 renderers={renderers}
                 onChange={onChange}
               />
-            </div>,i18n.ttAlpha)}
+            </div>, i18n.ttAlpha)}
           </div>
         </div>
         {getTooltipped(
-        <ChromeFields
-          rgb={rgb}
-          hsl={hsl}
-          hex={hex}
-          onChange={onChange}
-          disableAlpha={disableAlpha}
-        />, i18n.ttchromeFields)}
+          <ChromeFields
+            rgb={rgb}
+            hsl={hsl}
+            hex={hex}
+            onChange={onChange}
+            disableAlpha={disableAlpha}
+          />, i18n.ttchromeFields)}
       </div>
     </div>
-  )
+  );
 };
 
 export default ColorWrap(Chrome);

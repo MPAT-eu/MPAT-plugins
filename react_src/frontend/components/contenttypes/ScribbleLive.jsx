@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -32,7 +32,7 @@ import { registerHandlers, unregisterHandlers } from '../../RemoteBinding';
 import { componentLoader } from '../../../ComponentLoader';
 import { application } from '../../appData';
 
-//import { generateId } from '../../functions';
+// import { generateId } from '../../functions';
 // import { log } from '../utils';
 
 class Scribblelive extends React.Component {
@@ -266,11 +266,11 @@ function ContentFull({ item }) {
       </td>
       {imgSrc ?
         <td>
-          <img alt="from Feed" style={{ maxHeight: '535px', maxWidth: '950px' }} src={imgSrc} />
+          <img style={{ maxHeight: '535px', maxWidth: '950px' }} src={imgSrc} role="presentation" />
         </td> : null
       }
     </tr></tbody></table>
-    );
+  );
 }
 
 
@@ -283,7 +283,7 @@ function Autor({ item }) {
   const sourceStr = item.PostMeta && item.PostMeta.source ? `via: ${item.PostMeta.source}` : '';
   return (
     <span>
-      <img alt="" src={img} style={{ float: 'left' }} />
+      <img src={img} style={{ float: 'left' }} role="presentation" />
       <span>
         <span><span className="name">{item.Creator.Name}</span>{dateStr} {sourceStr}</span>
       </span>

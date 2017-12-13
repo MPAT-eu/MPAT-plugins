@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -95,7 +95,7 @@ class ListItem extends React.Component {
     const { id, excluded, name, setContent } = this.props.children;
     return (
       <div {...this.props} className="list-item">{name}
-        <div style={{float: 'right'}}>
+        <div style={{ float: 'right' }}>
           {i18n.exclude}
           <input type="checkbox" checked={excluded} value="1" onChange={e => setContent('excluded', e.target.checked, id)} />
         </div>

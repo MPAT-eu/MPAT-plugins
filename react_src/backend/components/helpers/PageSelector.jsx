@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -34,25 +34,25 @@ function compare(s1, s2) {
 
 export default class PageSelector extends React.PureComponent {
   static defaultProps = {
-    selectedPage: "",
-    disabled: false,
+    selectedPage: '',
+    disabled: false
   }
 
-constructor(props){
-  super(props);
-  autobind(this);
-  this.state = {
-    availablePages: [{ key: '', label: `--${i18n.loading}--`, disabled: false }],
-    urlSelectDisabled: true
-  };
-}
+  constructor(props) {
+    super(props);
+    autobind(this);
+    this.state = {
+      availablePages: [{ key: '', label: `--${i18n.loading}--`, disabled: false }],
+      urlSelectDisabled: true
+    };
+  }
 
-componentDidMount(){
-  const that = this;
-  PageIO.getCommon().get(
+  componentDidMount() {
+    const that = this;
+    PageIO.getCommon().get(
     (result) => {
-      if (typeof result === "string") {
-        console.log("error getting pages information:");
+      if (typeof result === 'string') {
+        console.log('error getting pages information:');
         console.log(result);
         that.setState(
           {
@@ -64,7 +64,7 @@ componentDidMount(){
       const urls = [];
       for (const item of result) {
         const singleUrl = {};
-        singleUrl.key = "page://" + item.id;
+        singleUrl.key = `page://${item.id}`;
         singleUrl.label = item.title.rendered ? item.title.rendered : i18n.noTitle;
         singleUrl.label = singleUrl.label.toUpperCase();
         singleUrl.disabled = false;
@@ -84,22 +84,22 @@ componentDidMount(){
         });
     }
   );
-}
+  }
 
-render(){
-  const keyOption = obj => <option key={obj.key} disabled={obj.disabled} value={obj.key} title={obj.label}>{obj.label}</option>;
-  const { selectedPage, disabled, callbackFunction } = this.props;
-  return (
-    <select
-      value={selectedPage}
-      disabled={disabled || this.state.urlSelectDisabled}
-      onChange={e => {
-        const selectedIndex = this.state.availablePages.findIndex(curItem => e.target.value === curItem.key);
-        return this.props.callbackFunction({ url: e.target.value, title: this.state.availablePages[selectedIndex].label })
-      }}
-    >
-      {this.state.availablePages.map(keyOption)}
-    </select>
-  );
-}
+  render() {
+    const keyOption = obj => <option key={obj.key} disabled={obj.disabled} value={obj.key} title={obj.label}>{obj.label}</option>;
+    const { selectedPage, disabled, callbackFunction } = this.props;
+    return (
+      <select
+        value={selectedPage}
+        disabled={disabled || this.state.urlSelectDisabled}
+        onChange={(e) => {
+          const selectedIndex = this.state.availablePages.findIndex(curItem => e.target.value === curItem.key);
+          return this.props.callbackFunction({ url: e.target.value, title: this.state.availablePages[selectedIndex].label });
+        }}
+      >
+        {this.state.availablePages.map(keyOption)}
+      </select>
+    );
+  }
 }

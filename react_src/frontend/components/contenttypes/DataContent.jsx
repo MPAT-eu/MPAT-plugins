@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -27,12 +27,12 @@ import { componentLoader } from '../../../ComponentLoader';
 
 function refresh(url, time, that) {
   axios.get(url).then((o) => {
-    that.setState({data: o.data});
+    that.setState({ data: o.data });
   }).catch((error) => {
-    that.setState({data: "error fetching data"});
+    that.setState({ data: 'error fetching data' });
     console.log(error);
   });
-  setTimeout(function () {refresh(url, time, that);}, time);
+  setTimeout(() => { refresh(url, time, that); }, time);
 }
 
 /**
@@ -51,17 +51,17 @@ class DataContent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: "m"+Math.floor(Math.random()*1000000),
-      data: ""
+      id: `m${Math.floor(Math.random() * 1000000)}`,
+      data: ''
     };
     axios.get(props.origin).then((o) => {
       let str = o.data;
-      if (props.template && props.template !== "") {
+      if (props.template && props.template !== '') {
         str = props.template.replace(/\{\{(\w*)\}\}/g, (match, id) => o.data[id]);
       }
-      this.setState({data: str});
+      this.setState({ data: str });
     }).catch((error) => {
-      this.setState({data: "error fetching data"});
+      this.setState({ data: 'error fetching data' });
       console.log(error);
     });
     if (props.period > 0) {
@@ -74,7 +74,7 @@ class DataContent extends React.Component {
       <div
         className="page-element-content text-content"
         style={{ overflow: 'hidden' }}
-        dangerouslySetInnerHTML={{__html: this.state.data}}
+        dangerouslySetInnerHTML={{ __html: this.state.data }}
       />
     );
   }

@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -21,27 +21,27 @@ import React from 'react';
 import autobind from 'class-autobind';
 
 export default class ComponentToggle extends React.Component {
-    constructor(props) {
-        super(props);
-        autobind(this);
-        this.state = {
-            enabled: this.props.enabled
-        };
-    }
+  constructor(props) {
+    super(props);
+    autobind(this);
+    this.state = {
+      enabled: this.props.enabled
+    };
+  }
 
-    toggle(e) {
-        e.preventDefault();
-        var newState = !this.state.enabled;
-        this.setState(
+  toggle(e) {
+    e.preventDefault();
+    const newState = !this.state.enabled;
+    this.setState(
             { enabled: newState },
             this.props.updateState({
-                componentName: this.props.name,
-                enabled: newState
+              componentName: this.props.name,
+              enabled: newState
             })
         );
-    }
+  }
 
-    render() {
-        return (<button className={this.state.enabled ? 'white_blue selected' : 'button white_blue disabled'} onClick={this.toggle}>{this.props.name}</button>);
-    }
+  render() {
+    return (<button className={this.state.enabled ? 'white_blue selected' : 'button white_blue disabled'} onClick={this.toggle}>{this.props.name}</button>);
+  }
 }

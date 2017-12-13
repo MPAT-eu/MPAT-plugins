@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,87 +28,87 @@
 import React from 'react';
 import { TextInput, SelectInput } from '../helpers/Inputs';
 import { componentLoader } from '../../../ComponentLoader';
-import {getTooltipped} from '../../tooltipper.jsx';
+import { getTooltipped } from '../../tooltipper.jsx';
 import Constants from '../../../constants';
 
 const i18n = Constants.locstr.toggleTracking;
 
 function editView(params) {
-    const { id, data, changeAreaContent, context, stateId } = params;
+  const { id, data, changeAreaContent, context, stateId } = params;
 
-    return (
-        <ToggleTrackingEdit id={id} {...data} changeAreaContent={changeAreaContent} />
-    );
+  return (
+    <ToggleTrackingEdit id={id} {...data} changeAreaContent={changeAreaContent} />
+  );
 }
 
 function preview({ button, disabledText, enabledText }) {
-    return (
-        <div>[{button} ] {disabledText} / {enabledText}</div>
-    );
+  return (
+    <div>[{button} ] {disabledText} / {enabledText}</div>
+  );
 }
 
 
 class ToggleTrackingEdit extends React.PureComponent {
 
-    static defaultProps = {
-        button: '0',
-        disabledText: '',
-        enabledText: ''
-    }
+  static defaultProps = {
+    button: '0',
+    disabledText: '',
+    enabledText: ''
+  }
 
-    onChange(key, value) {
-        this.props.changeAreaContent({ [key]: value });
-    }
+  onChange(key, value) {
+    this.props.changeAreaContent({ [key]: value });
+  }
 
-    render() {
-        const { button, disabledText, enabledText } = this.props;
-        return (
-            <div className="component editHeader">
-                <h2>{i18n.title}</h2>
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <div>
-                                    {i18n.enabledText}<br />
-                                    {getTooltipped(
-                                        <TextInput value={enabledText} onChange={e => this.onChange('enabledText', e.target.value)} tr={true} />
+  render() {
+    const { button, disabledText, enabledText } = this.props;
+    return (
+      <div className="component editHeader">
+        <h2>{i18n.title}</h2>
+        <table>
+          <tbody>
+            <tr>
+              <td>
+                <div>
+                  {i18n.enabledText}<br />
+                  {getTooltipped(
+                    <TextInput value={enabledText} onChange={e => this.onChange('enabledText', e.target.value)} tr />
                                         , i18n.ttEnabledText)}
-                                </div>
-                                <div>
-                                    {i18n.disabledText}<br />
-                                    {getTooltipped(
-                                        <TextInput value={disabledText} onChange={e => this.onChange('disabledText', e.target.value)} tr={true} />
+                </div>
+                <div>
+                  {i18n.disabledText}<br />
+                  {getTooltipped(
+                    <TextInput value={disabledText} onChange={e => this.onChange('disabledText', e.target.value)} tr />
                                         , i18n.ttDisabledText)}
-                                </div>
-                                {getTooltipped(
-                                    <SelectInput
-                                        label={i18n.button}
-                                        value={button}
-                                        options={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map(n => ({ name: n, value: n }))}
-                                        onChange={e => this.onChange('button', e.target.value)}
-                                        tr={true}
-                                    />
+                </div>
+                {getTooltipped(
+                  <SelectInput
+                    label={i18n.button}
+                    value={button}
+                    options={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map(n => ({ name: n, value: n }))}
+                    onChange={e => this.onChange('button', e.target.value)}
+                    tr
+                  />
                                     , i18n.ttButton)}
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        );
-    }
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    );
+  }
 }
 
 componentLoader.registerComponent(
     'toggletracking', {
-        edit: editView,
-        preview
+      edit: editView,
+      preview
     }, {
-        isHotSpottable: false,
-        isScrollable: false,
-        hasNavigableGUI: true,
-        isStylable: true
+      isHotSpottable: false,
+      isScrollable: false,
+      hasNavigableGUI: true,
+      isStylable: true
     }, {
-        navigable: true
+      navigable: true
     }
 );

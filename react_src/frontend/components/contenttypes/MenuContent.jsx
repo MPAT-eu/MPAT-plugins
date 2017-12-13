@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -54,16 +54,16 @@ class MenuContent extends React.Component {
     if (props.listArray !== undefined) {
       for (const item of props.listArray) {
         if (this.currentPageInfo) { // async page loading
-            if (item.appUrl.substring(0, 7) === 'page://') {
+          if (item.appUrl.substring(0, 7) === 'page://') {
               // check if menu item linked to this page via internal uri
-                const itemPageId = +item.appUrl.substring(7);
-                if (itemPageId === +this.currentPageInfo.id) {
-                    this.state.currentIndex = index;
-                }
-            } else if (item.appUrl === this.currentPageInfo.page_url) {
-              // check if menu item linked to this page via standard url
-                this.state.currentIndex = index;
+            const itemPageId = +item.appUrl.substring(7);
+            if (itemPageId === +this.currentPageInfo.id) {
+              this.state.currentIndex = index;
             }
+          } else if (item.appUrl === this.currentPageInfo.page_url) {
+              // check if menu item linked to this page via standard url
+            this.state.currentIndex = index;
+          }
         } else if (item.appUrl === window.location.href ||
           item.appUrl === window.location.pathname) { // sync page loading
           this.state.currentIndex = index;
@@ -87,9 +87,9 @@ class MenuContent extends React.Component {
     ];
     if (application.application_manager.smooth_navigation) {
       activeHandlers.push(createHandler(isHorizontal ? KeyEvent.VK_UP : KeyEvent.VK_LEFT,
-                                        () => {return false;}));
+                                        () => false));
       activeHandlers.push(createHandler(isHorizontal ? KeyEvent.VK_DOWN : KeyEvent.VK_RIGHT,
-                                        () => {return false;}));
+                                        () => false));
     }
     registerHandlers(this, handlersWithTag('active', activeHandlers).concat(
       createTaggedHandler('global', goToKeys, this.goTo)
@@ -102,13 +102,13 @@ class MenuContent extends React.Component {
   prev() {
     const state = this.state;
     if (state.currentIndex === 0) {
-        if (this.props.loop) {
-            state.currentIndex = this.props.listArray.length - 1;
-        } else if (application.application_manager.smooth_navigation) {
-            return false;
-        }
+      if (this.props.loop) {
+        state.currentIndex = this.props.listArray.length - 1;
+      } else if (application.application_manager.smooth_navigation) {
+        return false;
+      }
     } else if (state.currentIndex > 0) {
-    state.currentIndex--;
+      state.currentIndex--;
     } else {
     }
     this.setState(state);
@@ -117,7 +117,7 @@ class MenuContent extends React.Component {
     const curItem = this.props.listArray[state.currentIndex];
     if (curItem.role === 'control' &&
         this.props.targetComponent &&
-        curItem.stateData.triggerAction === "focus") {
+        curItem.stateData.triggerAction === 'focus') {
       const { targetState, targetLabel } = curItem.stateData;
       trackAction('menu', 'control', targetLabel);
       this.props.setAreaState(this.props.targetComponent, targetState);
@@ -127,11 +127,11 @@ class MenuContent extends React.Component {
   next() {
     const state = this.state;
     if (state.currentIndex === this.props.listArray.length - 1) {
-        if (this.props.loop) {
-            state.currentIndex = 0;
-        } else if (application.application_manager.smooth_navigation) {
-            return false;
-        }
+      if (this.props.loop) {
+        state.currentIndex = 0;
+      } else if (application.application_manager.smooth_navigation) {
+        return false;
+      }
     } else if (state.currentIndex < this.props.listArray.length - 1) {
       state.currentIndex++;
     }
@@ -140,7 +140,7 @@ class MenuContent extends React.Component {
     const curItem = this.props.listArray[state.currentIndex];
     if (curItem.role === 'control' &&
         this.props.targetComponent &&
-        curItem.stateData.triggerAction === "focus") {
+        curItem.stateData.triggerAction === 'focus') {
       const { targetState, targetLabel } = curItem.stateData;
       trackAction('menu', 'control', targetLabel);
       this.props.setAreaState(this.props.targetComponent, targetState);
@@ -166,7 +166,7 @@ class MenuContent extends React.Component {
     const curItem = this.props.listArray[this.state.currentIndex];
     if (curItem.role === 'control' &&
        this.props.targetComponent &&
-       curItem.stateData.triggerAction === "enter") {
+       curItem.stateData.triggerAction === 'enter') {
       const { targetState, targetLabel } = curItem.stateData;
       trackAction('menu', 'control', targetLabel);
       this.props.setAreaState(this.props.targetComponent, targetState);
@@ -187,20 +187,22 @@ class MenuContent extends React.Component {
       'menu-content horizontal-menu-component' : 'menu-content vertical-menu-component';
     return (
       <div>
-         {(this.props.title) && <h2>{this.props.title}</h2>}
-         <ul className={componentClass}>
-           {this.props.listArray.map((item, i) => {
-             const activeElementStyles = (i === this.state.currentIndex && this.props.componentStyles.activeItem) ? this.props.componentStyles.activeItem : {}
-             const icon = (this.props.showButtons) ?
-               <img src={application.icons.remote['button_' +
-               item.remoteKey.replace(/VK_/g, '').toLowerCase()]} /> : '';
-             return (
-               <li className={i === this.state.currentIndex ? 'menu-item menu-item-active' : 'menu-item'} key={item.id} id={item.id} >
-                 <span href={item.appUrl} style={activeElementStyles}>{icon} {item.description}</span>
-               </li>
-             );
-           })}
-         </ul>
+        {(this.props.title) && <h2>{this.props.title}</h2>}
+        <ul className={componentClass}>
+          {this.props.listArray.map((item, i) => {
+            const activeElementStyles = (i === this.state.currentIndex && this.props.componentStyles.activeItem) ? this.props.componentStyles.activeItem : {};
+            const icon = (this.props.showButtons) ?
+               (<img
+                 src={application.icons.remote[`button_${item.remoteKey.replace(/VK_/g, '').toLowerCase()}`]}
+                 role="presentation"
+               />) : '';
+            return (
+              <li className={i === this.state.currentIndex ? 'menu-item menu-item-active' : 'menu-item'} key={item.id} id={item.id} >
+                <span href={item.appUrl} style={activeElementStyles}>{icon} {item.description}</span>
+              </li>
+            );
+          })}
+        </ul>
       </div>
     );
   }

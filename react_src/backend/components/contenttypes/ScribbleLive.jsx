@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -30,6 +30,7 @@ import { getTooltipped } from '../../tooltipper.jsx';
 import _reactCropStyle from 'react-image-crop/dist/ReactCrop.css';
 
 import Constants from '../../../constants';
+
 const i18n = Constants.locstr.scribbleLive;
 function editView(params) {
   const { id, data, changeAreaContent, context, stateId } = params;

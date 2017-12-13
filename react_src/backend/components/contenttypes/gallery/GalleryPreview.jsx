@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -93,9 +93,9 @@ export default class GalleryPreview extends React.PureComponent {
         </div>
         }
 
-        <img src={imageUrl} style={imgStyle} />
+        <img src={imageUrl} style={imgStyle} role="presentation" />
 
-       {arrows &&
+        {arrows &&
         <div>
           <span className="gallery-arrow gallery-arrow-right" onClick={() => this.next()}>&rarr;</span>
         </div>
@@ -103,8 +103,8 @@ export default class GalleryPreview extends React.PureComponent {
 
         <div className="gallery-dots">
           {dots && images.map((item, i) => (
-            <span key={i} className={(i === this.state.currentSlide) ? "gallery-dot-focused" : "gallery-dot"}>
-                  <Dot radius={8} color={(i === this.state.currentSlide) ? this.props.componentStyles.dotStylesFocused : this.props.componentStyles.dotStyles} />
+            <span key={i} className={(i === this.state.currentSlide) ? 'gallery-dot-focused' : 'gallery-dot'}>
+              <Dot radius={8} color={(i === this.state.currentSlide) ? this.props.componentStyles.dotStylesFocused : this.props.componentStyles.dotStyles} />
             </span>
           ))}
         </div>

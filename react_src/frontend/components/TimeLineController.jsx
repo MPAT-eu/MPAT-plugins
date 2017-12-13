@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -105,7 +105,7 @@ export default class TimeLineController extends React.Component {
                                        info.ranges[i].title), cedJS - nowJS);
           } else {
             // if this event is in the past, show the page immediately
-            this.setPageFun(info.ranges[i].meta, info.ranges[i].title)
+            this.setPageFun(info.ranges[i].meta, info.ranges[i].title);
           }
           break;
         default:

@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -96,9 +96,9 @@ export default class HotSpot extends React.Component {
   getIcon() {
     const hs = this.props.hotSpotMeta;
     const style = { width: '100%' };
-    if (this.state.active && hs.custom_active_icon) return <img alt="" style={style} src={hs.custom_active_icon} />;
-    if (this.state.focused && hs.custom_focused_icon) return <img alt="" style={style} src={hs.custom_focused_icon} />;
-    if (hs.custom_normal_icon) return <img alt="" style={style} src={hs.custom_normal_icon} />;
+    if (this.state.active && hs.custom_active_icon) return <img style={style} src={hs.custom_active_icon} role="presentation" />;
+    if (this.state.focused && hs.custom_focused_icon) return <img style={style} src={hs.custom_focused_icon} role="presentation" />;
+    if (hs.custom_normal_icon) return <img style={style} src={hs.custom_normal_icon} role="presentation" />;
 
     const stateBg = this.state.active ? hs.active_bg : hs.focused_bg;
     const bg = this.state.focused ? stateBg : hs.normal_bg;
@@ -211,7 +211,7 @@ export default class HotSpot extends React.Component {
     const styles = this.getStyles();
     return (
       <div className="hotspot-content" style={styles.content}>
-        {typeof Content === 'object' ? "Oops!" : <Content
+        {typeof Content === 'object' ? 'Oops!' : <Content
           {...this.state}
           {...this.props.data}
           id={this.props.i}

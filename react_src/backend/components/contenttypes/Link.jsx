@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,7 +28,7 @@
 import React, { PropTypes as Types } from 'react';
 import autobind from 'class-autobind';
 import { noSubmitOnEnter } from '../../utils';
-import {getTooltipped} from '../../tooltipper.jsx';
+import { getTooltipped } from '../../tooltipper.jsx';
 import PageSelector from '../helpers/PageSelector';
 import { componentLoader } from '../../../ComponentLoader';
 import Constants from '../../../constants';
@@ -102,14 +102,14 @@ class LinkEdit extends React.PureComponent {
     if (this.props.labelEdited) {
       this.props.changeAreaContent(
         {
-          'url': selectedPage.url
-        })
+          url: selectedPage.url
+        });
     } else {
       this.props.changeAreaContent(
         {
-          'label': selectedPage.title,
-          'url': selectedPage.url
-        })
+          label: selectedPage.title,
+          url: selectedPage.url
+        });
     }
   }
 
@@ -137,8 +137,10 @@ class LinkEdit extends React.PureComponent {
                   , Constants.locstr.link.ttLinkImageUrl)}
                 <div style={{ marginLeft: 20, marginRight: 20, display: 'inline' }}>OR</div>
                 {getTooltipped(
-                  <button type="button" target="linkImageUrlInput" data-type="image"
-                    className="button mpat-insert-media white_blue">{Constants.locstr.link.chooseLinkImage}
+                  <button
+                    type="button" target="linkImageUrlInput" data-type="image"
+                    className="button mpat-insert-media white_blue"
+                  >{Constants.locstr.link.chooseLinkImage}
                   </button>
                   , Constants.locstr.link.ttChooseLinkImage)}
               </td>
@@ -148,10 +150,12 @@ class LinkEdit extends React.PureComponent {
                 <label>{Constants.locstr.link.linkLabel}: </label>
               </td>
               <td>
-              {getTooltipped(
-                <input type="text" placeholder={Constants.locstr.link.placeHolderLinkLabel} value={label}
-                  onKeyPress={noSubmitOnEnter}
-                  onChange={e => this.setContent.call(this, 'label', e.target.value)} />
+                {getTooltipped(
+                  <input
+                    type="text" placeholder={Constants.locstr.link.placeHolderLinkLabel} value={label}
+                    onKeyPress={noSubmitOnEnter}
+                    onChange={e => this.setContent.call(this, 'label', e.target.value)}
+                  />
                   , Constants.locstr.link.ttLinkLabel)}
               </td>
             </tr>
@@ -160,10 +164,12 @@ class LinkEdit extends React.PureComponent {
                 <label>{Constants.locstr.link.linkTarget}: </label>
               </td>
               <td>
-              {getTooltipped(
-                <input type="text" placeholder={Constants.locstr.link.placeHolderLinkUrl} value={url}
-                  onKeyPress={noSubmitOnEnter}
-                  onChange={e => this.setContent.call(this, 'url', e.target.value)} />
+                {getTooltipped(
+                  <input
+                    type="text" placeholder={Constants.locstr.link.placeHolderLinkUrl} value={url}
+                    onKeyPress={noSubmitOnEnter}
+                    onChange={e => this.setContent.call(this, 'url', e.target.value)}
+                  />
                   , Constants.locstr.link.ttLinkTarget)}
               </td>
             </tr>
@@ -172,11 +178,11 @@ class LinkEdit extends React.PureComponent {
                 <label>{Constants.locstr.link.pages}: </label>
               </td>
               <td>
-              {getTooltipped(
-                <PageSelector
-                  selectedPage={url}
-                  callbackFunction={this.setPageCallbackFunction}
-                />
+                {getTooltipped(
+                  <PageSelector
+                    selectedPage={url}
+                    callbackFunction={this.setPageCallbackFunction}
+                  />
                   , Constants.locstr.link.ttPages)}
               </td>
             </tr>
@@ -185,9 +191,11 @@ class LinkEdit extends React.PureComponent {
                 <label>{Constants.locstr.link.imageLayoutCover}: </label>
               </td>
               <td>
-              {getTooltipped(
-                <input type="checkbox" checked={cover}
-                  onChange={e => this.setContent.call(this, 'cover', e.target.checked)} />
+                {getTooltipped(
+                  <input
+                    type="checkbox" checked={cover}
+                    onChange={e => this.setContent.call(this, 'cover', e.target.checked)}
+                  />
                   , Constants.locstr.link.ttImageLayoutCover)}
               </td>
             </tr>

@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -68,11 +68,11 @@ export default class PageElement extends React.Component {
     focusedStyles: Types.object,
     styles: Types.object,
     navigable: Types.bool.isRequired,
-    queryParams : Types.oneOfType([
-          Types.string,
-          Types.array,
-          Types.object
-          ])
+    queryParams: Types.oneOfType([
+      Types.string,
+      Types.array,
+      Types.object
+    ])
   };
 
   static defaultProps = {
@@ -80,7 +80,7 @@ export default class PageElement extends React.Component {
     type: 'text',
     focusedStyles: {}, // styles to be applied to the component wrapper for focused component border
     styles: { // styles to be applied to the component
-        container: {} // backward compatibility, TODO remove it (every area should already come with styles container) when legacy compatibility is dropped
+      container: {} // backward compatibility, TODO remove it (every area should already come with styles container) when legacy compatibility is dropped
     }
   };
 
@@ -96,17 +96,17 @@ export default class PageElement extends React.Component {
     const positionH = calcStyle(x, y, w, h);
     let highlightStyles = Object.assign({}, focusedStyles);
     if (focusedStyles && focusedStyles.borderWidth) {
-        const bWidth = focusedStyles.borderWidth;
-        highlightStyles = Object.assign({}, highlightStyles, {top: -bWidth, left: -bWidth, right: -bWidth, bottom: -bWidth});
+      const bWidth = focusedStyles.borderWidth;
+      highlightStyles = Object.assign({}, highlightStyles, { top: -bWidth, left: -bWidth, right: -bWidth, bottom: -bWidth });
     }
-    let style = { ...this.props.styles.container, ...{top: 0, left: 0, right: 0, bottom: 0, position: 'absolute'} };
+    const style = { ...this.props.styles.container, ...{ top: 0, left: 0, right: 0, bottom: 0, position: 'absolute' } };
     if (dontVisualizeFocus || !focused) {
-        highlightStyles.borderColor = 'transparent';
+      highlightStyles.borderColor = 'transparent';
     }
     const elementClasses = {
       'page-element': true,
       active
-    }
+    };
     elementClasses[`${type}-component`] = true;
     // if (style.backgroundColor) highlightStyles.backgroundColor = style.backgroundColor;
     // if (style.background) highlightStyles.background = style.background;
@@ -127,12 +127,12 @@ export default class PageElement extends React.Component {
       (hotSpotMeta.isHotSpot ?
         <HotSpot {...this.props} style={positionH} componentStyle={this.props.styles.container} />
         :
-          <div
-            style={positionH}
-            className={classnames(elementClasses)}
-          >
-            {Content ?
-              <div style={style}>
+        <div
+          style={positionH}
+          className={classnames(elementClasses)}
+        >
+          {Content ?
+            <div style={style}>
               <Content
                 id={this.props.i}
                 position={calcStyle(0, 0, w, h)}
@@ -147,16 +147,17 @@ export default class PageElement extends React.Component {
                 componentStyles={this.props.styles}
                 {...data}
               />
-              </div>
+            </div>
               :
-              <div dangerouslySetInnerHTML={{ __html:
-                `<!-- unable to load view "${frontendView}" for component "${type}" -->` }} />
-            }
             <div
-              className={classnames({ highlight: true, focused, dontVisualizeFocus })}
-              style={highlightStyles}
-            >
-          </div>
+              dangerouslySetInnerHTML={{ __html:
+                `<!-- unable to load view "${frontendView}" for component "${type}" -->` }}
+            />
+            }
+          <div
+            className={classnames({ highlight: true, focused, dontVisualizeFocus })}
+            style={highlightStyles}
+          />
         </div>
       )
     );

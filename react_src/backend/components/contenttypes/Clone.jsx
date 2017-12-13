@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -33,7 +33,7 @@ import CanvasComponent from '../helpers/CanvasComponent';
 function editView(params) {
   const { id, data, changeAreaContent } = params;
   return (
-    <CloneEdit id={id} {...data} changeAreaContent={changeAreaContent}/>
+    <CloneEdit id={id} {...data} changeAreaContent={changeAreaContent} />
   );
 }
 
@@ -55,7 +55,7 @@ class CloneEdit extends React.PureComponent {
     this.state = {
       availablePages: [{ key: '', label: '--LOADING--', disabled: false }],
       urlSelectDisabled: false,
-      completePageArray: null,
+      completePageArray: null
     };
   }
 
@@ -88,17 +88,17 @@ class CloneEdit extends React.PureComponent {
       (layouts) => {
         this.refs.canvascomponent.updateCanvas(layouts.find(l => l.ID == layoutId).mpat_content.layout);
       },
-      (e) => {console.log('could not access layout of source');}
+      (e) => { console.log('could not access layout of source'); }
     );
   }
 
   setPage(pageId) {
-    this.props.changeAreaContent({ pageId: pageId });
+    this.props.changeAreaContent({ pageId });
     this.updateLayout(pageId, this.state.availablePages);
   }
 
   setComponent(boxStateId) {
-    const ids = boxStateId.split(":");
+    const ids = boxStateId.split(':');
     this.props.changeAreaContent({
       boxId: ids[0],
       stateId: ids[1]
@@ -111,7 +111,7 @@ class CloneEdit extends React.PureComponent {
 
   render() {
     const { pageId, boxId, stateId, layout } = this.props;
-    let components = [
+    const components = [
       <option key={0} value="">--{Constants.locstr.clone.choose}--</option>
     ];
     if (pageId && this.state.destinationPage) {
@@ -146,7 +146,7 @@ class CloneEdit extends React.PureComponent {
               </td>
               <td rowSpan={2}>
                 <label>Source Layout:</label>
-                <CanvasComponent ref="canvascomponent"/>
+                <CanvasComponent ref="canvascomponent" />
               </td>
             </tr>
             <tr>

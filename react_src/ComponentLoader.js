@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -118,12 +118,12 @@ function ComponentLoader() {
       }
     };
     return Object.assign(defaultComponentValues, componentDefinition.defaults);
-  }
+  };
 
   this.getComponentDefault = (type, name) => {
     const componentDefaults = this.getComponentDefaults(type);
     return componentDefaults[name];
-  }
+  };
 
   this.getComponentStyles = (type) => {
     const componentDefinition = this.getComponentByType(type);
@@ -142,20 +142,20 @@ function ComponentLoader() {
             maxValue: 50
           },
           suffix: 'px',
-          sanitizeValue: (v) => (v.substring(0, v.indexOf('px')) || ''),
-          sanitizeCallback: (e) => (`${e.target.value}px`)
+          sanitizeValue: v => (v.substring(0, v.indexOf('px')) || ''),
+          sanitizeCallback: e => (`${e.target.value}px`)
         },
         lineHeight: {
           label: i18n.lineHeight.label,
           fieldType: 'number',
           fieldProps: {
-              placeholder: i18n.lineHeight.label,
-              minValue: 5,
-              maxValue: 50
+            placeholder: i18n.lineHeight.label,
+            minValue: 5,
+            maxValue: 50
           },
           suffix: 'px',
-          sanitizeValue: (v) => (v.substring(0, v.indexOf('px')) || ''),
-          sanitizeCallback: (e) => (`${e.target.value}px`)
+          sanitizeValue: v => (v.substring(0, v.indexOf('px')) || ''),
+          sanitizeCallback: e => (`${e.target.value}px`)
         },
         fontWeight: {
           label: i18n.fontWeight.label,
@@ -182,8 +182,8 @@ function ComponentLoader() {
             maxValue: 50
           },
           suffix: 'px',
-          sanitizeValue: (v) => (v.substring(0, v.indexOf('px')) || ''),
-          sanitizeCallback: (e) => (`${e.target.value}px`)
+          sanitizeValue: v => (v.substring(0, v.indexOf('px')) || ''),
+          sanitizeCallback: e => (`${e.target.value}px`)
         },
         margin: {
           label: i18n.margin.label,
@@ -194,8 +194,8 @@ function ComponentLoader() {
             maxValue: 50
           },
           suffix: 'px',
-          sanitizeValue: (v) => (v.substring(0, v.indexOf('px')) || ''),
-          sanitizeCallback: (e) => (`${e.target.value}px`)
+          sanitizeValue: v => (v.substring(0, v.indexOf('px')) || ''),
+          sanitizeCallback: e => (`${e.target.value}px`)
         },
         padding: {
           label: i18n.padding.label,
@@ -206,8 +206,8 @@ function ComponentLoader() {
             maxValue: 50
           },
           suffix: 'px',
-          sanitizeValue: (v) => (v.substring(0, v.indexOf('px')) || ''),
-          sanitizeCallback: (e) => (`${e.target.value}px`)
+          sanitizeValue: v => (v.substring(0, v.indexOf('px')) || ''),
+          sanitizeCallback: e => (`${e.target.value}px`)
         },
         color: {
           label: i18n.color.label,
@@ -237,16 +237,16 @@ function ComponentLoader() {
    * (object) new_classes - contains component classes for the edit, view and preview.
    */
   this.overwriteComponent = function (type, newClasses, options = {}, defaults = {}, styles = {}) {
-      for (let i = 0; i < components.length; i++) {
-        if (components[i].type === type) {
-          components[i].classes = newClasses;
-          components[i].options = options;
-          components[i].defaults = defaults;
-          components[i].styles = styles;
-          break;
-        }
+    for (let i = 0; i < components.length; i++) {
+      if (components[i].type === type) {
+        components[i].classes = newClasses;
+        components[i].options = options;
+        components[i].defaults = defaults;
+        components[i].styles = styles;
+        break;
       }
-    };
+    }
+  };
 
   /**
    * (string) type - component name.

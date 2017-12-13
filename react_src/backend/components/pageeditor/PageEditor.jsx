@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -48,7 +48,7 @@ import PageModelCreator from './PageModelCreator';
 const i18n = Constants.locstr.pageEditor;
 
 const saveTitles = {
-  model: "SAVE MODEL",
+  model: 'SAVE MODEL',
   instance: i18n.saveModelInstance,
   page: i18n.savePage
 };
@@ -66,56 +66,56 @@ export default class PageEditor extends React.PureComponent {
     styleDefinitions: {
       container: {
         fontSize: {
-          label: "Font Size",
-          fieldType: "text",
+          label: 'Font Size',
+          fieldType: 'text',
           fieldProps: {
-            placeholder: i18n.phFontSize,
+            placeholder: i18n.phFontSize
           }
         },
         backgroundColor: {
-          label: "Background Color",
-          fieldType: "color",
+          label: 'Background Color',
+          fieldType: 'color',
           fieldProps: {
-            defaultValue: 'transparent',
+            defaultValue: 'transparent'
           }
         },
         backgroundImage: {
-          label: "Background image",
-          fieldType: "image",
+          label: 'Background image',
+          fieldType: 'image',
           fieldProps: {}
         }
       },
       activeComponent: {
         sectionTitle: {
-          label: "Active component styles",
-          fieldType: "separator",
+          label: 'Active component styles',
+          fieldType: 'separator',
           fieldProps: {
             description: i18n.descActiveComponent
           }
         },
         borderWidth: {
-          label: "Border size",
-          fieldType: "text",
+          label: 'Border size',
+          fieldType: 'text',
           fieldProps: {
-            placeholder: i18n.phBorderSize,
+            placeholder: i18n.phBorderSize
           }
         },
         borderStyle: {
-          label: "Border style",
-          fieldType: "select",
+          label: 'Border style',
+          fieldType: 'select',
           fieldProps: {
             options: [
-              "none",
-              "solid",
-              "hidden",
-              "dotted",
-              "dashed"
+              'none',
+              'solid',
+              'hidden',
+              'dotted',
+              'dashed'
             ]
           }
         },
         borderColor: {
-          label: "Border color",
-          fieldType: "color",
+          label: 'Border color',
+          fieldType: 'color',
           fieldProps: {
             defaultValue: 'transparent'
           }
@@ -177,7 +177,7 @@ export default class PageEditor extends React.PureComponent {
         >
           {area.label}
         </div>
-      )
+      );
     });
     const previewInfo = {
       content: this.props.pageContent,
@@ -280,7 +280,7 @@ export default class PageEditor extends React.PureComponent {
               className="button blue_white"
               onClick={(ev) => {
                 Popup.close();
-                that.setState({ editMode: 'editModel', willSaveTo: 'model' })
+                that.setState({ editMode: 'editModel', willSaveTo: 'model' });
               }}
               style={{ margin: 5, position: 'relative', bottom: 17 }}
             >
@@ -362,7 +362,7 @@ export default class PageEditor extends React.PureComponent {
         ID: this.state.postId,
         post_type: 'page_model',
         post_title: window.Post.postInfo.post_title,
-        post_parent: '' + this.state.postParent,
+        post_parent: `${this.state.postParent}`,
         post_status: 'publish',
         mpat_content: {
           model: this.props.model,
@@ -379,7 +379,7 @@ export default class PageEditor extends React.PureComponent {
         this.saveIsCurrentlyActive = false;
       },
       (e) => {
-        window.alert("Error while saving: " + e);
+        window.alert(`Error while saving: ${e}`);
         this.saveIsCurrentlyActive = false;
       }
     );
@@ -402,13 +402,13 @@ export default class PageEditor extends React.PureComponent {
               onClick={(ev) => {
                 ev.preventDefault();
                 Popup.close();
-                const newname = document.getElementById("modelinstancenewname").value;
+                const newname = document.getElementById('modelinstancenewname').value;
                 this.props.model.instance = true;
                 PageIO.getCommon().post(
                   {
                     type: 'page', // save as page
                     title: newname,
-                    parent: '' + this.state.postParent,
+                    parent: `${this.state.postParent}`,
                     status: 'publish',
                     mpat_content: {
                       model: this.props.model,
@@ -422,11 +422,11 @@ export default class PageEditor extends React.PureComponent {
                   (a) => {
                     // after saving as a page, edit that page
                     clearHistory();
-                    window.location.href = window.location.origin + window.location.pathname +
-                      '?post=' + a.data.id + '&action=edit';
+                    window.location.href = `${window.location.origin + window.location.pathname
+                      }?post=${a.data.id}&action=edit`;
                   },
                   (e) => {
-                    window.alert("Error while saving: " + e);
+                    window.alert(`Error while saving: ${e}`);
                     this.saveIsCurrentlyActive = false;
                   }
                 );
@@ -458,7 +458,7 @@ export default class PageEditor extends React.PureComponent {
         type: 'page',
         status: 'publish',
         title: window.Post.postInfo.post_title,
-        parent: '' + this.state.postParent,
+        parent: `${this.state.postParent}`,
         mpat_content: {
           model: this.props.model,
           background: this.props.background,
@@ -477,7 +477,7 @@ export default class PageEditor extends React.PureComponent {
         window.location.href = `post.php?post=${a.data.id}&action=edit`;
       },
       (e) => {
-        window.alert(i18n.errorWhileSaving + ': ' + e);
+        window.alert(`${i18n.errorWhileSaving}: ${e}`);
         this.saveIsCurrentlyActive = false;
       }
     );
@@ -486,19 +486,19 @@ export default class PageEditor extends React.PureComponent {
   savePageOrInstance() {
     let save_state = 'publish';
     // save scheduling info on page update
-    const sc_status = "mpat_sc_publish";
-    const sc_pubdate = sc_status + "_pubdate";
+    const sc_status = 'mpat_sc_publish';
+    const sc_pubdate = `${sc_status}_pubdate`;
     let schedule_meta = null;
     if (window.Post.postInfo.post_status == sc_status) {
-      let date_elt = document.getElementsByName(sc_pubdate);
-      let hrs_elt = document.getElementsByName(sc_pubdate + "_time_hrs");
-      let min_elt = document.getElementsByName(sc_pubdate + "_time_mins");
+      const date_elt = document.getElementsByName(sc_pubdate);
+      const hrs_elt = document.getElementsByName(`${sc_pubdate}_time_hrs`);
+      const min_elt = document.getElementsByName(`${sc_pubdate}_time_mins`);
       if (date_elt.length && hrs_elt.length && min_elt.length) {
-        let date_split = date_elt[0].value.split('.');
+        const date_split = date_elt[0].value.split('.');
         if (date_split.length == 3) {
           // wordpress local time = UTC + gmt_offset(hours) so UTC(wp_time) = wp_time + gmt_offset and wp_time = UTC(wp_time) - gmt_offset
           // this way we don't have to deal with the javascript timezone and we can change the wordpress timezone at will
-          schedule_meta = Date.UTC(date_split[2], date_split[1] - 1, date_split[0], hrs_elt[0].value, min_elt[0].value) / 1000 - wp_option_gmt_offset['gmt_offset'] * 3600;
+          schedule_meta = Date.UTC(date_split[2], date_split[1] - 1, date_split[0], hrs_elt[0].value, min_elt[0].value) / 1000 - wp_option_gmt_offset.gmt_offset * 3600;
           save_state = sc_status;
         }
       }
@@ -508,7 +508,7 @@ export default class PageEditor extends React.PureComponent {
       {
         ID: this.state.postId,
         title: window.Post.postInfo.post_title,
-        parent: '' + this.state.postParent,
+        parent: `${this.state.postParent}`,
         status: save_state,
         mpat_content: {
           model: this.props.model,
@@ -526,7 +526,7 @@ export default class PageEditor extends React.PureComponent {
         this.saveIsCurrentlyActive = false;
       },
       (e) => {
-        window.alert("Error while saving: " + e);
+        window.alert(`Error while saving: ${e}`);
         this.saveIsCurrentlyActive = false;
       }
     );
@@ -554,10 +554,10 @@ export default class PageEditor extends React.PureComponent {
     if (!el) {
       el = document.createElement('li');
       el.id = 'pageeditorstatus';
-      document.getElementById("wp-admin-bar-root-default").appendChild(el);
+      document.getElementById('wp-admin-bar-root-default').appendChild(el);
     }
-    el.innerHTML = '<p class="page_editor_status">Page saved</p>'
-    window.setTimeout(() => { document.getElementById('pageeditorstatus').innerHTML = '' }, 5000);
+    el.innerHTML = '<p class="page_editor_status">Page saved</p>';
+    window.setTimeout(() => { document.getElementById('pageeditorstatus').innerHTML = ''; }, 5000);
   }
 
   editLayout(e) {
@@ -574,7 +574,7 @@ export default class PageEditor extends React.PureComponent {
     PageIO.getCommon().post(
       {
         title: window.Post.postInfo.post_title,
-        parent: '' + this.state.postParent,
+        parent: `${this.state.postParent}`,
         status: 'publish',
         mpat_content: {
           model: this.props.model,
@@ -588,51 +588,47 @@ export default class PageEditor extends React.PureComponent {
       (a) => {
         clearHistory();
         window.location.href =
-          `${window.location.origin}${window.location.pathname}?post=${a.data.id}&action=edit`
+          `${window.location.origin}${window.location.pathname}?post=${a.data.id}&action=edit`;
       },
       (e) => {
-        window.alert("Error while duplicating: " + e);
+        window.alert(`Error while duplicating: ${e}`);
       }
     );
   }
 
   toggleSchedule(e) { // eslint-disable-line
 
-    if (e)
-      e.preventDefault();
+    if (e) { e.preventDefault(); }
 
-    var sc_revisions = document.getElementById("meta_mpat_sc_publish_revisions");
-    var sc_datetime = document.getElementById("meta_mpat_sc_publish");
+    const sc_revisions = document.getElementById('meta_mpat_sc_publish_revisions');
+    const sc_datetime = document.getElementById('meta_mpat_sc_publish');
 
-    var html1 = "";
-    if (sc_revisions)
-      html1 = sc_revisions.innerHTML.replace(/mpat_sc_publish/gi, "mpat_sc_popup");
+    let html1 = '';
+    if (sc_revisions) { html1 = sc_revisions.innerHTML.replace(/mpat_sc_publish/gi, 'mpat_sc_popup'); }
 
-    var html2 = "";
-    if (sc_datetime)
-      html2 = sc_datetime.innerHTML.replace(/mpat_sc_publish/gi, "mpat_sc_popup");
+    let html2 = '';
+    if (sc_datetime) { html2 = sc_datetime.innerHTML.replace(/mpat_sc_publish/gi, 'mpat_sc_popup'); }
 
 
     class ScheduleContent extends React.PureComponent {
 
       componentDidMount() {
-
         if (sc_datetime) {
-          window.PageManagement.setCalendar("mpat_sc_popup_pubdate");
+          window.PageManagement.setCalendar('mpat_sc_popup_pubdate');
           window.PageManagement.restoreValues();
         }
-      };
+      }
 
       render() {
         return (
           <div id="sc_box">
-            <div dangerouslySetInnerHTML={{ __html: html1 }}></div>
-            <div dangerouslySetInnerHTML={{ __html: html2 }}></div>
+            <div dangerouslySetInnerHTML={{ __html: html1 }} />
+            <div dangerouslySetInnerHTML={{ __html: html2 }} />
           </div>
         );
-      };
+      }
 
-    };
+    }
     Popup.create({
       content: (
         <div>
@@ -641,7 +637,6 @@ export default class PageEditor extends React.PureComponent {
         </div>
       )
     });
-
   }
 
   // TODO icon for default active
@@ -671,7 +666,7 @@ export default class PageEditor extends React.PureComponent {
     const curEditState = this.props.selectedAreaStates[this.state.curEditId];
     const that = this;
     const boxes = (!layout ? null : layout.data.map(
-      function (box, i) {
+      (box, i) => {
         const editable = (that.state.editMode === 'editModel') ||
           (model === undefined || model[box.i].editable);
         return (
@@ -715,8 +710,8 @@ export default class PageEditor extends React.PureComponent {
       window.Pages.map((p, i) => (<option key={i + 1} value={p.ID}>{p.post_title}</option>));
     pageParentOptions.unshift(<option key="0" value="0">--{i18n.noParent}--</option>);
 
-    let currentPermaLink = $('#sample-permalink').text();
-    let ffStyle = { fontSize: 'small', background: 'white', padding: '5px', margin: '5px', borderRadius: '3px', border: '2px dashed #43b4f9' };
+    const currentPermaLink = $('#sample-permalink').text();
+    const ffStyle = { fontSize: 'small', background: 'white', padding: '5px', margin: '5px', borderRadius: '3px', border: '2px dashed #43b4f9' };
 
     return (
       <div className="mpat">
@@ -755,7 +750,7 @@ export default class PageEditor extends React.PureComponent {
                     , i18n.ttTitle)}
 
                 </td>
-                <td width="20"></td>
+                <td width="20" />
                 <td>
                   <label>{i18n.pageLink}: </label>
                 </td>
@@ -810,7 +805,7 @@ export default class PageEditor extends React.PureComponent {
                       type="button"
                       className="button white_blue"
                       id="styleEditButton"
-                      onClick={(e) => Popup.create(
+                      onClick={e => Popup.create(
                         {
                           content: (
                             <StylesPopup
@@ -898,7 +893,7 @@ export default class PageEditor extends React.PureComponent {
       'theme_mods_mpat-theme',
       (r) => {
         if (r.custom_css_post_id) {
-          const res = window.CustomCSS.find((p) => p.ID === r.custom_css_post_id);
+          const res = window.CustomCSS.find(p => p.ID === r.custom_css_post_id);
           if (res) {
             casesToCheck.push(
               {
@@ -911,21 +906,20 @@ export default class PageEditor extends React.PureComponent {
         }
       },
       (error) => {
-        console.log("error accessing option theme_mods_mpat-theme" + " " + error);
+        console.log(`${'error accessing option theme_mods_mpat-theme' + ' '}${error}`);
       });
   }
 
   processCases(cases) {
     const prcases = cases.map((cas) => {
       if (cas.type === 'additional') {
-        return '/* additionalcss */\n' + cas.css + '\n/* endaddcss */';
-      } else { // cas.type === 'border'
-        return `.box_${cas.box}_state_${cas.state}_obj_${cas.object} { border: ${cas.css};}`;
-      }
+        return `/* additionalcss */\n${cas.css}\n/* endaddcss */`;
+      }  // cas.type === 'border'
+      return `.box_${cas.box}_state_${cas.state}_obj_${cas.object} { border: ${cas.css};}`;
     });
     const css = prcases.join('\n');
     const css1 = urlencode(css);
-    const url = window.location.origin + "/proxy.php?output=json&text=" + css1;
+    const url = `${window.location.origin}/proxy.php?output=json&text=${css1}`;
     console.log(url);
     axios.get(url,
       { headers: { 'X-Proxy-URL': 'http://jigsaw.w3.org/css-validator/validator' } })
@@ -939,8 +933,8 @@ export default class PageEditor extends React.PureComponent {
           const css2 = css.split('\n'); // to reconstruct lines with correct number
           for (let i = 0; i < errorNb; i++) {
             const error = errors[i];
-            errorString += error.message + ' (context: ' + error.context + ')\n';
-            errorString += css2[error.line - 1] + '\n\n';
+            errorString += `${error.message} (context: ${error.context})\n`;
+            errorString += `${css2[error.line - 1]}\n\n`;
           }
           window.alert(errorString);
         } else {
@@ -949,7 +943,7 @@ export default class PageEditor extends React.PureComponent {
       })
       .catch(
       (error) => {
-        window.alert('CSS checking error: ' + error);
+        window.alert(`CSS checking error: ${error}`);
       }
       );
   }
@@ -968,7 +962,7 @@ export default class PageEditor extends React.PureComponent {
 
   switchParentTo(e) {
     const newParentId = e.target.value;
-    window.Post.postInfo.post_parent = "" + newParentId;
+    window.Post.postInfo.post_parent = `${newParentId}`;
     this.state.postParent = newParentId;
     this.forceUpdate();
   }
@@ -1062,9 +1056,9 @@ export default class PageEditor extends React.PureComponent {
     );
   }
 }
-/*FIXME oh my...*/
+/* FIXME oh my...*/
 let $ = jQuery;
-$(function () {
+$(() => {
   $('#slugdiv-hide, #members-cp-hide').prop('checked', false);
   $('.columns-prefs-1 input').click();
 });

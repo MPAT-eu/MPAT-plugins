@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -47,7 +47,7 @@ export default class PageModelCreator extends React.PureComponent {
     super(props);
     autobind(this);
     this.state = {
-      model: { origin: window.Post.postInfo.post_title + '_pm' }
+      model: { origin: `${window.Post.postInfo.post_title}_pm` }
     };
     Object.keys(props.content).forEach((a) => {
       const defState = props.content[a][Object.keys(props.content[a])[0]];
@@ -61,10 +61,10 @@ export default class PageModelCreator extends React.PureComponent {
   }
 
   pmfOK() {
-    const name = window.Post.postInfo.post_title + '_pm';
+    const name = `${window.Post.postInfo.post_title}_pm`;
     ModelIO.getCommon().get(
       (models) => {
-        const exists = models.find((m) => m.post_title === name);
+        const exists = models.find(m => m.post_title === name);
         if (exists) {
           ModelIO.getCommon().put(
             exists.ID,
@@ -121,81 +121,79 @@ export default class PageModelCreator extends React.PureComponent {
     const availableComponents = componentLoader.getComponents();
     let keyIndex = 1;
     const fields = Object.keys(this.props.content).map(
-      (boxId, i) => {
-        return (
-          <tr key={keyIndex++}>
-            <td>{i+1}</td>
-            <td>
-              <input
-                type="checkbox"
-                checked={this.state.model[boxId].editable}
-                onChange={(e) => {
-                  this.state.model[boxId].editable = e.target.checked;
-                  this.forceUpdate();
-                }}
-              />
-            </td>
-            <td>
-              <input
-                type="checkbox"
-                checked={this.state.model[boxId].editableStyles !== false}
-                onChange={(e) => {
-                  this.state.model[boxId].editableStyles = e.target.checked;
-                  this.forceUpdate();
-                }}
-              />
-            </td>
-            <td>
-              <button
-                type="button"
-                onClick={() => {
-                  const v = document.getElementById("modelselector").value;
-                  if (v === 'ANY') {
-                    this.state.model[boxId].types = {ANY: true};
-                  } else {
-                    this.state.model[boxId].types[v] = true;
-                  }
-                  this.forceUpdate();
-                }}
-                style={{margin: '0 10px', padding: '0 10px'}}
-              >
+      (boxId, i) => (
+        <tr key={keyIndex++}>
+          <td>{i + 1}</td>
+          <td>
+            <input
+              type="checkbox"
+              checked={this.state.model[boxId].editable}
+              onChange={(e) => {
+                this.state.model[boxId].editable = e.target.checked;
+                this.forceUpdate();
+              }}
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              checked={this.state.model[boxId].editableStyles !== false}
+              onChange={(e) => {
+                this.state.model[boxId].editableStyles = e.target.checked;
+                this.forceUpdate();
+              }}
+            />
+          </td>
+          <td>
+            <button
+              type="button"
+              onClick={() => {
+                const v = document.getElementById('modelselector').value;
+                if (v === 'ANY') {
+                  this.state.model[boxId].types = { ANY: true };
+                } else {
+                  this.state.model[boxId].types[v] = true;
+                }
+                this.forceUpdate();
+              }}
+              style={{ margin: '0 10px', padding: '0 10px' }}
+            >
                 +
               </button>
               &nbsp;
-              <button
-                type="button"
-                onClick={() => {
-                  delete this.state.model[boxId].types[document.getElementById("modelselector").value];
-                  this.forceUpdate();
-                }}
-                style={{margin: '0 10px', padding: '0 10px'}}
-              >
+            <button
+              type="button"
+              onClick={() => {
+                delete this.state.model[boxId].types[document.getElementById('modelselector').value];
+                this.forceUpdate();
+              }}
+              style={{ margin: '0 10px', padding: '0 10px' }}
+            >
                 -
               </button>
-            </td>
-            <td>{Object.keys(this.state.model[boxId].types).join(' ')}</td>
-          </tr>
-        );
-      }
+          </td>
+          <td>{Object.keys(this.state.model[boxId].types).join(' ')}</td>
+        </tr>
+        )
     );
     return (
       <div>
-        <span style={{fontSize: '150%', fontWeight: '600'}}>
+        <span style={{ fontSize: '150%', fontWeight: '600' }}>
           {Constants.locstr.pageModelCreator.chooseCustomBox}
         </span>
-        <div style={{width: 500, height: 500, overflowY: 'auto'}}>
+        <div style={{ width: 500, height: 500, overflowY: 'auto' }}>
           <table className="pagemodeltable">
             <thead>
-            <tr>
-              <td>{Constants.locstr.pageModelCreator.compontentTypeToAddOrRemove}</td>
-              <td>{Constants.locstr.pageModelCreator.isItEditable}?</td>
-              <td>{Constants.locstr.pageModelCreator.editableOrStyles}?</td>
-              <td>{Constants.locstr.pageModelCreator.addOrRemoveFromAllowedTypes}</td>
-              <td>{Constants.locstr.pageModelCreator.allowedTypes}</td>
-            </tr>
+              <tr>
+                <td>{Constants.locstr.pageModelCreator.compontentTypeToAddOrRemove}</td>
+                <td>{Constants.locstr.pageModelCreator.isItEditable}?</td>
+                <td>{Constants.locstr.pageModelCreator.editableOrStyles}?</td>
+                <td>{Constants.locstr.pageModelCreator.addOrRemoveFromAllowedTypes}</td>
+                <td>{Constants.locstr.pageModelCreator.allowedTypes}</td>
+              </tr>
             </thead>
             <tbody>
-            {fields}
+              {fields}
             </tbody>
           </table>
         </div>
@@ -204,16 +202,16 @@ export default class PageModelCreator extends React.PureComponent {
           <option key={0} value="ANY">{Constants.locstr.pageModelCreator.any}</option>
           {availableComponents.map(
             (obj, i) =>
-              <option key={i+1} value={obj.type}>{obj.type}</option>)}
+              <option key={i + 1} value={obj.type}>{obj.type}</option>)}
         </select>
-        <br/>
+        <br />
         <button
           type="button"
           className="white_blue"
           onClick={this.pmfCancel}
           style={{ margin: 5, float: 'left', padding: '0 10px' }}
         >
-        {Constants.locstr.pageModelCreator.cancel}
+          {Constants.locstr.pageModelCreator.cancel}
         </button>
         <button
           type="button"
@@ -221,10 +219,10 @@ export default class PageModelCreator extends React.PureComponent {
           onClick={this.pmfOK}
           style={{ margin: 5, float: 'right', padding: '0 10px' }}
         >
-        {Constants.locstr.pageModelCreator.create}
+          {Constants.locstr.pageModelCreator.create}
         </button>
         <div className="canvasforcreatemodel">
-          <CanvasComponent ref="canvascomponent"/>
+          <CanvasComponent ref="canvascomponent" />
         </div>
       </div>
     );

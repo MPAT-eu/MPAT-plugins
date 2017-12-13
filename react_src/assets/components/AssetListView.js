@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -56,7 +56,7 @@ export default class AssetListView extends React.Component {
   render() {
     return (
       <div>
-        <img src={this.state.previewImage} width="150" height="150" />
+        <img src={this.state.previewImage} width="150" height="150" role="presentation" />
         {this.state.item.title.rendered}
 
       </div>

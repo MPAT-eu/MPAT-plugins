@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -78,26 +78,26 @@ export default class ComponentEditor extends React.PureComponent {
     const { changeAreaStateStyle, content } = this.props;
     const styleDefinitions = componentLoader.getComponentStyles(content.type);
     return (
-        /*<td id="editStylesTD">*/
-        <button
-          type="button"
-          className="button white_blue"
-          id="styleEditButton"
-          onClick={(e) => Popup.create(
-            {
-              content: (
-                <StylesPopup
-                  title={i18n.editComponentStyle}
-                  popup={Popup}
-                  callback={changeAreaStateStyle}
-                  styleValues={content.styles}
-                  styleDefinitions={styleDefinitions}
-                />
+        /* <td id="editStylesTD">*/
+      <button
+        type="button"
+        className="button white_blue"
+        id="styleEditButton"
+        onClick={e => Popup.create(
+          {
+            content: (
+              <StylesPopup
+                title={i18n.editComponentStyle}
+                popup={Popup}
+                callback={changeAreaStateStyle}
+                styleValues={content.styles}
+                styleDefinitions={styleDefinitions}
+              />
               )
-            })}
-        >
-          {i18n.editInner}
-        </button>
+          })}
+      >
+        {i18n.editInner}
+      </button>
     /* </td>*/
     );
   };

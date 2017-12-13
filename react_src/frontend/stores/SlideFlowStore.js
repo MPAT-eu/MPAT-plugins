@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -38,12 +38,12 @@ export default class SlideFlowStore extends PagesStore {
 
   getNextPage() {
     if (this.index < this.app.length - 1) {
-        this.index++;
+      this.index++;
         // buffer next page
-        if (this.index < this.app.length - 1) {
-            this.loadPage(this.app[this.index + 1].id);
-        }
-        return this.getPage(this.app[this.index].id);
+      if (this.index < this.app.length - 1) {
+        this.loadPage(this.app[this.index + 1].id);
+      }
+      return this.getPage(this.app[this.index].id);
     }
   }
 
@@ -52,7 +52,7 @@ export default class SlideFlowStore extends PagesStore {
       this.index--;
       // buffer prev page
       if (this.index > 0) {
-          this.loadPage(this.app[this.index - 1].id);
+        this.loadPage(this.app[this.index - 1].id);
       }
       return this.getPage(this.app[this.index].id);
     }

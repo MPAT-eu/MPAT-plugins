@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -53,6 +53,7 @@ function GalleryElement(props) {
       <img
         src={image.attachmentUrl}
         style={{ maxWidth: '140px', height: 'auto', position: 'relative' }}
+        role="presentation"
       />
       <div onClick={() => openCropEditor(image)} className="galleryItemCrop" title="Crop Image">
         <EditIcon />
@@ -125,14 +126,13 @@ export default class GalleryEdit extends React.PureComponent {
     if (this.state) {
       if (this.state.activeEditor != null) {
         const that = this;
-        nextProps.images.forEach(function (value) {
-
+        nextProps.images.forEach((value) => {
           if (value.attachmentId == that.state.activeEditor.attachmentId) {
             closeCrop = false;
           }
         });
         if (closeCrop == true) {
-          this.setState({ activeEditor: null })
+          this.setState({ activeEditor: null });
         }
       }
     }
@@ -203,7 +203,7 @@ export default class GalleryEdit extends React.PureComponent {
 
   emptyGallery() {
     this.setState({ content: { images: [] } });
-    window.document.getElementById('selectedImagesWrapper').innerHTML = "";
+    window.document.getElementById('selectedImagesWrapper').innerHTML = '';
   }
 
   render() {
@@ -241,7 +241,7 @@ export default class GalleryEdit extends React.PureComponent {
                     onChange={e => this.setProperty.call(this, 'fitContainer', e.target.checked)}
                   />
                   , i18n.ttImageCover)}
-                {/*&nbsp;({i18n.zoomToFit})*/}
+                {/* &nbsp;({i18n.zoomToFit})*/}
               </td>
             </tr>
             <tr>
@@ -333,7 +333,7 @@ export default class GalleryEdit extends React.PureComponent {
           <button
             type="button"
             className="button white_blue"
-            onClick={() => openMediaGallery(this.mediaGalleryCallback, "image", true)}
+            onClick={() => openMediaGallery(this.mediaGalleryCallback, 'image', true)}
           >
             {i18n.chooseImages}
           </button>
@@ -390,7 +390,7 @@ export default class GalleryEdit extends React.PureComponent {
               );
             })
               :
-              <div style={{ textAlign: 'center' }}>{i18n.noImages}</div>}
+            <div style={{ textAlign: 'center' }}>{i18n.noImages}</div>}
           </div>
           {
             (this.state.activeEditor) ?

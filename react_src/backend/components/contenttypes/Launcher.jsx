@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -59,10 +59,10 @@ function preview(content = {}) {
         style={{ backgroundColor: (content.data) ? content.data.bgColor : '' }}
         className="launchercontent-preview"
       >
-        {items.map(item => <img key={item.id} src={item.thumbnail} height="100" width="100" />)}
+        {items.map(item => <img key={item.id} src={item.thumbnail} height="100" width="100" role="presentation" />)}
       </div>
     );
-  } else { console.log('Launcher got no props.listArray'); }
+  } console.log('Launcher got no props.listArray');
 }
 
 const itemType = Types.shape(

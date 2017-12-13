@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -19,7 +19,7 @@
  * Authors:
  * Jean-Claude Dufourd (jean-claude.dufourd@telecom-paristech.fr
  **/
-import React from 'react';
+import React, { PropTypes as Types } from 'react';
 import autobind from 'class-autobind';
 import { componentLoader } from '../../../ComponentLoader';
 
@@ -40,8 +40,10 @@ function editView(params) {
     }
   }
   return (
-    <DataEdit stateId={stateId + params.id} {...{ template, origin, period }}
-              changeAreaContent={changeAreaContent} />
+    <DataEdit
+      stateId={stateId + params.id} {...{ template, origin, period }}
+      changeAreaContent={changeAreaContent}
+    />
   );
 }
 function preview(content = {}) {
@@ -54,7 +56,7 @@ function preview(content = {}) {
     <div
       style={{ overflow: 'hidden' }}
       className="mpat-frontend-preview mpat-content-preview textcontent-preview"
-      dangerouslySetInnerHTML={{ __html: ( content.data ) ? ( content.data.origin ) : '' }}
+      dangerouslySetInnerHTML={{ __html: (content.data) ? (content.data.origin) : '' }}
     />
   );
 }
@@ -65,6 +67,14 @@ function preview(content = {}) {
  * HTML fragment
  */
 class DataEdit extends React.PureComponent {
+
+  static propTypes = {
+    origin: Types.string,
+    template: Types.string,
+    stateId: Types.string,
+    period: Types.number,
+    changeAreaContent: Types.func.isRequired
+  };
 
   static defaultProps = {
     content: {
@@ -89,46 +99,46 @@ class DataEdit extends React.PureComponent {
       <div>
         <table>
           <tbody>
-          <tr>
-            <td>
-              <label>External API URL:</label>
-            </td>
-            <td>
-              <input
-                type="text"
-                key={stateId}
-                defaultValue={origin}
-                onChange={e => this.onChange('origin', e.target.value)}
-                style={{width: 800}}
-              /></td>
-          </tr>
-          <tr>
-            <td>
-              <label>Optional template:</label>
-            </td>
-            <td>
-              <input
-                type="text"
-                key={stateId+1}
-                defaultValue={template}
-                onChange={e => this.onChange('template', e.target.value)}
-                style={{width: 800}}
-              /></td>
-          </tr>
-          <tr>
-            <td>
-              <label>
-                Periodic refresh in <br/> seconds (0 for none):
+            <tr>
+              <td>
+                <label>External API URL:</label>
+              </td>
+              <td>
+                <input
+                  type="text"
+                  key={stateId}
+                  defaultValue={origin}
+                  onChange={e => this.onChange('origin', e.target.value)}
+                  style={{ width: 800 }}
+                /></td>
+            </tr>
+            <tr>
+              <td>
+                <label>Optional template:</label>
+              </td>
+              <td>
+                <input
+                  type="text"
+                  key={stateId + 1}
+                  defaultValue={template}
+                  onChange={e => this.onChange('template', e.target.value)}
+                  style={{ width: 800 }}
+                /></td>
+            </tr>
+            <tr>
+              <td>
+                <label>
+                Periodic refresh in <br /> seconds (0 for none):
               </label>
-            </td>
-            <td>
-              <input
-                type="number"
-                key={stateId+2}
-                defaultValue={period}
-                onChange={e => this.onChange('period', e.target.value)}
-              /></td>
-          </tr>
+              </td>
+              <td>
+                <input
+                  type="number"
+                  key={stateId + 2}
+                  defaultValue={period}
+                  onChange={e => this.onChange('period', e.target.value)}
+                /></td>
+            </tr>
           </tbody>
         </table>
       </div>

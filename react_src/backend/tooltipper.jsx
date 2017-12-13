@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -87,7 +87,7 @@ import { generateId } from '../functions';
   }
 */
 
-export let tooltipConf = {
+export const tooltipConf = {
   tagType: 'div',
   cnWrap: 'tooltip',
   ttPrefix: 'tooltiptext',
@@ -96,7 +96,7 @@ export let tooltipConf = {
   delay: 1850
 };
 /**
- * 
+ *
  * @param {*} content inner html or inner text
  * @param {*} popUpText text message to show on hover
  * @param {*} tag div, span, et.mpat .tooltip {
@@ -121,7 +121,7 @@ export let tooltipConf = {
     border-left:8px solid transparent;
     top:-8px;
     left: 90px;
-   
+
 }
 .mpat .tooltip:hover .tooltiptext{
     opacity: 0.88;
@@ -158,17 +158,17 @@ export let tooltipConf = {
  * @param {*} debug show stuff in console
  */
 export function getTooltipped(content, popUpText, tag = tooltipConf.tagType, variant = mpat_tt.tooltips_style, debug = false) {
-  let delay = Number(mpat_tt.tooltips_delay)/1000 || tooltipConf.delay;
-  let styleopa = {
-    transition : `opacity 0.35s`,
-    WebkitTransition : `opacity 0.35s`,
-    MozTransition : `opacity 0.35s`,
-    transitionDelay : `${delay}s`,
-    WebkitTransitionDelay : `${delay}s`,
-    MozTransitionDelay : `${delay}s`
+  const delay = Number(mpat_tt.tooltips_delay) / 1000 || tooltipConf.delay;
+  const styleopa = {
+    transition: 'opacity 0.35s',
+    WebkitTransition: 'opacity 0.35s',
+    MozTransition: 'opacity 0.35s',
+    transitionDelay: `${delay}s`,
+    WebkitTransitionDelay: `${delay}s`,
+    MozTransitionDelay: `${delay}s`
   };
   if (mpat_tt.tooltips_active === 'on') {
-    if (debug || mpat_tt.tooltips_debug) console.log('tooltipper', tag, variant, popUpText, content,delay);
+    if (debug || mpat_tt.tooltips_debug) console.log('tooltipper', tag, variant, popUpText, content, delay);
 
     if (variant !== tooltipConf.white && variant !== tooltipConf.blue) {
       variant = tooltipConf.white;
@@ -187,13 +187,13 @@ export function getTooltipped(content, popUpText, tag = tooltipConf.tagType, var
       className: `${tooltipConf.cnWrap} ${variant}`,
       key: generateId()
     }, [
-        content,
-        React.createElement(tag, {
-          className: `${tooltipConf.ttPrefix} ${variant}`,
-          key: generateId(),
-          style: styleopa
-        }, popUpText)
-      ]);
+      content,
+      React.createElement(tag, {
+        className: `${tooltipConf.ttPrefix} ${variant}`,
+        key: generateId(),
+        style: styleopa
+      }, popUpText)
+    ]);
   }
   return content;
 }

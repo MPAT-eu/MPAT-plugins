@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -107,9 +107,7 @@ export default class OptionIO {
         (a) => {
           if (a.hasOwnProperty(name)) { // eslint-disable-line
             if (onSuccess) onSuccess.call(null, a[name]);
-          } else {
-            if (onError) onError.call(null, `unknown option ${name}`);
-          }
+          } else if (onError) onError.call(null, `unknown option ${name}`);
         },
         onError
       );

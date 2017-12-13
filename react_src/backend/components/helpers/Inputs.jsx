@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -126,23 +126,6 @@ export function SelectInput(props) {
       </select>
     </div>
   );
-  if (props.tr) {
-    return (
-      <tr>
-        <td>
-          <label>{label}: </label>
-        </td>
-        <td>{sel}</td>
-      </tr>
-    );
-  } else {
-    return (
-      <div>
-        {label}
-        {sel}
-      </div>
-    );
-  }
 }
 
 SelectInput.propTypes = {
@@ -171,12 +154,13 @@ export function ComponentStateSelector(props) {
         value={targetState}
         onChange={
           e => onChangeState({
-            targetState: e.target.value, targetLabel: states[e.target.value],
-            triggerAction: triggerAction
+            targetState: e.target.value,
+            targetLabel: states[e.target.value],
+            triggerAction
           })
         }
       >
-        <option key='_0'>-- Choose a state --</option>
+        <option key="_0">-- Choose a state --</option>
         {Object.keys(states).map(key => (
           <option key={key} value={key}>{states[key]}</option>
         ))}
@@ -185,12 +169,13 @@ export function ComponentStateSelector(props) {
         value={triggerAction}
         onChange={
           e => onChangeState({
-            targetState: targetState, targetLabel: states[targetState],
+            targetState,
+            targetLabel: states[targetState],
             triggerAction: e.target.value
           })
         }
       >
-        <option key='_0'>-- {i18n.chooseAnAction} --</option>
+        <option key="_0">-- {i18n.chooseAnAction} --</option>
         {Object.keys(stateTriggerActions).map(key => (
           <option key={key} value={key}>{stateTriggerActions[key]}</option>
         ))}
@@ -206,7 +191,6 @@ ComponentStateSelector.propTypes = {
   targetState: React.PropTypes.string,
   triggerAction: React.PropTypes.string
 };
-
 
 
 export default class AssetFinder extends React.PureComponent {
@@ -228,7 +212,7 @@ export default class AssetFinder extends React.PureComponent {
     this.setState({
       asset_type_selected: '',
       asset_category_selected: '',
-      assets_types: assets_types,
+      assets_types,
       value: this.props.value,
       loading: false
     });
@@ -245,14 +229,13 @@ export default class AssetFinder extends React.PureComponent {
           per_page: 20
         }
       })
-      .then(function (response) {
+      .then((response) => {
         that.setState({ assets_categories: response.data });
         return response.data;
       });
   }
 
   getAssets(base = 'mpat_asset_tva', per_page, offset, order, search, page, orderby) {
-
     let param_search = (search == ' ' || search == '') ? this.state.asset_category_selected : search;
     if (param_search == 'tva_categories') {
       param_search = '';
@@ -261,20 +244,20 @@ export default class AssetFinder extends React.PureComponent {
     axios.get(wpApiSettings.root + wpApiSettings.versionString + base,
       {
         params: {
-          per_page: per_page,
-          offset: offset,
-          page: page,
+          per_page,
+          offset,
+          page,
           search: param_search,
-          order: order,
-          orderby: orderby
+          order,
+          orderby
         }
       })
-      .then(function (response) {
+      .then((response) => {
         const items = response.data;
         if (that.state && that.state.asset_category_selected !== 'tva_categories') {
           const items_in_category = [];
-          items.forEach(item => {
-            if (item.meta['_tva_folder'] == that.state.asset_category_selected) {
+          items.forEach((item) => {
+            if (item.meta._tva_folder == that.state.asset_category_selected) {
               items_in_category.push(item);
             }
           });
@@ -287,11 +270,10 @@ export default class AssetFinder extends React.PureComponent {
   }
 
   request(value, callback) {
-    if (value === '')
-      return this.getAssets(this.state.asset_type_selected)
+    if (value === '') { return this.getAssets(this.state.asset_type_selected); }
 
     setTimeout(() => {
-      callback(this.getAssets(this.state.asset_type_selected, 50, 0, 'asc', value))
+      callback(this.getAssets(this.state.asset_type_selected, 50, 0, 'asc', value));
     }, 500);
   }
 
@@ -303,7 +285,6 @@ export default class AssetFinder extends React.PureComponent {
   }
 
   changeCategory(value) {
-
     const items = this.getAssets(this.state.asset_type_selected, 50, 0, 'asc', value);
     this.setState({
       asset_category_selected: value,
@@ -313,15 +294,15 @@ export default class AssetFinder extends React.PureComponent {
 
   itemSelected(value, item) {
     this.props.onSelect(value, item);
-    this.setState({ value: value.meta['_tva_title'], items: [item] });
+    this.setState({ value: value.meta._tva_title, items: [item] });
   }
 
   itemChanged(event, value) {
     this.props.onChange(value);
-    this.setState({ value, loading: true })
+    this.setState({ value, loading: true });
     this.request(value, (items) => {
-      this.setState({ items: items, loading: false })
-    })
+      this.setState({ items, loading: false });
+    });
   }
 
 
@@ -330,22 +311,22 @@ export default class AssetFinder extends React.PureComponent {
       <div>
         <select
           onChange={e => this.changeAsset(e.target.value)}
-          defaultValue='mpat_asset_tva'
+          defaultValue="mpat_asset_tva"
         >
-          <option disabled value='mpat_asset_tva'> Select type</option>
+          <option disabled value="mpat_asset_tva"> Select type</option>
           {this.state &&
-            this.state.assets_types.map((mpat_asset) => (
+            this.state.assets_types.map(mpat_asset => (
               <option key={mpat_asset} value={mpat_asset}> {mpat_asset}</option>
             ))
           }
         </select>
         <select
           onChange={e => this.changeCategory(e.target.value)}
-          defaultValue='tva_categories'
+          defaultValue="tva_categories"
         >
-          <option value='tva_categories'>All categories</option>
+          <option value="tva_categories">All categories</option>
           {this.state && this.state.assets_categories && this.state.asset_type_selected !== '' &&
-            this.state.assets_categories.map((category) => (
+            this.state.assets_categories.map(category => (
               <option key={category.name} value={category.name}>{category.name}</option>
             ))
           }
@@ -356,14 +337,14 @@ export default class AssetFinder extends React.PureComponent {
               value={this.state.value}
               items={this.state.items ? this.state.items : []}
               inputProps={{
-                disabled: this.state.asset_type_selected !== '' ? false : true,
+                disabled: this.state.asset_type_selected === '',
                 type: 'text',
                 placeholder: i18n.assetFinderPlaceholder,
                 name: 'assets',
                 id: 'assets-autocomplete'
               }}
 
-              getItemValue={(item) => item}
+              getItemValue={item => item}
               menuStyle={{
                 left: '0px',
                 top: '50px',
@@ -374,20 +355,21 @@ export default class AssetFinder extends React.PureComponent {
                 fontSize: '90%',
                 lineHeight: '30px',
                 position: 'absolute',
-                overflow: 'auto',
+                overflow: 'auto'
 
               }}
-              autoHighlight={true}
+              autoHighlight
 
               onSelect={this.itemSelected}
               onChange={this.itemChanged}
 
               renderItem={(item, isHighlighted) => (
 
-                <div style={isHighlighted ? { backgroundColor: 'rgba(67, 180, 249, 0.48)' } : {}}
+                <div
+                  style={isHighlighted ? { backgroundColor: 'rgba(67, 180, 249, 0.48)' } : {}}
                   key={item.id}
                   id={item.id}
-                >{item.meta['_tva_title']}</div>
+                >{item.meta._tva_title}</div>
               )}
             />
           </div>

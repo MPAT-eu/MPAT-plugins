@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -39,7 +39,7 @@ export default class TimeLineWizard extends React.PureComponent {
     this.state = {
       vod: false,
       video: null
-    }
+    };
   }
 
   checkandnext() {
@@ -54,7 +54,7 @@ export default class TimeLineWizard extends React.PureComponent {
         keyEvents: document.getElementById('keyevent').checked,
         timeEvents: document.getElementById('timeevent').checked,
         clockEvents: document.getElementById('clockevent').checked,
-        ui: document.getElementById("recommendedUI").value,
+        ui: document.getElementById('recommendedUI').value,
         backComponent: this.state.video,
         ranges: [],
         sortedRanges: [],
@@ -96,18 +96,18 @@ export default class TimeLineWizard extends React.PureComponent {
 
   broadcast() {
     choiceVideo = 'broadcast';
-    document.getElementById("streamevent").checked = true;
-    document.getElementById("mediaevent").checked = false;
-    document.getElementById("duration").value = '1000';
-    document.getElementById("recommendedUI").value = 'broadcast';
+    document.getElementById('streamevent').checked = true;
+    document.getElementById('mediaevent').checked = false;
+    document.getElementById('duration').value = '1000';
+    document.getElementById('recommendedUI').value = 'broadcast';
     this.setState({ vod: false });
   }
 
   vod() {
     choiceVideo = 'ondemand';
-    document.getElementById("streamevent").checked = false;
-    document.getElementById("mediaevent").checked = true;
-    document.getElementById("recommendedUI").value = 'vod';
+    document.getElementById('streamevent').checked = false;
+    document.getElementById('mediaevent').checked = true;
+    document.getElementById('recommendedUI').value = 'vod';
     this.setState({ vod: true });
   }
 
@@ -115,32 +115,32 @@ export default class TimeLineWizard extends React.PureComponent {
     const mode = ev.target.value;
     switch (mode) {
       case 'broadcast':
-        document.getElementById("streamevent").checked = true;
-        document.getElementById("mediaevent").checked = false;
-        document.getElementById("keyevent").checked = false;
-        document.getElementById("timeevent").checked = false;
-        document.getElementById("clockevent").checked = false;
+        document.getElementById('streamevent').checked = true;
+        document.getElementById('mediaevent').checked = false;
+        document.getElementById('keyevent').checked = false;
+        document.getElementById('timeevent').checked = false;
+        document.getElementById('clockevent').checked = false;
         break;
       case 'broadcastplus':
-        document.getElementById("streamevent").checked = true;
-        document.getElementById("mediaevent").checked = false;
-        document.getElementById("keyevent").checked = true;
-        document.getElementById("timeevent").checked = true;
-        document.getElementById("clockevent").checked = true;
+        document.getElementById('streamevent').checked = true;
+        document.getElementById('mediaevent').checked = false;
+        document.getElementById('keyevent').checked = true;
+        document.getElementById('timeevent').checked = true;
+        document.getElementById('clockevent').checked = true;
         break;
       case 'vod':
-        document.getElementById("streamevent").checked = false;
-        document.getElementById("mediaevent").checked = true;
-        document.getElementById("keyevent").checked = false;
-        document.getElementById("timeevent").checked = false;
-        document.getElementById("clockevent").checked = false;
+        document.getElementById('streamevent').checked = false;
+        document.getElementById('mediaevent').checked = true;
+        document.getElementById('keyevent').checked = false;
+        document.getElementById('timeevent').checked = false;
+        document.getElementById('clockevent').checked = false;
         break;
       case 'complete':
-        document.getElementById("streamevent").checked = true;
-        document.getElementById("mediaevent").checked = true;
-        document.getElementById("keyevent").checked = true;
-        document.getElementById("timeevent").checked = true;
-        document.getElementById("clockevent").checked = true;
+        document.getElementById('streamevent').checked = true;
+        document.getElementById('mediaevent').checked = true;
+        document.getElementById('keyevent').checked = true;
+        document.getElementById('timeevent').checked = true;
+        document.getElementById('clockevent').checked = true;
         break;
       default:
         break;
@@ -148,19 +148,17 @@ export default class TimeLineWizard extends React.PureComponent {
   }
 
   render() {
-    const ur = document.getElementById("undoRedo");
+    const ur = document.getElementById('undoRedo');
     if (ur) ur.style.display = 'none';
-    const pages = window.MPATTimeLinePages.map((page, i) => {
-      return (<option key={i} value={i}>{page.title}</option>);
-    });
-    pages.unshift(<option key="-1" value='-1'>--CHOOSE--</option>);
+    const pages = window.MPATTimeLinePages.map((page, i) => (<option key={i} value={i}>{page.title}</option>));
+    pages.unshift(<option key="-1" value="-1">--CHOOSE--</option>);
     return (
       <div id="timelinewizard" className="timelinewizard">
         <h2>{i18n.title}</h2>
         <p>{i18n.welcome}</p>
         <br />
         <p>{i18n.question.videoType}
-        <table style={{ borderCollapse: true, border: 0 }}>
+          <table style={{ borderCollapse: true, border: 0 }}>
             <tr style={{ margin: 10 }}>
               <td><p>Broadcast Video</p></td>
               <td><input type="radio" id="broadcastradio" name="bv" onClick={this.broadcast} /></td>
@@ -170,12 +168,12 @@ export default class TimeLineWizard extends React.PureComponent {
           </table></p>
         {this.state.vod && <hr style={{ height: 20 }} />}
         {this.state.vod && <p>{i18n.question.duration}
-        <input type="number" id="duration" defaultValue="720" /></p>}
+          <input type="number" id="duration" defaultValue="720" /></p>}
         {this.state.vod &&
           <p>If the video page already exists, please select it:
           <select id="pageselector" onChange={this.onPageSelect} defaultValue="-1">
-              {pages}
-            </select>
+            {pages}
+          </select>
           </p>}
         <hr style={{ height: 20 }} />
         <p>{i18n.question.eventType}</p>
@@ -209,11 +207,11 @@ export default class TimeLineWizard extends React.PureComponent {
         <hr style={{ height: 20 }} />
         <p>{i18n.timelineUI.label}:
         <select id="recommendedUI" onChange={this.onSelect}>
-            <option value="vod">{i18n.timelineUI.option.vod}</option>
-            <option value="broadcast">{i18n.timelineUI.option.bc}</option>
-            <option value="broadcastplus">{i18n.timelineUI.option.bcp}</option>
-            <option value="complete">{i18n.timelineUI.option.cui}</option>
-          </select></p>
+          <option value="vod">{i18n.timelineUI.option.vod}</option>
+          <option value="broadcast">{i18n.timelineUI.option.bc}</option>
+          <option value="broadcastplus">{i18n.timelineUI.option.bcp}</option>
+          <option value="complete">{i18n.timelineUI.option.cui}</option>
+        </select></p>
         <hr style={{ height: 20 }} />
         <button
           type="button"

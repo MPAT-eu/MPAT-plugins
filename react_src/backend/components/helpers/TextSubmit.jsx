@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -47,7 +47,7 @@ export default class TextSubmit extends React.PureComponent {
   onClickSubmit = (e) => {
     e.preventDefault();
     this.props.onClickSubmit && this.props.onClickSubmit(this.state.text);
-    this.setState({ text: "" });
+    this.setState({ text: '' });
   };
 
   render() {
@@ -56,7 +56,7 @@ export default class TextSubmit extends React.PureComponent {
         <input
           placeholder={this.props.placeholder}
           type="text"
-          key='1'
+          key="1"
           onKeyPress={noSubmitOnEnter}
           onChange={this.onChange}
           value={this.state.text}

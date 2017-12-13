@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -85,12 +85,12 @@ class DataFromStreamEventContent extends React.Component {
     // available fields are name / data / text / status
     try {
       if (this.props.template) {
-        let data = JSON.parse(streamEvent.text);
-        let str = this.props.template.replace(/\{\{(\w*)\}\}/g, (match, id) => data[id]);
-        this.setState({data: str});
-      } else this.setState({data: streamEvent.text});
-    } catch(error) {
-      this.setState({data: streamEvent.text});
+        const data = JSON.parse(streamEvent.text);
+        const str = this.props.template.replace(/\{\{(\w*)\}\}/g, (match, id) => data[id]);
+        this.setState({ data: str });
+      } else this.setState({ data: streamEvent.text });
+    } catch (error) {
+      this.setState({ data: streamEvent.text });
     }
     log(`streamevent received: "${streamEvent.text}"`);
   }
@@ -100,7 +100,7 @@ class DataFromStreamEventContent extends React.Component {
       <div
         className="page-element-content text-content"
         style={{ overflow: 'hidden' }}
-        dangerouslySetInnerHTML={{__html: this.state.data}}
+        dangerouslySetInnerHTML={{ __html: this.state.data }}
       />
     );
   }

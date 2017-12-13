@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -115,7 +115,7 @@ function CarouselLauncher({ items, elementFormat = 'landscape', currentIndex,
         <div style={{ marginLeft: (-focusedOffset - 5) }} className="launcherElementArrowLeft" />
       }
       {currentIndex !== (items.length - 1) && orientation === 'horizontal' &&
-        <div style={{ marginRight: (-focusedOffset+15) }} className="launcherElementArrowRight" />
+        <div style={{ marginRight: (-focusedOffset + 15) }} className="launcherElementArrowRight" />
       }
       <div
         style={containerStyle}
@@ -322,12 +322,16 @@ export function LauncherElement({ item: { title = '', roleData = {}, thumbnail =
   description = '', contentIcon }, css = {}, focused = false }) {
   if (css.borderWidth || css.borderStyle) {
     // border is present, then render differently
-    const css1 = Object.assign({}, css, {borderWidth: 0});
+    const css1 = Object.assign({}, css, { borderWidth: 0 });
     const css2 = {
       borderStyle: css.borderStyle,
       borderWidth: css.borderWidth,
       borderColor: css.borderColor,
-      width: css.width, height: css.height, position: 'absolute', top: css.top, left: css.left,
+      width: css.width,
+      height: css.height,
+      position: 'absolute',
+      top: css.top,
+      left: css.left,
       boxSizing: 'border-box',
       zIndex: 10
     };
@@ -339,10 +343,10 @@ export function LauncherElement({ item: { title = '', roleData = {}, thumbnail =
         >
           <img
             src={thumbnail}
-            role="presentation"
             width="100%"
             height="100%"
             style={{ objectFit: 'cover' }}
+            role="presentation"
           />
           {!(title === '' && description === '') &&
           <div className="launcherElementLabel">
@@ -350,9 +354,9 @@ export function LauncherElement({ item: { title = '', roleData = {}, thumbnail =
             <p>{description}</p>
           </div>
           }
-          {contentIcon && <div className={"launcherContentIcon "+contentIcon} />}
+          {contentIcon && <div className={`launcherContentIcon ${contentIcon}`} />}
         </div>
-        <div style={css2}/>
+        <div style={css2} />
       </div>
     );
   }
@@ -360,10 +364,10 @@ export function LauncherElement({ item: { title = '', roleData = {}, thumbnail =
     <div className={classnames({ launcherElement: true, focused })} style={css}>
       <img
         src={thumbnail}
-        role="presentation"
         width="100%"
         height="100%"
         style={{ objectFit: 'cover' }}
+        role="presentation"
       />
       {!(title === '' && description === '') &&
         <div className="launcherElementLabel">
@@ -371,7 +375,7 @@ export function LauncherElement({ item: { title = '', roleData = {}, thumbnail =
           <p>{description}</p>
         </div>
       }
-      {contentIcon && <div className={"launcherContentIcon "+contentIcon} />}
+      {contentIcon && <div className={`launcherContentIcon ${contentIcon}`} />}
     </div>
   );
 }
@@ -557,8 +561,8 @@ class LauncherContent extends React.Component {
           <div id="arte-bottom-bar">
             <div id="arte-fokus-logo" />
             <div id="arte-left-area">
-              <img src="http://static-cdn.arte.tv/redbutton/images/navig_DE.png" alt="" />
-              <img src="http://static-cdn.arte.tv/redbutton/images/valid_DE.png" alt="" />
+              <img src="http://static-cdn.arte.tv/redbutton/images/navig_DE.png" role="presentation" />
+              <img src="http://static-cdn.arte.tv/redbutton/images/valid_DE.png" role="presentation" />
             </div>
             <div id="arte-right-area">
               <div className="item grid_text_color">

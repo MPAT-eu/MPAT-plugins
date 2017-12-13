@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -101,7 +101,7 @@ export default class StateEditor extends React.PureComponent {
       changeAreaStateType: bindStateId(changeAreaStateType),
       changeAreaStateMeta: bindStateId(changeAreaStateMeta),
       changeAreaStateContent: bindStateId(changeAreaStateContent),
-      changeAreaStateStyle: bindStateId(changeAreaStateStyle),
+      changeAreaStateStyle: bindStateId(changeAreaStateStyle)
     };
     const collapsed = this.state.collapseStateList;
     return (
@@ -110,12 +110,12 @@ export default class StateEditor extends React.PureComponent {
         {chooseTargetView()}
         {mainButtons(false,
           {
-            className: "button-back green_white",
+            className: 'button-back green_white',
             onClick: this.onClickBack,
             textContent: 'Page Editor'
           },
           {
-            className: "button-collapse white_blue",
+            className: 'button-collapse white_blue',
             onClick: this.onClickCollapse,
             textContent: i18n.txtToggleStateDisplay
           })}
@@ -135,7 +135,7 @@ export default class StateEditor extends React.PureComponent {
                 >
                   <input
                     disabled
-                    id={key + 'input'}
+                    id={`${key}input`}
                     type="text"
                     value={content[key].stateTitle}
                     onChange={(ev) => {
@@ -146,7 +146,7 @@ export default class StateEditor extends React.PureComponent {
                     onKeyPress={(ev) => {
                       const keyCode = ev.which || ev.keyCode;
                       if (keyCode === 13) {
-                        document.getElementById(key + 'input').disabled = true;
+                        document.getElementById(`${key}input`).disabled = true;
                         ev.stopPropagation();
                         ev.preventDefault();
                       }
@@ -156,7 +156,7 @@ export default class StateEditor extends React.PureComponent {
                     className="dashicons dashicons-edit"
                     onClick={(e) => {
                       e.stopPropagation();
-                      document.getElementById(key + 'input').disabled = false;
+                      document.getElementById(`${key}input`).disabled = false;
                     }}
                   />
                   {Object.keys(content).length > 1 &&
@@ -167,7 +167,7 @@ export default class StateEditor extends React.PureComponent {
                   }
                   {Object.keys(content).length > 1 &&
                     <span
-                      className={content[key].stateActive === true ? "dashicons dashicons-star-filled" : "dashicons dashicons-star-empty"}
+                      className={content[key].stateActive === true ? 'dashicons dashicons-star-filled' : 'dashicons dashicons-star-empty'}
                       onClick={(e) => { e.stopPropagation(); setStateActive(key); }}
                     />
                   }

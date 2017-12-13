@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -132,7 +132,7 @@ export default class TimeLineEditor extends React.PureComponent {
                       defaultChecked={this.props.storeState.streamEvents}
                     />
                   </td>
-                  <td/>
+                  <td />
                 </tr>
                 <tr>
                   <td><p>Media Events</p></td>
@@ -143,7 +143,7 @@ export default class TimeLineEditor extends React.PureComponent {
                       defaultChecked={this.props.storeState.mediaEvents}
                     />
                   </td>
-                  <td/>
+                  <td />
                 </tr>
                 <tr>
                   <td><p>Key Events</p></td>
@@ -154,7 +154,7 @@ export default class TimeLineEditor extends React.PureComponent {
                       defaultChecked={this.props.storeState.keyEvents}
                     />
                   </td>
-                  <td/>
+                  <td />
                 </tr>
                 <tr>
                   <td><p>Time Events</p></td>
@@ -165,7 +165,7 @@ export default class TimeLineEditor extends React.PureComponent {
                       defaultChecked={this.props.storeState.timeEvents}
                     />
                   </td>
-                  <td/>
+                  <td />
                 </tr>
                 <tr>
                   <td><p>Clock Events</p></td>
@@ -176,7 +176,7 @@ export default class TimeLineEditor extends React.PureComponent {
                       defaultChecked={this.props.storeState.clockEvents}
                     />
                   </td>
-                  <td/>
+                  <td />
                 </tr>
                 <tr>
                   <td colSpan="3">
@@ -217,9 +217,9 @@ export default class TimeLineEditor extends React.PureComponent {
     return (
       <div className="timelineeditor">
         <div className="leftColumn">
-          <Preview storeState={this.props.storeState}/>
-          <TimeLine storeState={this.props.storeState} actions={this.props.actions}/>
-          <table style={{borderCollapse: true, border: 0}}>
+          <Preview storeState={this.props.storeState} />
+          <TimeLine storeState={this.props.storeState} actions={this.props.actions} />
+          <table style={{ borderCollapse: true, border: 0 }}>
             <tbody>
               <tr>
                 <td>
@@ -275,7 +275,7 @@ export default class TimeLineEditor extends React.PureComponent {
             </table>
           </div>
           <div id="pagetable">
-            <ElementMenu storeState={this.props.storeState} actions={this.props.actions}/>
+            <ElementMenu storeState={this.props.storeState} actions={this.props.actions} />
           </div>
           {this.broadcast() &&
           <div>

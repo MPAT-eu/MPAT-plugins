@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -71,7 +71,7 @@ export default class Event extends React.PureComponent {
     return (
       <div
         className="tltooltip"
-        style={{position: 'absolute', left: this.props.position * width, width: width}}
+        style={{ position: 'absolute', left: this.props.position * width, width }}
       >
         <div
           className={`timerange ${range.type}${
@@ -80,7 +80,7 @@ export default class Event extends React.PureComponent {
               : ''}`}
           onClick={this.handleClick}
           id={`tl${range.id}`}
-          style={{width: width}}
+          style={{ width }}
         >
           {eventTitle.substr(0, 10)}
         </div>

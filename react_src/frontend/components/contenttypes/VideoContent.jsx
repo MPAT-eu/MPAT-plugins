@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -82,16 +82,16 @@ class VideoContent extends React.Component {
   componentDidMount() {
     const isPreview = window.MPATPreviewDoNotAutostartVideos;
 
-    if(this.props.navigable){
-        const handlerActive= [
-                  createHandler(KeyEvent.VK_RIGHT, this.turnRIGHT),
-                  createHandler(KeyEvent.VK_LEFT, this.turnLEFT),
-                  createHandler(KeyEvent.VK_UP, this.goVertical),
-                  createHandler(KeyEvent.VK_DOWN, this.goVertical),
-                  createHandler(KeyEvent.VK_ENTER, this.triggerControls),
-                  createHandler(KeyEvent.VK_BACK, this.back)
-                  ];
-        registerHandlers(this, handlersWithTag ('active', handlerActive));
+    if (this.props.navigable) {
+      const handlerActive = [
+        createHandler(KeyEvent.VK_RIGHT, this.turnRIGHT),
+        createHandler(KeyEvent.VK_LEFT, this.turnLEFT),
+        createHandler(KeyEvent.VK_UP, this.goVertical),
+        createHandler(KeyEvent.VK_DOWN, this.goVertical),
+        createHandler(KeyEvent.VK_ENTER, this.triggerControls),
+        createHandler(KeyEvent.VK_BACK, this.back)
+      ];
+      registerHandlers(this, handlersWithTag('active', handlerActive));
     }
     const handlerGlobal = [
       createHandler(KeyEvent.VK_PLAY, this.play),
@@ -101,18 +101,17 @@ class VideoContent extends React.Component {
       createHandler(KeyEvent.VK_FAST_FWD, this.seekForward)
     ];
     const handlerAlways = [
-                      createHandler('appWillHide', this.removePlayer),
-                      createHandler('appWillShow', this.addPlayer)
-                     ];
+      createHandler('appWillHide', this.removePlayer),
+      createHandler('appWillShow', this.addPlayer)
+    ];
 
     registerHandlers(this, handlersWithTag('global', handlerGlobal));
-    registerHandlers(this, handlersWithTag ('always', handlerAlways));
+    registerHandlers(this, handlersWithTag('always', handlerAlways));
 
     if (this.props.autostart && !isPreview) {
       setTimeout(() => {
         this.play();
         this.startControlsFadeout();
-
       }, 1500);
     }
   }
@@ -140,7 +139,7 @@ class VideoContent extends React.Component {
         }, 1000);
       }
     } catch (e) {
-      log('videoConten error while receving props: ' + JSON.stringify(e));
+      log(`videoConten error while receving props: ${JSON.stringify(e)}`);
     }
   }
 
@@ -187,7 +186,7 @@ class VideoContent extends React.Component {
   }
 
   turnRIGHT() {
-    log('turnRIGHT focused: ' + this.state.focused);
+    log(`turnRIGHT focused: ${this.state.focused}`);
     // focused === 4: most right;
     // focused === 0: ctrl-bar hidden
     if (application.application_manager.smooth_navigation && !this.state.isFullscreen) {
@@ -212,7 +211,7 @@ class VideoContent extends React.Component {
   }
 
   turnLEFT() {
-    log('turnLEFT focused: ' + this.state.focused);
+    log(`turnLEFT focused: ${this.state.focused}`);
     //  focused === 1: most left
     //  focused === 0: ctrl-bar hidden
     if (application.application_manager.smooth_navigation && !this.state.isFullscreen) {
@@ -236,29 +235,27 @@ class VideoContent extends React.Component {
     }
   }
 
-  goVertical(){
-      if (application.application_manager.smooth_navigation && !this.state.isFullscreen) {
-          return false
-      }else if(this.state.isFullscreen && this.state.focused == 0){
-
-          this.setState({
-              focused: 2
-          });
-          this.startControlsFadeout();
-      }
+  goVertical() {
+    if (application.application_manager.smooth_navigation && !this.state.isFullscreen) {
+      return false;
+    } else if (this.state.isFullscreen && this.state.focused == 0) {
+      this.setState({
+        focused: 2
+      });
+      this.startControlsFadeout();
+    }
   }
 
-  back(){
-      if(this.state.isFullscreen){
-          if(this.props.fullscreen){
-              this.stop();
-          }else{
-              this.toggleFullscreen();
-          }
-      }else{
-          return false;
+  back() {
+    if (this.state.isFullscreen) {
+      if (this.props.fullscreen) {
+        this.stop();
+      } else {
+        this.toggleFullscreen();
       }
-
+    } else {
+      return false;
+    }
   }
 
   triggerControls({ entered }) {
@@ -351,11 +348,11 @@ class VideoContent extends React.Component {
     // video length >= 10 minutes ==> skip 30sec per time
     // video length >= 5 minutes ==> skip 15sec per time
     // video length < 5 minutes ==> skip 10sec per time
-    let skipTime = 10e3;
+    const skipTime = 10e3;
     if (this.video.length() >= 600e3) {
-      let skipTime = 30e3;
+      const skipTime = 30e3;
     } else if (this.video.length() >= 300e3) {
-      let skipTime = 15e3;
+      const skipTime = 15e3;
     }
     let nextPosition = false;
     switch (direction) {
@@ -363,7 +360,7 @@ class VideoContent extends React.Component {
         log(this.video.currentPosition());
         if ((this.video.currentPosition() + skipTime) > this.video.length()) {
           // 2do add recursion fallback
-          log('video skip was blocked for: ' + direction);
+          log(`video skip was blocked for: ${direction}`);
           nextPosition = false;
         } else {
           nextPosition = this.video.currentPosition() + skipTime;
@@ -372,7 +369,7 @@ class VideoContent extends React.Component {
       case 'backward':
         if ((this.video.currentPosition() - skipTime) < 0) {
           // 2do add recursion fallback
-          log('video skip was blocked for: ' + direction);
+          log(`video skip was blocked for: ${direction}`);
           nextPosition = 0;
         } else {
           nextPosition = this.video.currentPosition() - skipTime;
@@ -381,7 +378,7 @@ class VideoContent extends React.Component {
       default:
         log('!!! skipTime was called but nothing happened');
     }
-    log('skip time: ' + nextPosition);
+    log(`skip time: ${nextPosition}`);
     return nextPosition;
   }
 
@@ -432,7 +429,7 @@ class VideoContent extends React.Component {
 
   render() {
     const thumbnailUrl = `url(${this.props.thumbnail})`;
-    //const fileExt = this.props.url.split('.').pop();
+    // const fileExt = this.props.url.split('.').pop();
     let fileExt = null;
     if (this.props.url !== undefined) { fileExt = this.props.url.split('.').pop(); }
 
@@ -479,8 +476,7 @@ class VideoContent extends React.Component {
       <div className={classnames({ 'page-element-content': true, 'video-content': true, fullscreen: this.state.isFullscreen })}>
         <div style={{ backgroundImage: thumbnailUrl }} className="thumbnail" />
         {this.props.playIcon &&
-            <div className="video-content-indication-icon">
-            </div>
+        <div className="video-content-indication-icon" />
         }
         {this.state.hasStarted &&
           <Video

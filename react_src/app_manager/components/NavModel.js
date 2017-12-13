@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -15,7 +15,7 @@
  *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * AUTHORS:
  * Jean-Philippe Ruijs (github.com/jeanphilipperuijs)
  *
@@ -44,21 +44,21 @@ export default class NavModel extends React.Component {
   }
 
   showHideSlideflow() {
-    jQuery("[name*='slideflow']").closest('tr').css({ 'display': (this.state.selectedNavModel == 'slideflow' ? 'table-row' : 'none') });
+    jQuery("[name*='slideflow']").closest('tr').css({ display: (this.state.selectedNavModel == 'slideflow' ? 'table-row' : 'none') });
     // document.getElementById('application-manager-container').parentNode.parentNode.style.display = (this.state.selectedNavModel == 'slideflow' ? 'table-row' : 'none');
   }
 
   updateState(obj) {
     if (typeof obj.componentName !== 'undefined') {
-      var componentName = obj.componentName;
-      var disabledIndex = this.state.disabledComponents.indexOf(componentName)
-      var currentlyDisabled = disabledIndex > -1;
-      var willBeDisabled = !obj.enabled;
+      const componentName = obj.componentName;
+      const disabledIndex = this.state.disabledComponents.indexOf(componentName);
+      const currentlyDisabled = disabledIndex > -1;
+      const willBeDisabled = !obj.enabled;
       obj = this.state;
       if (willBeDisabled && !currentlyDisabled) { // add to disabled list
-        obj.disabledComponents.push(componentName)
+        obj.disabledComponents.push(componentName);
       } else if (currentlyDisabled && !willBeDisabled) { // remove from disabled list
-        obj.disabledComponents.splice(disabledIndex, 1)
+        obj.disabledComponents.splice(disabledIndex, 1);
       }
     }
     this.setState(obj, this.showHideSlideflow);
@@ -70,12 +70,14 @@ export default class NavModel extends React.Component {
         <NavSelector
           navModels={this.props.navModels}
           selectedNavModel={this.state.selectedNavModel}
-          updateState={this.updateState}/>
+          updateState={this.updateState}
+        />
         <DescriptionBox
           navModels={this.props.navModels}
           selectedNavModel={this.state.selectedNavModel}
           disabledComponents={this.state.disabledComponents}
-          updateState={this.updateState}/>
+          updateState={this.updateState}
+        />
       </div>
     );
   }
@@ -90,15 +92,14 @@ class NavSelector extends React.Component {
   }
 
   render() {
-    const navOptions = Object.keys(this.props.navModels).map((item, i) => {
-      return (
-        <NavOption
-          key={i}
-          name={item}
-          selectedNavModel={this.props.selectedNavModel}
-          updateState={this.props.updateState}/>
-      );
-    });
+    const navOptions = Object.keys(this.props.navModels).map((item, i) => (
+      <NavOption
+        key={i}
+        name={item}
+        selectedNavModel={this.props.selectedNavModel}
+        updateState={this.props.updateState}
+      />
+      ));
     navOptions.push(
       <div
         key="10000"
@@ -126,20 +127,20 @@ class NavOption extends React.Component {
 
   componentDidMount() {
     if (this.props.selectedNavModel == this.props.name) {
-      this.updateCaret(document.getElementById("nav-" + this.props.name));
+      this.updateCaret(document.getElementById(`nav-${this.props.name}`));
     }
   }
 
   updateCaret(e) {
     caretPosition = Math.round((e.offsetWidth / 2) + e.offsetLeft);
-    document.getElementById('navmodelcaret').style.left = caretPosition+'px';
+    document.getElementById('navmodelcaret').style.left = `${caretPosition}px`;
   }
 
   render() {
     return (
       <div
-        id={"nav-" + this.props.name}
-        className={this.props.selectedNavModel == this.props.name ? "selected" : ""}
+        id={`nav-${this.props.name}`}
+        className={this.props.selectedNavModel == this.props.name ? 'selected' : ''}
         onClick={this.selectNavOption}
       >
         <input
@@ -164,33 +165,37 @@ class DescriptionBox extends React.Component {
   }
 
   render() {
-    const components = componentLoader.getComponents().map((item, i) => {
-      return (
-        <ComponentToggle
-          key={i}
-          enabled={this.props.disabledComponents.indexOf(item.type) < 0}
-          updateState={this.props.updateState}
-          name={item.type}/>
-      )
-    });//"icons_placeholder_image.svg"
+    const components = componentLoader.getComponents().map((item, i) => (
+      <ComponentToggle
+        key={i}
+        enabled={this.props.disabledComponents.indexOf(item.type) < 0}
+        updateState={this.props.updateState}
+        name={item.type}
+      />
+      ));// "icons_placeholder_image.svg"
     return (
       <div className="description">
         <table>
           <tbody>
-          <tr>
-            <th className="app-type-title">{ucwords(this.props.selectedNavModel)}</th>
-            <th>{i18n.sampleApp}</th>
-            <th>{i18n.components}</th>
-          </tr>
-          <tr>
-            <td className="app-type-description"
-                dangerouslySetInnerHTML={{ __html: this.props.navModels[this.props.selectedNavModel] }}></td>
-            <td className="app-type-image">
-              <img className="description-img"
-                   src={window.assetsPath + "nav_" + this.props.selectedNavModel + ".png"}/>
-            </td>
-            <td>{components}</td>
-          </tr>
+            <tr>
+              <th className="app-type-title">{ucwords(this.props.selectedNavModel)}</th>
+              <th>{i18n.sampleApp}</th>
+              <th>{i18n.components}</th>
+            </tr>
+            <tr>
+              <td
+                className="app-type-description"
+                dangerouslySetInnerHTML={{ __html: this.props.navModels[this.props.selectedNavModel] }}
+              />
+              <td className="app-type-image">
+                <img
+                  className="description-img"
+                  src={`${window.assetsPath}nav_${this.props.selectedNavModel}.png`}
+                  role="presentation"
+                />
+              </td>
+              <td>{components}</td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -199,7 +204,5 @@ class DescriptionBox extends React.Component {
 }
 
 function ucwords(phrase) {
-  return phrase.toLowerCase().replace(/\b[a-z]/g, function (letter) {
-    return letter.toUpperCase();
-  });
+  return phrase.toLowerCase().replace(/\b[a-z]/g, letter => letter.toUpperCase());
 }

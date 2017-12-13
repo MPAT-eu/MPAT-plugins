@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -69,7 +69,8 @@ export default class DeleteButton extends React.PureComponent {
 
   render() {
     return (
-      <ButtonWP value={i18n.timeline.remove.button.value}
+      <ButtonWP
+        value={i18n.timeline.remove.button.value}
         title={i18n.timeline.remove.button.title}
         action={this.deleteScenario}
         bgColor="#43B4F9"

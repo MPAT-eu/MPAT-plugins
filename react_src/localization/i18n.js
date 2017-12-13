@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -46,13 +46,13 @@ import it from './merge/export/it';
 import nl from './merge/export/nl';
 
 const i18n = new LocalizedStrings({
-  en: en,
-  de: de,
-  es: es,
-  fi: fi,
-  fr: fr,
-  it: it,
-  nl: nl
+  en,
+  de,
+  es,
+  fi,
+  fr,
+  it,
+  nl
 });
 
 
@@ -62,14 +62,13 @@ const i18n = new LocalizedStrings({
 */
 try {
   if (mpati18n !== undefined) {
-    const v = mpati18n.lang.split("_")[0];
+    const v = mpati18n.lang.split('_')[0];
     i18n.setLanguage(v);
-    //console.log('set i18n from get_user_locale value',v);
+    // console.log('set i18n from get_user_locale value',v);
   } else {
-    //console.log('mpati18n not defined');
+    // console.log('mpati18n not defined');
   }
-}
-catch (err) {
+} catch (err) {
   // console.log(err);
 }
 
@@ -84,6 +83,6 @@ try {
     i18n.setLanguage(j);
   }
 } catch (err) {
-  //console.log(err);
+  // console.log(err);
 }
 module.exports = i18n;

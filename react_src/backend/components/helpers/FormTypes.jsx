@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -23,79 +23,80 @@
 import React from 'react';
 
 import Constants from '../../../constants';
+
 const i18n = Constants.locstr;
 
 export const formTypes = [
-    {
-        name: 'fontSize',
-        label: i18n.formTypes.fontSize.label,
-        fieldType: 'TextInput',
-        fieldProps: {
-            placeholder: i18n.formTypes.fontSize.placeholder,
-            defaultValue: '0pt'
-        }
-    },
-    {
-        name: 'fontWeight',
-        label: i18n.formTypes.fontWeight.label,
-        fieldType: 'TextInput',
-        fieldProps: {
-            placeholder: i18n.formTypes.fontWeight.placeholder,
-            defaultValue: '400'
-        }
-    },
-    {
-        name: 'border',
-        label: i18n.formTypes.border.label,
-        fieldType: 'TextInput',
-        fieldProps: {
-            placeholder: i18n.formTypes.border.placeholder,
-            defaultValue: 'none'
-        }
-    },
-    {
-        name: 'borderRadius',
-        label: i18n.formTypes.borderRadius.label,
-        fieldType: 'TextInput',
-        fieldProps: {
-            placeholder: i18n.formTypes.borderRadius.placeholder,
-            defaultValue: '0px'
-        }
-    },
-    {
-        name: 'margin',
-        label: i18n.formTypes.margin.label,
-        fieldType: 'TextInput',
-        fieldProps: {
-            placeholder: i18n.formTypes.margin.placeholder,
-            defaultValue: '0px'
-        }
-    },
-    {
-        name: 'padding',
-        label: i18n.formTypes.padding.label,
-        fieldType: 'TextInput',
-        fieldProps: {
-            placeholder: i18n.formTypes.padding.placeholder,
-            defaultValue: '0px'
-        }
-    },
-    {
-        name: 'color',
-        label: i18n.formTypes.color.label,
-        fieldType: 'ChromePicker',
-        fieldProps: {
-            placeholder: i18n.formTypes.color.placeholder,
-            defaultValue: '#000'
-        }
-    },
-    {
-        name: 'backgroundColor',
-        label: i18n.formTypes.backgroundColor.label,
-        fieldType: 'ChromePicker',
-        fieldProps: {
-            placeholder: i18n.formTypes.backgroundColor.placeholder,
-            defaultValue: 'transparent'
-        }
+  {
+    name: 'fontSize',
+    label: i18n.formTypes.fontSize.label,
+    fieldType: 'TextInput',
+    fieldProps: {
+      placeholder: i18n.formTypes.fontSize.placeholder,
+      defaultValue: '0pt'
     }
+  },
+  {
+    name: 'fontWeight',
+    label: i18n.formTypes.fontWeight.label,
+    fieldType: 'TextInput',
+    fieldProps: {
+      placeholder: i18n.formTypes.fontWeight.placeholder,
+      defaultValue: '400'
+    }
+  },
+  {
+    name: 'border',
+    label: i18n.formTypes.border.label,
+    fieldType: 'TextInput',
+    fieldProps: {
+      placeholder: i18n.formTypes.border.placeholder,
+      defaultValue: 'none'
+    }
+  },
+  {
+    name: 'borderRadius',
+    label: i18n.formTypes.borderRadius.label,
+    fieldType: 'TextInput',
+    fieldProps: {
+      placeholder: i18n.formTypes.borderRadius.placeholder,
+      defaultValue: '0px'
+    }
+  },
+  {
+    name: 'margin',
+    label: i18n.formTypes.margin.label,
+    fieldType: 'TextInput',
+    fieldProps: {
+      placeholder: i18n.formTypes.margin.placeholder,
+      defaultValue: '0px'
+    }
+  },
+  {
+    name: 'padding',
+    label: i18n.formTypes.padding.label,
+    fieldType: 'TextInput',
+    fieldProps: {
+      placeholder: i18n.formTypes.padding.placeholder,
+      defaultValue: '0px'
+    }
+  },
+  {
+    name: 'color',
+    label: i18n.formTypes.color.label,
+    fieldType: 'ChromePicker',
+    fieldProps: {
+      placeholder: i18n.formTypes.color.placeholder,
+      defaultValue: '#000'
+    }
+  },
+  {
+    name: 'backgroundColor',
+    label: i18n.formTypes.backgroundColor.label,
+    fieldType: 'ChromePicker',
+    fieldProps: {
+      placeholder: i18n.formTypes.backgroundColor.placeholder,
+      defaultValue: 'transparent'
+    }
+  }
 ];

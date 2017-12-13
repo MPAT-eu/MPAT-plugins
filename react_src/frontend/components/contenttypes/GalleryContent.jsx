@@ -1,7 +1,7 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lacaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -41,7 +41,7 @@ class GalleryContent extends React.Component {
     images: Types.array,
     loop: Types.bool,
     autoplay: Types.bool,
-    autoplayInterval: Types.string ,
+    autoplayInterval: Types.string,
     orientation: Types.string
   };
 
@@ -52,7 +52,7 @@ class GalleryContent extends React.Component {
     loop: false,
     autoplay: false,
     autoplayInterval: '1000',
-    orientation: "horizontal"
+    orientation: 'horizontal'
   };
 
   constructor(props) {
@@ -81,31 +81,30 @@ class GalleryContent extends React.Component {
       createHandler(isHorizontal ? KeyEvent.VK_RIGHT : KeyEvent.VK_DOWN, this.goToNext)
     ];
 
-    if(this.props.mediaKeys){
-
-        registerHandlers(this, handlersWithTag('global', [
-          createHandler(KeyEvent.VK_PLAY, this.play),
-          createHandler(KeyEvent.VK_PAUSE, this.pause),
-          createHandler(KeyEvent.VK_REWIND, this.rw),
-          createHandler(KeyEvent.VK_FAST_FWD, this.ff),
-        ]));
+    if (this.props.mediaKeys) {
+      registerHandlers(this, handlersWithTag('global', [
+        createHandler(KeyEvent.VK_PLAY, this.play),
+        createHandler(KeyEvent.VK_PAUSE, this.pause),
+        createHandler(KeyEvent.VK_REWIND, this.rw),
+        createHandler(KeyEvent.VK_FAST_FWD, this.ff)
+      ]));
     }
 
     if (application.application_manager.smooth_navigation) {
       activeHandlers.push(createHandler(isHorizontal ?
                                           KeyEvent.VK_UP :
                                           KeyEvent.VK_LEFT,
-                                        () => {return false;}));
+                                        () => false));
       activeHandlers.push(createHandler(isHorizontal ?
                                           KeyEvent.VK_DOWN :
                                           KeyEvent.VK_RIGHT,
-                                        () => {return false;}));
+                                        () => false));
     }
     registerHandlers(this, handlersWithTag('active', activeHandlers));
         // setup autoplay if configured so
     if (this.props.autoplay === true) {
             // store intervalId for future accesses
-        this.play();
+      this.play();
     }
   }
 
@@ -115,27 +114,27 @@ class GalleryContent extends React.Component {
     unregisterHandlers(this);
   }
 
-  rw(){
-      this.pause();
-      this.prev();
+  rw() {
+    this.pause();
+    this.prev();
   }
 
-  ff(){
-      this.pause();
-      this.next();
+  ff() {
+    this.pause();
+    this.next();
   }
 
   goToPrev() {
-    if(application.application_manager.smooth_navigation &&
-      !this.props.loop && this.state.currentSlide <= 0){
+    if (application.application_manager.smooth_navigation &&
+      !this.props.loop && this.state.currentSlide <= 0) {
       return false;
     }
     this.prev();
   }
 
   goToNext() {
-    if(application.application_manager.smooth_navigation &&
-      !this.props.loop && this.state.currentSlide >= (this.props.images.length -1)){
+    if (application.application_manager.smooth_navigation &&
+      !this.props.loop && this.state.currentSlide >= (this.props.images.length - 1)) {
       return false;
     }
     this.next();
@@ -179,8 +178,8 @@ class GalleryContent extends React.Component {
     trackAction('gallery', 'next', this.props.images[state.currentSlide].attachmentUrl);
   }
 
-  play(){
-    if (!this.state.autoplay){
+  play() {
+    if (!this.state.autoplay) {
       const intervalId = setInterval(this.next, this.props.autoplayInterval);
       this.setState({
         autoplayIntervalId: intervalId,
@@ -189,8 +188,8 @@ class GalleryContent extends React.Component {
     }
   }
 
-  pause(){
-    if (this.state.autoplay){
+  pause() {
+    if (this.state.autoplay) {
       clearInterval(this.state.autoplayIntervalId);
       this.setState({
         autoplay: false,
@@ -212,29 +211,29 @@ class GalleryContent extends React.Component {
     return (
       <div>
         {this.props.mediaKeys && this.state.autoplay &&
-                <img src={application.icons.remote["button_play"] } className="gallery-media-icons"/>
+        <img src={application.icons.remote.button_play} className="gallery-media-icons" role="presentation" />
         }
 
         {this.props.mediaKeys && !this.state.autoplay &&
-                <img src={application.icons.remote["button_pause"] } className="gallery-media-icons"/>
+        <img src={application.icons.remote.button_pause} className="gallery-media-icons" role="presentation" />
         }
-
-        {this.props.arrows && 
-            <div> 
-              <span className="gallery-arrow gallery-arrow-left" style={this.props.componentStyles.arrowStyles}>&larr;</span>
-            </div>
-        }
-               
-        <img src={imageUrl} role="presentation" style={imgStyle} />
 
         {this.props.arrows &&
-            <div>
-              <span className="gallery-arrow gallery-arrow-right" style={this.props.componentStyles.arrowStyles}>&rarr;</span>
-            </div>
+        <div>
+          <span className="gallery-arrow gallery-arrow-left" style={this.props.componentStyles.arrowStyles}>&larr;</span>
+        </div>
+        }
+
+        <img src={imageUrl} style={imgStyle} role="presentation" />
+
+        {this.props.arrows &&
+        <div>
+          <span className="gallery-arrow gallery-arrow-right" style={this.props.componentStyles.arrowStyles}>&rarr;</span>
+        </div>
         }
         <div className="gallery-dots">
           {(this.props.dots) ? this.props.images.map((item, i) => (
-            <span key={i} className={(i === this.state.currentSlide) ? "gallery-dot-focused" : "gallery-dot"}>
+            <span key={i} className={(i === this.state.currentSlide) ? 'gallery-dot-focused' : 'gallery-dot'}>
               <Dot radius={8} color={(i === this.state.currentSlide) ? this.props.componentStyles.dotStylesFocused : this.props.componentStyles.dotStyles} />
             </span>
                         )) : ''}
