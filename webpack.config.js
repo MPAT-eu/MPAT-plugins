@@ -58,7 +58,7 @@ let getPlugins = (stage) => {
     )
   }
 
-  plugins.push(new GitRevisionPlugin());
+  plugins.push(new GitRevisionPlugin({ versionCommand: 'describe --always --tags' }));
   return plugins;
 };
 
