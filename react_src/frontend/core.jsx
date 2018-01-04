@@ -83,6 +83,7 @@ module.exports = {
   previewRender,
   componentAPI: componentLoader,
   utils: {
+    log,
     Video
   },
   KeyBindingAPI: {
