@@ -161,8 +161,13 @@ class LauncherEdit extends React.PureComponent {
   }
 
   toggleElementView(id) {
-    const collapsed = this.state.collapsed;
+    const { collapsed } = this.state;
     collapsed[id] = !collapsed[id];
+    this.setState(collapsed);
+  }
+  toggleAllElementViews(oldState) {
+    const collapsed = this.state.collapsed;
+    Object.keys(collapsed).forEach((id) => { collapsed[id] = !oldState; });
     this.setState(collapsed);
   }
 
@@ -176,8 +181,12 @@ class LauncherEdit extends React.PureComponent {
 
   addItem(index) {
     const { listArray } = this.props;
-    listArray.splice(index + 1, 0, createDefaultItem());
+    const { collapsed } = this.state;
+    const newItem = createDefaultItem();
+    listArray.splice(index + 1, 0, newItem);
     this.props.changeAreaContent({ listArray });
+    collapsed[newItem.id] = false;
+    this.setState(collapsed);
   }
 
   /* guess this just updates the state of the currently dragged item*/
@@ -200,6 +209,7 @@ class LauncherEdit extends React.PureComponent {
 
   render() {
     const { orientation, elementFormat, style, scrollStyle, paginationLoop, paginationInfo } = this.props;
+    const allElementsMinimized = Object.values(this.state.collapsed).reduce((pre, cur) => pre && cur);
     return (
       <div className="component editHeader">
         <h2>{i18n.launcherSettings}</h2>
@@ -214,7 +224,7 @@ class LauncherEdit extends React.PureComponent {
           <tbody>
             <tr>
               <td>
-                <label>{i18n.menuOrient}: </label>
+                <label>{i18n.launcherOrient}: </label>
               </td>
               <td>
                 {getTooltipped(
@@ -225,7 +235,7 @@ class LauncherEdit extends React.PureComponent {
                     <option value="horizontal">{i18n.horizontal}</option>
                     <option value="vertical">{i18n.vertical}</option>
                   </select>
-                  , i18n.ttMenuOrientation)}
+                  , i18n.ttLauncherOrientation)}
               </td>
             </tr>
             <tr>
@@ -327,6 +337,23 @@ class LauncherEdit extends React.PureComponent {
           </tbody>
         </table>
         <div style={{ marginTop: '20px' }}>
+          <button
+            type="button"
+            onClick={() => this.toggleAllElementViews(allElementsMinimized)}
+            className="button blue_white img_left"
+            style={{ position: 'absolute', right: 35, marginTop: -74 }}
+          >
+            { allElementsMinimized ?
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                <rect x="0" fill="none" width="20" height="20" /><g><path d="M5 6l5 5 5-5 2 1-7 7-7-7z" /></g>
+              </svg>
+            :
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                <rect x="0" fill="none" width="20" height="20" /><g><path d="M15 14l-5-5-5 5-2-1 7-7 7 7z" /></g>
+              </svg>
+            }
+            Toggle all Elements
+          </button>
           <div className="list-add-element" onClick={() => this.addItem(-1)}>
             <span>
               <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
@@ -412,7 +439,7 @@ function LauncherElement(props) {
       >
         {collapsed &&
         <div className="list-item-collapsed">
-          <div><img src={thumbnail} role="presentation" /></div>
+          <div style={{ backgroundImage: `url(${thumbnail})` }}></div>
           <label>{title}</label>
           <div onClick={() => toggleElementView(id)} className="dashicons dashicons-arrow-down-alt2" />
         </div>

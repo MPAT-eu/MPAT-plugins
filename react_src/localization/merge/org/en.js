@@ -383,7 +383,7 @@ const en = {
     backend: {
       launcherSettings: 'Launcher settings',
       toLinkAPage: 'To link to a specific page of this component, append the following to your link',
-      menuOrient: 'Menu Orientation',
+      launcherOrient: 'Launcher Orientation',
       horizontal: 'Horizontal',
       vertical: 'Vertical',
       format: 'Launcher Format',
@@ -421,7 +421,7 @@ const en = {
       picture: 'picture',
       text: 'text',
       video: 'video',
-      ttMenuOrientation: '[tooltip menu orientation]',
+      ttLauncherOrientation: '[tooltip launcher orientation]',
       ttElementFormat: '[tooltip elementFormat]',
       ttLauncherStyle: '[tooltip LauncherStyle]',
       ttScrollStyle: '[tooltip ScrollStyle]',

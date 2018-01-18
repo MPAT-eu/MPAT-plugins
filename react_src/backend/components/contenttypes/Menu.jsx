@@ -167,11 +167,20 @@ class MenuEdit extends React.PureComponent {
     collapsed[id] = !collapsed[id];
     this.setState(collapsed);
   }
+  toggleAllElementViews(oldState) {
+    const collapsed = this.state.collapsed;
+    Object.keys(collapsed).forEach((id) => { collapsed[id] = !oldState; });
+    this.setState(collapsed);
+  }
 
   addItem(index) {
     const { listArray } = this.props;
-    listArray.splice(index + 1, 0, createDefaultItem());
+    const { collapsed } = this.state;
+    const newItem = createDefaultItem();
+    listArray.splice(index + 1, 0, newItem);
     this.props.changeAreaContent({ listArray });
+    collapsed[newItem.id] = false;
+    this.setState(collapsed);
   }
 
   deleteItem(itemId) {
@@ -222,6 +231,7 @@ class MenuEdit extends React.PureComponent {
 
   render() {
     const { orientation, showButtons, loop, listArray, sidemenu, title } = this.props;
+    const allElementsMinimized = Object.values(this.state.collapsed).reduce((pre, cur) => pre && cur); 
     return (
       <div className="component editHeader">
         <h2>{i18n.menuSettings}</h2>
@@ -301,6 +311,23 @@ class MenuEdit extends React.PureComponent {
           </tbody>
         </table>
         <div style={{ marginTop: '20px' }}>
+          <button
+            type="button"
+            onClick={() => this.toggleAllElementViews(allElementsMinimized)}
+            className="button blue_white img_left"
+            style={{ position: 'absolute', right: 35, marginTop: -74 }}
+          >
+            { allElementsMinimized ?
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                <rect x="0" fill="none" width="20" height="20" /><g><path d="M5 6l5 5 5-5 2 1-7 7-7-7z" /></g>
+              </svg>
+            :
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                <rect x="0" fill="none" width="20" height="20" /><g><path d="M15 14l-5-5-5 5-2-1 7-7 7 7z" /></g>
+              </svg>
+            }
+            Toggle all Elements
+          </button>
           <div className="list-add-element" onClick={() => this.addItem(-1)}>
             <span>
               <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">

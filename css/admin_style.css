@@ -571,12 +571,16 @@ div.component p {
   position:relative;
   padding-left:40px
 }
+.mpat .button.blue_white.img_left svg,
 .mpat .button.white_blue.img_left svg {
   height:30px;
   position:absolute;
   left:5px;
   margin-top:-2px;
   fill:#43B4F9;
+}
+.mpat .button.blue_white.img_left svg {
+  fill: #fff;
 }
 .mpat .notice {
   padding:10px;
@@ -963,6 +967,8 @@ span.gallery-arrow {
 .mpat .editHeader .list-item-collapsed div:nth-child(1) {
   width: 100px;
   height: 54px;
+  background-size: cover;
+  background-position: center;
   display: inline-block;
 }
 .mpat .editHeader .list-item-collapsed div:nth-child(1) img{
