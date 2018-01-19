@@ -1,91 +1,66 @@
-/**
- *
- * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License
- * as published by the Free Software Foundation; either version 2
- * of the License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with this library. If not, see <http://www.gnu.org/licenses/>.
- *
- * AUTHORS:
- * Jean-Philippe Ruijs (github.com/jeanphilipperuijs)
- *
- **/
-/**
- * original german l10n file
- */
 const de = {
   appMgr: {
-    exclude: 'Exclude',
+    exclude: 'Ausschließen',
     navModels: {
-      slideflow: 'Die SlideFlow-Navigation ermöglicht es dem Content Creator, Vollbild-Anwendungsseiten zu erstellen und die Reihenfolge anzugeben, in der sie präsentiert werden. Die Benutzererfahrung ähnelt dem Durchsuchen einer PowerPoint-Präsentation. <br /> Während Seiten wählbare Hotspots enthalten können, um zusätzliche Inhalte und Informationen in Bezug auf die aktuell präsentierte Seite bereitzustellen, ist die Navigation zwischen den einzelnen Seiten sequentiell, so dass der Content Creator erstellt werden kann Auf Informationen, die auf früheren Seiten präsentiert wurden, und eine Erzählung.',
-      timeline: 'Event-basierte Navigation ermöglicht die Darstellung von HbbTV-Inhalten durch das Rundfunkprogramm. Das häufigste Beispiel ist die Präsentation eines roten Knopfes zu Beginn eines TV-Programms oder die Anzeige, um dem Betrachter zu signalisieren, dass zusätzliche Informationen verfügbar sind. Während das Erscheinungsbild der Schaltfläche in der Regel durch MPEG-Stream-Ereignisse, alternative Kanäle ausgelöst wird. z.B. Web-Sockets oder Applikations-Pull-Anfragen, können auch verwendet werden. <br/> <br/> Event-basierte Navigation eignet sich am besten für kleine Informationseinsätze.',
-      website: 'Dieses Modell wird am häufigsten für HbbTV Apps verwendet. Von einer Landing-Seite Benutzer Zugriff auf zusätzliche Inhalte, indem Sie auf Bildschirm-Tasten mit den Pfeiltasten - ähnlich wie eine Website. Oft können auch Shortcut-Farb- / Zifferntasten verwendet werden. <br/> Obwohl dieses Modell üblich ist, ist es nicht gut geeignet für das digitale Geschichtenerzählen, da der Benutzerpfad willkürlich ist, daher muss jede Seite in der Lage sein, auf eigene Faust zu stehen.'
+      slideflow: 'Die Slideflow-Navigation ermöglicht es dem Redakteur, Anwendungen zu erstellen, die ähnlich einer PowerPoint Präsentation, entweder horizontal oder vertikal geführt sind. Dabei ist es möglich, die Reihenfolge in der die Seiten präsentiert werden sollen, zu bestimmen. <br /> Die Seiten können wählbare Hotspots enthalten, um zusätzliche Inhalte und Informationen in Bezug auf die aktuell präsentierte Seite bereitzustellen. Die Navigation zwischen den einzelnen Seiten ist sequentiell, so dass der Redakteur auf Informationen, die auf früheren Seiten präsentiert wurden schlecht zurückgreifen kann. Die Slideflow-Navigation bietet sich für Applikationen die eher Erzählcharakter haben, an.',
+      timeline: 'Event-basierte Navigation ermöglicht die Darstellung von HbbTV-Inhalten getriggert durch das Fernsehprogramm. Das bekannteste Beispiel ist die Präsentation des „Red Buttons“ bei Programmstart. Der „Red Button“ signalisiert dem Betrachter, dass zusätzliche Informationen verfügbar sind. Das Erscheinen der Schaltfläche wird in der Regel durch MPEG-Stream-Ereignisse oder alternative Kanäle wie z.B. Web-Sockets oder aber auch durch Applikations-Pull-Anfragen ausgelöst. <br/> <br/> Event-basierte Navigation eignet sich am besten für kurze Informationen, die auf den eigentlichen Inhalt nur Verweisen.',
+      website: 'Das Webseiten-Modell wird am häufigsten für HbbTV Applikationen verwendet. Von einer Startseite aus erhält der Benutzer Zugriff auf alle zusätzlichen Inhalte. Steuern tut der Nutzer die Applikation entweder mit den Pfeiltasten seiner Fernbedienung - ähnlich wie mit der Mouse auf einer Webseite, oder über Shortcuts, indem auch Farb- und Zifferntasten verwendet werden. <br/> Bei diesem Modell gibt es keine geführte Bedienung, der Nutzer kann frei durch die Applikation navigieren, deshalb muss jede Seite so aufgebaut sein, dass sie auch für sich alleine stehen kann.'
     }
   },
   navModel: {
-    sampleApp: 'Sample Application',
-    components: 'Components'
+    sampleApp: 'Beispiel Applikation',
+    components: 'Komponenten'
   },
   componentLoader: {
     containerTitle: {
-      label: 'Container styles'
+      label: 'Container Styles'
     },
     fontSize: {
-      label: 'Font Size',
-      placeholder: 'size in px'
+      label: 'Schriftgröße',
+      placeholder: 'Größe in px'
     },
     fontWeight: {
-      label: 'Text Weight',
-      placeholder: 'number from 100 to 900'
+      label: 'Schriftstärke',
+      placeholder: 'Zahlen von 100 bis 900'
     },
     border: {
-      label: 'Border',
-      placeholder: 'css border notation (e.g.: 1px solid #000)'
+      label: 'Rahmen',
+      placeholder: 'CSS Rahmen Notation (z.B. 1px solid #000)'
     },
     borderRadius: {
-      label: 'Border Radius',
-      placeholder: 'size in px'
+      label: 'Rahmen Radius',
+      placeholder: 'Radius in px'
     },
     margin: {
       label: 'Margin',
-      placeholder: 'size in px'
+      placeholder: 'Abstand in px'
     },
     padding: {
       label: 'Padding',
-      placeholder: 'size in px'
+      placeholder: 'Abstand in px'
     },
     color: {
-      label: 'Text Color'
+      label: 'Schriftfarbe'
     },
     backgroundColor: {
-      label: 'Background Color'
+      label: 'Hintergrundfarbe'
     }
   },
   formTypes: {
     fontSize: {
-      label: 'Font Size',
+      label: 'Schriftgröße',
       placeholder: '14pt'
     },
     fontWeight: {
-      label: 'Text Weight',
-      placeholder: 'number form 100 to 900'
+      label: 'Schriftstärke',
+      placeholder: 'Zahlen von 100 bis 900'
     },
     border: {
-      label: 'Border',
+      label: 'Rahmeneigenschaften',
       placeholder: '1px solid #000'
     },
     borderRadius: {
-      label: 'Border Radius',
+      label: 'Rahmen Radius',
       placeholder: '5px'
     },
     margin: {
@@ -97,248 +72,251 @@ const de = {
       placeholder: '0px'
     },
     color: {
-      label: 'Text Color',
-      placeholder: 'rgba() notation, HEX notation, color name'
+      label: 'Schriftfarbe',
+      placeholder: 'rgba() Notation, HEX Notation, color name'
     },
     backgroundColor: {
-      label: 'Background Color',
-      placeholder: 'rgba() notation, HEX notation, color name'
+      label: 'Hintergrundfarbe',
+      placeholder: 'rgba() Notation, HEX Notation, color name'
     }
   },
   componentStateSelector: {
-    enter: 'Trigger when pressing OK on this item',
-    focus: 'Trigger when item is focused',
-    chooseAnAction: 'Choose an action'
+    enter: 'Trigger, wenn OK gedrückt wird',
+    focus: 'Trigger, wenn das Objekt fokussiert wird',
+    chooseAnAction: 'Wähle eine Aktion'
+  },
+  assetFinder: {
+    placeholder: 'VERGEBE MEDIENNAMEN'
   },
   pageSelector: {
-    loading: 'LOADING',
-    select: 'SELECT',
-    noTitle: 'no title',
-    error: 'ERROR'
+    loading: 'LADEN',
+    select: 'AUSWÄHLEN',
+    noTitle: 'kein Titel',
+    error: 'FEHLER'
   },
   styles: {
-    choose: 'Choose',
-    typeUrlOrSelectMedia: 'type url or select media'
+    choose: 'ÖFFNEN',
+    typeUrlOrSelectMedia: 'Eingabe einer URL oder Auswahl einer Mediendatei'
   },
   stylesPopup: {
-    done: 'Done'
+    done: 'Fertig'
   },
   textSubmit: {
     ok: 'OK'
   },
   hotSpotEdit: {
-    edit: 'edit',
-    title: 'Hot Spot Icon',
-    active: 'Active',
-    background: 'Background',
-    icon: 'Icon',
-    orCustomFile: 'or custom file',
-    focused: 'Focused',
+    edit: 'bearbeiten',
+    title: 'Hot Spot Symbol',
+    active: 'Aktiv',
+    background: 'Hintergrund',
+    icon: 'Symbol',
+    orCustomFile: 'oder eigene Datei',
+    focused: 'Fokussiert',
     normal: 'Normal',
-    iconColour: 'Icon colour',
-    contentPosition: 'Content Position',
-    location: 'Location',
-    overTheIcon: 'Over the icon',
-    underTheIcon: 'Under the icon',
-    static: 'Absolute / static',
-    staticContentPosition: 'Static Content Position',
-    top: 'Top',
-    left: 'Left',
-    contentSize: 'Content Size (px)',
-    width: 'Width',
-    height: 'Height',
-    ifEmptyFitContent: 'if empty it will fit to the content',
+    iconColour: 'Symbolfarbe',
+    contentPosition: 'Position des Inhaltes',
+    location: 'Lage',
+    overTheIcon: 'Über dem Symbol',
+    underTheIcon: 'Unter dem Symbol',
+    static: 'Absolut/statisch',
+    staticContentPosition: 'Statische Content Position',
+    top: 'Oben',
+    left: 'Links',
+    contentSize: 'Content Größe (px)',
+    width: 'Breite',
+    height: 'Höhe',
+    ifEmptyFitContent: 'falls leer, wird es an den Inhalt angepasst',
     keyBinding: 'Key Binding',
-    done: 'Done',
+    done: 'Fertig',
     or: 'OR',
-    defaultIfAvailable: 'default, if available',
-    customIcon: 'Custom icon',
-    choose: 'Choose',
-    selectRemoteButton: 'Select remote button'
+    defaultIfAvailable: 'Voreinstellung, falls möglich',
+    customIcon: 'Eigenes Symbol',
+    choose: 'Öffnen',
+    selectRemoteButton: 'Wähle eine Fernbedienungstaste'
   },
   imageCropper: {
-    cropRatio: 'Crop Ratio',
-    cropImage: 'Crop image',
-    restore: 'Restore',
-    crop: 'Crop',
-    free: 'Free'
+    cropRatio: 'Seitenverhältnis anpassen',
+    cropImage: 'Bild anpassen',
+    restore: 'Wiederherstellen',
+    crop: 'Anpassen',
+    free: 'Freihand'
   },
   layoutBuilder: {
-    unused: 'Unused',
-    returnToPageEditor: 'RETURN TO PAGE EDITOR',
-    save: 'SAVE',
-    layoutBuilder: 'Layout Builder',
-    width: 'Width',
-    height: 'Height',
-    left: 'Left',
-    top: 'Top',
-    layoutTitle: 'Layout Title',
-    placeholderTitle: 'ENTER TITLE HERE',
-    previewBackground: 'Preview Background',
-    placeholderBg: 'TYPE URL OR RGB',
-    selectFile: 'Select File',
-    addAnotherBox: 'Add another box',
-    add: 'Add',
-    showSafeArea: 'SHOW SAFE ZONE',
-    showGridLines: 'SHOW GRID LINES',
-    layoutUsedInPages: 'LAYOUT USED IN PAGES'
+    unused: 'Nicht benutzt',
+    returnToPageEditor: 'ZURÜCK ZUM SEITENEDITOR',
+    save: 'SPEICHERN',
+    layoutBuilder: 'Layout Editor',
+    width: 'Breite',
+    height: 'Höhe',
+    left: 'Links',
+    top: 'Oben',
+    layoutTitle: 'Layout Bezeichnung',
+    placeholderTitle: 'TITEL HIER EINGEBEN',
+    previewBackground: 'Vorherigen Hintergrund',
+    placeholderBg: 'URL ODER RGB EINGEBEN',
+    selectFile: 'Datei öffnen',
+    addAnotherBox: 'Box hinzufügen',
+    add: 'Hinzufügen',
+    showSafeArea: 'ANZEIGEN DER SAFE AREA',
+    showGridLines: 'ANZEIGEN VON HILFSLINIEN',
+    layoutUsedInPages: 'LAYOUT WIRD BEREITS VERWENDET IN'
   },
   undoRedo: {
-    undo: 'UNDO',
-    redo: 'REDO'
+    undo: 'RÜCKGÄNGING',
+    redo: 'WIEDERHERSTELLEN'
   },
   gallery: {
-    removeImage: 'Remove Image',
-    gallerySettings: 'Gallery Settings',
-    orientation: 'Orientation',
+    removeImage: 'Bild entfernen',
+    gallerySettings: 'Galerie Einstellungen',
+    orientation: 'Orientierung',
     horizontal: 'Horizontal',
-    vertical: 'Vertical',
-    imageCover: 'Image Cover',
-    zoomToFit: 'Images zoomed to fit container',
+    vertical: 'Vertikal',
+    imageCover: 'Bild an Box anpassen',
+    zoomToFit: 'Bild an Container anpassen',
     autoPlay: 'Autoplay',
-    ms: 'Milliseconds',
-    repeat: 'Repeat',
+    ms: 'Millisekunden',
+    repeat: 'Wiederholen',
     loop: 'Loop',
-    useMediaKeys: 'Use media keys',
-    dots: 'Dots',
-    arrows: 'Arrows',
-    chooseImages: 'Choose Images',
-    clearSelections: 'Clear Selections',
-    noImages: 'No Images',
-    closeCropEditor: 'Close crop editor'
+    useMediaKeys: 'Verwenden von Mediakeys',
+    dots: 'Punkte',
+    arrows: 'Pfeile',
+    chooseImages: 'Bilddatei öffnen',
+    clearSelections: 'Auswahl löschen',
+    noImages: 'Keine Bilder ausgewählt',
+    closeCropEditor: 'Editor schließen'
   },
   stateEditor: {
-    title: 'Component Editor',
+    title: 'Komponenten Editor',
     stateManagement: 'State Management',
-    saveAsTemplate: 'Save As Template'
+    saveAsTemplate: 'Template speichern'
   },
   pageModelCreator: {
-    chooseCustomBox: 'Choose Customizable Boxes',
-    boxNb: 'Box Nb',
-    isItEditable: 'Editable',
-    editableOrStyles: 'Editable styles',
-    addOrRemoveFromAllowedTypes: 'Add or Remove from allowed types',
-    allowedTypes: 'Allowed types',
-    compontentTypeToAddOrRemove: 'Component type to add or remove',
-    any: 'ANY',
-    cancel: 'Cancel',
-    create: 'Create'
+    chooseCustomBox: 'Wähle nutzerspezifische Boxen',
+    boxNb: 'Box-Nummer',
+    isItEditable: 'Editierbar',
+    editableOrStyles: 'Editierbare Ansichten',
+    addOrRemoveFromAllowedTypes: 'Hinzufügen oder Entfernen von möglichen Komponenten',
+    allowedTypes: 'Mögliche Ansichten',
+    compontentTypeToAddOrRemove: 'Komponenten Hinzufügen oder Entfernen',
+    any: 'ANDERE',
+    cancel: 'Abbrechen',
+    create: 'Erstellen'
   },
   pageEditor: {
-    title: 'Page Editor',
-    pageTitle: 'Page Title',
-    pageLink: 'Page Link',
-    pageLayout: 'Page Layout',
-    pageParent: 'Page Parent',
-    pageStyles: 'Page Styles',
-    pageBg: 'Page Background',
-    scheduleUpdate: 'Schedule Update',
-    unsavedChanges: 'You have unsaved changes',
-    untitled: 'Untitled',
-    errorWhileSaving: 'Error while saving',
-    confirmLeave: 'You have unsaved changes, do you really want to leave the page ?',
-    chooseBgColor: 'Choose Background Color',
-    showHide: 'Show / Hide',
-    or: 'OR',
-    movedToStyle: 'Page background color and media have been moved to page styles',
-    createModelFromPage: 'Create Model from Page',
-    changeStyles: 'change styles',
-    file: 'File',
-    create: 'Create',
-    pageFromModel: 'Page created from Model',
-    quickLink: 'Quick link to',
-    saveModelInstance: 'SAVE MODEL INSTANCE',
-    savePage: 'SAVE PAGE',
-    duplicate: 'duplicate',
-    editLayout: 'EDIT LAYOUT',
-    typeUrlOrRgb: 'TYPE URL OR RGB',
-    noParent: 'no parent'
+    title: 'Seiten Editor',
+    pageTitle: 'Titel der Seite',
+    pageLink: 'Link der Seite',
+    pageLayout: 'Seitenlayout',
+    pageParent: 'Übergeordnete Seiten',
+    pageStyles: 'Seitenansicht',
+    pageBg: 'Seitenhintergrund',
+    scheduleUpdate: 'Updates planen',
+    unsavedChanges: 'Sie haben nicht gespeicherte Änderungen',
+    untitled: 'Unbezeichnet',
+    errorWhileSaving: 'Fehler während des Speicherns',
+    confirmLeave: 'Sie haben nicht gespeicherte Änderungen, wollen Sie wirklich die Seite verlassen?',
+    chooseBgColor: 'Wähle die Hintergrundfarbe',
+    showHide: 'Zeigen/Verstecken',
+    or: 'ODER',
+    movedToStyle: 'Die Seitenhintergrundfarbe und die Medien sind nun unter Seitenansicht zu finden',
+    createModelFromPage: 'Seitenmodell erstellen',
+    changeStyles: 'Ändere Ansicht',
+    file: 'Datei',
+    create: 'Erstellen',
+    pageFromModel: 'Seite aus Seitenmodell generieren',
+    quickLink: 'Seitenwechsel auf',
+    saveModelInstance: 'SPEICHERE MODELLINSTANZ',
+    savePage: 'SPEICHERE SEITE',
+    duplicate: 'duplizieren',
+    editLayout: 'LAYOUT BEARBEITEN',
+    typeUrlOrRgb: 'URL ODER RGB EINGEBEN',
+    noParent: 'keine übergeordnete Seite'
   },
   componentEditor: {
-    editComponentStyle: 'Edit Component Styles',
-    editInner: 'Edit...',
-    titleComponentStyle: 'Component Style',
-    componentLabel: 'Component Label',
-    componentType: 'Component Type',
-    chooseView: 'Choose view',
-    hideFocus: 'Hide Focus',
-    navigable: 'Navigable',
-    scrollable: 'Scrollable',
+    editComponentStyle: 'Komponentenansicht bearbeiten',
+    editInner: 'Ändern...',
+    titleComponentStyle: 'Komponenten Ansicht',
+    componentLabel: 'Komponenten Bezeichnung',
+    componentType: 'Komponenten Auswahl',
+    chooseView: 'Wähle Ansicht',
+    hideFocus: 'Focus nicht anzeigen',
+    navigable: 'Navigierbar',
+    scrolllable: 'Scrollbar',
     hotSpot: 'Hot Spot',
     companionScreen: 'Companion Screen',
-    thisIsAModel: 'This is a model',
-    editProtected: 'Editing is disabled',
-    editStubborn: 'Edit anyway'
+    thisIsAModel: 'Das ist ein Modell',
+    editProtected: 'Bearbeitung nicht möglich',
+    editStubborn: 'Trotzdem Bearbeiten'
   },
   audio: {
-    title: 'Audio settings',
-    audioUrlInput: 'Source File',
-    audioUrlLabel: 'Source File',
-    autoStart: 'Auto Start',
-    chooseFile: 'Choose file',
-    whenPageLoads: 'When the page loads',
-    repeat: 'Repeat',
+    title: 'Audio Einstellungen',
+    audioUrlInput: 'Quelldatei',
+    audioUrlLabel: 'Quelldatei',
+    autoStart: 'Autostart',
+    chooseFile: 'Datei öffnen',
+    whenPageLoads: 'Wenn die Seite lädt',
+    repeat: 'Wiederholen',
     loop: 'Loop'
   },
   broadcast: {
-    notice1: 'The broadcast component displays the broadcast signal on the TV.',
-    notice2: 'If you are testing this component on your desktop using',
-    notice3: 'or similar, the component will be shown as a black box.'
+    notice1: 'Die Broadcast Komponente stellt das Fernsehsignal auf dem Fernseher da.',
+    notice2: 'Falls Sie diese Komponente auf Ihrem Rechner mit Hilfe von',
+    notice3: 'oder Ähnlichem testen, wird die Komponente nur als schwarze Box dargestellt.'
   },
   clone: {
-    choose: 'Choose',
-    modelComponentPage: 'Model Component Page',
+    choose: 'Öffnen',
+    modelComponentPage: 'Seitenmodelle',
     layoutBox: 'Layout Box',
-    component: 'Component'
+    component: 'Komponente'
   },
   image: {
-    title: 'Image Settings',
-    url: 'Image URL',
-    upload: ' Upload Image',
-    chooseFromLibrary: 'or choose from library',
-    choose: 'Choose'
+    title: 'Bilder Einstellungen',
+    url: 'Bilddatei URL',
+    upload: ' Upload Bilddatei',
+    chooseFromLibrary: 'oder wähle ein Bild aus der Bibliothek',
+    choose: 'Öffnen'
   },
   launcher: {
     backend: {
-      launcherSettings: 'Launcher settings',
-      toLinkAPage: 'To link to a specific page of this component, append the following to your link',
-      menuOrient: 'Menu Orientation',
+      launcherSettings: 'Launcher Einstellungen',
+      toLinkAPage: 'Um auf eine bestimmte Komponente der Seite zu verlinken, muss folgendes an den Link gehängt werden',
+      menuOrient: 'Menü Orientierung',
       horizontal: 'Horizontal',
-      vertical: 'Vertical',
+      vertical: 'Vertikal',
       format: 'Launcher Format',
-      landscape: 'Landscape',
-      square: 'Square',
-      squareWithInfo: 'Square with Info',
-      portrait: 'Portrait',
-      launcherStyle: 'Launcher style',
+      landscape: 'Querformat',
+      square: 'Quadratisch',
+      squareWithInfo: 'Quadratisch mit Information',
+      portrait: 'Hochformat',
+      launcherStyle: 'Launcher Ansicht',
       optionStandard: 'Standard',
       optionArte: 'Arte',
-      scrollStyle: 'Scroll style',
-      optionCarousel: 'Carousel',
-      optionPagination: 'Pagination',
-      showPaginationInfo: 'Show Pagination Info',
-      addLauncherElement: 'Add Launcher element',
+      scrollStyle: 'Scrollart',
+      optionCarousel: 'Karussell',
+      optionPagination: 'Seitennummerierung',
+      showPaginationInfo: 'Zeige Seitennummerierung',
+      addLauncherElement: 'Füge Launcher Element hinzu',
       launcherThumbnail: 'Launcher Thumbnail',
       launcherThumbnailUrl: 'Launcher Thumbnail URL',
-      chooseThumbnail: 'Choose Thumbnail',
-      title: 'Title',
-      launcherTitle: 'Launcher Title',
-      role: 'Role',
+      chooseThumbnail: 'Thumbnail öffnen',
+      title: 'Titel',
+      launcherTitle: 'Launcher Titel',
+      role: 'Rolle',
       link: 'Link',
-      controlTargetComponent: 'Control Target component',
-      chooseTargetFirst: 'Choose target first!',
-      launcherTargetUrl: 'Launcher Target URL',
-      pages: 'Pages',
-      state: 'State',
-      description: 'Description',
-      launcherDescription: 'Launcher Description',
-      deleteLauncherElement: 'Delete Launcher Element',
-      optionalContentIcon: 'Optional content icon',
-      none: 'none',
-      audio: 'audio',
-      picture: 'picture',
-      text: 'text',
-      video: 'video'
+      controlTargetComponent: 'Zielkomponente steuern',
+      chooseTargetFirst: 'Erst Zielkomponente auswählen',
+      launcherTargetUrl: 'Launcher Ziel-URL',
+      pages: 'Seiten',
+      state: 'Status',
+      description: 'Beschreibung',
+      launcherDescription: 'Launcher Beschreibung',
+      deleteLauncherElement: 'Lösche Launcher Element',
+      optionalContentIcon: 'Eigenes Logo',
+      none: 'keine',
+      audio: 'Audio',
+      picture: 'Bild',
+      text: 'Text',
+      video: 'Video'
     },
     frontend: {
       monthNames: ['JANUAR', 'FEBRUAR',
@@ -358,183 +336,183 @@ const de = {
     }
   },
   link: {
-    linkSettings: 'Link Settings',
-    linkImageUrl: 'Link Image URL',
-    placeHolderLinkImageUrl: 'LINK IMAGE URL',
-    chooseLinkImage: 'Choose Link Image',
-    linkLabel: 'Link Label',
-    placeHolderLinkLabel: 'LINK LABEL',
-    or: 'OR',
-    linkTarget: 'Link Target',
-    placeHolderLinkUrl: 'LINK URL',
-    pages: 'Pages',
-    imageLayoutCover: 'Image Layout Cover'
+    linkSettings: 'Link Einstellungen',
+    linkImageUrl: 'Link als Bild',
+    placeHolderLinkImageUrl: 'BILDDATEI URL',
+    chooseLinkImage: 'Bilddatei öffnen',
+    linkLabel: 'Link Bezeichnung',
+    placeHolderLinkLabel: 'BEZEICHNUNG',
+    or: 'ODER',
+    linkTarget: 'Link URL',
+    placeHolderLinkUrl: 'URL',
+    pages: 'Seiten',
+    imageLayoutCover: 'Bild an Box anpassen'
   },
   list: {
-    listSettings: 'List Settings',
-    addListElement: 'Add List Element',
-    title: 'Title',
-    placeHolderTitle: 'ELEMENT TITLE',
+    listSettings: 'Listen Einstellungen',
+    addListElement: 'Füge ein Listen Element hinzu',
+    title: 'Titel',
+    placeHolderTitle: 'ELEMENT TITEL',
     url: 'URL',
-    placeHolderUrl: 'ELEMENT TARGET URL',
-    description: 'Description',
-    placeHolderDesc: 'ELEMENT DESCRIPTION',
-    deleteListElement: 'Delete List Element'
+    placeHolderUrl: 'ELEMENT ZIEL-URL',
+    description: 'Beschreibung',
+    placeHolderDesc: 'ELEMENT BESCHREIBUNG',
+    deleteListElement: 'Lösche Listen Element'
   },
   menu: {
-    menuSettings: 'Menu Settings',
-    addMenuItem: 'Add Menu item',
-    title: 'Title',
-    sideMenu: 'Side Menu',
-    showAsSideMenu: 'Show menu as side menu',
-    menuOrient: 'Menu Orientation',
+    menuSettings: 'Menü Einstellungen',
+    addMenuItem: 'Füge Menüpunkt hinzu',
+    title: 'Titel',
+    sideMenu: 'Aufklapp-Menü',
+    showAsSideMenu: 'Zeige Menü als Aufklapp-Menü',
+    menuOrient: 'Menü Orientierung',
     horizontal: 'Horizontal',
-    vertical: 'Vertical',
+    vertical: 'Vertikal',
     loop: 'Loop',
-    restart: 'whether the navigation should restart from first item after the last one ( and viceversa ) or not',
-    showButtons: 'Show Buttons',
-    showRemoteKeys: 'Show Remote Keys',
-    selectAction: 'Select Action',
-    goToPrevPage: 'Go to previous page',
-    toggleApplication: 'Toggle application(show/hide)',
-    label: 'Label',
-    placeHolderLabel: 'MENU TEXT',
-    remoteKey: 'Remote Key',
-    remoteControlKey: 'Remote control key',
-    role: 'Role',
+    restart: 'Egal ob die Navigation nach dem letzten Menüpunkt wieder beim ersten Menüpunkt beginnt (und umgekehrt) oder nicht',
+    showButtons: 'Menüpunkte als Buttons',
+    showRemoteKeys: 'Zeige Fernbedienungstasten als Icons an',
+    selectAction: 'Wähle eine Aktion aus',
+    goToPrevPage: 'Gehe zu vorheriger Seite',
+    toggleApplication: 'Wechsle Applikationsmodus (zeigen/verstecken)',
+    label: 'Bezeichnung',
+    placeHolderLabel: 'MENÜ TEXT',
+    remoteKey: 'Fernbedienungstaste',
+    remoteControlKey: 'Fernbedienungstaste kontrollieren',
+    role: 'Rolle',
     link: 'Link',
-    controlApplication: 'Control Application',
-    controlTargetComponent: 'Control target component',
-    launchAppViaAIT: 'Launch application via AIT',
+    controlApplication: 'Applikation kontrollieren',
+    controlTargetComponent: 'Zielkomponente kontrollieren',
+    launchAppViaAIT: 'Starte Applikation via AIT',
     url: 'URL',
-    placeHolderUrl: 'TARGET URL',
-    pages: 'Pages',
+    placeHolderUrl: 'ZIEL-URL',
+    pages: 'Seiten',
     appId: 'App ID',
     fallbackUrl: 'Fallback URL',
-    appAction: 'Application Action',
-    state: 'State',
-    deleteItem: 'Delete menu item',
-    addItem: 'Add menu item'
+    appAction: 'Aufgabe der Applikation',
+    state: 'Status',
+    deleteItem: 'Lösche Menüpunkt',
+    addItem: 'Weiterer Menüpunkt'
   },
   redbutton: {
-    redButtonSettings: 'Red Button Settings',
-    buttonImage: 'Button Image',
-    placeHolderImageUrl: 'IMAGE URL',
-    chooseImage: 'Choose Image',
+    redButtonSettings: 'Red Button Einstellung',
+    buttonImage: 'Bild für Button',
+    placeHolderImageUrl: 'URL zur Bilddatei',
+    chooseImage: 'Bilddatei öffnen',
     redButtonLink: 'Red Button Link',
     placeHolderRedButtonLink: 'LINK URL',
-    fadeInTime: 'Fade-in Time (s)',
-    placeHolderFadeInTime: 'SECONDS',
-    displayDuration: 'Display Duration (s)',
-    placeHolderDisplayDuration: 'SECONDS'
+    fadeInTime: 'Fade-in Zeit (s)',
+    placeHolderFadeInTime: 'SEKUNDEN',
+    displayDuration: 'Anzeigedauer (s)',
+    placeHolderDisplayDuration: 'SEKUNDEN'
   },
   scribbleLive: {
-    noPreviewAvailable: 'ScribleLive Feed. No specific preview available.',
+    noPreviewAvailable: 'ScribleLive Feed. Keine Vorschau möglich.',
     title: 'Scribble Live',
-    hint1: 'Hint: please use',
-    hint2: 'for language settings. (to display timerelated Information like',
-    hint3: 'a year ago'
+    hint1: 'Hinweis: Bitte ',
+    hint2: 'für Spracheinstellungen nutzen (um zeitrelevante Informationen darzustellen wie z.B.',
+    hint3: 'vor einem Jahr'
   },
   scrolledText: {
-    title: 'Scrolled Text Settings',
-    arrowColor: 'Arrow Color',
-    activeArrowColor: 'Active Arrow Color',
-    arrowPlacement: 'Arrow Placement',
-    onText: 'on text',
-    left: 'left',
-    right: 'right',
-    aboveBelow: 'above/below',
-    outside: 'outside',
-    noArrows: 'no arrows'
+    title: 'ScrolledText Einstellungen',
+    arrowColor: 'Pfeilfarbe',
+    activeArrowColor: 'Pfeilfarbe aktiv',
+    arrowPlacement: 'Pfeilanordnung',
+    onText: 'im Text',
+    left: 'links',
+    right: 'rechts',
+    aboveBelow: 'oben/unten',
+    outside: 'außen',
+    noArrows: 'keine Pfeile'
   },
   toggleTracking: {
-    title: 'Toggle Tracking Settings',
-    enabledText: 'Enabled Text',
-    disabledText: 'Disabled Text',
+    title: 'Ändere Tracking Einstellungen',
+    enabledText: 'Aktiviere Text',
+    disabledText: 'Sperre Text',
     button: 'Button'
   },
   video: {
-    title: 'Video Settings',
-    asset: 'Asset',
-    src: 'Video Source',
+    title: 'Video Einstellungen',
+    asset: 'Medien',
+    src: 'Videoquelle',
     placeHolderSrc: 'VIDEO URL',
-    or: 'OR',
-    chooseVideo: 'Choose Video',
+    or: 'ODER',
+    chooseVideo: 'Videodatei öffnen',
     thumbnail: 'Video Thumbnail',
     placeHolderThumbnail: 'THUMBNAIL URL',
-    chooseThumbnail: 'Choose Thumbnail',
+    chooseThumbnail: 'Thumbnail öffnen',
     autoPlay: 'Autoplay',
-    startPlaybackWhenPage: 'Start playback when page opens',
-    repeat: 'Repeat',
+    startPlaybackWhenPage: 'Starte das Video mit Seitenaufruf',
+    repeat: 'Wiederholen',
     loop: 'Loop video',
-    fullscreenStart: 'Fullscreen start',
-    startVideoFullScr: 'Start video in fullscreen',
-    removeBlackBars: 'Remove Black Bars',
-    zoomVideo: 'Zoom video to remove black bars',
-    playIcon: 'Play icon',
-    showPlayIcon: 'show play icon when video is ready',
-    showNavBar: 'Show navigation bar'
+    fullscreenStart: 'Fullscreen Modus starten',
+    startVideoFullScr: 'Starte Video in Fullscreen Modus',
+    removeBlackBars: 'Entferne schwarze Balken',
+    zoomVideo: 'Video skalieren um schwarze Balken zu vermeiden',
+    playIcon: 'Play Symbol',
+    showPlayIcon: 'Play Symbol anzeigen, wenn das Video bereit ist',
+    showNavBar: 'Anzeige der Navigation'
   },
   timeline: {
     title: 'Timeline',
-    range: 'Range',
-    duration: 'Duration (sec)',
-    fps: 'Frames per second',
-    select_range: 'Please select a range',
-    editting_range: 'Editting range {0}',
-    no_selection: 'No time range currently selected',
-    new_project: 'New project {0}',
-    existing_project: 'Project from "{0}" blog restorable',
+    range: 'Bereich',
+    duration: 'Dauer (sec)',
+    fps: 'Frames pro Sekunde',
+    select_range: 'Bitte einen Bereich wählen',
+    editting_range: 'Bereich ändern {0}',
+    no_selection: 'Es ist kein Zeitbereich ausgewählt',
+    new_project: 'Neues Projekt {0}',
+    existing_project: 'Projekt von "{0}" Blog wiederherstellbar',
     restore: {
-      button: { value: 'Restore' },
-      wait: 'Wait {0} seconds.',
-      skipload: ' (restored {0} {1} secondes ago)',
-      scenario_loaded: 'Scenario restore',
-      nothing_to_restore: 'Nothing to restore',
-      restored: 'Restored {0} events',
-      no_overwrite: 'Keeping current workspace',
-      ask_to_overwrite: 'Overwrite current workspace?'
+      button: { value: 'Wiederherstellen' },
+      wait: 'Bitte {0} Sekunden warten.',
+      skipload: ' (wiederhergestellt {0} {1} Sekunden später)',
+      scenario_loaded: 'Szene wiederherstellen',
+      nothing_to_restore: 'Nichts zu wiederherstellen',
+      restored: ' {0} Wiederherstellungsprozesse',
+      no_overwrite: 'Den aktuellen Workspace behalten',
+      ask_to_overwrite: 'Den aktuellen Workspace überschreiben?'
     },
     publish: {
       button: {
-        value: 'Save'
+        value: 'Speichern'
       },
-      publishing: 'Saving...',
-      no_ovewrite: 'Skipping publish to avoid data loss',
-      warning_overwrite: 'WARNING!:\nThis will overwrite your current scenario from \'{0}\'\n\nContinue with saving?',
-      wait: 'Wait {0} seconds.',
+      publishing: 'Speichern...',
+      no_ovewrite: 'Veröffentlichung verwerfen um Datenverlust zu vermeiden',
+      warning_overwrite: 'WARNUNG!:\nDer Vorgang wird das aktuelle Szenario überschreiben \'{0}\'\n\nMit Speichern fortfahren?',
+      wait: 'Bitte {0} Sekunden warten',
       saved: ' (saved {0}s ago at {1})',
-      notsaving: 'Not saving, scenario is empty',
-      scenario_published: '{0} scenario with {1} events published at {2}'
+      notsaving: 'Nicht speichern, das Szenario ist leer',
+      scenario_published: '{0} Szenario mit {1} Ereignissen wurde veröffentlicht um {2}'
     },
     remove: {
       button: {
-        value: 'Delete Scenario'
+        value: 'Szenario löschen'
       },
-      deleting: 'Deleting...',
-      no_ovewrite: 'Skipping Delete to avoid data loss',
-      warning_overwrite: 'WARNING!:\nThis will overwrite your current scenario from \'{0}\'\n\nContinue wi' +
-      'th deleting?',
-      wait: 'Wait {0} seconds.',
+      deleting: 'Löschen...',
+      no_ovewrite: 'Löschenvorgang abbrechen, um Datenverlust zu vermeiden',
+      warning_overwrite: 'WARNUNG!:\nDiese Aktion wird das aktuelle Szenario überschreiben \'{0}\'\n\nMit dem Löschen' +
+      'fortfahren?',
+      wait: 'Bitte {0} Sekunden warten.',
       saved: ' (saved {0}s ago at {1})',
-      notsaving: 'Not saving, scenario is empty',
-      scenario_deleted: '{0} scenario with {1} events deleted at {2}'
+      notsaving: 'Nicht speichern, das Szenario ist leer',
+      scenario_deleted: '{0} Szenarios mit {1} Ereignissen gelöscht um {2}'
     },
     rangeEdit: {
       button: {
-        value: 'Activate Editing',
-        title: 'Refresh and/or activate editting the selected time range'
+        value: 'Bearbeiten aktivieren',
+        title: 'Bearbeiten des ausgewählten Zeitbereiches Aktualisieren und/oder Aktivieren'
       },
       button2: {
-        value: 'Swap Selected',
-        title: 'Swap selected range with next to the right'
+        value: 'Auswahl umkehren',
+        title: 'Auswahlbereich umkehren mit next to the right'
       },
       event: {
-        type: 'Type',
+        type: 'Typ',
         keycode: 'KeyCode',
-        data: 'Data',
-        begin: 'Begin',
-        dura: 'Duration'
+        data: 'Daten',
+        begin: 'Beginn',
+        dura: 'Dauer'
       },
       eventOptions: {
         streamEvent: 'StreamEvent',
@@ -543,38 +521,38 @@ const de = {
         timeEvent: 'TimeEvent',
         clockEvent: 'ClockEvent'
       },
-      time: 'Time',
-      page: 'Page'
+      time: 'Zeit',
+      page: 'Seite'
     },
     rangeRemove: {
       button: {
-        value: 'Remove Selected',
-        title: 'Removed selected range'
+        value: 'Auswahl entfernen',
+        title: 'Auswahlbereich entfernen'
       }
     },
     rangeTool: {
       range: 'Event Editing',
       swapButton: {
-        value: 'Swap Selected',
-        title: 'Swap selected range with next to the right'
+        value: 'Auswahl umkehren',
+        title: 'Auswahlbereich umkehren next to the right'
       }
     },
     restoreButton: {
-      error: 'Error loading scenario'
+      error: 'Ladefehler Szenario'
     },
     timelineEditor: {
-      error: { unableToSet: 'Warning: unable to set value' }
+      error: { unableToSet: 'Warnung: nicht möglich den Wert zu setzen' }
     },
     dsmcc: {
       title: 'Streamevent Container',
       button: {
         download: {
           link: 'Download',
-          title: 'Retrieve a DSMCC formatted XML for stream events'
+          title: 'Ein DSMCC formatierte XML Datei abrufen für Streamevents'
         },
         save: {
-          link: 'Save',
-          title: 'Save the DSMCC settings'
+          link: 'Speichern',
+          title: 'DSMCC Einstellungen speichern'
         }
       },
       fileName: 'dsmcc.xml',
@@ -592,21 +570,21 @@ const de = {
       },
       labelUrl: 'URL',
       error: {
-        onLoad: 'Error getting DSMCC option, modify values and try again',
-        onSave: 'Error saving DSMCC option'
+        onLoad: 'Fehler beim Erhalten der DSMCC Option, bitte Werte noch einmal überprüfen und gegebenenfalls ändern.',
+        onSave: 'Fehler beim Speichern der DSMCC Option'
       },
-      saved: 'DSMCC info saved'
+      saved: 'DSMCC Information gespeichert'
     },
     elementMenu: {
-      noFreeSpace: 'no free space',
-      enterKeyCode: 'Enter keycode',
-      addToTheTimeline: 'Add to the timeline',
-      back: 'Back',
-      addAPage: 'Add a page',
-      inTheBack: 'In the back',
-      backPage: 'Back page',
-      remove: 'Remove',
-      addEventLinkToPage: 'Add an event linking to a page',
+      noFreeSpace: 'kein freier Platz',
+      enterKeyCode: 'Keycode eingeben',
+      addToTheTimeline: 'Zu Timeline hinzufügen',
+      back: 'Zurück',
+      addAPage: 'Seite hinzufügen',
+      inTheBack: 'Im Hintergrund',
+      backPage: 'Rückseite',
+      remove: 'Löschen',
+      addEventLinkToPage: 'Ein Ereignis mit einer Seite verlinken',
       abbr: {
         streamEvent: 'StreamEv',
         keyEvent: 'KeyEv',
@@ -614,35 +592,46 @@ const de = {
         timeEvent: 'TimeEv',
         clockEvent: 'ClockEv'
       },
-      targetPage: 'Target Page',
-      addElement: 'Add element'
+      targetPage: 'Zielseite',
+      addElement: 'Element hinzufügen'
+    },
+    bbBox: {
+      title: 'BeeBee Box',
+      button: {
+        link: 'Generieren',
+        title: 'BeeBee Box formatiertes XML für Streamevents abrufen'
+      },
+      fileName: 'beebeebox_streamevents.xml',
+      no_streamevents: 'kein Ereignis zu streamen',
+      generated_streamevents: 'Die Datei "{0}" wurde generiert.',
+      no_project: 'Kein Projekt geladen, dass in eine BeeBee Box Datei konvertiert werden kann'
     }
   },
   frontend: {
     error: {
-      formatNotSupported: 'A/V FORMAT NOT SUPPORTED',
-      connection: 'Cannot connect to server or connection lost',
-      unidentified: 'Unidentified error', // by DAE 1.1 p. 263:
-      resource: 'Insufficient resources',
-      corrupt: 'Content corrupt or invalid',
-      available: 'Content not available',
-      positition: 'Content not available at a givin position',
-      blocked: 'Content not available due to parental control' // (by ETSI 1.2.1)
+      formatNotSupported: 'A/V FORMAT WIRD NICHT UNTERSTÜTZT',
+      connection: 'Konnte keine Verbindung zum Server herstellen / die Verbindung wurde abgebrochen.',
+      unidentified: 'Nicht identifizierter Fehler', // by DAE 1.1 p. 263:
+      resource: 'Unvollständige Ressourcen',
+      corrupt: 'Inhalte fehlerhaft oder ungültig',
+      available: 'Inhalte sind nicht verfügbar',
+      positition: 'Inhalte sind zur angegebenen Position nicht verfügbar',
+      blocked: 'Der Inhalt ist nicht verfügbar auf Grund seitenübergeordneter Kontrolle' // (by ETSI 1.2.1)
     },
     state: {
-      stopped: 'STOPPED',
-      playing: 'PLAYING',
-      paused: 'PAUSED',
-      connected: 'CONNECTING',
-      buffering: 'BUFFERING',
-      finished: 'FINISHED'
+      stopped: 'GESTOPPT',
+      playing: 'SPIELT',
+      paused: 'PAUSIERT',
+      connected: 'VERBINDET SICH',
+      buffering: 'PUFFERT',
+      finished: 'BEENDET'
     },
     video360: {
-      error: 'Error',
-      deviceNotSupported: 'Your device isn\'t supported.',
-      errSyncPlayPos: 'Sync of current playPosition already reported. It seems that the player is not playing',
-      errInvJson: 'get invalid json from server',
-      errConfig: 'invalid config object. at least config.gatewayUrl must be set.'
+      error: 'Fehler',
+      deviceNotSupported: 'Ihr Gerät wird nicht unterstützt.',
+      errSyncPlayPos: 'Die aktuelle Abspielposition wurde bereits berichtet. Es scheint, der Player spielt nicht.',
+      errInvJson: 'ungültiges json vom Server erhalten',
+      errConfig: 'ungültiges Konfigurationsobjekt. Zumindest die config.gatewayUrl muss gesetzt sein.'
     }
   }
 };
