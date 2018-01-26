@@ -711,7 +711,8 @@ export default class PageEditor extends React.PureComponent {
     pageParentOptions.unshift(<option key="0" value="0">--{i18n.noParent}--</option>);
 
     const currentPermaLink = $('#sample-permalink').text();
-    const ffStyle = { fontSize: 'small', background: 'white', padding: '5px', margin: '5px', borderRadius: '3px', border: '2px dashed #43b4f9' };
+    const fullPermaLink = window.Post.postInfo.guid;
+    //const ffStyle = { fontSize: 'small', background: 'white', padding: '5px', margin: '5px', borderRadius: '3px', border: '2px dashed #43b4f9' };
 
     return (
       <div className="mpat">
@@ -755,7 +756,7 @@ export default class PageEditor extends React.PureComponent {
                   <label>{i18n.pageLink}: </label>
                 </td>
                 <td>
-                  {getTooltipped(<span id="link_wrapper"><a href={currentPermaLink}>{currentPermaLink}</a></span>, i18n.ttLink)}
+                  {getTooltipped(<span id="link_wrapper"><a href={fullPermaLink}>{currentPermaLink}</a></span>, i18n.ttLink)}
                 </td>
               </tr>
 
