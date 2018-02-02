@@ -596,8 +596,12 @@ export default class PageEditor extends React.PureComponent {
     );
   }
 
+  scheduleShown = false;
+
   toggleSchedule(e) { // eslint-disable-line
 
+    if (this.scheduleShown) return;
+    this.scheduleShown = true;
     if (e) { e.preventDefault(); }
 
     const sc_revisions = document.getElementById('meta_mpat_sc_publish_revisions');
@@ -633,7 +637,14 @@ export default class PageEditor extends React.PureComponent {
       content: (
         <div>
           <ScheduleContent />
-          <button type="button" className="white_blue" onClick={Popup.close} style={{ margin: 5, float: 'right' }}>Done</button>
+          <button
+            type="button"
+            className="white_blue"
+            onClick={() => {Popup.close(); this.scheduleShown = false; }}
+            style={{ margin: 5, float: 'right' }}
+          >
+            Done
+          </button>
         </div>
       )
     });
