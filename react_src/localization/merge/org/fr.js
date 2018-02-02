@@ -239,7 +239,7 @@ const fr = {
     errorWhileSaving: 'Error while saving',
     confirmLeave: 'Vous avez des changements non enregistrés, voulez-vous vraiment quitter la page ?',
     chooseBgColor: 'Choisissez Couleur de fond',
-    showHide: 'Afficher / Masquer',
+    show: 'Afficher',
     or: 'OU',
     movedToStyle: 'La couleur d\'arrière-plan de la page et les médias ont été déplacés vers les styles de page',
     createModelFromPage: 'Créer un modèle depuis la page',

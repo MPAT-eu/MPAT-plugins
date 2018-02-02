@@ -241,7 +241,7 @@ const nl = {
     errorWhileSaving: 'Fout bij het opslaan',
     confirmLeave: 'U heeft ongestoorde wijzigingen, wilt u de pagina echt verlaten?',
     chooseBgColor: 'Kies achtergrondkleur',
-    showHide: 'Laten zien / Verbergen',
+    show: 'Laten zien',
     or: 'of',
     movedToStyle: 'Pagina achtergrondkleur en media zijn verplaatst naar pagina stijlen',
     createModelFromPage: 'Maak model van pagina',

@@ -216,7 +216,7 @@ const de = {
     errorWhileSaving: 'Fehler während des Speicherns',
     confirmLeave: 'Sie haben nicht gespeicherte Änderungen, wollen Sie wirklich die Seite verlassen?',
     chooseBgColor: 'Wähle die Hintergrundfarbe',
-    showHide: 'Zeigen/Verstecken',
+    show: 'Zeigen',
     or: 'ODER',
     movedToStyle: 'Die Seitenhintergrundfarbe und die Medien sind nun unter Seitenansicht zu finden',
     createModelFromPage: 'Seitenmodell erstellen',

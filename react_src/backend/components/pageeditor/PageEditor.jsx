@@ -792,7 +792,7 @@ export default class PageEditor extends React.PureComponent {
                       className="button blue_white"
                       onClick={this.toggleSchedule}
                     >
-                      {i18n.showHide}
+                      {i18n.show}
                     </button>
                     , i18n.ttToggleUpdate)}
                 </td>

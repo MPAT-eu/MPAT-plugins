@@ -271,7 +271,7 @@ const en = {
     errorWhileSaving: 'Error while saving',
     confirmLeave: 'You have unsaved changes, do you really want to leave the page ?',
     chooseBgColor: 'Choose Background Color',
-    showHide: 'Show / Hide',
+    show: 'Show',
     or: 'OR',
     movedToStyle: 'Page background color and media have been moved to page styles',
     createModelFromPage: 'Create Model from Page',
