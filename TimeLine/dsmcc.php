@@ -27,13 +27,12 @@
  * @author Jean-Philippe Ruijs
  */
     header("Content-Type: text/xml;");
-    $default_values = json_encode(array('id'=>1, 'tag'=>9, 'name'=>'id1'));
+    $default_values = array('id'=>1, 'tag'=>9, 'name'=>'id1');
     $dsmcc = get_option("dsmcc", $default_values);
     $dsmcctag = $dsmcc['tag'];
     $dsmccid = $dsmcc['id'];
     $dsmccname = $dsmcc['name'];
-    echo '<?xml version="1.0" encoding="utf-8"?>
-<dsmcc xmlns="urn:dvb:mis:dsmcc:2009">
+    echo '<dsmcc xmlns="urn:dvb:mis:dsmcc:2009">
   <dsmcc_object component_tag="'.$dsmcctag.'">
     <stream_event stream_event_id="'.$dsmccid.'" stream_event_name="'.$dsmccname.'"/>
   </dsmcc_object>
