@@ -65,7 +65,7 @@ class TimeLine {
   function getTimeLineUrl() {
       $details = get_blog_details(get_current_blog_id());
       $prefix = get_option('timeline_uri_prefix', self::$timeline_uri_prefix);
-      return $_SERVER['WP_HOME'] . substr($details->path, 1) . "$prefix/timeline";
+      return $_SERVER['WP_HOME'] . $details->path . "$prefix/timeline";
   }
 
   function getDsmccUrl() {

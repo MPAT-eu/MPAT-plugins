@@ -111,23 +111,25 @@ foreach ($remoteIconsOptions as $option) {
 function updateClone($postid) {
     $meta = get_post_meta($postid, 'mpat_content', true);
     /* update clones */
-    $content = $meta['content'];
-    if ($content === null) {
-        return null;
-    }
-    forEach ($content as $boxKey => $boxValue) {
-        forEach ($boxValue as $stateKey => $stateValue) {
-            if ($stateValue['type'] == 'clone') {
-                $componentData = $stateValue['data'];
-                if (array_key_exists('boxId', $componentData) &&
-                    array_key_exists('stateId', $componentData)) {
-                    $boxId = $componentData['boxId'];
-                    $stateId = $componentData['stateId'];
-                    $modelPageMeta = get_post_meta($stateValue['data']['pageId'], 'mpat_content', true);
-                    $tmp = $modelPageMeta['content'];
-                    if (array_key_exists($boxId, $tmp) && array_key_exists($stateId, $tmp[$boxId])) {
-                        $meta['content'][$boxKey][$stateKey] = $tmp[$boxId][$stateId];
-                        continue 2;
+    if (is_array($meta) && array_key_exists('content', $meta)) {
+        $content = $meta['content'];
+        if ($content === null) {
+            return null;
+        }
+        forEach ($content as $boxKey => $boxValue) {
+            forEach ($boxValue as $stateKey => $stateValue) {
+                if ($stateValue['type'] == 'clone') {
+                    $componentData = $stateValue['data'];
+                    if (array_key_exists('boxId', $componentData) &&
+                        array_key_exists('stateId', $componentData)) {
+                        $boxId = $componentData['boxId'];
+                        $stateId = $componentData['stateId'];
+                        $modelPageMeta = get_post_meta($stateValue['data']['pageId'], 'mpat_content', true);
+                        $tmp = $modelPageMeta['content'];
+                        if (array_key_exists($boxId, $tmp) && array_key_exists($stateId, $tmp[$boxId])) {
+                            $meta['content'][$boxKey][$stateKey] = $tmp[$boxId][$stateId];
+                            continue 2;
+                        }
                     }
                 }
             }
@@ -142,16 +144,21 @@ function updateClone($postid) {
     $cbid = get_current_blog_id();
     if ($opt['backComponent'] !== null) {
       $opt['backComponent']['meta'] = updateClone($opt['backComponent']['postid']);
-      $opt['backComponent']['meta']['layout'] =
-        get_post_meta($opt['backComponent']['meta']['layoutId'],
-        'mpat_content', true)['layout'];
+      if (is_array($opt['backComponent']['meta']) &&
+          array_key_exists('layoutId', $opt['backComponent']['meta'])) {
+          $opt['backComponent']['meta']['layout'] =
+              get_post_meta($opt['backComponent']['meta']['layoutId'],
+                  'mpat_content', true)['layout'];
+      }
     }
     $nbranges = count($opt['ranges']);
     for($i = 0; $i < $nbranges; $i++) {
       $meta = updateClone($opt['ranges'][$i]['postid']);
-      $layout = get_post_meta($meta['layoutId'], 'mpat_content', true);
       $opt['ranges'][$i]['meta'] = $meta;
-      $opt['ranges'][$i]['meta']['layout'] = $layout['layout'];
+      if (is_array($meta) && array_key_exists('layoutId', $meta)) {
+          $layout = get_post_meta($meta['layoutId'], 'mpat_content', true);
+          $opt['ranges'][$i]['meta']['layout'] = $layout['layout'];
+      }
     }
     echo json_encode($opt);
     date_default_timezone_set('Europe/Paris');

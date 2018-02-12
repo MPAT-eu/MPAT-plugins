@@ -29,9 +29,13 @@ import { registerHandlers, registerNavigationModel, unregisterHandlers } from '.
 import { application } from '../appData';
 
 let current;
+let future = null;
 
 export function setCurrentControllerState(newData) {
-  current.setState({ page: { data: newData } });
+  if (current) current.setState({ page: { data: newData } });
+  else {
+    future = newData;
+  }
 }
 
 export class PreviewController extends React.Component {
@@ -45,7 +49,14 @@ export class PreviewController extends React.Component {
         data: application.post.meta
       }
     };
+  }
+
+  componentDidMount() {
     current = this;
+    if (future) {
+      this.setState({ page: { data: future } });
+      future = null;
+    }
   }
 
   render() {
