@@ -254,12 +254,12 @@ function ComponentLoader() {
    * (object) params - properties of a component, such as id, context and component.
    */
   this.renderComponent = function renderComponent(type, element, params) {
-    let component_class;
+    let componentClass;
 
     for (let i = 0; i < components.length; i++) {
       if (components[i].type === type) {
-        component_class = components[i].classes[element];
-        return React.createElement(component_class, params);
+        componentClass = components[i].classes[element];
+        return React.createElement(componentClass, params);
       }
     }
   };
@@ -303,4 +303,4 @@ function ComponentLoader() {
   };
 }
 // export an instance of a ComponentLoader
-export const componentLoader = new ComponentLoader();
+export default new ComponentLoader();
