@@ -303,4 +303,4 @@ function ComponentLoader() {
   };
 }
 // export an instance of a ComponentLoader
-export default new ComponentLoader();
+export const componentLoader = new ComponentLoader();
