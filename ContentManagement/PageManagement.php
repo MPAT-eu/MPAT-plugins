@@ -449,45 +449,47 @@ class PageManagement {
 				"order" => "ASC"
 		));
 
-		//add to list the drafts with status mpat_sc_publish which does not have a publication date.
-		if ($not_scheduled_updates->have_posts()) {
-			foreach ($not_scheduled_updates->posts as $not_scheduled_update) {
-				if ($not_scheduled_update->ID == $post->ID)
-					$is_new_sc_draft = true;
+        //add to list the drafts with status mpat_sc_publish which does not have a publication date.
+        if ($not_scheduled_updates->have_posts()) {
+            foreach ($not_scheduled_updates->posts as $not_scheduled_update) {
+                if ($not_scheduled_update->ID == $post->ID)
+                    $is_new_sc_draft = true;
 
-				$scheduled_revisions[] = array(
-						"post_id" => $not_scheduled_update->ID,
-						"label" => ($not_scheduled_update->ID == $post->ID) ? __( 'Current draft revision', self::$MPAT_PUBLISH_TEXTDOMAIN ) : __( 'Unscheduled draft revision', self::$MPAT_PUBLISH_TEXTDOMAIN ),
-						"url" => admin_url( "post.php?action=edit&post=" . $not_scheduled_update->ID )
-				);
-			}
-		}
-		if ($is_new_sc_draft) {
-			echo "<script>PageManagement = PageManagement || {}; PageManagement.new_sc_draft = true; </script>\n";
-		}
-		?>
-		<p>
-			<strong><a href="<?php echo $copy_to_publish ?>"><?php _e( 'Create new scheduled update', self::$MPAT_PUBLISH_TEXTDOMAIN ); ?></a></strong>
-		</p>
-		<?php /* ?>
+                $scheduled_revisions[] = array(
+                    "post_id" => $not_scheduled_update->ID,
+                    "label" => ($not_scheduled_update->ID == $post->ID) ? __( 'Current draft revision', self::$MPAT_PUBLISH_TEXTDOMAIN ) : __( 'Unscheduled draft revision '.$not_scheduled_update->ID, self::$MPAT_PUBLISH_TEXTDOMAIN ),
+                    "url" => admin_url( "post.php?action=edit&post=" . $not_scheduled_update->ID )
+                );
+            }
+        }
+        if ($is_new_sc_draft) {
+            echo "<script>PageManagement = PageManagement || {}; PageManagement.new_sc_draft = true; </script>\n";
+        }
+        ?>
+        <p>
+            <strong><a href="<?php echo $copy_to_publish ?>"><?php _e( 'Create new scheduled update', self::$MPAT_PUBLISH_TEXTDOMAIN ); ?></a></strong>
+        </p>
+        <?php /* ?>
 		<p>
 			<strong><?php _e( 'Scheduled revisions', self::$MPAT_PUBLISH_TEXTDOMAIN ); ?></strong>
 		</p>
 		<?php */ ?>
-		<?php if ($scheduled_revisions) : ?>
-			<ul style="padding-left: 20px; list-style-type:disc;">
-			<?php foreach ($scheduled_revisions as $scheduled_revision): ?>
-				<li data-post-id="<?php echo $scheduled_revision["post_id"] ?>">
-					<?php if ($scheduled_revision["post_id"] == $post->ID) : ?>
-						<strong><?php echo $scheduled_revision["label"] ?></strong>
-					<?php else: ?>
-						<a href="<?php echo $scheduled_revision["url"] ?>"><?php echo $scheduled_revision["label"] ?></a>
-					<?php endif; ?>
-				</li>
-			<?php endforeach; ?>
-			</ul>
-			<i><?php echo __( self::get_timezone_string().' timezone', self::$MPAT_PUBLISH_TEXTDOMAIN )?></i>
-				<?php endif; ?>
+        <?php if ($scheduled_revisions) : ?>
+            <ul style="padding-left: 20px; list-style-type:disc;">
+                <?php foreach ($scheduled_revisions as $scheduled_revision): ?>
+                    <li data-post-id="<?php echo $scheduled_revision["post_id"] ?>">
+                        <?php if ($scheduled_revision["post_id"] == $post->ID) : ?>
+                            <strong><?php echo $scheduled_revision["label"] ?></strong>
+                        <?php else: ?>
+                            <a href="<?php echo $scheduled_revision["url"] ?>"><?php echo $scheduled_revision["label"] ?></a>&nbsp;
+                            <a href="<?php echo wp_nonce_url( "post.php?action=trash&amp;post=" . $scheduled_revision["post_id"],
+                                'trash-post_' . $scheduled_revision["post_id"] )?>">(Trash <?php echo $scheduled_revision["post_id"] ?>)</a>
+                        <?php endif; ?>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+            <i><?php echo __( self::get_timezone_string().' timezone', self::$MPAT_PUBLISH_TEXTDOMAIN )?></i>
+        <?php endif; ?>
 		<?php
 	}
 
