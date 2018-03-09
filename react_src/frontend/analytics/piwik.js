@@ -17,7 +17,7 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  *
  * AUTHORS:
- * Benedikt Vogel 	 (vogel@irt.de)
+ * Benedikt Vogel  (vogel@irt.de)
  * Stefano Miccoli (stefano.miccoli@finconsgroup.com)
  **/
 import { log } from '../utils';

@@ -19,14 +19,16 @@
  * AUTHORS:
  * Miggi Zwicklbauer (miggi.zwicklbauer@fokus.fraunhofer.de)
  * Thomas Tröllmich  (thomas.troellmich@fokus.fraunhofer.de)
- * Benedikt Vogel 	 (vogel@irt.de)
+ * Benedikt Vogel    (vogel@irt.de)
  * Stefano Miccoli (stefano.miccoli@finconsgroup.com)
  **/
 import Cookies from 'js-cookie';
 import { log } from '../utils';
 import Piwik from './piwik';
+import Ivw from './ivw';
 
 new Piwik();
+new Ivw();
 
 let trackingEnabled = Cookies.get('trackingEnabled') !== 'false';
 // custom handling of document url to be forced on those navigation models

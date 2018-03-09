@@ -348,11 +348,11 @@ class VideoContent extends React.Component {
     // video length >= 10 minutes ==> skip 30sec per time
     // video length >= 5 minutes ==> skip 15sec per time
     // video length < 5 minutes ==> skip 10sec per time
-    const skipTime = 10e3;
+    let skipTime = 10e3;
     if (this.video.length() >= 600e3) {
-      const skipTime = 30e3;
+      skipTime = 30e3;
     } else if (this.video.length() >= 300e3) {
-      const skipTime = 15e3;
+      skipTime = 15e3;
     }
     let nextPosition = false;
     switch (direction) {
