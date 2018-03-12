@@ -31,24 +31,24 @@ class PageManagement {
 
 	public static function init(){
 		// register actions for copy page
-		add_action('admin_action_save_as_new_post_draft', create_function('$post_id','return MPAT\ContentManagement\PageManagement::clone_action($post_id);'));
-		add_action('admin_notices', create_function ('','return MPAT\ContentManagement\PageManagement::display_error_message();') );
+		add_action('admin_action_save_as_new_post_draft', function($post_id) { return PageManagement::clone_action($post_id);});
+		add_action('admin_notices', function() { return PageManagement::display_error_message(); } );
 
 		// 		register action for schedule update
-		add_action( 'save_post', create_function( '$post_id, $post', 'return MPAT\ContentManagement\PageManagement::save_meta( $post_id, $post );' ), 10, 2 );
-		add_action( 'update_post_meta', create_function( '$meta_id, $object_id, $meta_key, $_meta_value', 'return MPAT\ContentManagement\PageManagement::update_meta( $meta_id, $object_id, $meta_key, $_meta_value );' ), 10, 4 );
-		add_action( 'added_post_meta', create_function( '$meta_id, $object_id, $meta_key, $_meta_value', 'return MPAT\ContentManagement\PageManagement::update_meta( $meta_id, $object_id, $meta_key, $_meta_value );' ), 10, 4 );
-		add_action( 'mpat_publish_post', create_function( '$post_id', 'return MPAT\ContentManagement\PageManagement::cron_publish_post( $post_id );' ) );
+		add_action( 'save_post', function($post_id, $post) { return PageManagement::save_meta( $post_id, $post ); }, 10, 2 );
+		add_action( 'update_post_meta', function($meta_id, $object_id, $meta_key, $_meta_value) { return PageManagement::update_meta( $meta_id, $object_id, $meta_key, $_meta_value ); }, 10, 4 );
+		add_action( 'added_post_meta', function($meta_id, $object_id, $meta_key, $_meta_value) { return PageManagement::update_meta( $meta_id, $object_id, $meta_key, $_meta_value ); }, 10, 4 );
+		add_action( 'mpat_publish_post', function($post_id) { return PageManagement::cron_publish_post( $post_id ); } );
 
-		add_action( 'wp_ajax_load_pubdate', create_function( '', 'return MPAT\ContentManagement\PageManagement::load_pubdate();' ) );
-		add_action( 'init', create_function( '', 'return MPAT\ContentManagement\PageManagement::setup();' ) );
-		add_action( 'admin_action_workflow_copy_to_publish', create_function( '', 'return MPAT\ContentManagement\PageManagement::admin_action_workflow_copy_to_publish();' ) );
-		add_action( 'admin_action_workflow_publish_now', create_function( '', 'return MPAT\ContentManagement\PageManagement::admin_action_workflow_publish_now();' ) );
-		add_action( 'transition_post_status', create_function( '$new_status, $old_status, $post', 'return MPAT\ContentManagement\PageManagement::prevent_status_change( $new_status, $old_status, $post );' ), 10, 3 );
+		add_action( 'wp_ajax_load_pubdate', function() { return PageManagement::load_pubdate(); } );
+		add_action( 'init', function() { return PageManagement::setup(); } );
+		add_action( 'admin_action_workflow_copy_to_publish', function() { return PageManagement::admin_action_workflow_copy_to_publish(); } );
+		add_action( 'admin_action_workflow_publish_now', function() { return PageManagement::admin_action_workflow_publish_now(); } );
+		add_action( 'transition_post_status', function($new_status, $old_status, $post) { return PageManagement::prevent_status_change( $new_status, $old_status, $post ); }, 10, 3 );
 
-		add_filter( 'display_post_states', create_function( '$states', 'return MPAT\ContentManagement\PageManagement::display_post_states( $states );' ) );
-		add_filter( 'manage_pages_columns',  create_function('$columns', 'return MPAT\ContentManagement\PageManagement::manage_pages_columns($columns);' ));
-		add_filter( 'post_row_actions', create_function( '$actions, $post', 'return MPAT\ContentManagement\PageManagement::pagelayout_row_actions( $actions, $post );' ), 10, 2);
+		add_filter( 'display_post_states', function($states) { return PageManagement::display_post_states( $states ); } );
+		add_filter( 'manage_pages_columns',  function($columns) { return PageManagement::manage_pages_columns($columns); });
+		add_filter( 'post_row_actions', function($actions, $post) { return PageManagement::pagelayout_row_actions( $actions, $post ); }, 10, 2);
 	}
 
 
@@ -76,24 +76,24 @@ class PageManagement {
 
 			if(post_type_supports($post_type, "schedule_update")){
 
-				add_action( 'manage_'.$post_type.'_posts_columns', create_function( '$columns', 'return MPAT\ContentManagement\PageManagement::manage_pages_columns( $columns );' ) );
-				add_filter( 'manage_'.$post_type.'_posts_custom_column', create_function( '$column, $post_id', 'return MPAT\ContentManagement\PageManagement::manage_pages_custom_column( $column, $post_id );' ), 10, 2 );
-				add_filter( 'page_row_actions', create_function( '$actions, $post', 'return MPAT\ContentManagement\PageManagement::page_row_actions( $actions, $post );' ), 10, 2 );
+				add_action( 'manage_'.$post_type.'_posts_columns', function($columns) { return PageManagement::manage_pages_columns( $columns ); } );
+				add_filter( 'manage_'.$post_type.'_posts_custom_column', function($column, $post_id) { return PageManagement::manage_pages_custom_column( $column, $post_id ); }, 10, 2 );
+				add_filter( 'page_row_actions', function($actions, $post) { return PageManagement::page_row_actions( $actions, $post ); }, 10, 2 );
 			}
 			if(post_type_supports($post_type, "clone_page")){
-				add_action('admin_footer-edit.php', create_function('','return MPAT\ContentManagement\PageManagement::create_clone_field_bulk();'));
-				add_action('load-edit.php', create_function('','return MPAT\ContentManagement\PageManagement::clone_bulk_action();'));
-                add_filter('page_row_actions', create_function('$actions, $post','return MPAT\ContentManagement\PageManagement::create_clone_link_row($actions, $post);'),10,2);
-                add_filter('post_row_actions', create_function('$actions, $post','return MPAT\ContentManagement\PageManagement::create_clone_link_row($actions, $post);'),10,2);
+				add_action('admin_footer-edit.php', function() { return PageManagement::create_clone_field_bulk(); });
+				add_action('load-edit.php', function() { return PageManagement::clone_bulk_action(); });
+                add_filter('page_row_actions', function($actions, $post) { return PageManagement::create_clone_link_row($actions, $post); },10,2);
+                add_filter('post_row_actions', function($actions, $post) { return PageManagement::create_clone_link_row($actions, $post); },10,2);
 			}
 		}
 		if(($basename == "post.php") && (isset($_GET["post"]))){
 			$type = get_post_type($_GET["post"]);
 			if (post_type_supports($type, "schedule_update")) {
-				add_action( 'add_meta_boxes', create_function( '$post_type, $post', 'return MPAT\ContentManagement\PageManagement::add_meta_boxes_page( $post_type, $post );' ), 10, 2 );
+				add_action( 'add_meta_boxes', function($post_type, $post) { return PageManagement::add_meta_boxes_page( $post_type, $post ); }, 10, 2 );
 			}
 			if(post_type_supports($type, "clone_page")){
-				add_action('post_submitbox_start', create_function('', 'return MPAT\ContentManagement\PageManagement::create_clone_link_in_page();' ));
+				add_action('post_submitbox_start', function() { return PageManagement::create_clone_link_in_page();});
 			}
 		}
 
@@ -290,7 +290,8 @@ class PageManagement {
 	 */
 	public static function add_meta_boxes_page( $post_type, $post ) {
 
-		add_meta_box( 'meta_' . self::$MPAT_PUBLISH_STATUS . "_revisions", __( 'Scheduled revisions', self::$MPAT_PUBLISH_TEXTDOMAIN ), create_function( '$post', 'MPAT\ContentManagement\PageManagement::create_revisions_meta_box( $post );' ), $post_type, 'side' );
+		add_meta_box( 'meta_' . self::$MPAT_PUBLISH_STATUS . "_revisions", __( 'Scheduled revisions', self::$MPAT_PUBLISH_TEXTDOMAIN ),
+            function($post) { PageManagement::create_revisions_meta_box( $post ); }, $post_type, 'side' );
 
 		if($post->post_status != self::$MPAT_PUBLISH_STATUS) return;
 
@@ -329,7 +330,8 @@ class PageManagement {
 		wp_enqueue_script(  'publish-datepicker.js', plugins_url( 'ContentManagement/publish-datepicker.js', __DIR__), array( 'jquery-ui-datepicker' ) );
 		wp_localize_script( 'publish-datepicker.js' , 'PageManagement', $js_data );
 
-		add_meta_box( 'meta_' . self::$MPAT_PUBLISH_STATUS, self::$MPAT_PUBLISH_METABOX, create_function( '$post', 'MPAT\ContentManagement\PageManagement::create_meta_box( $post );' ), $post_type, 'side' );
+		add_meta_box( 'meta_' . self::$MPAT_PUBLISH_STATUS, self::$MPAT_PUBLISH_METABOX,
+            function($post) { PageManagement::create_meta_box( $post ); }, $post_type, 'side' );
 	}
 
 	/**
@@ -561,12 +563,12 @@ class PageManagement {
 		if ($new_status === $old_status && $new_status == self::$MPAT_PUBLISH_STATUS) return;
 
 		if ( $old_status == self::$MPAT_PUBLISH_STATUS && 'trash' != $new_status ) {
-			remove_action( 'save_post', create_function( '$post_id, $post', 'return MPAT\ContentManagement\PageManagement::save_meta( $post_id, $post );' ), 10 );
+			remove_action( 'save_post', function($post_id, $post) { return PageManagement::save_meta( $post_id, $post ); }, 10 );
 
 			$post->post_status = self::$MPAT_PUBLISH_STATUS;
 			$u = wp_update_post( $post, true );
 
-			add_action( 'save_post', create_function( '$post_id, $post', 'return MPAT\ContentManagement\PageManagement::save_meta( $post_id, $post );' ), 10, 2 );
+			add_action( 'save_post', function($post_id, $post) { return PageManagement::save_meta( $post_id, $post ); }, 10, 2 );
 		} elseif ( 'trash' == $new_status ) {
 			wp_clear_scheduled_hook( 'mpat_publish_post', array( 'ID' => $post->ID ) );
 		} elseif ( 'trash' == $old_status && $new_status == self::$MPAT_PUBLISH_STATUS ) {
