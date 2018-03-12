@@ -484,8 +484,8 @@ class PageManagement {
                             <strong><?php echo $scheduled_revision["label"] ?></strong>
                         <?php else: ?>
                             <a href="<?php echo $scheduled_revision["url"] ?>"><?php echo $scheduled_revision["label"] ?></a>&nbsp;
-                            <a href="<?php echo wp_nonce_url( "post.php?action=trash&amp;post=" . $scheduled_revision["post_id"],
-                                'trash-post_' . $scheduled_revision["post_id"] )?>">(Trash <?php echo $scheduled_revision["post_id"] ?>)</a>
+                            <button class="button white_blue unscheddr" type="button" data-mpat="<?php echo $scheduled_revision["post_id"] ?>">
+                                Trash <?php echo $scheduled_revision["post_id"] ?></button>
                         <?php endif; ?>
                     </li>
                 <?php endforeach; ?>

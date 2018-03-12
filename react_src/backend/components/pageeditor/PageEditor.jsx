@@ -549,14 +549,14 @@ export default class PageEditor extends React.PureComponent {
     }
   }
 
-  displayPageSaved() { // eslint-disable-line
+  displayPageSaved(msg = 'Page saved') { // eslint-disable-line
     let el = document.getElementById('pageeditorstatus');
     if (!el) {
       el = document.createElement('li');
       el.id = 'pageeditorstatus';
       document.getElementById('wp-admin-bar-root-default').appendChild(el);
     }
-    el.innerHTML = '<p class="page_editor_status">Page saved</p>';
+    el.innerHTML = '<p class="page_editor_status">'+msg+'</p>';
     window.setTimeout(() => { document.getElementById('pageeditorstatus').innerHTML = ''; }, 5000);
   }
 
@@ -607,16 +607,30 @@ export default class PageEditor extends React.PureComponent {
     const sc_revisions = document.getElementById('meta_mpat_sc_publish_revisions');
     const sc_datetime = document.getElementById('meta_mpat_sc_publish');
 
+    const that = this;
+
     let html1 = '';
     if (sc_revisions) { html1 = sc_revisions.innerHTML.replace(/mpat_sc_publish/gi, 'mpat_sc_popup'); }
 
     let html2 = '';
     if (sc_datetime) { html2 = sc_datetime.innerHTML.replace(/mpat_sc_publish/gi, 'mpat_sc_popup'); }
 
-
     class ScheduleContent extends React.PureComponent {
 
       componentDidMount() {
+        const elements = document.getElementsByClassName("unscheddr");
+        let i = 0;
+        for (;i < elements.length;i++) {
+          const a = elements[i];
+          a.addEventListener('click', function (ev) {
+            PageIO.getCommon().remove(a.getAttribute("data-mpat"),
+                          () => {
+                            that.displayPageSaved('Revision deleted');
+                            a.parentElement.parentElement.removeChild(a.parentElement);
+                          },
+                          () => that.displayPageSaved('Could not delete revision'))
+          }, false);
+        }
         if (sc_datetime) {
           window.PageManagement.setCalendar('mpat_sc_popup_pubdate');
           window.PageManagement.restoreValues();

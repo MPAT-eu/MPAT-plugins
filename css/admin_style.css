@@ -955,7 +955,7 @@ span.gallery-arrow {
   -ms-transition: opacity .2s; /* IE9 (maybe) */
 }
 .mpat .content-editor-container .component .list-add-element:nth-of-type(1) span:not(.padded_or) svg,
-.mpat .content-editor-container .component .list-add-element:nth-of-type(1) p, 
+.mpat .content-editor-container .component .list-add-element:nth-of-type(1) p,
 .mpat .content-editor-container .component .list-add-element:hover span:not(.padded_or) svg,
 .mpat .content-editor-container .component .list-add-element:hover p {
   opacity: 1;
@@ -2120,4 +2120,10 @@ max-width: 70%;
   border: 1px solid black;
   top: 40px;
   right: 5px;
+}
+
+.mpat button.white_blue.unscheddr {
+  height: 20px !important;
+  min-height: 20px !important;
+  line-height: 20px !important;
 }
