@@ -31,7 +31,7 @@ export default class piwik {
   }
 
 // trackAction({detail: {page:"", category: "", action: "", name: "", value: ""}})
-  trackAction(eventHandler) {
+  static trackAction(eventHandler) {
     if (typeof _paq !== 'undefined') {
       _paq.push(['setCustomUrl', eventHandler.detail.page]);
       _paq.push(['trackEvent', eventHandler.detail.category, eventHandler.detail.action, eventHandler.detail.name, eventHandler.detail.value]);
@@ -40,7 +40,7 @@ export default class piwik {
   }
 
 // trackPageView({detail: {page:"", title: ""}})
-  trackPageview(eventHandler) {
+  static trackPageview(eventHandler) {
     if (typeof _paq !== 'undefined') {
       _paq.push(['setDocumentTitle', eventHandler.detail.title]);
       _paq.push(['setCustomUrl', eventHandler.detail.page]);

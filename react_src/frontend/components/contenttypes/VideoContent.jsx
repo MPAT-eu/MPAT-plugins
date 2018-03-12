@@ -19,9 +19,9 @@
  * AUTHORS:
  * Miggi Zwicklbauer (miggi.zwicklbauer@fokus.fraunhofer.de)
  * Thomas Tröllmich  (thomas.troellmich@fokus.fraunhofer.de)
- * Benedikt Vogel 	 (vogel@irt.de)
- * Stefano Miccoli (stefano.miccoli@finconsgroup.com)
- * Marco Ferrari (marco.ferrari@finconsgroup.com)
+ * Benedikt Vogel    (vogel@irt.de)
+ * Stefano Miccoli   (stefano.miccoli@finconsgroup.com)
+ * Marco Ferrari     (marco.ferrari@finconsgroup.com)
  **/
 import React, { PropTypes } from 'react';
 import autobind from 'class-autobind';
@@ -39,7 +39,17 @@ class VideoContent extends React.Component {
 
   static propTypes = {
     playIcon: PropTypes.bool,
-    showNavBar: PropTypes.bool
+    showNavBar: PropTypes.bool,
+    navigable: PropTypes.bool,
+    autostart: PropTypes.bool,
+    fullscreen: PropTypes.bool,
+    active: PropTypes.bool,
+    allowMedia: PropTypes.bool,
+    thumbnail: PropTypes.bool,
+    zoom: PropTypes.bool,
+    loop: PropTypes.bool,
+    url: PropTypes.string
+
   };
 
   static defaultProps = {
@@ -191,7 +201,8 @@ class VideoContent extends React.Component {
     // focused === 0: ctrl-bar hidden
     if (application.application_manager.smooth_navigation && !this.state.isFullscreen) {
       if ((!this.state.hasStarted) || (this.state.focused === 4 || this.state.focused === 0)) {
-        // only preview image is show, no navigable element in the component or  we reached the boundraries elements
+        // only preview image is show, no navigable element in the component or
+        // we reached the boundraries elements
         // thus move to next component
         return false;
       }
@@ -216,7 +227,8 @@ class VideoContent extends React.Component {
     //  focused === 0: ctrl-bar hidden
     if (application.application_manager.smooth_navigation && !this.state.isFullscreen) {
       if ((!this.state.hasStarted) || (this.state.focused === 1 || this.state.focused === 0)) {
-        // only preview image is show, no navigable element in the component or  we reached the boundraries elements
+        // only preview image is show, no navigable element in the component or
+        // we reached the boundraries elements
         // thus move to next component
         return false;
       }
@@ -227,7 +239,7 @@ class VideoContent extends React.Component {
       this.setState({ focused: f });
       this.startControlsFadeout();
     }
-    if (this.state.isFullscreen && this.state.focused == 0) {
+    if (this.state.isFullscreen && this.state.focused === 0) {
       this.setState({
         focused: 2
       });
@@ -238,7 +250,7 @@ class VideoContent extends React.Component {
   goVertical() {
     if (application.application_manager.smooth_navigation && !this.state.isFullscreen) {
       return false;
-    } else if (this.state.isFullscreen && this.state.focused == 0) {
+    } else if (this.state.isFullscreen && this.state.focused === 0) {
       this.setState({
         focused: 2
       });
