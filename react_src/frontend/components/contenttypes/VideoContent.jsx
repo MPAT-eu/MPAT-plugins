@@ -57,9 +57,10 @@ class VideoContent extends React.Component {
     showNavBar: true,
     onVideoFinish: () => { }
   };
-
+/*
   // FIXME I think the new event propagation might make this method obsolete
   static triggerBackKeyboardEvent() {
+    return;
     const eventObj = document.createEventObject ?
       document.createEventObject() : document.createEvent('Events');
 
@@ -73,7 +74,7 @@ class VideoContent extends React.Component {
 
     el.dispatchEvent ? el.dispatchEvent(eventObj) : el.fireEvent('onkeydown', eventObj);
   }
-
+*/
   constructor(props) {
     super(props);
     autobind(this);
@@ -132,7 +133,7 @@ class VideoContent extends React.Component {
         this.triggerControls({ entered: true });
       }
       if (!nextProps.active && this.props.active) {
-        if (this.props.hotSpotMeta && this.props.hotSpotMeta.isHotSpot) {
+        if (this.props.hotSpotMeta && this.props.hotSpotMeta.isHotSpot && this.props.hotSpotMeta.position !== 'static') {
           this.stop();
         } else if (this.state.isFullscreen) {
           this.toggleFullscreen();
@@ -351,9 +352,11 @@ class VideoContent extends React.Component {
     this.setState({ hasStarted: false, isPlaying: false, isFullscreen: false, focused: 2, position: 0 });
     clearInterval(this.state.playpositionInterval);
     trackAction('video', 'stop', this.props.url);
+    /*
     if (this.props.hotSpotMeta && this.props.hotSpotMeta.isHotSpot && this.props.active) {
       VideoContent.triggerBackKeyboardEvent();
     }
+    */
   }
 
   getSkipTime(direction) {

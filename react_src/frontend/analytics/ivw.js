@@ -73,7 +73,7 @@ export default class ivw {
         '': 'spli',
         '': 'sprs',
         '': 'spre',
-        '': 'smrs',
+        '': 'smrs'
         // no idea what ivw is doing with this events
         // just docu some mpat events
         /*
