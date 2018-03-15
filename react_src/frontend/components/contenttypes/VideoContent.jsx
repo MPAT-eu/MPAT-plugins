@@ -48,8 +48,10 @@ class VideoContent extends React.Component {
     thumbnail: PropTypes.bool,
     zoom: PropTypes.bool,
     loop: PropTypes.bool,
-    url: PropTypes.string
-
+    url: PropTypes.string,
+    hotSpotMeta: PropTypes.shape({
+      isHotSpot: PropTypes.bool
+    })
   };
 
   static defaultProps = {
@@ -119,7 +121,8 @@ class VideoContent extends React.Component {
     registerHandlers(this, handlersWithTag('global', handlerGlobal));
     registerHandlers(this, handlersWithTag('always', handlerAlways));
 
-    if (this.props.autostart && !isPreview) {
+    if ((this.props.autostart && !isPreview) ||
+     (this.props.hotSpotMeta && this.props.hotSpotMeta.isHotSpot)) {
       setTimeout(() => {
         this.play();
         this.startControlsFadeout();
