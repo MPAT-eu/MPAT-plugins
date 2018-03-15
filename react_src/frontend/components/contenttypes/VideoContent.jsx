@@ -94,6 +94,7 @@ class VideoContent extends React.Component {
 
   componentDidMount() {
     const isPreview = window.MPATPreviewDoNotAutostartVideos;
+    const isHotSpot = this.props.hotSpotMeta && this.props.hotSpotMeta.isHotSpot;
 
     if (this.props.navigable) {
       const handlerActive = [
@@ -121,10 +122,9 @@ class VideoContent extends React.Component {
     registerHandlers(this, handlersWithTag('global', handlerGlobal));
     registerHandlers(this, handlersWithTag('always', handlerAlways));
 
-    if ((this.props.autostart && !isPreview) ||
-     (this.props.hotSpotMeta && this.props.hotSpotMeta.isHotSpot)) {
+    if ((this.props.autostart && !isPreview) || isHotSpot) {
       setTimeout(() => {
-        this.play();
+        if (!isHotSpot) this.play();
         this.startControlsFadeout();
       }, 1500);
     }
