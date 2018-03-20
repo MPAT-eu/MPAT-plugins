@@ -41,7 +41,7 @@ import { componentLoader } from '../../ComponentLoader';
 function isNavigable(content) {
   // this function should only return content.navigable
   // but to support legacy application it does some more...
-  return (content && content.navigable) || (content.hotSpotMeta && content.hotSpotMeta.isHotSpot);
+  return (content && content.navigable) || (content && content.hotSpotMeta && content.hotSpotMeta.isHotSpot);
 }
 
 export default class Page extends React.PureComponent {

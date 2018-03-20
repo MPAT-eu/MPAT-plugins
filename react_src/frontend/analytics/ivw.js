@@ -90,17 +90,21 @@ export default class ivw {
     };
 
     if (iom) {
-      const ivwEvent = mapper(eventHandler.detail.action);
-      if (!ivwEvent) return;
-      iom.event(ivwEvent);
-      log(`IVW: trackevent (${eventHandler.detail.category} ${eventHandler.detail.action} ${eventHandler.detail.name} ${eventHandler.detail.value})`);
+      setTimeout(()=>{
+        const ivwEvent = mapper(eventHandler.detail.action);
+        if (!ivwEvent) return;
+        iom.event(ivwEvent);
+        log(`IVW: trackevent (${eventHandler.detail.category} ${eventHandler.detail.action} ${eventHandler.detail.name} ${eventHandler.detail.value})`);
+      }, 0);
     }
   }
 
   static trackPageview(eventHandler) {
     if (iom) {
-      iom.event('view');
-      log(`IVW: trackpageview (${eventHandler.detail.page} ${eventHandler.detail.title})`);
+      setTimeout(()=>{
+        iom.event('view');
+        log(`IVW: trackpageview (${eventHandler.detail.page} ${eventHandler.detail.title})`);
+      }, 0);
     }
   }
 }
