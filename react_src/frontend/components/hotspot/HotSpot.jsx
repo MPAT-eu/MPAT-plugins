@@ -168,7 +168,7 @@ export default class HotSpot extends React.Component {
       content.bottom = `${720 - this.props.style.top + 10}px`;
     }
     // hide hs if video is selected
-    const zIndex = (this.props.type === 'video' && this.state.active) ? -10 : 10;
+    // const zIndex = 10;//(this.props.type === 'video' && this.state.active) ? -10 : 10;
 
     return {
       content,
@@ -177,8 +177,9 @@ export default class HotSpot extends React.Component {
         height: `${this.props.style.height}px`,
         left: `${this.props.style.left}px`,
         bottom: `${720 - this.props.style.top - this.props.style.height}px`,
-        position: 'absolute',
+        position: 'absolute'/* ,
         zIndex
+      */
       }
     };
   }

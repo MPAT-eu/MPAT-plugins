@@ -1,7 +1,8 @@
 /**
  *
  * Copyright (c) 2017 MPAT Consortium , All rights reserved.
- * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT, Lancaster University, Leadin, RBB, Mediaset
+ * Fraunhofer FOKUS, Fincons Group, Telecom ParisTech, IRT,
+ * Lancaster University, Leadin, RBB, Mediaset
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -29,72 +30,81 @@ export default class ivw {
     window.addEventListener('onMPATevent', this.trackAction);
   }
 
-  trackAction(eventHandler) {
+  static trackAction(eventHandler) {
     const mapper = (eventAction) => {
-      const ivw2MpatEvents = {"": "inst",
-      "": "init",
-      "": "open",
-      "": "clse",
-      "play": "play",
-      "": "resm",
-      "stop": "stop",
-      "ff": "fowa",
-      "rw": "bakw",
-      "": "recd",
-      "paus": "paus",
-      "": "forg",
-      "": "bakg",
-      "": "dele",
-      "": "refr",
-      "": "kill",
-      "": "view",
-      "": "alve",
-      "": "fini",
-      "": "mute",
-      "": "aforg",
-      "": "abakg",
-      "": "aclse",
-      "": "sple",
-      "": "scvl",
-      "": "serr",
-      "": "spyr",
-      "": "smdr",
-      "": "sfpl",
-      "": "sfqt",
-      "": "ssqt",
-      "": "stqt",
-      "": "soqt",
-      "": "sofc",
-      "": "scfc",
-      "": "scqt",
-      "": "splr",
-      "": "spli",
-      "": "sprs",
-      "": "spre",
-      "": "smrs",
-      // no idea whats ivw is doing with this events
-      // but at least it will be logged
-      "list": "smre",
-      "down": "sors",
-      "up": "sore",
-      "prev": "sack",
-      "next": "sapl",
-      "controll": "sapa",
-      "goto": "snsp"};
+      const ivw2MpatEvents = {
+        '': 'inst',
+        '': 'init',
+        '': 'open',
+        '': 'clse',
+        play: 'play',
+        '': 'resm',
+        stop: 'stop',
+        ff: 'fowa',
+        rw: 'bakw',
+        '': 'recd',
+        paus: 'paus',
+        '': 'forg',
+        '': 'bakg',
+        '': 'dele',
+        '': 'refr',
+        '': 'kill',
+        '': 'view',
+        '': 'alve',
+        '': 'fini',
+        '': 'mute',
+        '': 'aforg',
+        '': 'abakg',
+        '': 'aclse',
+        '': 'sple',
+        '': 'scvl',
+        '': 'serr',
+        '': 'spyr',
+        '': 'smdr',
+        '': 'sfpl',
+        '': 'sfqt',
+        '': 'ssqt',
+        '': 'stqt',
+        '': 'soqt',
+        '': 'sofc',
+        '': 'scfc',
+        '': 'scqt',
+        '': 'splr',
+        '': 'spli',
+        '': 'sprs',
+        '': 'spre',
+        '': 'smrs'
+        // no idea what ivw is doing with this events
+        // just docu some mpat events
+        /*
+        list: 'smre',
+        down: 'sors',
+        up: 'sore',
+        prev: 'sack',
+        next: 'sapl',
+        controll: 'sapa',
+        goto: 'snsp'
+        */
+      };
       return ivw2MpatEvents[eventAction];
     };
 
     if (iom) {
-      iom.event(mapper(eventHandler.detail.action));
-      log(`IVW: trackevent (${eventHandler.detail.category} ${eventHandler.detail.action} ${eventHandler.detail.name} ${eventHandler.detail.value})`);
+      setTimeout(()=>{
+        const ivwEvent = mapper(eventHandler.detail.action);
+        if (!ivwEvent) return;
+        iom.event(ivwEvent);
+        log(`IVW: trackevent (${eventHandler.detail.category} ${eventHandler.detail.action} ${eventHandler.detail.name} ${eventHandler.detail.value})`);
+      }, 0);
     }
-
   }
 
-  trackPageview(eventHandler) {
+  static trackPageview(eventHandler) {
     if (iom) {
-      iom.event('view');
-      log(`IVW: trackpageview (${eventHandler.detail.page} ${eventHandler.detail.title})`);
+      setTimeout(()=>{
+        iom.event('view');
+        log(`IVW: trackpageview (${eventHandler.detail.page} ${eventHandler.detail.title})`);
+      }, 0);
     }
   }
 }
