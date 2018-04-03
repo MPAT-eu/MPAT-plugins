@@ -26,8 +26,8 @@ import { log } from '../utils';
 export default class piwik {
 
   constructor() {
-    window.addEventListener('onMPATpageview', this.trackPageview);
-    window.addEventListener('onMPATevent', this.trackAction);
+    window.addEventListener('onMPATpageview', piwik.trackPageview);
+    window.addEventListener('onMPATevent', piwik.trackAction);
   }
 
 // trackAction({detail: {page:"", category: "", action: "", name: "", value: ""}})
@@ -35,7 +35,7 @@ export default class piwik {
     if (typeof _paq !== 'undefined') {
       _paq.push(['setCustomUrl', eventHandler.detail.page]);
       _paq.push(['trackEvent', eventHandler.detail.category, eventHandler.detail.action, eventHandler.detail.name, eventHandler.detail.value]);
-      log(`PIWIK: trackevent (${eventHandler.detail.category} ${eventHandler.detail.action} ${eventHandler.detail.name} ${eventHandler.detail.value})`);
+      // log(`PIWIK: trackevent (${eventHandler.detail.category} ${eventHandler.detail.action} ${eventHandler.detail.name} ${eventHandler.detail.value})`);
     }
   }
 
@@ -45,7 +45,7 @@ export default class piwik {
       _paq.push(['setDocumentTitle', eventHandler.detail.title]);
       _paq.push(['setCustomUrl', eventHandler.detail.page]);
       _paq.push(['trackPageView']);
-      log(`PIWIK: trackpageview (${eventHandler.detail.page} ${eventHandler.detail.title})`);
+      // log(`PIWIK: trackpageview (${eventHandler.detail.page} ${eventHandler.detail.title})`);
     }
   }
 }

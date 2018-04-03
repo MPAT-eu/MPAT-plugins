@@ -26,8 +26,8 @@ import { log } from '../utils';
 export default class ivw {
 
   constructor() {
-    window.addEventListener('onMPATpageview', this.trackPageview);
-    window.addEventListener('onMPATevent', this.trackAction);
+    window.addEventListener('onMPATpageview', ivw.trackPageview);
+    window.addEventListener('onMPATevent', ivw.trackAction);
   }
 
   static trackAction(eventHandler) {
@@ -90,7 +90,7 @@ export default class ivw {
     };
 
     if (iom) {
-      setTimeout(()=>{
+      setTimeout(() => {
         const ivwEvent = mapper(eventHandler.detail.action);
         if (!ivwEvent) return;
         iom.event(ivwEvent);
@@ -101,7 +101,7 @@ export default class ivw {
 
   static trackPageview(eventHandler) {
     if (iom) {
-      setTimeout(()=>{
+      setTimeout(() => {
         iom.event('view');
         log(`IVW: trackpageview (${eventHandler.detail.page} ${eventHandler.detail.title})`);
       }, 0);
