@@ -58,6 +58,9 @@ window.onload = function onloadMPAT() {
     if (DEBUG) {
       registerHandlers('console', [createTaggedHandler('always', KeyEvent.VK_6, toggleConsole)]);
     }
+
+    trackPageview();
+
     ReactDOM.render(<Controller />, main);
   } catch (err) {
     log(`${err.name}: ${err.message}`);

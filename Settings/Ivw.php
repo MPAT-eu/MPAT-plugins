@@ -112,14 +112,14 @@ class Ivw {
 					var ivw_sc = "<?= $ivw_config["sc"]?>";
 
 					var po = (typeof szmType !== 'undefined' && szmType == "CP") ? {"st":ivw_ak, "cp":ivw_sc} : {"st":ivw_ak, "xp":ivw_sc};
-					if (typeof iom  !== 'undefined') iom.c(po, 1);
+					if (typeof iom  !== 'undefined') iom.init(po, 1);
 					else {
 						var el = document.createElement("script");
 						el.type = "text/javascript";
 						el.src = "https://script.ioam.de/iam.js";
 						el.onload = el.onreadystatechange = function () {
 							if (this.readyState == "loaded" || this.readyState == "complete" || !this.readyState) {
-								if (typeof iom !== 'undefined') iom.c(po, 1);
+								if (typeof iom !== 'undefined') iom.init(po,1);
 							}
 						}
 						var head = document.getElementsByTagName("head")[0];

@@ -109,8 +109,8 @@ class Piwik {
 			?>
             <script type="text/javascript">
 	        var _paq = _paq || [];
-	        _paq.push(['trackPageView']);
-	        _paq.push(['enableLinkTracking']);
+	        //_paq.push(['trackPageView']);
+	        //_paq.push(['enableLinkTracking']);
 	        (function() {
 	            var u="<?php echo $piwik_url ?>";
 	            _paq.push(['setTrackerUrl', u+'piwik.php']);

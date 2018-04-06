@@ -44,7 +44,7 @@ export function isTrackingEnabled() {
   return trackingEnabled;
 }
 
-export function trackPageview(pageUrl, pageTitle = '') {
+export function trackPageview(pageUrl = analyticsCurrentPage, pageTitle = '') {
   if (!trackingEnabled) return;
   analyticsCurrentPage = pageUrl;
   // create and dispatch the event
