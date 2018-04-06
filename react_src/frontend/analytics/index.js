@@ -30,7 +30,7 @@ import Ivw from './ivw';
 new Piwik();
 new Ivw();
 
-let trackingEnabled = Cookies.get('trackingEnabled') !== 'false';
+let trackingEnabled = !Cookies.get('trackingEnabled') || Cookies.get('trackingEnabled') !== 'false';
 // custom handling of document url to be forced on those navigation models
 // which perform async load of pages, such as slideflow
 let analyticsCurrentPage = document.location.href;

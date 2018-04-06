@@ -89,7 +89,7 @@ export default class ivw {
       return ivw2MpatEvents[eventAction];
     };
 
-    if (iom) {
+    if (typeof iom === 'undefined') {
       setTimeout(() => {
         const ivwEvent = mapper(eventHandler.detail.action);
         if (!ivwEvent) return;
@@ -100,7 +100,7 @@ export default class ivw {
   }
 
   static trackPageview(eventHandler) {
-    if (iom) {
+    if (typeof iom === 'undefined') {
       setTimeout(() => {
         iom.event('view');
         log(`IVW: trackpageview (${eventHandler.detail.page} ${eventHandler.detail.title})`);
