@@ -114,7 +114,7 @@ class LinkEdit extends React.PureComponent {
   }
 
   render() {
-    const { thumbnail, label, url, cover } = this.props;
+    const { thumbnail, thumbnailFocused, label, url, cover } = this.props;
     return (
       <div className="component editHeader">
         <h2>{Constants.locstr.link.linkSettings}</h2>
@@ -143,6 +143,31 @@ class LinkEdit extends React.PureComponent {
                   >{Constants.locstr.link.chooseLinkImage}
                   </button>
                   , Constants.locstr.link.ttChooseLinkImage)}
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label>{Constants.locstr.link.linkFocusedImageUrl}: </label>
+              </td>
+              <td>
+                {getTooltipped(
+                  <input
+                    type="text"
+                    id="linkFocusedImageUrlInput"
+                    placeholder={Constants.locstr.link.placeHolderLinkFocusedImageUrl}
+                    value={thumbnailFocused}
+                    onChange={e => this.setContent.call(this, 'thumbnailFocused', e.target.value)}
+                    onKeyPress={noSubmitOnEnter}
+                  />
+                  , Constants.locstr.link.ttLinkFocusedImageUrl)}
+                <div style={{ marginLeft: 20, marginRight: 20, display: 'inline' }}>OR</div>
+                {getTooltipped(
+                  <button
+                    type="button" target="linkFocusedImageUrlInput" data-type="image"
+                    className="button mpat-insert-media white_blue"
+                  >{Constants.locstr.link.chooseLinkFocusedImage}
+                  </button>
+                  , Constants.locstr.link.ttChooseLinkFocusedImage)}
               </td>
             </tr>
             <tr>

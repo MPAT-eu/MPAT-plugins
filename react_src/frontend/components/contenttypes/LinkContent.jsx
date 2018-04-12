@@ -40,6 +40,7 @@ class LinkContent extends React.Component {
     url: Types.string,
     cover: Types.bool,
     thumbnail: Types.string,
+    thumbnailFocused: Types.string,
     pageUtils: Types.object
   };
 
@@ -48,7 +49,8 @@ class LinkContent extends React.Component {
     label: '',
     url: '',
     cover: false,
-    thumbnail: ''
+    thumbnail: '',
+    thumbnailFocused: ''
   };
 
   componentDidMount() {
@@ -72,10 +74,18 @@ class LinkContent extends React.Component {
   render() {
     return (
       <div
-        className={classnames({ 'page-element-content': true, 'link-background': true })}
+        className={classnames({ 'page-element-content': true, 'link-background': true, 'link-background-focused': this.props.focused })}
         style={{ backgroundImage: `url(${this.props.thumbnail})`, backgroundSize: this.props.cover ? 'cover' : 'contain' }}
       >
-        <p>{this.props.label}</p>
+        {this.props.thumbnailFocused !== '' &&
+          <div
+            className={'link-background-focused-image'}
+            style={{ backgroundImage: `url(${this.props.thumbnailFocused})`, backgroundSize: this.props.cover ? 'cover' : 'contain', display: this.props.focused ? 'block' : 'none' }}
+          ></div>
+        }
+        <p style={{ lineHeight: `${this.props.position.height}px` }}>
+          {this.props.label}
+        </p>
       </div>
     );
   }
