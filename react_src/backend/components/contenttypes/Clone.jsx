@@ -46,6 +46,7 @@ class CloneEdit extends React.PureComponent {
     changeAreaContent: Types.func.isRequired,
     pageId: Types.number,
     boxId: Types.string,
+    pageName: Types.string,
     stateId: Types.string
   };
 
@@ -64,7 +65,7 @@ class CloneEdit extends React.PureComponent {
     window.Pages.forEach((item) => {
       const singleUrl = {};
       singleUrl.key = item.ID;
-      singleUrl.label = item.post_title;
+      singleUrl.label = item.post_name;
       singleUrl.disabled = false;
       singleUrl.mpat_content = item.mpat_content;
       urls.push(singleUrl);
@@ -75,14 +76,16 @@ class CloneEdit extends React.PureComponent {
     };
     if (this.props.pageId) {
       newState.destinationPage = urls.find(p => p.key === this.props.pageId);
-      this.updateLayout(this.props.pageId, newState.availablePages);
+      this.updateLayoutDisplay(newState.destinationPage);
+    } else if (this.props.pageName) {
+      newState.destinationPage = urls.find(p => p.name === this.props.pageName);
+      this.updateLayoutDisplay(newState.destinationPage);
     }
     this.setState(newState);
   }
 
-  updateLayout(pageId, availablePages) {
-    const destinationPage = availablePages.find(p => p.key === pageId);
-    this.setState({ destinationPage });
+  updateLayoutDisplay(destinationPage) {
+    // change layout of destination page as shown in editor
     const layoutId = destinationPage.mpat_content.layoutId;
     LayoutIO.getCommon().get(
       (layouts) => {
@@ -93,8 +96,13 @@ class CloneEdit extends React.PureComponent {
   }
 
   setPage(pageId) {
-    this.props.changeAreaContent({ pageId });
-    this.updateLayout(pageId, this.state.availablePages);
+    // destination page id has changed, change destinationPage
+    const destinationPage = this.state.availablePages.find(p => p.key === pageId);
+    this.setState({ destinationPage });
+    // send action
+    this.props.changeAreaContent({ pageId: pageId, pageName: destinationPage.label });
+    // change layout of destination page as shown in editor
+    this.updateLayoutDisplay(destinationPage);
   }
 
   setComponent(boxStateId) {
