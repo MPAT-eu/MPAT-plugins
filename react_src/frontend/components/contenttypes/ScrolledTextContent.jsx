@@ -40,7 +40,8 @@ class ScrolledTextContent extends React.Component {
     super();
     autobind(this);
     this.state = {
-      textOffset: 0
+      textOffset: 0,
+      scrollBarPosition: 0
     };
   }
 
@@ -49,7 +50,10 @@ class ScrolledTextContent extends React.Component {
       createHandler(KeyEvent.VK_UP, this.scrollUp),
       createHandler(KeyEvent.VK_DOWN, this.scrollDown)
     ]));
-    this.scrollMax = (this.props.position.height * 0.8) - document.getElementById(`scrolledText${this.props.id}`).offsetHeight;
+    this.textHeight = document.getElementById(`scrolledText${this.props.id}`).offsetHeight;
+    this.scrollMax = (this.props.position.height * 0.8) - this.textHeight;
+    this.scrollBarSize = this.props.position.height * this.props.position.height / this.textHeight ;
+    this.scrollBarMaxPosition = this.props.position.height - this.scrollBarSize ;
   }
 
   componentWillUnmount() {
@@ -73,7 +77,11 @@ class ScrolledTextContent extends React.Component {
     let off = this.state.textOffset;
     off += this.props.position.height * 0.8;
     if (off > 0) off = 0;
-    this.setState({ textOffset: off });
+    this.setState(
+      {
+        textOffset: off,
+        scrollBarPosition: - Math.min(off * this.props.position.height / this.textHeight, this.scrollBarMaxPosition)
+      });
   }
 
   scrollDown() {
@@ -83,7 +91,11 @@ class ScrolledTextContent extends React.Component {
     let off = this.state.textOffset;
     off -= this.props.position.height * 0.8;
     if (off < this.scrollMax) off = this.scrollMax;
-    this.setState({ textOffset: off });
+    this.setState(
+      {
+        textOffset: off,
+        scrollBarPosition: - Math.min(off * this.props.position.height / this.textHeight, this.scrollBarMaxPosition)
+      });
   }
 
   render() {
@@ -105,6 +117,7 @@ class ScrolledTextContent extends React.Component {
             style={{ position: 'absolute', top: this.state.textOffset }}
             dangerouslySetInnerHTML={{ __html: text }}
           />
+          <div className="MPATScrolledTextScrollBar" style={{top: this.state.scrollBarPosition, height: this.scrollBarSize}}/>
         </div>
         {this.hasScrollDown() &&
         <div className={arrowDownPosition}>
