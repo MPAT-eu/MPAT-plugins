@@ -871,6 +871,23 @@ class Core {
                               $mpat_content_value["content"][$boxName][$stateName] = $tmp[$boxId][$stateId];
                               continue 2;
                           }
+                      } else if (array_key_exists('pageName', $componentData) && $componentData['pageName'] != null) {
+                          // in case when the page id has changed (deleted + reimported for example)
+                          // and the cloned page name is present then fetch by name
+                          $p = get_page_by_title($componentData['pageName']);
+                          if ($p != null) {
+                              $modelPageMeta = $wpdb->get_row(
+                                  "SELECT post_id, meta_key, meta_value FROM $table WHERE post_id = {$p->ID} AND meta_key = 'mpat_content'" );
+                              if ($modelPageMeta != null) {
+                                  $modelPageMeta = maybe_unserialize($modelPageMeta->meta_value);
+                                  $tmp = $modelPageMeta['content'];
+                                  if (isset($tmp[$boxId]) && isset($tmp[$boxId][$stateId])) {
+                                      $mpat_content_value["content"][$boxName][$stateName] = $tmp[$boxId][$stateId];
+                                      continue 2;
+                                  }
+
+                              }
+                          }
                       }
                     }
                   }

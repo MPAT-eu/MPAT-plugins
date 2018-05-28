@@ -42,6 +42,7 @@ export default class Preview extends React.Component {
 
   processClonesAndSend(previewInfo) {
     const todos = [];
+    const childDom = this.childDOM;
     // gather a list of clones to process
     Object.keys(previewInfo.content).forEach(
       (cloneBoxId) => {
@@ -52,7 +53,8 @@ export default class Preview extends React.Component {
           const pageId = states[cloneStateName].data.pageId;
           const boxId = states[cloneStateName].data.boxId;
           const stateId = states[cloneStateName].data.stateId;
-          if (pageId && stateId) todos.push({ pageId, boxId, stateId, cloneBoxId, cloneStateName });
+          const pageName = states[cloneStateName].data.pageName;
+          if (pageId && stateId) todos.push({ pageId, boxId, stateId, pageName, cloneBoxId, cloneStateName });
         });
       }
     );
@@ -62,18 +64,25 @@ export default class Preview extends React.Component {
       // get the page loader, next is async code
       PageIO.getCommon().get(
         (result) => {
-          todos.forEach(({ pageId, boxId, stateId, cloneBoxId, cloneStateName }) => {
+          todos.forEach(({ pageId, boxId, stateId, pageName, cloneBoxId, cloneStateName }) => {
             const page = result.find(item => item.id === pageId);
             // substitute the clone with the reference
             if (page) {
               // if page exists, i.e. clone model exists
               previewInfo.content[cloneBoxId][cloneStateName] =
                 page.mpat_content.content[boxId][stateId]; // eslint-disable-line
+            } else if (pageName) {
+              const page = result.find(item => item.slug == pageName);
+              if (page) {
+                // if page exists, i.e. clone model exists
+                previewInfo.content[cloneBoxId][cloneStateName] =
+                  page.mpat_content.content[boxId][stateId]; // eslint-disable-line
+              }
             }
           });
           // end clones
           const data = JSON.stringify(previewInfo);
-          this.childDOM.postMessage(data, window.location.origin);
+          if (childDom) childDom.postMessage(data, window.location.origin);
           if (debug) console.log(data);
         }
       );
@@ -81,7 +90,7 @@ export default class Preview extends React.Component {
     } else {
       // if no clones, end the process
       const data = JSON.stringify(previewInfo);
-      this.childDOM.postMessage(data, window.location.origin);
+      childDom.postMessage(data, window.location.origin);
       if (debug) console.log(data);
     }
   }

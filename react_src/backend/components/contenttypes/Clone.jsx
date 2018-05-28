@@ -76,9 +76,20 @@ class CloneEdit extends React.PureComponent {
     };
     if (this.props.pageId) {
       newState.destinationPage = urls.find(p => p.key === this.props.pageId);
-      this.updateLayoutDisplay(newState.destinationPage);
+      if (newState.destinationPage) {
+        this.updateLayoutDisplay(newState.destinationPage);
+      } else if (this.props.pageName) {
+        // if the page has been deleted or id has changed
+        newState.destinationPage = urls.find(p => p.label === this.props.pageName);
+        if (newState.destinationPage) {
+          // send action
+          this.props.changeAreaContent({ pageId: newState.destinationPage.key, pageName: newState.destinationPage.label });
+          // change layout of destination page as shown in editor
+          this.updateLayoutDisplay(newState.destinationPage);
+        }
+      }
     } else if (this.props.pageName) {
-      newState.destinationPage = urls.find(p => p.name === this.props.pageName);
+      newState.destinationPage = urls.find(p => p.label === this.props.pageName);
       this.updateLayoutDisplay(newState.destinationPage);
     }
     this.setState(newState);
