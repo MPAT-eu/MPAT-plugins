@@ -36,7 +36,8 @@ import {
   DELETE_AREA_STATE,
   EDIT_AREA_STATE_NAME,
   CHANGE_AREA_TEMPLATE,
-  SET_STATE_ACTIVE
+  SET_STATE_ACTIVE,
+  CHANGE_PAGE_PROP
 } from '../reducers/pageModelReducer';
 
 import {
@@ -86,6 +87,9 @@ export const changeDefaultActive = id => (
 );
 export const changePageLayout = id => (
   create(CHANGE_PAGE_LAYOUT, id)
+);
+export const changePageProp = (name, value) => (
+  create(CHANGE_PAGE_PROP, { name, value })
 );
 
 export const changeAreaTemplate = (areaId, templateId) => (dispatch, getState) => {

@@ -36,6 +36,9 @@ function sanitizeData(data) {
   if (!data.content) {
     data.content = {}; // eslint-disable-line
   }
+  if (!data.pageProps) {
+    data.pageProps = {}; // eslint-disable-line
+  }
   if (!data.styles) {
     data.styles = {}; // eslint-disable-line
   }

@@ -43,10 +43,12 @@ export const ADD_AREA_STATE = prefix('ADD_AREA_STATE');
 export const DELETE_AREA_STATE = prefix('DELETE_AREA_STATE');
 export const EDIT_AREA_STATE_NAME = prefix('EDIT_AREA_STATE_NAME');
 export const SET_STATE_ACTIVE = prefix('SET_STATE_ACTIVE');
+export const CHANGE_PAGE_PROP = prefix('CHANGE_PAGE_PROP');
 
 const m = (!Array.isArray(post.meta) && post.meta ? post.meta : {});
 const initialState = {
   model: m.model,
+  pageProps: m.pageProps ? m.pageProps : {},
   pageContent: m.content && !(m.content instanceof Array) ? m.content : {},
   pageStyles: m.styles || {},
   background: m.background || '',
@@ -143,6 +145,13 @@ export default createReducer(sanitizeState(initialState), {
     if (state.layoutId !== layoutId) {
       let next = { ...state, layoutId };
       next.pageContent = {};
+      next = sanitizeState(next);
+      return next;
+    }
+  },
+  [CHANGE_PAGE_PROP]: (state, {name, value}) => {
+    if (state.pageProps[name] !== value) {
+      let next = { ...state, pageProps: { ...state.pageProps, [name]: value}};
       next = sanitizeState(next);
       return next;
     }

@@ -89,12 +89,12 @@ export default class Page extends React.PureComponent {
     super();
     autobind(this);
     let focusedIndex;
-    let state = {};
+    let state;
     if (props.defaultActive) {
       focusedIndex = props.layout.findIndex(({ i }) => i === props.defaultActive);
     }
     if (focusedIndex !== undefined && focusedIndex > -1) {
-      state = { focusedIndex, focusedIsActive: true };
+      state = { focusedIndex, focusedIsActive: true, hide: false };
     } else {
       focusedIndex = props.layout.reduce((prev, box, index) => {
         const content = props.content[box.i] &&
@@ -107,7 +107,7 @@ export default class Page extends React.PureComponent {
         }
         return prev;
       }, { dst: Infinity, index: 0 }).index;
-      state = { focusedIndex, focusedIsActive: false };
+      state = { focusedIndex, focusedIsActive: false, hide: false };
     }
 
     this.queryParams = getQueryParams();
@@ -135,6 +135,13 @@ export default class Page extends React.PureComponent {
       registerHandlers(this, handlersWithTag('global', [
         createHandler(KeyEvent.VK_PLAY, this.backgroundVideo.play),
         createHandler(KeyEvent.VK_PAUSE, this.backgroundVideo.pause)
+      ]));
+    }
+
+    if (this.props.pageProps && this.props.pageProps.hideOnRed) {
+      registerHandlers(this, handlersWithTag('always', [
+        createHandler(KeyEvent.VK_RED, this.showHideOnRed),
+        createHandler(82, this.showHideOnRed)
       ]));
     }
   }
@@ -189,6 +196,11 @@ export default class Page extends React.PureComponent {
       `Area ${areaId} has no state with id ${stateId}!`
     );
     this.setState({ areaStates: { ...this.state.areaStates, [areaId]: stateId } });
+  }
+
+  showHideOnRed() {
+    const hide = !this.state.hide;
+    this.setState({ hide });
   }
 
   activateCurrent() {
@@ -328,27 +340,36 @@ export default class Page extends React.PureComponent {
     if (pageStyles.backgroundImage === 'none') {
       pageStyleOverride.backgroundImage = 'none';
     }
+    const displayPage = !this.props.pageProps.hideOnRed || !this.state.hide;
     return (
-      <div className="page-container">
-        {/*
+      <div>
+        {displayPage &&
+        <div className="page-container">
+          {/*
         we need the following hack to allow a page to override the general background
         so that the page can have a transparent background and let the viewer see the video
         underneatch it
         */}
-        <div className="page" style={pageStyleOverride}>
-          {/*
+          <div className="page" style={pageStyleOverride}>
+            {/*
           We need a sperated div to achieve the stack of backgroungs,
           where global background styles are applied to page via standard css,
           while page specific ones are applied to background div.
           So we can leverage on transparencies
            */}
-          <div className="background" style={pageStyles}>
-            {vid}
+            <div className="background" style={pageStyles}>
+              {vid}
+            </div>
+            <div className="page-elements-container">
+              {pageElements}
+            </div>
           </div>
-          <div className="page-elements-container">
-            {pageElements}
-          </div>
-        </div>
+        </div>}
+        {!displayPage &&
+        <div className="MPATShowOnRedTextStyle">
+          {this.props.pageProps.showOnRedText}
+          <div className="MPATShowOnRedIcon"/>
+        </div>}
       </div>
     );
   }

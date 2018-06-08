@@ -19,6 +19,7 @@
  * AUTHORS:
  * Miggi Zwicklbauer (miggi.zwicklbauer@fokus.fraunhofer.de)
  * Thomas Tröllmich  (thomas.troellmich@fokus.fraunhofer.de)
+ * Jean-Claude Dufourd (dufourd@telecom-paristech.fr)
  * Jean-Philippe Ruijs (github.com/jeanphilipperuijs)
  * Stefano Miccoli (stefano.miccoli@finconsgroup.com)
  * Marco Ferrari (marco.ferrari@finconsgroup.com)
@@ -181,6 +182,7 @@ export default class PageEditor extends React.PureComponent {
     });
     const previewInfo = {
       content: this.props.pageContent,
+      pageProps: this.props.pageProps,
       layout: this.props.layout.data,
       styles: this.props.pageStyles,
       layoutId: this.props.layoutId,
@@ -369,6 +371,7 @@ export default class PageEditor extends React.PureComponent {
           background: this.props.background,
           styles: this.props.pageStyles,
           content,
+          pageProps: this.props.pageProps,
           layoutId: this.props.layoutId,
           defaultActive: this.props.defaultActive
         }
@@ -412,6 +415,7 @@ export default class PageEditor extends React.PureComponent {
                     status: 'publish',
                     mpat_content: {
                       model: this.props.model,
+                      pageProps: this.props.pageProps,
                       background: this.props.background,
                       styles: this.props.pageStyles,
                       content: this.props.pageContent,
@@ -464,6 +468,7 @@ export default class PageEditor extends React.PureComponent {
           background: this.props.background,
           styles: this.props.pageStyles,
           content: this.props.pageContent,
+          pageProps: this.props.pageProps,
           layoutId: this.props.layoutId,
           defaultActive: this.props.defaultActive
         }
@@ -515,6 +520,7 @@ export default class PageEditor extends React.PureComponent {
           background: this.props.background,
           styles: this.props.pageStyles,
           content: this.props.pageContent,
+          pageProps: this.props.pageProps,
           layoutId: this.props.layoutId,
           defaultActive: this.props.defaultActive
         },
@@ -581,6 +587,7 @@ export default class PageEditor extends React.PureComponent {
           background: this.props.background,
           styles: this.props.pageStyles,
           content: this.props.pageContent,
+          pageProps: this.props.pageProps,
           layoutId: this.props.layoutId,
           defaultActive: this.props.defaultActive
         }
@@ -670,6 +677,7 @@ export default class PageEditor extends React.PureComponent {
     const c = this.props.pageContent;
     const s = {
       background: this.props.background,
+      pageProps: this.props.pageProps,
       content: this.props.pageContent,
       layoutId: this.props.layoutId,
       defaultActive: this.props.defaultActive
@@ -725,6 +733,7 @@ export default class PageEditor extends React.PureComponent {
       }));
     const previewInfo = {
       content: this.props.pageContent,
+      pageProps: this.props.pageProps,
       layout: this.props.layout.data,
       styles: this.props.pageStyles,
       layoutId: this.props.layoutId,
@@ -837,7 +846,7 @@ export default class PageEditor extends React.PureComponent {
                             <StylesPopup
                               title={'Edit page styles'}
                               popup={Popup}
-                              callback={this.props.actions.changePageStyles}
+                              callback={actions.changePageStyles}
                               styleValues={this.props.pageStyles}
                               styleDefinitions={this.props.styleDefinitions}
                             />
@@ -888,9 +897,37 @@ export default class PageEditor extends React.PureComponent {
                 </td>}
                 {this.props.model &&
                 <td>
-                  <label>{this.props.model.origin}</label>
+                  <label>{model.origin}</label>
                 </td>}
               </tr>
+            <tr>
+              <td>
+                <label>Hide app with RED button ?</label>
+              </td>
+              <td>
+                <input
+                  type="checkbox"
+                  defaultChecked={this.props.pageProps.hideOnRed}
+                  onChange={e => actions.changePageProp('hideOnRed', e.target.checked)}
+                  />
+              </td>
+              {this.props.pageProps.hideOnRed &&
+              <td>
+
+              </td>}
+              {this.props.pageProps.hideOnRed &&
+              <td>
+                <label>Text for "show" signal</label>
+              </td>}
+              {this.props.pageProps.hideOnRed &&
+              <td>
+                <input
+                  type="text"
+                  value ={this.props.pageProps.showOnRedText}
+                  onChange={e => actions.changePageProp('showOnRedText', e.target.value)}
+                  />
+              </td>}
+            </tr>
             </tbody>
           </table>
           {this.mainButtons(true)}
