@@ -94,7 +94,7 @@ class Ivw {
 	static function register_frontend_variables($systems) {
 		$ivw_config = self::get_config();
 		
-		if ($ivw_config["enable"]) {
+		if (isset($ivw_config["enable"])) {
 			$systems["ivw"] = $ivw_config;
 		}
 		return $systems;
@@ -102,8 +102,7 @@ class Ivw {
 
 	static function print_config_script() {
 		$ivw_config = self::get_config();
-		
-		if ($ivw_config["enable"]) {
+		if (isset($ivw_config["enable"])) {
 			?>
 				<script type="text/javascript">
 				//<![CDATA[
