@@ -263,7 +263,7 @@ function scrollHorizontalPaginationHorizontal(isLeft, currentIndex, nItems, rows
     }
   } else {
     col++;
-    if (col >= cols || row === 0 && row === lastRow && col > lastColInLastRow) {
+    if (col >= cols || row === 0 && row === lastRow && col > lastColInLastRow && page === nPages - 1) {
       page++;
       if (loop && nPages > 1 && page >= nPages) {
         page = 0;
