@@ -58,7 +58,7 @@ box-shadow: inset 0 0 5px 5px #FFF;
 z-index: 2;
 }
 
-.mpat .content-editor-container div.react-grid-item.active {
+.mpat .content-editor-container div.react-grid-item.active:not(.lockedBox) {
   z-index: 2;
   border: 3px solid red;
 }

@@ -172,9 +172,9 @@ export default class PageEditor extends React.PureComponent {
               editBox: true,
               lockedBox: !editable,
               chooseTargetMode: true,
-              active: (this.state.curEditId === area.key)
+              active: (this.state.curEditId === area.key) && editable
             })}
-          onClick={() => that.setState({ curEditId: area.key, curEditContext: layout.data[i] })}
+          onClick={() => { if (editable) that.setState({ curEditId: area.key, curEditContext: layout.data[i] })}}
         >
           {area.label}
         </div>
