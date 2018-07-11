@@ -116,6 +116,7 @@ class ScrolledTextContent extends React.Component {
             id={`scrolledText${id}`}
             style={{ position: 'absolute', top: this.state.textOffset }}
             dangerouslySetInnerHTML={{ __html: text }}
+            className="MPATScrolledTextWithScrollBar"
           />
           <div className="MPATScrolledTextScrollBar" style={{top: this.state.scrollBarPosition, height: this.scrollBarSize}}/>
         </div>
