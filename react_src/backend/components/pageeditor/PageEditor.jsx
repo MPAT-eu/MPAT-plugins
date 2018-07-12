@@ -270,7 +270,10 @@ export default class PageEditor extends React.PureComponent {
   };
 
   render() {
-    if (this.props.model && this.state.editMode === 'editPage') {
+    if (this.state.editMode === 'updateInstances') {
+      // maybe update instances to changes in this model
+      return this.updateInstances();
+    } else if (this.props.model && this.state.editMode === 'editPage') {
       // there is a model, the mode could be editModel, createInstance or editInstance
       if (!this.props.model.instance) {
         // need to ask the user if edit model or create instance
@@ -299,6 +302,18 @@ export default class PageEditor extends React.PureComponent {
               style={{ margin: 5, position: 'relative', bottom: 17 }}
             >
               CREATE INSTANCE FROM THIS MODEL
+            </button>
+            or
+            <button
+              type="button"
+              className="button blue_white"
+              onClick={(ev) => {
+                Popup.close();
+                this.setState({ editMode: 'updateInstances', willSaveTo: '' });
+              }}
+              style={{ margin: 5, position: 'relative', bottom: 17 }}
+            >
+              UPDATE EXISTING INSTANCES OF THIS MODEL
             </button>
             ?
           </div>
@@ -891,11 +906,11 @@ export default class PageEditor extends React.PureComponent {
                   , i18n.ttCreateModelFromPage)}
                 </td>}
 
-                {this.props.model &&
+                {this.props.model && this.state.editMode !== 'editModel' &&
                 <td>
                   <label>{i18n.pageFromModel}:</label>
                 </td>}
-                {this.props.model &&
+                {this.props.model && this.state.editMode !== 'editModel' &&
                 <td>
                   <label>{model.origin}</label>
                 </td>}
@@ -1118,6 +1133,75 @@ export default class PageEditor extends React.PureComponent {
       </div>
     );
   }
+
+  areThereChangesToPropagate(pmMeta, instanceMeta) {
+    return Object.keys(pmMeta.model).some(
+      a =>
+        typeof pmMeta.model[a] === 'object' &&
+        !pmMeta.model[a].editable &&
+        JSON.stringify(pmMeta.content[a]) !== JSON.stringify(instanceMeta.content[a])
+    );
+  }
+
+  propagateChanges(pmMeta, instance, buttonId) {
+    Object.keys(pmMeta.model).forEach(
+      a => {
+        if (typeof pmMeta.model[a] === 'object' && !pmMeta.model[a].editable) {
+          instance.mpat_content.content[a] = pmMeta.content[a];
+        }
+      }
+      );
+    PageIO.getCommon().put(
+      instance.ID,
+      {
+        ID: instance.ID,
+        title: instance.post_title,
+        mpat_content: instance.mpat_content,
+      },
+      () => {
+        window.document.getElementById(buttonId).disabled = true;
+      },
+      (e) => {
+        window.alert(`Error while saving: ${e}`);
+      }
+    );
+  }
+
+  updateInstances() {
+    const instances = [];
+    const title = window.Post.postInfo.post_title;
+    window.Pages.forEach((item) => {
+      if (item.mpat_content.model && item.mpat_content.model.origin === title) {
+        const todo = this.areThereChangesToPropagate(window.Post.meta, item.mpat_content);
+        const buttonId = "updateInstance"+item.ID;
+        instances.push(
+          <li>
+            &rarr; {item.post_title} &nbsp;
+            {todo &&
+            <button
+              type="button"
+              className="button blue_white"
+              id={buttonId}
+              onClick={(ev) => {
+                this.propagateChanges(window.Post.meta, item, buttonId);
+              }}
+              style={{ marginLeft: 5, position: 'relative', height: 25, minHeight: 25 }}
+            >Change</button>}
+            {!todo && <span style={{color: 'gray', fontWeight: 100}}>(Nothing to do)</span>}
+          </li>
+        );
+      }
+    });
+    return (
+      <div>
+        <h3>Instances of model {title} are:</h3>
+        <ul>
+          {instances}
+        </ul>
+      </div>
+    );
+  }
+
 }
 /* FIXME oh my...*/
 let $ = jQuery;
@@ -1152,3 +1236,6 @@ function PreviewStyles({ context }) {
     </style>
   );
 }
+
+
+
