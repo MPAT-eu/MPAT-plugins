@@ -1194,7 +1194,7 @@ export default class PageEditor extends React.PureComponent {
     });
     return (
       <div>
-        <h3>Instances of model {title} are:</h3>
+        <h3>There are {instances.length} instances of model {title}</h3>
         <ul>
           {instances}
         </ul>
