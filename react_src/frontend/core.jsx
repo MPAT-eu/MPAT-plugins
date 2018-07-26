@@ -83,6 +83,7 @@ module.exports = {
   React,
   ReactDOM,
   application,
+  RedButtonFader: window.RedButtonFader,
   previewRender,
   componentAPI: componentLoader,
   utils: {

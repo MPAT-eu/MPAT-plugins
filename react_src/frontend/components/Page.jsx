@@ -35,7 +35,6 @@ import Video from './Video';
 import PageElement from './PageElement';
 import { trackAction } from '../analytics/index';
 import { application } from '../appData';
-import { componentLoader } from '../../ComponentLoader';
 
 // filtering the navigable found in the content with the navigability of the component
 function isNavigable(content) {
@@ -43,6 +42,8 @@ function isNavigable(content) {
   // but to support legacy application it does some more...
   return (content && content.navigable) || (content && content.hotSpotMeta && content.hotSpotMeta.isHotSpot);
 }
+
+const RedButtonFader = window.RedButtonFader;
 
 export default class Page extends React.PureComponent {
 
@@ -138,7 +139,11 @@ export default class Page extends React.PureComponent {
       ]));
     }
 
-    if (this.props.pageProps && this.props.pageProps.hideOnRed) {
+    // hide on red is activate if
+    // RedButtonFader.RedButtonMode is all OR
+    // RedButtonFader.RedButtonMode is not none AND page is set for hideOnRed
+    if ((this.props.pageProps && this.props.pageProps.hideOnRed && !(RedButtonFader && RedButtonFader.RedButtonMode === 'none')) ||
+        (RedButtonFader && RedButtonFader.RedButtonMode === 'all')) {
       registerHandlers(this, handlersWithTag('always', [
         createHandler(KeyEvent.VK_RED, this.showHideOnRed),
         createHandler(82, this.showHideOnRed)
@@ -201,6 +206,11 @@ export default class Page extends React.PureComponent {
   showHideOnRed() {
     const hide = !this.state.hide;
     this.setState({ hide });
+    const showRed = this.state.hide && RedButtonFader &&
+      (RedButtonFader.RedButtonMode === 'all' || this.props.pageProps.hideOnRed);
+    if (showRed) {
+      RedButtonFader.start();
+    }
   }
 
   activateCurrent() {
@@ -340,7 +350,7 @@ export default class Page extends React.PureComponent {
     if (pageStyles.backgroundImage === 'none') {
       pageStyleOverride.backgroundImage = 'none';
     }
-    const displayPage = !this.props.pageProps.hideOnRed || !this.state.hide;
+    const displayPage = !(this.props.pageProps.hideOnRed || (RedButtonFader && RedButtonFader.RedButtonMode === 'all')) || !this.state.hide;
     return (
       <div>
         {displayPage &&
@@ -366,7 +376,7 @@ export default class Page extends React.PureComponent {
           </div>
         </div>}
         {!displayPage &&
-        <div className="MPATShowOnRedTextStyle">
+        <div id="MPATRedButtonDiv" className="MPATShowOnRedTextStyle">
           {this.props.pageProps.showOnRedText}
           <div className="MPATShowOnRedIcon"/>
         </div>}
