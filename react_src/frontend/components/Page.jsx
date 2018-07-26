@@ -377,7 +377,7 @@ export default class Page extends React.PureComponent {
         </div>}
         {!displayPage &&
         <div id="MPATRedButtonDiv" className="MPATShowOnRedTextStyle">
-          {this.props.pageProps.showOnRedText}
+          { this.props.pageProps.showOnRedText || RedButtonFader.defaultText }
           <div className="MPATShowOnRedIcon"/>
         </div>}
       </div>
