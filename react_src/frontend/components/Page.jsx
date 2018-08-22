@@ -362,7 +362,7 @@ export default class Page extends React.PureComponent {
         */}
           <div className="page" style={pageStyleOverride}>
             {/*
-          We need a sperated div to achieve the stack of backgroungs,
+          We need a separate div to achieve the stack of backgroungs,
           where global background styles are applied to page via standard css,
           while page specific ones are applied to background div.
           So we can leverage on transparencies
