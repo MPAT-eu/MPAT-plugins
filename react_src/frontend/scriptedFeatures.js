@@ -21,6 +21,7 @@
  *
  **/
 "use strict";
+import { application } from './appData';
 
 export function registerScriptedFeatures() {
   window.TVDebugServerInterface = TVDebugServerInterface();
@@ -58,15 +59,47 @@ export function RedButtonFader () {
   // some : only pages with hideOnRed can be hidden by the red button (set in Page Editor)
   // none : global of the red button feature (overrides page settings)
   exports.RedButtonMode = 'all';
+  if (application.application_manager.red_button_config !== "") {
+    // get value from application settings
+    exports.RedButtonMode = application.application_manager.red_button_config;
+  }
   exports.defaultText = 'Press RED button to show again';
+  if (application.application_manager.red_button_text !== "") {
+    // get value from application settings
+    exports.defaultText = application.application_manager.red_button_text;
+  }
   exports.resolution = 10; // 10 updates per second
   exports.durationOnScreen = 10 * exports.resolution; // 10s on screen
+  if (application.application_manager.red_button_onscreen !== "") {
+    // get value from application settings
+    exports.durationOnScreen = parseInt(application.application_manager.red_button_onscreen) * exports.resolution;
+  }
   exports.totalDuration = 300 * exports.resolution; // 5m total period
+  if (application.application_manager.red_button_duration !== "") {
+    // get value from application settings
+    exports.totalDuration = parseInt(application.application_manager.red_button_duration) * exports.resolution;
+  }
   exports.animationDuration = 2 * exports.resolution; // animation 2s
+  if (application.application_manager.red_button_animation !== "") {
+    // get value from application settings
+    exports.animationDuration = parseInt(application.application_manager.red_button_animation) * exports.resolution;
+  }
   exports.animationMode = 'position' // can be position or fade
+  if (application.application_manager.red_button_mode !== "") {
+    // get value from application settings
+    exports.animationMode = application.application_manager.red_button_mode;
+  }
   exports.animatedPosField = 'bottom';
+  if (application.application_manager.red_button_posfield !== "") {
+    // get value from application settings
+    exports.animatedPosField = application.application_manager.red_button_posfield;
+  }
   exports.posFieldIn = 0; // value of bottom when in
   exports.posFieldOut = -30; // value of bottom when out
+  if (application.application_manager.red_button_posout !== "") {
+    // get value from application settings
+    exports.posFieldOut = parseInt(application.application_manager.red_button_posout);
+  }
   exports.fade = function (div, i) {
     if (exports.animationMode === 'fade') {
       if (exports.durationOnScreen > i) {

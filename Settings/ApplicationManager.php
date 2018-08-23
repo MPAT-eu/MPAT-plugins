@@ -80,7 +80,123 @@ class ApplicationManager
                 "default_value" => false
             )
         );
-        
+
+        add_settings_field(
+            'red button fader config',
+            __( 'Red button configuration', 'mpat' ),
+            array(FormHelper::class, "select_field_render"),
+            'mpat-application-manager',
+            'main_section',
+            array(
+                "option_name" => "mpat_application_manager",
+                "field_name" => "red_button_config",
+                "available_values" => array(
+                    "all" => "All pages",
+                    "some" => "Only pages allowing it",
+                    "none" => "None"
+                )
+            )
+        );
+
+        add_settings_field(
+            'red button fader mode',
+            __( 'Red button mode', 'mpat' ),
+            array(FormHelper::class, "select_field_render"),
+            'mpat-application-manager',
+            'main_section',
+            array(
+                "option_name" => "mpat_application_manager",
+                "field_name" => "red_button_mode",
+                "available_values" => array(
+                    "position" => "Slide in/out",
+                    "fade" => "Fade in/out"
+                )
+            )
+        );
+
+        add_settings_field(
+            'red button fader direction',
+            __( 'Red button direction', 'mpat' ),
+            array(FormHelper::class, "select_field_render"),
+            'mpat-application-manager',
+            'main_section',
+            array(
+                "option_name" => "mpat_application_manager",
+                "field_name" => "red_button_posfield",
+                "available_values" => array(
+                    "bottom" => "Bottom",
+                    "left" => "Left",
+                    "right" => "Right",
+                    "top" => "Top"
+                )
+            )
+        );
+
+        add_settings_field(
+            'red button fader duration',
+            __( 'Red button duration', 'mpat' ),
+            array(FormHelper::class, "text_field_render"),
+            'mpat-application-manager',
+            'main_section',
+            array(
+                "option_name" => "mpat_application_manager",
+                "field_name" => "red_button_posfield",
+                "default_value" => "300"
+            )
+        );
+
+        add_settings_field(
+            'red button onscreen duration',
+            __( 'Red button onscreen duration', 'mpat' ),
+            array(FormHelper::class, "text_field_render"),
+            'mpat-application-manager',
+            'main_section',
+            array(
+                "option_name" => "mpat_application_manager",
+                "field_name" => "red_button_onscreen",
+                "default_value" => "10"
+            )
+        );
+
+        add_settings_field(
+            'red button anim duration',
+            __( 'Red button animation duration', 'mpat' ),
+            array(FormHelper::class, "text_field_render"),
+            'mpat-application-manager',
+            'main_section',
+            array(
+                "option_name" => "mpat_application_manager",
+                "field_name" => "red_button_animation",
+                "default_value" => "2"
+            )
+        );
+
+        add_settings_field(
+            'red button outside position',
+            __( 'Red button outside position', 'mpat' ),
+            array(FormHelper::class, "text_field_render"),
+            'mpat-application-manager',
+            'main_section',
+            array(
+                "option_name" => "mpat_application_manager",
+                "field_name" => "red_button_posout",
+                "default_value" => "-40"
+            )
+        );
+
+        add_settings_field(
+            'red button default text',
+            __( 'Red button default text', 'mpat' ),
+            array(FormHelper::class, "text_field_render"),
+            'mpat-application-manager',
+            'main_section',
+            array(
+                "option_name" => "mpat_application_manager",
+                "field_name" => "red_button_text",
+                "default_value" => "Press RED to return"
+            )
+        );
+
         add_settings_field(
             'slideflow_experimental',
             __( 'Slideflow experimental mode <small>(optimizes animation steps for better performance)</small>', 'mpat' ),

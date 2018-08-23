@@ -368,7 +368,15 @@ class Core {
 				"app_language" => "en",
 				"slideflow_arrows" => false,
 				"slideflow_experimental" => false,
-				"slideflow_orientation" => "vertical"
+				"slideflow_orientation" => "vertical",
+                "red_button_config" => "all",
+                "red_button_mode" => "position",
+                "red_button_posfield" => "bottom",
+                "red_button_duration" => "300",
+                "red_button_onscreen" => "10",
+                "red_button_animation" => "2",
+                "red_button_posout" => "-40",
+                "red_button_text" => "Press RED to return"
 		));
 		global $post;
 		$postData = null;
