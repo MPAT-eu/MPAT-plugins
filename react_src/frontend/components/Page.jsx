@@ -43,8 +43,6 @@ function isNavigable(content) {
   return (content && content.navigable) || (content && content.hotSpotMeta && content.hotSpotMeta.isHotSpot);
 }
 
-const RedButtonFader = window.RedButtonFader;
-
 export default class Page extends React.PureComponent {
 
   static propTypes = {
@@ -140,10 +138,10 @@ export default class Page extends React.PureComponent {
     }
 
     // hide on red is activate if
-    // RedButtonFader.RedButtonMode is all OR
-    // RedButtonFader.RedButtonMode is not none AND page is set for hideOnRed
-    if ((this.props.pageProps && this.props.pageProps.hideOnRed && !(RedButtonFader && RedButtonFader.RedButtonMode === 'none')) ||
-        (RedButtonFader && RedButtonFader.RedButtonMode === 'all')) {
+    // window.RedButtonFader.RedButtonMode is all OR
+    // window.RedButtonFader.RedButtonMode is not none AND page is set for hideOnRed
+    if ((this.props.pageProps && this.props.pageProps.hideOnRed && !(window.RedButtonFader && window.RedButtonFader.RedButtonMode === 'none')) ||
+        (window.RedButtonFader && window.RedButtonFader.RedButtonMode === 'all')) {
       registerHandlers(this, handlersWithTag('always', [
         createHandler(KeyEvent.VK_RED, this.showHideOnRed),
         createHandler(82, this.showHideOnRed)
@@ -170,12 +168,12 @@ export default class Page extends React.PureComponent {
                 let isQueryParam = false;
                 for (const key in content[obj]) {
                   const stateTitle = `state-${content[obj][key].stateTitle}`;
-                  if (stateTitle == that.queryParams[obj]) {
+                  if (stateTitle === that.queryParams[obj]) {
                     isQueryParam = true;
                     return { [obj]: key };
                   }
                   for (const keyParams in that.queryParams[obj]) {
-                    if (stateTitle == that.queryParams[obj][keyParams]) {
+                    if (stateTitle === that.queryParams[obj][keyParams]) {
                       isQueryParam = true;
                       return { [obj]: key };
                     }
@@ -185,7 +183,7 @@ export default class Page extends React.PureComponent {
                     stateActiveId = key;
                   }
                 }
-                return { [obj]: (stateActiveId != null && isQueryParam == false) ? stateActiveId : Object.keys(content[obj])[0] };
+                return { [obj]: (stateActiveId != null && isQueryParam === false) ? stateActiveId : Object.keys(content[obj])[0] };
               })
       );
   }
@@ -206,10 +204,10 @@ export default class Page extends React.PureComponent {
   showHideOnRed() {
     const hide = !this.state.hide;
     this.setState({ hide });
-    const showRed = this.state.hide && RedButtonFader &&
-      (RedButtonFader.RedButtonMode === 'all' || this.props.pageProps.hideOnRed);
+    const showRed = this.state.hide && window.RedButtonFader &&
+      (window.RedButtonFader.RedButtonMode === 'all' || this.props.pageProps.hideOnRed);
     if (showRed) {
-      RedButtonFader.start();
+      window.RedButtonFader.start();
     }
   }
 
@@ -350,7 +348,7 @@ export default class Page extends React.PureComponent {
     if (pageStyles.backgroundImage === 'none') {
       pageStyleOverride.backgroundImage = 'none';
     }
-    const displayPage = !(this.props.pageProps.hideOnRed || (RedButtonFader && RedButtonFader.RedButtonMode === 'all')) || !this.state.hide;
+    const displayPage = !(this.props.pageProps.hideOnRed || (window.RedButtonFader && window.RedButtonFader.RedButtonMode === 'all')) || !this.state.hide;
     return (
       <div>
         {displayPage &&
@@ -377,8 +375,9 @@ export default class Page extends React.PureComponent {
         </div>}
         {!displayPage &&
         <div id="MPATRedButtonDiv" className="MPATShowOnRedTextStyle">
-          { this.props.pageProps.showOnRedText || RedButtonFader.defaultText }
-          <div className="MPATShowOnRedIcon"/>
+          <div className="MPATShowOnRedIconLeft"/>
+          { this.props.pageProps.showOnRedText || window.RedButtonFader.defaultText }
+          <div className="MPATShowOnRedIconRight"/>
         </div>}
       </div>
     );

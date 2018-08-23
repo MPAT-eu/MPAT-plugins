@@ -62,7 +62,9 @@ if (DEBUG) {
 }
 
 export function log(msg) {
-  window.TVDebugServerInterface.log(msg);
+  if (window.TVDebugServerInterface && typeof window.TVDebugServerInterface.log === 'function') {
+    window.TVDebugServerInterface.log(msg);
+  }
   if (DEBUG) {
     if (window.console && window.console.log) {
       window.console.log(msg);

@@ -36,6 +36,7 @@ import { application, adaptPost, update } from './appData';
 import { componentLoader } from '../ComponentLoader';
 import { trackPageview, trackAction } from './analytics/index';
 import Video from './components/Video';
+import { registerScriptedFeatures } from './scriptedFeatures';
 
 const main = document.getElementById('main');
 
@@ -62,12 +63,15 @@ window.onload = function onloadMPAT() {
     trackPageview();
 
     ReactDOM.render(<Controller />, main);
+
   } catch (err) {
     log(`${err.name}: ${err.message}`);
     log(err.stack);
     log(err);
   }
 };
+
+registerScriptedFeatures(); // to be done on load of the code, not on body.onload (too late)
 
 function previewRender() {
   // update application in appData
@@ -83,7 +87,6 @@ module.exports = {
   React,
   ReactDOM,
   application,
-  RedButtonFader: window.RedButtonFader,
   previewRender,
   componentAPI: componentLoader,
   utils: {
