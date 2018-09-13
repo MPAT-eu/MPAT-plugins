@@ -30,7 +30,7 @@ import { registerHandlers, registerNavigationModel, unregisterHandlers, triggerE
 import DefaultNavigationModel from '../DefaultNavigationModel';
 import PageWrapper from './PageWrapper';
 import SlideFlowStore from '../stores/SlideFlowStore';
-import { ArrowDown, ArrowUp } from './icons/Icons';
+import { ArrowDown, ArrowUp, ArrowLeft, ArrowRight } from './icons/Icons';
 import { trackAction, trackPageview } from '../analytics/index';
 import { application, keyset, appObject } from '../appData';
 
@@ -53,7 +53,7 @@ export default class SlideFlowController extends React.Component {
     registerNavigationModel(new DefaultNavigationModel());
     this.slideFlowStore = new SlideFlowStore(application.post, application.application_manager.pages);
 
-	// setting the initial page in componentDidMount led to an unnecessary re-render of the slideflow
+    // setting the initial page in componentDidMount led to an unnecessary re-render of the slideflow
     const currentPage = application.post;
     currentPage.data = currentPage.meta;
     this.state.pages.push(currentPage);
@@ -61,7 +61,7 @@ export default class SlideFlowController extends React.Component {
   }
 
   componentDidMount() {
-    if (this.orientation == 'horizontal') {
+    if (this.orientation === 'horizontal') {
       registerHandlers(this, handlersWithTag('controller', [
         createHandler(KeyEvent.VK_LEFT, this.previousSlide),
         createHandler(KeyEvent.VK_RIGHT, this.nextSlide)
@@ -116,7 +116,7 @@ export default class SlideFlowController extends React.Component {
       if (this.experimental) {
         const temp = this.interpolate(tick);
             // change position only if actually changed
-        if (temp != this.state.tick) {
+        if (temp !== this.state.tick) {
           this.setState({ tick: temp });
         }
       } else {
@@ -127,9 +127,10 @@ export default class SlideFlowController extends React.Component {
   }
 
   interpolate(t) {
-  	  if (this.experimental)
-  	      // round position of 0.05. No need to re-render 90 times in 700 milliseconds...
-  	      { return Math.round((t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t) * 20) / 20; }
+    if (this.experimental) {
+      // round position of 0.05. No need to re-render 90 times in 700 milliseconds...
+      return Math.round((t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t) * 20) / 20; 
+    }
     return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
   }
 
@@ -139,7 +140,7 @@ export default class SlideFlowController extends React.Component {
   }
 
   goToPage(pageInfo) {
-    if (pageInfo.substring(0, 7) == 'page://') {
+    if (pageInfo.substring(0, 7) === 'page://') {
       const pageContent = this.slideFlowStore.loadPage(pageInfo.substring(7));
       pageContent.then((page) => {
         window.location.href = page.page_url;
@@ -156,7 +157,7 @@ export default class SlideFlowController extends React.Component {
 
   // duplicated from website, need to think of a better way
   performAction(type, actionData = {}, trigger = '') {
-    if (type == 'application') {
+    if (type === 'application') {
       if (actionData.action === 'back') {
         this.goToPrevious();
       } else if (actionData.action === 'toggle') {
@@ -178,8 +179,8 @@ export default class SlideFlowController extends React.Component {
           log(JSON.stringify(e));
         }
       }
-    } else if (type == 'ait') {
-      if (actionData.action == 'launchApplication') {
+    } else if (type === 'ait') {
+      if (actionData.action === 'launchApplication') {
         hbbtvlib_createApp(`dvb://current.ait/${actionData.appId}?autoshow=1`, actionData.fallbackUrl);
       }
     }
@@ -196,15 +197,15 @@ export default class SlideFlowController extends React.Component {
   render() {
     const { tick, hasScrolledUp, pages } = this.state;
     const orientation = this.orientation;
-    const pagePositioning = function (i) {
+    const pagePositioning = (i) => {
       const style = {
         position: 'absolute',
         top: 0,
         left: 0
       };
-      if (orientation == 'vertical') {
+      if (orientation === 'vertical') {
         style.top = `${(tick + i - 1) * 720 * (hasScrolledUp ? 1 : -1)}px`;
-      } else if (orientation == 'horizontal') {
+      } else if (orientation === 'horizontal') {
         style.left = `${(tick + i - 1) * 1280 * (hasScrolledUp ? 1 : -1)}px`;
       }
       return style;
@@ -221,11 +222,11 @@ export default class SlideFlowController extends React.Component {
             />
             ))}
         </div>
-        {(this.slideFlowStore.hasNextPage() && this.showArrows) &&
-          <ArrowDown />
+        {
+          (this.slideFlowStore.hasNextPage() && this.showArrows) && (orientation === 'vertical' ? <ArrowDown /> : <ArrowRight />)
         }
-        {(this.slideFlowStore.hasPrevPage() && this.showArrows) &&
-          <ArrowUp />
+        {
+          (this.slideFlowStore.hasPrevPage() && this.showArrows) && (orientation === 'vertical' ? <ArrowUp /> : <ArrowLeft />)
         }
       </div>
     );
