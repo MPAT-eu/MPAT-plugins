@@ -110,7 +110,8 @@ class Ivw {
 					var ivw_ak = "<?= $ivw_config["ak"]?>";
 					var ivw_sc = "<?= $ivw_config["sc"]?>";
 
-					var po = (typeof szmType !== 'undefined' && szmType == "CP") ? {"st":ivw_ak, "cp":ivw_sc} : {"st":ivw_ak, "xp":ivw_sc};
+					/*var po = (typeof szmType !== 'undefined' && szmType == "CP") ? {"st":ivw_ak, "cp":ivw_sc} : {"st":ivw_ak, "xp":ivw_sc};*/
+					var po = { "st":ivw_ak, "cp":ivw_sc };
 					if (typeof iom  !== 'undefined') iom.init(po, 1);
 					else {
 						var el = document.createElement("script");
