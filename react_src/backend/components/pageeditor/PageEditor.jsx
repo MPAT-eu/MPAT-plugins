@@ -715,8 +715,9 @@ export default class PageEditor extends React.PureComponent {
     const that = this;
     const boxes = (!layout ? null : layout.data.map(
       (box, i) => {
-        const editable = (that.state.editMode === 'editModel') ||
-          (model === undefined || model[box.i].editable);
+        const editable = (
+           that.state.editMode === 'editModel') ||
+          (model === undefined || model[box.i] === undefined || model[box.i].editable);
         return (
           <div
             key={box.i}
