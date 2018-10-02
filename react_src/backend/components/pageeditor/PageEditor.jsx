@@ -163,7 +163,7 @@ export default class PageEditor extends React.PureComponent {
     const curEditState = this.props.selectedAreaStates[this.state.curEditId];
     const boxes = this.getAreas().map((area, i) => {
       const editable = this.state.editMode === 'editModel' ||
-        (model === undefined || model[area.key].editable);
+        (model === undefined || model[area.key] === undefined || model[area.key].editable);
       return (
         <div
           key={area.key}
