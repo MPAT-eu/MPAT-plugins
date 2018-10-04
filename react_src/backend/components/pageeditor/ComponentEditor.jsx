@@ -131,9 +131,9 @@ export default class ComponentEditor extends React.PureComponent {
     if there is a model object, and editableStyles is false for this box, then no
     */
     const enableStyleEdit = editMode === 'editModel' ||
-      !(model && model[id].editableStyles === false);
+      !(model && model[id] && model[id].editableStyles === false);
     let selectableComponentTypes = componentLoader.getComponents().map(a => a.type);
-    if (model && editMode !== 'editModel') {
+    if (model && model[id] && editMode !== 'editModel') {
       const allowed = model[id].types;
       if (!allowed.ANY) {
         selectableComponentTypes = Object.keys(allowed);
