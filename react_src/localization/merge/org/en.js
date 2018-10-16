@@ -624,7 +624,8 @@ const en = {
     zoomVideo: 'Zoom video to remove black bars',
     playIcon: 'Play icon',
     showPlayIcon: 'show play icon when video is ready',
-    showNavBar: 'Show navigation bar'
+    showNavBar: 'Show navigation bar',
+    stopAfterDeselecting: 'stop after focus was moved away'
   },
   timeline: {
     wizard: {

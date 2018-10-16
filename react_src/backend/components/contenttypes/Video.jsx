@@ -64,7 +64,8 @@ class VideoEdit extends React.PureComponent {
     playIcon: true,
     showNavBar: true,
     thumbnail: '',
-    asset: ''
+    asset: '',
+    stopAfterDeselecting: false
   };
 
   constructor() {
@@ -95,7 +96,7 @@ class VideoEdit extends React.PureComponent {
     }
   }
   render() {
-    const { url, autostart, loop, live, fullscreen, zoom, playIcon, showNavBar, thumbnail, asset } = this.props;
+    const { url, autostart, loop, live, fullscreen, zoom, playIcon, showNavBar, thumbnail, asset, stopAfterDeselecting} = this.props;
     return (
       <div className="component editHeader">
         <h2>{i18n.title}</h2>
@@ -235,6 +236,17 @@ class VideoEdit extends React.PureComponent {
                 <input
                   type="checkbox" checked={showNavBar}
                   onChange={e => this.setContent('showNavBar', e.target.checked)}
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label>{i18n.stopAfterDeselecting}</label>
+              </td>
+              <td>
+                <input
+                  type="checkbox" checked={stopAfterDeselecting}
+                  onChange={e => this.setContent('stopAfterDeselecting', e.target.checked)}
                 />
               </td>
             </tr>

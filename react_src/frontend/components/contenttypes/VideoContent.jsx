@@ -49,6 +49,7 @@ class VideoContent extends React.Component {
     zoom: PropTypes.bool,
     loop: PropTypes.bool,
     url: PropTypes.string,
+    stopAfterDeselecting: PropTypes.bool,
     hotSpotMeta: PropTypes.shape({
       isHotSpot: PropTypes.bool
     })
@@ -57,6 +58,7 @@ class VideoContent extends React.Component {
   static defaultProps = {
     playIcon: true,
     showNavBar: true,
+    stopAfterDeselecting: false,
     onVideoFinish: () => { }
   };
 /*
@@ -134,6 +136,10 @@ class VideoContent extends React.Component {
     try {
       if (nextProps.active && !this.props.active) {
         this.triggerControls({ entered: true });
+      }
+
+      if (this.props.stopAfterDeselecting && this.props.active && !nextProps.active) {
+        this.stop();
       }
       if (!nextProps.active && this.props.active) {
         if (this.props.hotSpotMeta && this.props.hotSpotMeta.isHotSpot && this.props.hotSpotMeta.position !== 'static') {

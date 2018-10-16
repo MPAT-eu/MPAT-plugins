@@ -451,7 +451,8 @@ const de = {
     zoomVideo: 'Video skalieren um schwarze Balken zu vermeiden',
     playIcon: 'Play Symbol',
     showPlayIcon: 'Play Symbol anzeigen, wenn das Video bereit ist',
-    showNavBar: 'Anzeige der Navigation'
+    showNavBar: 'Anzeige der Navigation',
+    stopAfterDeselecting: 'Stoppe wenn die Komponente nicht mehr ausgewählt ist'
   },
   timeline: {
     title: 'Timeline',
