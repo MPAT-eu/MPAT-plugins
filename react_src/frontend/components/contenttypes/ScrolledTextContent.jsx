@@ -52,8 +52,8 @@ class ScrolledTextContent extends React.Component {
     ]));
     this.textHeight = document.getElementById(`scrolledText${this.props.id}`).offsetHeight;
     this.scrollMax = (this.props.position.height * 0.8) - this.textHeight;
-    this.scrollBarSize = this.props.position.height * this.props.position.height / this.textHeight ;
-    this.scrollBarMaxPosition = this.props.position.height - this.scrollBarSize ;
+    this.scrollBarSize = this.props.position.height * this.props.position.height / this.textHeight;
+    this.scrollBarMaxPosition = this.props.position.height - this.scrollBarSize;
   }
 
   componentWillUnmount() {
@@ -77,11 +77,10 @@ class ScrolledTextContent extends React.Component {
     let off = this.state.textOffset;
     off += this.props.position.height * 0.8;
     if (off > 0) off = 0;
-    this.setState(
-      {
-        textOffset: off,
-        scrollBarPosition: - Math.min(off * this.props.position.height / this.textHeight, this.scrollBarMaxPosition)
-      });
+    this.setState({
+      textOffset: off,
+      scrollBarPosition: -Math.min(off * this.props.position.height / this.textHeight, this.scrollBarMaxPosition)
+    });
   }
 
   scrollDown() {
@@ -91,11 +90,10 @@ class ScrolledTextContent extends React.Component {
     let off = this.state.textOffset;
     off -= this.props.position.height * 0.8;
     if (off < this.scrollMax) off = this.scrollMax;
-    this.setState(
-      {
-        textOffset: off,
-        scrollBarPosition: - Math.min(off * this.props.position.height / this.textHeight, this.scrollBarMaxPosition)
-      });
+    this.setState( {
+      textOffset: off,
+      scrollBarPosition: -Math.min(off * this.props.position.height / this.textHeight, this.scrollBarMaxPosition)
+    });
   }
 
   render() {
@@ -104,6 +102,8 @@ class ScrolledTextContent extends React.Component {
       text, id } = this.props;
     const arrowUpPosition = `${arrowsPosition}up`;
     const arrowDownPosition = `${arrowsPosition}down`;
+     // dirty quick fix, since i don't know yet how to figure out the textHeight
+    this.scrollBarSize = this.scrollBarSize | this.props.position.height /4;
 
     return (
       <div className="page-element-content text-content">
