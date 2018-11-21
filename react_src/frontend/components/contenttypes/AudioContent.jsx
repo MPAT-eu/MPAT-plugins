@@ -71,6 +71,7 @@ class AudioContent extends React.Component {
     super(props);
     autobind(this);
     this.state = {
+      initialPlay: true,
       isPlaying: false,
       hasStarted: false
     };
@@ -124,8 +125,13 @@ class AudioContent extends React.Component {
   }
 
   play() {
-    this.setState({ hasStarted: true, isPlaying: true }, () => this.audio.play());
-    trackAction('audio', 'play', this.props.url);
+    const initialPlay = this.state.initialPlay;
+    this.setState({ hasStarted: true, isPlaying: true, initialPlay: false }, () => this.audio.play());
+    if (initialPlay) {
+      trackAction('audio', 'initialPlay', this.props.url);
+    } else {
+      trackAction('audio', 'play', this.props.url);
+    }
   }
 
   pause() {

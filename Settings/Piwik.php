@@ -95,7 +95,7 @@ class Piwik {
 	static function register_frontend_variables($systems) {
 		$piwik_config = self::get_config();
 		
-		if ($piwik_config["enable"]) {
+		if (isset($piwik_config["enable"])) {
 			$systems["piwik"] = $piwik_config;
 		}
 		return $systems;
@@ -104,7 +104,7 @@ class Piwik {
 	static function print_config_script() {
 		$piwik_config = self::get_config();
 		
-		if ($piwik_config["enable"]) {
+		if (isset($piwik_config["enable"])) {
 			$piwik_url = rtrim($piwik_config["url"], "/") . "/";
 			?>
             <script type="text/javascript">

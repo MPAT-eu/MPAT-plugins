@@ -154,7 +154,7 @@ class GalleryContent extends React.Component {
     }
 
     this.setState(state);
-    trackAction('gallery', 'prev', this.props.images[state.currentSlide].attachmentUrl);
+    trackAction('gallery', 'prev', this.props.images[state.currentSlide].attachmentUrl, state.currentSlide);
   }
 
   next() {
@@ -175,7 +175,7 @@ class GalleryContent extends React.Component {
       state.currentSlide = 0;
     }
     this.setState(state);
-    trackAction('gallery', 'next', this.props.images[state.currentSlide].attachmentUrl);
+    trackAction('gallery', 'next', this.props.images[state.currentSlide].attachmentUrl, state.currentSlide);
   }
 
   play() {

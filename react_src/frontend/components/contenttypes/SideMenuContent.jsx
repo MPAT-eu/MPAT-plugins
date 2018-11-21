@@ -88,6 +88,11 @@ export default class SideMenuContent extends React.Component {
   componentWillUnmount() {
     unregisterHandlers(this);
   }
+  componentDidUpdate(prevProps) {
+    if(this.props.focused !== prevProps.focused && this.props.focused) {
+      trackAction('menu', 'menu-open');
+    }
+  }
 
   prev() {
     const state = this.state;

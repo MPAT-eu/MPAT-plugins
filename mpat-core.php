@@ -53,6 +53,7 @@ use MPAT\REST\AssetsSearchController;
 use MPAT\REST\AssetsController;
 use MPAT\Settings\Piwik;
 use MPAT\Settings\Ivw;
+use MPAT\Settings\Ati;
 use MPAT\TimeLine\TimeLine;
 use MPAT\UserRoles\Administrator;
 use MPAT\UserRoles\ApplicationCreator;
@@ -110,6 +111,7 @@ class Core {
 		ContentManagement\SiteManagement::init();
 		Piwik::register_analytics();
 		Ivw::register_analytics();
+		Ati::register_analytics();
 
 		// Trigger the registration of asset types from third-party plugins
 		$this->registered_asset_types = apply_filters("mpat_register_asset_types", $this->registered_asset_types);

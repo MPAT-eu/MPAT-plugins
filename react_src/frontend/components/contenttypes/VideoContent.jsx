@@ -83,6 +83,7 @@ class VideoContent extends React.Component {
     super(props);
     autobind(this);
     this.state = {
+      initialPlay: true,
       isFullscreen: false,
       isPlaying: false,
       hasStarted: false,
@@ -335,6 +336,7 @@ class VideoContent extends React.Component {
   }
 
   play() {
+    const initialPlay = this.state.initialPlay;
     clearInterval(this.state.playpositionInterval);
     const i = setInterval(() => {
       this.updatePlayPosition();
@@ -344,9 +346,14 @@ class VideoContent extends React.Component {
       hasStarted: true,
       focused: 2,
       isPlaying: true,
+      initialPlay: false,
       playpositionInterval: i
     }, () => this.video.play());
-    trackAction('video', 'play', this.props.url);
+    if (initialPlay) {
+      trackAction('video', 'initialPlay', this.props.url);
+    } else {
+      trackAction('video', 'play', this.props.url);
+    }
   }
 
   pause(focuse) {

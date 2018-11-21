@@ -26,9 +26,11 @@ import Cookies from 'js-cookie';
 import { log } from '../utils';
 import Piwik from './piwik';
 import Ivw from './ivw';
+import Ati from './ati';
 
 new Piwik();
 new Ivw();
+new Ati();
 
 let trackingEnabled = !Cookies.get('trackingEnabled') || Cookies.get('trackingEnabled') !== 'false';
 // custom handling of document url to be forced on those navigation models
