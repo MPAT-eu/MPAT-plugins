@@ -138,5 +138,6 @@ export function RedButtonFader () {
     window.TVDebugServerInterface.log("start red button fader");
     exports.fade(document.getElementById("MPATRedButtonDiv"), 0);
   };
+  exports.active = false;
   return exports;
 }

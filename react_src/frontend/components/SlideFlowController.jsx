@@ -47,9 +47,16 @@ export default class SlideFlowController extends React.Component {
       hasScrolledUp: null
     };
     this.isScrollingLocked = false;
-    this.orientation = (application.application_manager.slideflow_orientation) ? application.application_manager.slideflow_orientation : 'vertical';
-    this.experimental = (application.application_manager.slideflow_experimental) ? application.application_manager.slideflow_experimental : false;
-    this.showArrows = (application.application_manager.slideflow_arrows != undefined) ? application.application_manager.slideflow_arrows : true;
+    this.orientation = (application.application_manager.slideflow_orientation) ?
+      application.application_manager.slideflow_orientation : 'vertical';
+    this.experimental = (application.application_manager.slideflow_experimental) ?
+      application.application_manager.slideflow_experimental : false;
+    this.showArrows = (application.application_manager.slideflow_arrows != undefined) ?
+      application.application_manager.slideflow_arrows : true;
+    // JC Dufourd, 4/4/19, hack to take red button into account
+    const redButtonActive = window.RedButtonFader && window.RedButtonFader.active;
+    if (redButtonActive) this.showArrows = false;
+    // end of hack
     registerNavigationModel(new DefaultNavigationModel());
     this.slideFlowStore = new SlideFlowStore(application.post, application.application_manager.pages);
 

@@ -137,10 +137,11 @@ export default class Page extends React.PureComponent {
       ]));
     }
 
-    // hide on red is activate if
+    // hide on red is active if
     // window.RedButtonFader.RedButtonMode is all OR
     // window.RedButtonFader.RedButtonMode is not none AND page is set for hideOnRed
-    if ((this.props.pageProps && this.props.pageProps.hideOnRed && !(window.RedButtonFader && window.RedButtonFader.RedButtonMode === 'none')) ||
+    if ((this.props.pageProps && this.props.pageProps.hideOnRed &&
+       !(window.RedButtonFader && window.RedButtonFader.RedButtonMode === 'none')) ||
         (window.RedButtonFader && window.RedButtonFader.RedButtonMode === 'all')) {
       registerHandlers(this, handlersWithTag('always', [
         createHandler(KeyEvent.VK_RED, this.showHideOnRed),
@@ -206,6 +207,7 @@ export default class Page extends React.PureComponent {
     this.setState({ hide });
     const showRed = this.state.hide && window.RedButtonFader &&
       (window.RedButtonFader.RedButtonMode === 'all' || this.props.pageProps.hideOnRed);
+    window.RedButtonFader.active = showRed;
     if (showRed) {
       window.RedButtonFader.start();
     }
@@ -348,7 +350,9 @@ export default class Page extends React.PureComponent {
     if (pageStyles.backgroundImage === 'none') {
       pageStyleOverride.backgroundImage = 'none';
     }
-    const displayPage = !(this.props.pageProps.hideOnRed || (window.RedButtonFader && window.RedButtonFader.RedButtonMode === 'all')) || !this.state.hide;
+    const displayPage = !(this.props.pageProps.hideOnRed
+      || (window.RedButtonFader && window.RedButtonFader.RedButtonMode === 'all'))
+      || !this.state.hide;
     return (
       <div>
         {displayPage &&
