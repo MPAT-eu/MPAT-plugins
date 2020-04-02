@@ -110,6 +110,7 @@ class Core {
 		ContentManagement\SiteManagement::init();
 		Piwik::register_analytics();
 		Ivw::register_analytics();
+		WebTrekk::register_analytics();
 
 		// Trigger the registration of asset types from third-party plugins
 		$this->registered_asset_types = apply_filters("mpat_register_asset_types", $this->registered_asset_types);
