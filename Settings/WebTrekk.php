@@ -156,7 +156,9 @@ class WebTrekk {
 		if ($webTrekk_config["enable"]) {
 			?>
             <script type="text/javascript">
+			//<![CDATA[
 	        	var mpatWebTrekkConfig = <?= json_encode($webTrekk_config) ?>
+			//]]>
 	        </script>
             <?php
 		}
