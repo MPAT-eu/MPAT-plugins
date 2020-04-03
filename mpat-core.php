@@ -53,6 +53,7 @@ use MPAT\REST\AssetsSearchController;
 use MPAT\REST\AssetsController;
 use MPAT\Settings\Piwik;
 use MPAT\Settings\Ivw;
+use MPAT\Settings\WebTrekk;
 use MPAT\TimeLine\TimeLine;
 use MPAT\UserRoles\Administrator;
 use MPAT\UserRoles\ApplicationCreator;
