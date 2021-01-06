@@ -21,7 +21,7 @@
   "license": "ISC",
   "dependencies": {
     "assign-deep": "^0.4.7",
-    "axios": "^0.15.3",
+    "axios": ">=0.21.1"
     "babel-core": "^6.26.0",
     "babel-eslint": "^7.1.1",
     "babel-loader": "^6.2.4",
